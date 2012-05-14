@@ -21,7 +21,7 @@ describe Members::OmniauthCallbacksController do
       
       describe "when the member already exists" do
         before :each do
-          @member = Factory.build :member, facebook_id: @facebook_id, profile_pic: @profile_pic
+          @member = FactoryGirl.build :member, facebook_id: @facebook_id, profile_pic: @profile_pic
           @member.skip_confirmation!
           @member.save!
         end

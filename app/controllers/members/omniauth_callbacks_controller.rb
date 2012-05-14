@@ -1,12 +1,12 @@
 class Members::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
     facebook_info =  request.env['omniauth.auth']
-    facebook_id = facebook_info[:uid]
-    profile_pic = facebook_info[:credentials][:info][:image]
+    facebook_id = facebook_info.uid
+    profile_pic = facebook_info.info.image
     member = Member.where(facebook_id: facebook_id).first
     unless member
       member = Member.new \
-        email: facebook_info[:credentials][:info][:email], 
+        email: facebook_info.info.email, 
         facebook_id: facebook_id, 
         profile_pic: profile_pic, 
         password: 'yt*k*$GY$-ULKf3qy$O',
