@@ -24,7 +24,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   # GET /projects/new.json
   def new
-    @project = Project.new
+    @project = Project.new(owner: current_member)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,6 +41,7 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(params[:project])
+    @project.owner = current_member
 
     respond_to do |format|
       if @project.save

@@ -1,5 +1,7 @@
 require 'spec_helper'
 
 describe Project do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject {Factory :project}
+  it {should belong_to(:owner)}
+  it {should have_many(:pledges)}
 end

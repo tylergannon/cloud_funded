@@ -5,5 +5,6 @@ FactoryGirl.define do
     name "MyString"
     description "MyText"
     financial_goal "9.99"
+    association :owner, factory: :member
   end
 end

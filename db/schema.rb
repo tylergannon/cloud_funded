@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120514190037) do
+ActiveRecord::Schema.define(:version => 20120514215734) do
 
   create_table "members", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20120514190037) do
     t.datetime "updated_at",                             :null => false
     t.integer  "facebook_id"
     t.string   "profile_pic"
+    t.string   "profile"
   end
 
   add_index "members", ["authentication_token"], :name => "index_members_on_authentication_token", :unique => true
@@ -46,13 +47,26 @@ ActiveRecord::Schema.define(:version => 20120514190037) do
   add_index "members", ["reset_password_token"], :name => "index_members_on_reset_password_token", :unique => true
   add_index "members", ["unlock_token"], :name => "index_members_on_unlock_token", :unique => true
 
+  create_table "pledges", :force => true do |t|
+    t.decimal  "amount"
+    t.integer  "project_id"
+    t.integer  "investor_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.decimal  "financial_goal"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.integer  "owner_id"
+    t.string   "slug"
+    t.datetime "completion_date"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
+
+  add_index "projects", ["slug"], :name => "index_projects_on_slug", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

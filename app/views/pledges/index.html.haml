@@ -1,0 +1,19 @@
+%h1 Listing pledges
+
+%table
+  %tr
+    %th Amount
+    %th
+    %th
+    %th
+
+  - @pledges.each do |pledge|
+    %tr
+      %td= pledge.amount
+      %td= link_to 'Show', pledge
+      %td= link_to 'Edit', edit_pledge_path(pledge)
+      %td= link_to 'Destroy', pledge, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Pledge', new_pledge_path

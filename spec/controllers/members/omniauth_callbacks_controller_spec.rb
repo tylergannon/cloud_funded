@@ -1,17 +1,13 @@
 require 'spec_helper'
 
 describe Members::OmniauthCallbacksController do
-  describe "facebook" do
-    before :each do
-      include Devise::TestHelpers
-      request.env["devise.mapping"] = Devise.mappings[:member]
-    end
-    
+  describe "facebook" do    
     describe "when FB login successful" do
       before(:each) {
         request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]
-        @facebook_id = OmniAuth.config.mock_auth[:facebook][:uid].to_i
+        @facebook_id = OmniAuth.config.mock_auth[:facebook].uid.to_i
         @profile_pic = "http://graph.facebook.com/6714565/picture?type=square"
+        @profile = OmniAuth.config.mock_auth[:facebook].info.urls.Facebook
       }
       it "should create a new member if one does not exist" do
         lambda {
@@ -50,6 +46,9 @@ describe Members::OmniauthCallbacksController do
         end
         it "should have the correct profile pic" do
           @member.profile_pic.should be == @profile_pic
+        end
+        it "should have the correct profile url" do
+          @member.profile.should be == @profile
         end
         it "should redirect to root path" do
           response.should redirect_to(root_path)

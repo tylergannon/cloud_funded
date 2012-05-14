@@ -10,6 +10,23 @@
   %b Financial goal:
   = @project.financial_goal
 
+%p
+  %b Pledged so far:
+  - if @project.pledges.empty?
+    = link_to "Be the first to pledge support!", new_project_pledge_path(@project)
+  - else
+    = @project.pledges.map(&:amount).sum
+%p 
+  = ((@project.completion_date - Time.zone.now) / (24*3600)).to_i
+  %b Days Left
+
+%h2 These people have pledged:
+- @project.pledges.map(&:investor).each do |investor|
+  = link_to investor.profile do
+    = image_tag investor.profile_pic
+
+= link_to new_project_pledge_path(@project) do
+  %h2 Pledge Your Support!
 = link_to 'Edit', edit_project_path(@project)
 \|
 = link_to 'Back', projects_path

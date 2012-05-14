@@ -8,6 +8,8 @@ gem 'haml-rails'
 gem 'devise', '2.1.0.rc2'
 gem 'omniauth-facebook'
 gem 'devise-encryptable'
+gem 'friendly_id'
+gem "responders", "~> 0.9.1"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -21,4 +23,5 @@ group :development, :test do
   gem 'vcr'
   gem 'spork', '1.0.0rc3'
   gem 'guard-spork'
+  gem 'shoulda-matchers'
 end

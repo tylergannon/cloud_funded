@@ -36,6 +36,10 @@ Spork.prefork do
     config.infer_base_class_for_anonymous_controllers = false
 
     OmniAuth.config.test_mode = true
+    
+    config.before(:each, :type => :controller) do
+      request.env["devise.mapping"] = Devise.mappings[:member]
+    end
 
     config.include Devise::TestHelpers, :type => :controller
     config.include Devise::TestHelpers, :type => :view
