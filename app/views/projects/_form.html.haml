@@ -28,4 +28,4 @@
     = f.label :completion_date
     = f.date_select :completion_date, start_year: Time.now.year, end_year: Time.now.year + 2, default: (Time.now + 1.year)
   .actions
-    = f.submit 'Save'
+    .field= f.submit 'Save'

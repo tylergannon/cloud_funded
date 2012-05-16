@@ -61,5 +61,8 @@ module CloudFunded
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    
+    ENV['RECAPTCHA_PUBLIC_KEY']='6LdpitESAAAAAItUxR6G6d9j4zdjrRhCkqrIIie0'
+    ENV['RECAPTCHA_PRIVATE_KEY'] = '6LdpitESAAAAAHo1roAY5TfqUQ0Rwk-pdWoTksGs'
   end
 end

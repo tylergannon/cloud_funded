@@ -20,4 +20,8 @@
         .header_link= link_to 'Sign out', destroy_member_session_path, method: 'delete'
         
     .container
+      - if flash[:notice]
+        %p= flash[:notice]
+      - if flash[:error]
+        %p= flash[:error]
       = yield

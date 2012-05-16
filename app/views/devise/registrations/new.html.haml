@@ -1,0 +1,28 @@
+.container.white.rounded.shadow.new
+  %br/
+  %h2 Welcome!  
+  %h3 You're just a few clicks away from Cloud Funding the projects you love.
+  - if flash[:alert]
+    %p.alert= flash[:alert]
+
+  = link_to member_omniauth_authorize_path(:facebook) do
+    = image_tag 'Button_FBConnect.png'
+
+  = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+    = devise_error_messages!
+    .field
+      = f.label :email
+      %br/
+      = f.email_field :email
+    .field
+      = f.label :password
+      %br/
+      = f.password_field :password
+    .field
+      = f.label :password_confirmation
+      %br/
+      = f.password_field :password_confirmation
+    #recaptcha_container
+      = recaptcha_tags
+    %div= f.submit "Sign up"
+  = render "links"

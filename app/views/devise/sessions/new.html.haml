@@ -1,18 +1,22 @@
-%h2 Sign in
-= link_to member_omniauth_authorize_path(:facebook) do
-  = image_tag 'Button_FBConnect.png'
-= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  %div
-    = f.label :email
-    %br/
-    = f.email_field :email
-  %div
-    = f.label :password
-    %br/
-    = f.password_field :password
-  - if devise_mapping.rememberable?
-    %div
-      = f.check_box :remember_me
-      = f.label :remember_me
-  %div= f.submit "Sign in"
-= render "links"
+.container.white.rounded.shadow.new
+  %br/
+  %h2 Welcome back!
+  = link_to member_omniauth_authorize_path(:facebook) do
+    = image_tag 'Button_FBConnect.png'
+  = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+    .field
+      = f.label :email
+      %br/
+      = f.email_field :email
+      %br/
+      = f.label :password
+      %br/
+      = f.password_field :password
+      %br/
+      - if devise_mapping.rememberable?
+        = f.label :remember_me
+        = f.check_box :remember_me
+      %br/
+      %br/
+      =f.submit "Sign in"
+  = render "links"

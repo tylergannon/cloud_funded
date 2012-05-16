@@ -1,4 +1,6 @@
-%p#notice= notice
+- if @project.owner == current_member
+  %h3 This is your project.
+  %p= link_to 'Click to make changes', edit_project_path(@project)
 
 .project.rounded.shadow{'data-project-path' => project_path(@project)}
   %h2= @project.name
@@ -8,8 +10,6 @@
     = link_to @project.website_url, @project.website_url
   .progress{'data-percent-complete' => @project.percent_complete}
   %h3 #{number_to_currency(@project.amount_pledged)} raised
-  - if @project.owner == current_member
-    %p= link_to 'Edit your project', edit_project_path(@project)
 
 - unless @project.youtube_url.blank?
   .youtube

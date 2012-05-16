@@ -8,7 +8,7 @@ class Project < ActiveRecord::Base
   has_many :pledges
   
   has_attached_file :image,
-    :styles => { :medium => "300x300>", :thumb => "100x100>" },
+    :styles => { :medium => "300x190", :thumb => "100x100" },
     :storage => :s3,
     :bucket => 'cloud_funded',
     :s3_credentials => {
@@ -19,6 +19,8 @@ class Project < ActiveRecord::Base
   validates_attachment_presence :image
   validates :website_url, presence: true
   validates :description, length: {maximum: 500}
+  validates :financial_goal, numericality: true
+  validates :name, uniqueness: true
   
   def youtube_url=(url)
     super(url.gsub(/watch\?v=/, 'embed/'))

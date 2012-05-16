@@ -134,7 +134,7 @@ border: 1px solid red;
 /* New Project Page (give page class="new") */
 
 
-.new label{
+.new .field > label{
 font-size: 18px;
 font-weight: bold;
 color: #aaa;
@@ -168,7 +168,7 @@ margin-bottom: 10px;
 }
 
 
-.new input, .new textarea {
+.new .field > input, .new textarea {
 
 font-size: 16px;
 
@@ -190,7 +190,7 @@ background-image: linear-gradient(top,whiteSmoke,white);
 }
 
 
-.new input {
+.new .field > input {
 
 line-height: 40px;
 
