@@ -1,12 +1,12 @@
 body {
-background: url(image_path('orange.jpg')) 0 0 repeat;
+background: url(/assets/orange.jpg) 0 0 repeat;
 margin: 0px;
 color: #333;
 font:13px/1.5 Helvetica,Arial,'Liberation Sans',FreeSans,sans-serif;
 }
 
 #header{
-background: url(image_path('top.png')) 0 0 repeat-x;
+background: url(/assets/top.png) 0 0 repeat-x;
 height: 62px;
 width: 100%;
 margin: 30px 0px;
@@ -21,7 +21,7 @@ padding: 0px 40px;
 }
 
 .page_title {
-background: url(image_path('logo.png')) 0 0 no-repeat;
+background: url(/assets/logo.png) 0 0 no-repeat;
 width: 250px;
 height: 104px;
 overflow: hidden;
