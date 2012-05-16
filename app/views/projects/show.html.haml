@@ -34,9 +34,10 @@
   .fb-like{'data-href' => project_url(@project), 'data-send' => true, 'data-width' => '450', 'data-show-faces' => true}
 .clear
 = content_for :head do
+  %link{rel: 'image_src', href: @project.image.url(:original, false)}
   %meta{property: 'fb:app_id', content: facebook_app_id}
   %meta{property: 'og:type', content: 'cloudfunded:project'}
-  %meta{property: 'og:title', content: @project.name}
+  %meta{property: 'og:title', content: "#{@project.name} on CloudFunded"}
   %meta{property: 'og:image', content: @project.image.url(:original, false)}
   %meta{property: 'og:description', content: @project.description}
   %meta{property: 'og:url', content: project_url(@project)}
