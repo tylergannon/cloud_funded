@@ -37,6 +37,6 @@
   %meta{property: 'fb:app_id', content: facebook_app_id}
   %meta{property: 'og:type', content: 'cloudfunded:project'}
   %meta{property: 'og:title', content: @project.name}
-  %meta{property: 'og:image', content: @project.image.url}
+  %meta{property: 'og:image', content: @project.image.url(:original, false)}
   %meta{property: 'og:description', content: @project.description}
   %meta{property: 'og:url', content: project_url(@project)}
