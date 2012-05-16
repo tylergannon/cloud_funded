@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120514215734) do
+ActiveRecord::Schema.define(:version => 20120516094742) do
 
   create_table "members", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -62,8 +62,14 @@ ActiveRecord::Schema.define(:version => 20120514215734) do
     t.integer  "owner_id"
     t.string   "slug"
     t.datetime "completion_date"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "youtube_url"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "website_url"
   end
 
   add_index "projects", ["slug"], :name => "index_projects_on_slug", :unique => true

@@ -10,6 +10,8 @@ gem 'omniauth-facebook'
 gem 'devise-encryptable'
 gem 'friendly_id'
 gem "responders", "~> 0.9.1"
+gem 'paperclip'
+gem 'aws-sdk'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

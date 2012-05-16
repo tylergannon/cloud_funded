@@ -5,12 +5,19 @@
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
+    = yield :head
   %body
+    = render partial: 'layouts/facebook_sdk'
     #header
-      .page_title
-        %h1 Cloud Funded
+      #headerwrap
+        .page_title
+          %h1 Cloud Funded
       .header_link= link_to 'Explore the projects', projects_path
       .header_link= link_to 'Submit your project', new_project_path
-      .header_link= link_to 'Sign up', new_member_registration_path
-      .header_link= link_to 'Sign in', new_member_session_path
-    = yield
+      - unless member_signed_in?
+        .header_link= link_to 'Sign in', new_member_session_path
+      - else
+        .header_link= link_to 'Sign out', destroy_member_session_path, method: 'delete'
+        
+    .container
+      = yield

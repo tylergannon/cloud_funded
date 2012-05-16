@@ -1,4 +1,7 @@
 CloudFunded::Application.configure do
+  ENV['facebook_app_id'] = '336588343062874'
+  ENV['facebook_secret_key'] = '03ac974371620fae08891f673160117b'
+  
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests

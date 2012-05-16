@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  before_filter :authenticate_member!, except: [:index, :show]
+  
   # GET /projects
   # GET /projects.json
   def index

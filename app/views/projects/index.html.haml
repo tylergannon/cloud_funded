@@ -1,23 +1,17 @@
-%h1 Listing projects
+%h1 Make the projects you believe in happen!
 
-%table
-  %tr
-    %th Name
-    %th Description
-    %th Financial goal
-    %th
-    %th
-    %th
+- @projects.each do |project|
+  .project.rounded.shadow{'data-project-path' => project_path(project)}
+    %h2= project.name
+    = image_tag project.image.url(:medium), width: '280px'
+    .description= project.description
+    .website_link
+      = link_to project.website_url, project.website_url
+    .progress{'data-percent-complete' => project.percent_complete}
+    %h3 #{number_to_currency(project.amount_pledged)} raised.  #{link_to 'Make a pledge now!', new_project_pledge_path(project)}
 
-  - @projects.each do |project|
-    %tr
-      %td= project.name
-      %td= project.description
-      %td= project.financial_goal
-      %td= link_to 'Show', project
-      %td= link_to 'Edit', edit_project_path(project)
-      %td= link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New Project', new_project_path
+.clear
+%br/
+%br/
+= link_to new_project_path do
+  %h3 Start Funding Your Own Project!

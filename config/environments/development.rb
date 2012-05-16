@@ -1,4 +1,7 @@
 CloudFunded::Application.configure do
+  ENV['facebook_app_id'] = '125298410939354'
+  ENV['facebook_secret_key'] = '39a8462763d22977e474c3bd01d63f10'
+
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on

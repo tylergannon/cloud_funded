@@ -1,32 +1,42 @@
 %p#notice= notice
 
-%p
-  %b Name:
-  = @project.name
-%p
-  %b Description:
-  = @project.description
-%p
-  %b Financial goal:
-  = @project.financial_goal
+.project.rounded.shadow{'data-project-path' => project_path(@project)}
+  %h2= @project.name
+  = image_tag @project.image.url(:medium), width: '280px'
+  .description= @project.description
+  .website_link
+    = link_to @project.website_url, @project.website_url
+  .progress{'data-percent-complete' => @project.percent_complete}
+  %h3 #{number_to_currency(@project.amount_pledged)} raised
+  - if @project.owner == current_member
+    %p= link_to 'Edit your project', edit_project_path(@project)
 
-%p
-  %b Pledged so far:
+- unless @project.youtube_url.blank?
+  .youtube
+    %iframe{width: '560', height: '315', frameborder: '0', allowfullscreen: true, src: @project.youtube_url}
+
+.already_pledged
+  %h1 Who's already pledged:
+  - @project.pledges.map(&:investor).each do |investor|
+    = link_to investor.profile do
+      = image_tag investor.profile_pic
+    
   - if @project.pledges.empty?
-    = link_to "Be the first to pledge support!", new_project_pledge_path(@project)
-  - else
-    = @project.pledges.map(&:amount).sum
-%p 
-  = ((@project.completion_date - Time.zone.now) / (24*3600)).to_i
-  %b Days Left
+    %h2 No one has pledged yet. Be the first!
+  = link_to new_project_pledge_path(@project) do
+    %h2 Pledge Your Support!
 
-%h2 These people have pledged:
-- @project.pledges.map(&:investor).each do |investor|
-  = link_to investor.profile do
-    = image_tag investor.profile_pic
 
-= link_to new_project_pledge_path(@project) do
-  %h2 Pledge Your Support!
-= link_to 'Edit', edit_project_path(@project)
-\|
-= link_to 'Back', projects_path
+.clear
+.share
+  %a{name: 'fb_share'}
+.like
+  .fb-like{'data-href' => project_url(@project), 'data-send' => true, 'data-width' => '450', 'data-show-faces' => true}
+.clear
+= content_for :head do
+  %meta{property: 'fb:app_id', content: facebook_app_id}
+  %meta{property: 'og:type', content: 'cloudfunded:project'}
+  %meta{property: 'og:title', content: @project.name}
+  %meta{property: 'og:image', content: @project.image.url}
+  %meta{property: 'og:description', content: @project.description}
+  %meta{property: 'og:url', content: project_url(@project)}

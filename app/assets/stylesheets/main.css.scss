@@ -1,0 +1,223 @@
+body {
+background: url(image_path('orange.jpg')) 0 0 repeat;
+margin: 0px;
+color: #333;
+font:13px/1.5 Helvetica,Arial,'Liberation Sans',FreeSans,sans-serif;
+}
+
+#header{
+background: url(image_path('top.png')) 0 0 repeat-x;
+height: 62px;
+width: 100%;
+margin: 30px 0px;
+padding: 0px;
+
+}
+
+#headerwrap {
+
+width: 980px;
+padding: 0px 40px;
+}
+
+.page_title {
+background: url(image_path('logo.png')) 0 0 no-repeat;
+width: 250px;
+height: 104px;
+overflow: hidden;
+text-indent: -300px;
+float: left;
+clear: none;
+margin: -30px 100px 0px 20px;
+}
+
+
+.header_link {
+margin-top: 20px;
+float: left;
+margin-right: 20px;
+
+
+}
+
+.header_link a{
+text-decoration: none;
+font-size: 16px;
+font-weight: bold;
+color: #333;
+letter-spacing: -1px;
+margin: 0px auto;
+text-decoration:none;
+text-shadow: 1px 1px #f8d581;
+}
+
+.header_link a:hover, .header_link a:active{
+color: #fff;
+text-shadow: -1px -1px #a88852;
+
+}
+
+
+/* Container div should go on every page */
+
+.container {
+padding: 40px;
+width: 1080px;
+margin: 40px auto;
+margin-top: 0px;
+padding-top: 0px;
+
+}
+
+
+.container a {
+color: #0099ff;
+text-decoration: none;
+font-weight: bold;
+}
+
+.container a:hover {
+color: #0066cc;
+
+}
+
+/* Projects: for front page/explore projects page */
+
+
+
+.project {
+background: #f4f4f4;
+border: 1px solid #ccc;
+margin-right: 25px;
+float: left;
+width: 280px;
+padding: 20px;
+height: 500px;
+
+}
+
+.project td {
+vertical-align: top;
+
+
+}
+
+.project p {
+
+font-size: 11px;
+line-height: 16px;
+
+
+}
+
+.project h2 {
+
+font-size: 18px;
+}
+
+
+.clear {
+clear: both;
+
+}
+
+
+.project th {
+
+font-size: 10px;
+border: 1px solid red;
+
+}
+
+
+
+/* New Project Page (give page class="new") */
+
+
+.new label{
+font-size: 18px;
+font-weight: bold;
+color: #aaa;
+clear: both;
+float: left;
+margin-right: 20px;
+text-align: right;
+width: 150px;
+
+
+}
+
+
+label {
+vertical-align: top;
+
+}
+
+
+.new .field {
+
+background-color: #f5f5f5;
+padding: 20px;
+-moz-border-radius: 6px;
+-webkit-border-radius: 6px;
+-o-border-radius: 6px;
+-ms-border-radius: 6px;
+-khtml-border-radius: 6px;
+border-radius: 6px;
+margin-bottom: 10px;
+}
+
+
+.new input, .new textarea {
+
+font-size: 16px;
+
+border: 1px solid #CCC;
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+-o-border-radius: 4px;
+-ms-border-radius: 4px;
+-khtml-border-radius: 4px;
+border-radius: 4px;
+background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(0%,whiteSmoke),color-stop(100%,white));
+background-image: -webkit-linear-gradient(top,whiteSmoke,white);
+background-image: -moz-linear-gradient(top,whiteSmoke,white);
+background-image: -o-linear-gradient(top,whiteSmoke,white);
+background-image: -ms-linear-gradient(top,whiteSmoke,white);
+background-image: linear-gradient(top,whiteSmoke,white);
+
+
+}
+
+
+.new input {
+
+line-height: 40px;
+
+}
+
+
+/* can be applied to any div */
+
+.shadow {
+-moz-box-shadow: 2px 2px 3px #333;
+-webkit-box-shadow: 2px 2px 3px #333;
+box-shadow: 2px 2px 3px #333;
+}
+
+
+
+.white {
+
+background-color: white;
+}
+
+.rounded {
+-moz-border-radius: 6px;
+-webkit-border-radius: 6px;
+-o-border-radius: 6px;
+-ms-border-radius: 6px;
+-khtml-border-radius: 6px;
+border-radius: 6px;
+
+}
