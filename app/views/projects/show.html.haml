@@ -36,7 +36,7 @@
 = content_for :head do
   %link{rel: 'image_src', href: @project.image.url(:original, false)}
   %meta{property: 'fb:app_id', content: facebook_app_id}
-  %meta{property: 'og:type', content: 'cloudfunded:project'}
+  %meta{property: 'og:type', content: 'article'}
   %meta{property: 'og:title', content: "#{@project.name} on CloudFunded"}
   %meta{property: 'og:image', content: @project.image.url(:original, false)}
   %meta{property: 'og:description', content: @project.description}
