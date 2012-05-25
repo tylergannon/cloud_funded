@@ -18,7 +18,8 @@ ActiveRecord::Schema.define(:version => 20120525170842) do
     t.text     "body"
     t.datetime "published_at"
     t.string   "slug"
-    t.integer  "member_id"
+    t.integer  "author_id"
+    t.boolean  "published"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end

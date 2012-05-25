@@ -5,7 +5,8 @@ class CreateArticles < ActiveRecord::Migration
       t.text :body
       t.datetime :published_at
       t.string :slug
-      t.integer :member_id
+      t.integer :author_id
+      t.boolean :published
       t.timestamps
     end
     add_index :articles, :slug, unique: true

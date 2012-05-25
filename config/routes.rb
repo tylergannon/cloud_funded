@@ -11,5 +11,8 @@ CloudFunded::Application.routes.draw do
     omniauth_callbacks: 'members/omniauth_callbacks',
     registrations: 'members/registrations'
   }
+  
+  match '/blog' => 'articles#index'
+  
   root to: 'projects#index'
 end

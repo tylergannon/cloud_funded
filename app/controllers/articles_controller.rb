@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.xml
   def index
-    @articles = Article.all
+    @articles = Article.where published: true
     respond_with(@articles)
   end
 
@@ -17,11 +17,13 @@ class ArticlesController < ApplicationController
   # GET /articles/new.xml
   def new
     @article = Article.new
+    authorize! :create, @article
     respond_with(@article)
   end
 
   # GET /articles/1/edit
   def edit
+    authorize! :edit, @article
     @article = Article.find(params[:id])
   end
 
@@ -29,6 +31,8 @@ class ArticlesController < ApplicationController
   # POST /articles.xml
   def create
     @article = Article.new(params[:article])
+    @article.author = current_member
+    authorize! :create, @article
     @article.save
     respond_with(@article)
   end
@@ -37,6 +41,7 @@ class ArticlesController < ApplicationController
   # PUT /articles/1.xml
   def update
     @article = Article.find(params[:id])
+    authorize! :edit, @article
     @article.update_attributes(params[:article])
     respond_with(@article)
   end
@@ -45,6 +50,7 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1.xml
   def destroy
     @article = Article.find(params[:id])
+    authorize! :destroy, @article
     @article.destroy
     respond_with(@article)
   end
