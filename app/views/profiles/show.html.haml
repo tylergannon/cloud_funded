@@ -1,0 +1,7 @@
+%h1= @member.full_name
+- if can?(:edit, @member)
+  .your_profile 
+    This is your profile.
+    = link_to 'Make Changes', edit_profile_path
+= link_to @member.profile do
+  = image_tag @member.profile_pic

@@ -1,5 +1,5 @@
 CloudFunded::Application.routes.draw do
-  resources :profiles, only: [:index, :show]
+  resources :profiles
   resource :profile
   
   resources :projects do

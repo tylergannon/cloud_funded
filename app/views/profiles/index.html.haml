@@ -1,0 +1,6 @@
+- @members.each do |member|
+  .member
+    %h2= "#{member.first_name} #{member.last_name}"
+    = link_to 'Profile', profile_path(member)
+    = link_to member.profile do
+      = image_tag member.profile_pic
