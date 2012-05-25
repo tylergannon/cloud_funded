@@ -14,6 +14,7 @@ gem 'paperclip'
 gem 'aws-sdk'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'cancan'
+gem 'mercury-rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

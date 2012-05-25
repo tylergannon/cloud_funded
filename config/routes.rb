@@ -1,4 +1,6 @@
 CloudFunded::Application.routes.draw do
+  resources :articles
+
   resources :profiles
   resource :profile
   
