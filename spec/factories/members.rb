@@ -5,6 +5,8 @@ FactoryGirl.define do
     "nicebax#{rand}#{i}@tylergannon.me"
   end
   factory :member do
+    first_name 'Niceguy'
+    last_name 'Grouchysometimesthough'
     email
     password "yt*k*$GY$-ULKf3qy$O"
     password_confirmation "yt*k*$GY$-ULKf3qy$O"
