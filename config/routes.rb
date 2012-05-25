@@ -1,5 +1,8 @@
 CloudFunded::Application.routes.draw do
-  resources :articles
+  resources :articles, only: [:index, :show]
+  namespace :admin do
+    resources :articles
+  end
 
   resources :profiles
   resource :profile

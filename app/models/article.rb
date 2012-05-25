@@ -5,4 +5,6 @@ class Article < ActiveRecord::Base
   attr_accessible :body, :published_at, :title, :published
   
   belongs_to :author, class_name: 'Member'
+  
+  default_scope order('published_at desc')
 end
