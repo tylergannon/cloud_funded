@@ -6,6 +6,8 @@ class Member < ActiveRecord::Base
          :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable, :omniauthable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :facebook_id, :profile_pic, :profile
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :facebook_id, :profile_pic, :profile,
+                  :first_name, :last_name
+  
   # attr_accessible :title, :body
 end

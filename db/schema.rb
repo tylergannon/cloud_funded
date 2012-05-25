@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120516094742) do
+ActiveRecord::Schema.define(:version => 20120524163444) do
 
   create_table "members", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "email",                  :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -33,11 +33,14 @@ ActiveRecord::Schema.define(:version => 20120516094742) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "authentication_token"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.integer  "facebook_id"
     t.string   "profile_pic"
     t.string   "profile"
+    t.boolean  "admin",                  :default => false
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "members", ["authentication_token"], :name => "index_members_on_authentication_token", :unique => true
@@ -62,14 +65,15 @@ ActiveRecord::Schema.define(:version => 20120516094742) do
     t.integer  "owner_id"
     t.string   "slug"
     t.datetime "completion_date"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.string   "youtube_url"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "website_url"
+    t.boolean  "active",             :default => true
   end
 
   add_index "projects", ["slug"], :name => "index_projects_on_slug", :unique => true

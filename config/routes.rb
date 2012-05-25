@@ -1,4 +1,7 @@
 CloudFunded::Application.routes.draw do
+  resources :profiles, only: [:index, :show]
+  resource :profile
+  
   resources :projects do
     resources :pledges
   end

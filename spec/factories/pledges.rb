@@ -3,5 +3,7 @@
 FactoryGirl.define do
   factory :pledge do
     amount "9.99"
+    association :project
+    association :investor, factory: :member
   end
 end

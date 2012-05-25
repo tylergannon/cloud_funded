@@ -16,6 +16,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
+    authorize! :read, @project
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,6 +28,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new.json
   def new
     @project = Project.new(owner: current_member)
+    authorize! :create, @project
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,6 +39,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   def edit
     @project = Project.find(params[:id])
+    authorize! :edit, @project
   end
 
   # POST /projects
@@ -44,6 +47,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(params[:project])
     @project.owner = current_member
+    authorize! :create, @project
 
     respond_to do |format|
       if @project.save
@@ -61,6 +65,7 @@ class ProjectsController < ApplicationController
   # PUT /projects/1.json
   def update
     @project = Project.find(params[:id])
+    authorize! :edit, @project
 
     respond_to do |format|
       if @project.update_attributes(params[:project])
@@ -78,6 +83,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project = Project.find(params[:id])
     @project.destroy
+    authorize! :destroy, @project
 
     respond_to do |format|
       format.html { redirect_to projects_url }

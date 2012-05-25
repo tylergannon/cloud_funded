@@ -10,10 +10,9 @@
   - @pledges.each do |pledge|
     %tr
       %td= pledge.amount
-      %td= link_to 'Show', pledge
-      %td= link_to 'Edit', edit_pledge_path(pledge)
-      %td= link_to 'Destroy', pledge, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Show', project_pledge_path(@project, pledge)
+      %td= link_to 'Edit', edit_project_pledge_path(@project, pledge)
+      %td= link_to 'Destroy', project_pledge_path(@project, pledge), :confirm => 'Are you sure?', :method => :delete
 
 %br
 
-= link_to 'New Pledge', new_pledge_path

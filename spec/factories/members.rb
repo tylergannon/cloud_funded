@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   sequence :email do |i|
-    "nicebax#{i}@tylergannon.me"
+    "nicebax#{rand}#{i}@tylergannon.me"
   end
   factory :member do
     email

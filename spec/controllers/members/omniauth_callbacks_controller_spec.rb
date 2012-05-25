@@ -59,6 +59,12 @@ describe Members::OmniauthCallbacksController do
         it "should log in the correct member" do
           controller.current_member.should == @member
         end
+        it "should get the first name" do
+          @member.first_name.should == "Tyler"
+        end
+        it "should get the last name" do
+          @member.last_name.should == "Gannon"
+        end
       end
     end
   end

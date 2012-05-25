@@ -2,13 +2,10 @@ require 'spec_helper'
 
 describe "pledges/index" do
   before(:each) do
+    @project = assign(:project, FactoryGirl.create(:project))
     assign(:pledges, [
-      stub_model(Pledge,
-        :amount => "9.99"
-      ),
-      stub_model(Pledge,
-        :amount => "9.99"
-      )
+      FactoryGirl.create(:pledge, project: @project),
+      FactoryGirl.create(:pledge, project: @project)
     ])
   end
 

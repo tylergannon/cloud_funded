@@ -10,7 +10,9 @@ class Members::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         profile_pic: facebook_info.info.image,
         profile: facebook_info.info.urls.Facebook,
         password: 'yt*k*$GY$-ULKf3qy$O',
-        password_confirmation: 'yt*k*$GY$-ULKf3qy$O'
+        password_confirmation: 'yt*k*$GY$-ULKf3qy$O',
+        first_name: facebook_info.info.first_name,
+        last_name: facebook_info.info.last_name
       member.skip_confirmation!
     end
     

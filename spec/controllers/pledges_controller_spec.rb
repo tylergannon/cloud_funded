@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe PledgesController do
   before :each do 
+    @member = FactoryGirl.create(:member)
     @project = FactoryGirl.create :project
   end
 
@@ -9,7 +10,7 @@ describe PledgesController do
   # Pledge. As you add validations to Pledge, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {amount: 123.45, investor: @member}
   end
   
   # This should return the minimal set of values that should be in the session
@@ -21,7 +22,7 @@ describe PledgesController do
 
   describe "GET index" do
     it "assigns all pledges as @pledges" do
-      pledge = @project.pledges.create! valid_attributes
+      pledge = @project.pledges.create! investor: @member
       get :index, {project_id: @project.id}
       assigns(:pledges).should eq([pledge])
     end
@@ -29,7 +30,7 @@ describe PledgesController do
 
   describe "GET show" do
     it "assigns the requested pledge as @pledge" do
-      pledge = @project.pledges.create! valid_attributes
+      pledge = @project.pledges.create! investor: @member
       get :show, {:project_id => @project.id, :id => pledge.to_param}
       assigns(:pledge).should eq(pledge)
     end
@@ -38,7 +39,6 @@ describe PledgesController do
   describe "authentication required" do
     before :each do
       request.env["devise.mapping"] = Devise.mappings[:member]
-      @member = FactoryGirl.create(:member)
       sign_in :member, @member
     end
 
@@ -74,7 +74,7 @@ describe PledgesController do
 
         it "redirects to the created pledge" do
           post :create, {:project_id => @project.id, :pledge => valid_attributes}
-          response.should redirect_to(project_pledge_path(@project, Pledge.last))
+          response.should redirect_to(project_path(@project))
         end
       end
 
@@ -108,13 +108,13 @@ describe PledgesController do
 
         it "assigns the requested pledge as @pledge" do
           pledge = @project.pledges.create! valid_attributes
-          put :update, {:project_id => @project.id, :id => pledge.to_param, :pledge => valid_attributes}
+          put :update, {:project_id => @project.id, :id => pledge.to_param, :pledge => {amount: 123.45}}
           assigns(:pledge).should eq(pledge)
         end
 
         it "redirects to the pledge" do
           pledge = @project.pledges.create! valid_attributes
-          put :update, {:project_id => @project.id, :id => pledge.to_param, :pledge => valid_attributes}
+          put :update, {:project_id => @project.id, :id => pledge.to_param, :pledge => {amount: 123.45}}
           response.should redirect_to(project_pledge_path(@project, pledge))
         end
       end
