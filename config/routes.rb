@@ -1,7 +1,13 @@
 CloudFunded::Application.routes.draw do
+
+  Mercury::Engine.routes
+
   resources :articles, only: [:index, :show]
   namespace :admin do
-    resources :articles
+    resources :articles do
+      member { post :mercury_update }
+      resources :attachments
+    end
   end
 
   resources :profiles

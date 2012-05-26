@@ -1,12 +1,6 @@
 %p#notice= notice
 
-%p
-  %b Title:
-  = @article.title
-%p
-  %b Body:
-  = @article.body
-%p
-  %b Published at:
-  = @article.published_at
-
+.article
+  %h1= @article.title
+  .article_header= "Published #{@article.published_at} by #{@article.author.full_name}"
+  .body= @article.body

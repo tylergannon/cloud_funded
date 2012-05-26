@@ -15,7 +15,7 @@
       %td= article.body
       %td= article.published_at
       %td= link_to 'Show', article
-      %td= link_to 'Edit', edit_admin_article_path(article)
+      %td= link_to 'Edit', '/editor' + admin_article_path(article)
       %td= link_to 'Destroy', admin_article_path(article), :confirm => 'Are you sure?', :method => :delete
 
 %br

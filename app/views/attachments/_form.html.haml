@@ -1,0 +1,16 @@
+= form_for [:admin, @article, @attachment], html: {multipart: true} do |f|
+  -if @attachment.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@attachment.errors.count, "error")} prohibited this attachment from being saved:"
+      %ul
+        - @attachment.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :image
+    = f.file_field :image
+  .actions
+    = f.submit 'Save'

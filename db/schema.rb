@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120525170842) do
+ActiveRecord::Schema.define(:version => 20120525180831) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -25,6 +25,18 @@ ActiveRecord::Schema.define(:version => 20120525170842) do
   end
 
   add_index "articles", ["slug"], :name => "index_articles_on_slug", :unique => true
+
+  create_table "attachments", :force => true do |t|
+    t.string   "title"
+    t.string   "attachable_type"
+    t.integer  "attachable_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
 
   create_table "members", :force => true do |t|
     t.string   "email",                  :default => "",    :null => false
@@ -63,6 +75,15 @@ ActiveRecord::Schema.define(:version => 20120525170842) do
   add_index "members", ["facebook_id"], :name => "index_members_on_facebook_id", :unique => true
   add_index "members", ["reset_password_token"], :name => "index_members_on_reset_password_token", :unique => true
   add_index "members", ["unlock_token"], :name => "index_members_on_unlock_token", :unique => true
+
+  create_table "mercury_images", :force => true do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
   create_table "pledges", :force => true do |t|
     t.decimal  "amount"

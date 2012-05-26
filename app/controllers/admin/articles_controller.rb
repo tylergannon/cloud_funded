@@ -21,10 +21,18 @@ class Admin::ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
-    authorize! :edit, @article
     @article = Article.find(params[:id])
+    authorize! :edit, @article
   end
-
+  
+  def mercury_update
+    article = Article.find(params[:id])
+    
+    article.update_attributes title: params[:content][:article_title][:value], body: params[:content][:article_body][:value]
+    
+    # Update page
+    render text: ""
+  end
   # POST /articles
   # POST /articles.xml
   def create
