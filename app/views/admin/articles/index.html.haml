@@ -1,23 +1,14 @@
-%h1 Listing articles
+= link_to 'New Article', new_admin_article_path
 
-%table
-  %tr
-    %th Title
-    %th Body
-    %th Published at
-    %th
-    %th
-    %th
-
-  - @articles.each do |article|
-    %tr
-      %td= article.title
-      %td= article.body
-      %td= article.published_at
-      %td= link_to 'Show', article
-      %td= link_to 'Edit', '/editor' + admin_article_path(article)
-      %td= link_to 'Destroy', admin_article_path(article), :confirm => 'Are you sure?', :method => :delete
+- @articles.each do |article|
+  .article#article_container{'data-save-url' => mercury_update_admin_article_path(article)}
+    %h1#article_title.mercury-region{'data-type' => 'editable'}= article.title
+    .article_header
+      = "Published #{article.published_at} by #{article.author.full_name}"
+      = link_to 'Show', article
+      = link_to 'Edit', '/editor' + admin_article_path(article)
+      = link_to 'Destroy', admin_article_path(article), :confirm => 'Are you sure?', :method => :delete
+    .body#article_body.mercury-region{'data-type' => 'editable'}!= article.body
 
 %br
 
-= link_to 'New Article', new_admin_article_path

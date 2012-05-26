@@ -467,7 +467,7 @@ window.Mercury = {
   // ## Debug Mode
   //
   // Turning debug mode on will log events and other various things (using console.debug if available).
-  debug: false,
+  debug: true,
 
   // The onload method is provided as a callback in case you want to override default Mercury Editor behavior.  It will
   // be called directly after the Mercury scripts have loaded, but before anything has been initialized.  It's a good
@@ -478,3 +478,10 @@ window.Mercury = {
   },
 };
 
+
+
+// Mercury.on('saved', function(){
+//   alert('dope');
+//   window.parent.parent.window.location = window.parent.parent.window.location.href.replace(/\/editor\//i, '/');
+// });
+// 

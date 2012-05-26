@@ -12,9 +12,16 @@
     function onMercuryReady() {
       Mercury.saveUrl = $('#article_container').data('save-url');
     }
+    top.window.Mercury.on('saved', function(){
+      alert('dope');
+      window.parent.parent.window.location = window.parent.parent.window.location.href.replace(/\/editor\//i, '/');
+    });
+    
+    
+    // Mercury.on('saved', function(){alert('dope');window.parent.parent.window.location = window.parent.parent.window.location.href.replace(/\/editor\//i, '/');});
     
     $(function() {
-      $(window).bind('mercury:saved', function() {
-        window.location = window.location.href.replace(/\/editor\//i, '/');
-      });
+      $(top.document).bind('mercury:saved', function(){alert('lame');});
+      // alert($(window.parent.parent.window.document).contents().find('#mercury_iframe').attr('id'));
     });
+    

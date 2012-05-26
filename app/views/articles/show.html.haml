@@ -3,4 +3,4 @@
 .article
   %h1= @article.title
   .article_header= "Published #{@article.published_at} by #{@article.author.full_name}"
-  .body= @article.body
+  .body!= @article.body
