@@ -1,41 +1,41 @@
 class AttachmentsController < ApplicationController
-  before_filter :load_article
+  before_filter :load_parent
   respond_to :html, :json
   
   # GET /attachments
   # GET /attachments.xml
   def index
-    @attachments = @article.attachments
-    respond_with(@article, @attachments)
+    @attachments = @parent.attachments
+    respond_with(@parent, @attachments)
   end
 
   # GET /attachments/1
   # GET /attachments/1.xml
   def show
-    @attachment = @article.attachments.find(params[:id])
-    respond_with(@article, @attachment)
+    @attachment = @parent.attachments.find(params[:id])
+    respond_with(@parent, @attachment)
   end
 
   # GET /attachments/new
   # GET /attachments/new.xml
   def new
-    @attachment = @article.attachments.build
-    respond_with(@article, @attachment)
+    @attachment = @parent.attachments.build
+    respond_with(@parent, @attachment)
   end
 
   # GET /attachments/1/edit
   def edit
-    @attachment = @article.attachments.find(params[:id])
+    @attachment = @parent.attachments.find(params[:id])
   end
 
   # POST /attachments
   # POST /attachments.xml
   def create
-    @attachment = @article.attachments.new(params[:attachment])
+    @attachment = @parent.attachments.new(params[:attachment])
     @attachment.save
-    respond_with(@article, @attachment) do |format|
+    respond_with(@parent, @attachment) do |format|
       format.html {
-        redirect_to edit_admin_article_path(@article)
+        redirect_to edit_polymorphic_path(:admin, @parent)
       }
       format.json {
         render json: {
@@ -50,11 +50,11 @@ class AttachmentsController < ApplicationController
   # PUT /attachments/1
   # PUT /attachments/1.xml
   def update
-    @attachment = @article.attachments.find(params[:id])
+    @attachment = @parent.attachments.find(params[:id])
     @attachment.update_attributes(params[:attachment])
-    respond_with(@article, @attachment) do |format|
+    respond_with(@parent, @attachment) do |format|
       format.html {
-        redirect_to edit_admin_article_path(@article)
+        redirect_to edit_polymorphic_path(:admin, @parent)
       }
     end
   end
@@ -62,13 +62,17 @@ class AttachmentsController < ApplicationController
   # DELETE /attachments/1
   # DELETE /attachments/1.xml
   def destroy
-    @attachment = @article.attachments.find(params[:id])
+    @attachment = @parent.attachments.find(params[:id])
     @attachment.destroy
-    respond_with(@article, @attachment)
+    respond_with(@parent, @attachment)
   end
   
-  def load_article
-    @article = Article.find(params[:article_id])
-    authorize! :manage, @article
+  def load_parent
+    if params[:article_id]
+      @article = @parent = Article.find(params[:article_id])
+    elsif params[:page_id]
+      @page = @parent = Page.find(params[:page_id])
+    end
+    authorize! :manage, @parent
   end
 end

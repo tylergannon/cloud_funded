@@ -27,12 +27,3 @@
     top.window.Mercury.on('saved', function(){
       window.parent.parent.window.location = window.parent.parent.window.location.href.replace(/\/editor\//i, '/');
     });
-    
-    
-    // Mercury.on('saved', function(){alert('dope');window.parent.parent.window.location = window.parent.parent.window.location.href.replace(/\/editor\//i, '/');});
-    
-    $(function() {
-      $(top.document).bind('mercury:saved', function(){alert('lame');});
-      // alert($(window.parent.parent.window.document).contents().find('#mercury_iframe').attr('id'));
-    });
-    

@@ -1,0 +1,20 @@
+.page
+  %h1= @page.title
+  .page_body!= @page.body
+  .clear
+  .share
+    %a{name: 'fb_share'}
+  .like
+    .fb-like{'data-href' => page_url(@page), 'data-send' => true, 'data-width' => '450', 'data-show-faces' => true}
+  .clear
+  
+
+= content_for :head do
+  %meta{property: 'fb:app_id', content: facebook_app_id}
+  %meta{property: 'og:type', content: 'article'}
+  %meta{property: 'og:title', content: @page.title}
+  - @page.attachments.each do |attachment|
+    %meta{property: 'og:image', content: attachment.image.url(:original, false)}
+  %meta{property: 'og:description', content: @page.description}
+  %meta{property: 'og:url', content: page_url(@page)}
+

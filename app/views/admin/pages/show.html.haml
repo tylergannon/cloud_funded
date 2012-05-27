@@ -1,0 +1,21 @@
+%p#notice= notice
+
+.page#page_container{'data-save-url' => mercury_update_admin_page_path(@page)}
+  %h1#page_title.mercury-region{'data-type' => 'editable'}= @page.title
+  .body#page_body.mercury-region{'data-type' => 'editable'}!= @page.body
+
+  Description / Abstract (one line)
+  .description#page_description.mercury-region{data: {type: :markupable}}!= @page.description
+
+= link_to 'Go To pages Management', admin_pages_path
+
+= content_for :head do
+  = javascript_include_tag 'mercury'
+  :javascript
+    function onMercuryReady() {
+      Mercury.saveUrl = $('#page_container').data('save-url');
+      $('form.edit_page').hide()
+    }
+    top.window.Mercury.on('saved', function(){
+      window.parent.parent.window.location = window.parent.parent.window.location.href.replace(/\/editor\//i, '/');
+    });
