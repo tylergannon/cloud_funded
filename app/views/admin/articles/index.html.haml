@@ -4,7 +4,14 @@
   .article#article_container{'data-save-url' => mercury_update_admin_article_path(article)}
     %h1#article_title.mercury-region{'data-type' => 'editable'}= article.title
     .article_header
-      = "Published #{article.published_at} by #{article.author.full_name}"
+      - if article.published
+        = "Published #{article.published_at.strftime("%b %d, %Y")} by #{article.author.full_name}"
+      - else
+        %b Not Yet Published
+        = form_for [:admin, article] do |f|
+          = hidden_field_tag "article[published]", true
+          = f.submit "Publish It!"
+        
       = link_to 'Show', admin_article_path(article)
       = link_to 'Edit', '/editor' + admin_article_path(article)
       = link_to 'Destroy', admin_article_path(article), :confirm => 'Are you sure?', :method => :delete

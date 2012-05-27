@@ -5,7 +5,7 @@
     .article_listing[article]
       %h1#article_title.mercury-region{'data-type' => 'editable'}= article.title
       .article_header
-        = "Published #{article.published_at} by #{article.author.full_name}"
+        = "Published #{article.published_at.strftime("%b %d, %Y")} by #{article.author.full_name}"
       .body#article_body.mercury-region{'data-type' => 'editable'}!= article.body
 
   %br
