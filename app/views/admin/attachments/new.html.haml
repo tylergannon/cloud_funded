@@ -2,4 +2,4 @@
 
 = render 'form'
 
-= link_to 'Back', admin_article_attachments_path(@article)
+= link_to 'Back', polymorphic_path([:admin, @parent, :attachments])

@@ -35,7 +35,7 @@ class Admin::AttachmentsController < ApplicationController
     @attachment.save
     respond_with(@parent, @attachment) do |format|
       format.html {
-        redirect_to edit_polymorphic_path(:admin, @parent)
+        redirect_to polymorphic_path([:admin, @parent, :attachments])
       }
       format.json {
         render json: {
@@ -54,7 +54,7 @@ class Admin::AttachmentsController < ApplicationController
     @attachment.update_attributes(params[:attachment])
     respond_with(@parent, @attachment) do |format|
       format.html {
-        redirect_to edit_polymorphic_path(:admin, @parent)
+        redirect_to polymorphic_path([:admin, @parent, :attachments])
       }
     end
   end

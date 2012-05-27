@@ -1,4 +1,4 @@
-= form_for [:admin, @article, @attachment], html: {multipart: true} do |f|
+= form_for [:admin, @parent, @attachment], html: {multipart: true} do |f|
   -if @attachment.errors.any?
     #error_explanation
       %h2= "#{pluralize(@attachment.errors.count, "error")} prohibited this attachment from being saved:"

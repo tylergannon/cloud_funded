@@ -1,5 +1,7 @@
 %h1 Listing attachments for #{@parent.class} "#{@parent.title}"
 
+= link_to 'Attach Another Image', new_polymorphic_path([:admin, @parent, :attachment])
+
 %table
   %tr
     %th Image

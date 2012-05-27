@@ -4,6 +4,6 @@
   %b Title:
   = @attachment.title
 
-= link_to 'Edit', edit_attachment_path(@attachment)
+= link_to 'Edit', edit_polymorphic_path([:admin, @parent, @attachment])
 \|
-= link_to 'Back', attachments_path
+= link_to 'Back', polymorphic_path([:admin, @parent, :attachments])
