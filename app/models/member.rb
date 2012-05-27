@@ -10,7 +10,7 @@ class Member < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :facebook_id, :profile_pic, :profile,
-                  :first_name, :last_name
+                  :first_name, :last_name, :admin
   
   def full_name
     "#{first_name} #{last_name}"

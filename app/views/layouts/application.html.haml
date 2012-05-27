@@ -21,9 +21,9 @@
         
     .container
       - if flash[:notice]
-        %p= flash[:notice]
+        %p.notice= flash[:notice]
       - if flash[:error]
-        %p= flash[:error]
+        %p.error= flash[:error]
       = yield
     #footer
       #footerwrap

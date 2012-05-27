@@ -4,6 +4,7 @@ CloudFunded::Application.routes.draw do
 
   resources :articles, only: [:index, :show]
   namespace :admin do
+    resources :members
     resources :articles do
       member { post :mercury_update }
       resources :attachments

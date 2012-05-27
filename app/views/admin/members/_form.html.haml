@@ -1,0 +1,25 @@
+- if flash[:alert]
+  %p.alert= flash[:alert]
+
+= form_for [:admin, @member] do |f|
+  .field
+    = f.label :email
+    = f.text_field :email
+  .field
+    = f.label :first_name
+    = f.text_field :first_name
+  .field
+    = f.label :last_name
+    = f.text_field :last_name
+  .field
+    = f.label :password
+    = f.password_field :password
+  .field
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+  .field
+    = f.label :admin
+    = f.check_box :admin
+  = f.submit
+  
+  
