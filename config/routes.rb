@@ -22,6 +22,6 @@ CloudFunded::Application.routes.draw do
   }
   
   match '/blog' => 'articles#index'
-  
+  match '/blog/:id' => 'articles#show', as: :blog_post
   root to: 'projects#index'
 end
