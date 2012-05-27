@@ -1,19 +1,12 @@
-%h1 Listing articles
-
-%table
-  %tr
-    %th Title
-    %th Body
-    %th Published at
-    %th
-    %th
-    %th
-
+.article_index
+  - if can? :manage, Article
+    %h2= link_to 'Manage Blog', admin_articles_path
   - @articles.each do |article|
-    %tr
-      %td= article.title
-      %td= article.body
-      %td= article.published_at
-      %td= link_to 'Show', article
+    .article_listing[article]
+      %h1#article_title.mercury-region{'data-type' => 'editable'}= article.title
+      .article_header
+        = "Published #{article.published_at} by #{article.author.full_name}"
+      .body#article_body.mercury-region{'data-type' => 'editable'}!= article.body
 
-%br
+  %br
+

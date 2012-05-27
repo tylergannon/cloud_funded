@@ -10,8 +10,7 @@ class Article < ActiveRecord::Base
   default_scope order('published_at desc')
   
   def published=(pub)
-    if !self.published && pub==true
-      self.published_at = Time.zone.now
-    end
+    self.published_at = Time.zone.now
+    super
   end
 end

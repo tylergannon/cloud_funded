@@ -5,7 +5,7 @@
     %h1#article_title.mercury-region{'data-type' => 'editable'}= article.title
     .article_header
       = "Published #{article.published_at} by #{article.author.full_name}"
-      = link_to 'Show', article
+      = link_to 'Show', admin_article_path(article)
       = link_to 'Edit', '/editor' + admin_article_path(article)
       = link_to 'Destroy', admin_article_path(article), :confirm => 'Are you sure?', :method => :delete
     .body#article_body.mercury-region{'data-type' => 'editable'}!= article.body
