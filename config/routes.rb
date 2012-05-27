@@ -1,12 +1,13 @@
 CloudFunded::Application.routes.draw do
-
-  resources :pages, only: :show
-
   Mercury::Engine.routes
 
+  resources :feedbacks, only: [:new, :create, :index]
+  resources :pages, only: :show
   resources :articles, only: [:index, :show]
+  
   namespace :admin do
-    resources :members
+    resources :members, :feedbacks
+    
     resources :pages do
       member { post :mercury_update }
       resources :attachments
@@ -24,6 +25,7 @@ CloudFunded::Application.routes.draw do
   resources :projects do
     resources :pledges
   end
+  
   devise_for :members, controllers: {
     omniauth_callbacks: 'members/omniauth_callbacks',
     registrations: 'members/registrations'
@@ -32,5 +34,7 @@ CloudFunded::Application.routes.draw do
   match '/blog' => 'articles#index', as: :blog
   match '/blog/:id' => 'articles#show', as: :blog_post
   match '/admin' => 'admin/controls#index'
+  match '/feedback' => 'feedbacks#new', as: :submit_feedback
+  match '/feedback_received' => 'feedbacks#index', as: :feedback_received
   root to: 'projects#index'
 end

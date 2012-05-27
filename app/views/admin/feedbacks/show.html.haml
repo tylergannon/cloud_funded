@@ -1,0 +1,17 @@
+%p#notice= notice
+
+%p
+  %b Subject:
+  = @feedback.subject
+%p
+  = @feedback.body
+%p
+  %b Member:
+  = link_to profile_path(@feedback.member) do
+    = image_tag @feedback.member.profile_pic
+    %h4= @feedback.member.full_name
+%p
+  %b About page:
+  = link_to @feedback.about_page
+
+= link_to 'Back to Feedback', feedbacks_path

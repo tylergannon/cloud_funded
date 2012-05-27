@@ -9,6 +9,7 @@ class Ability
         can :read, Project, owner_id: member.id
       
         can :create, Project
+        can :create, Feedback
         can :edit, Project, owner_id: member.id
         can :create, Pledge
         can :edit, Pledge, investor_id: member.id
