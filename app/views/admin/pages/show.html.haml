@@ -8,6 +8,7 @@
   .description#page_description.mercury-region{data: {type: :markupable}}!= @page.description
 
 = link_to 'Go To pages Management', admin_pages_path
+= link_to 'Edit Attached Images', admin_page_attachments_path(@page)
 
 = content_for :head do
   = javascript_include_tag 'mercury'

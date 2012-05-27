@@ -16,6 +16,7 @@
     = hidden_field_tag "article[published]", true
     = f.submit "Publish Article"
 = link_to 'Go To Articles Management', admin_articles_path
+= link_to 'Edit Attached Images', admin_article_attachments_path(@article)
 
 = content_for :head do
   = javascript_include_tag 'mercury'

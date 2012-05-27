@@ -1,0 +1,21 @@
+%h1 Listing attachments for #{@parent.class} "#{@parent.title}"
+
+%table
+  %tr
+    %th Image
+    %th Title
+    %th
+    %th
+    %th
+
+  - @attachments.each do |attachment|
+    %tr
+      %td
+        = link_to polymorphic_path([:admin, @parent, attachment]) do
+          = image_tag attachment.image.url
+      %td= attachment.title
+      %td= link_to 'Show', polymorphic_path([:admin, @parent, attachment])
+      %td= link_to 'Edit', edit_polymorphic_path([:admin, @parent, attachment])
+      %td= link_to 'Destroy', polymorphic_path([:admin, @parent, attachment]), :confirm => 'Are you sure?', :method => :delete
+
+%br
