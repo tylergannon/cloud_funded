@@ -1,3 +1,13 @@
 // Place all the styles related to the Admin::Articles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.article {
+  .description {
+    min-width: 100px;
+    min-height: 30px;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+  }
+}

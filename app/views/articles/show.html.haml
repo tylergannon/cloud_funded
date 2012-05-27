@@ -4,3 +4,20 @@
   %h1= @article.title
   .article_header= "Published #{@article.published_at.strftime("%b %d, %Y")} by #{@article.author.full_name}"
   .body!= @article.body
+
+  .clear
+  .share
+    %a{name: 'fb_share'}
+  .like
+    .fb-like{'data-href' => blog_post_url(@article), 'data-send' => true, 'data-width' => '450', 'data-show-faces' => true}
+  .clear
+
+
+= content_for :head do
+  %meta{property: 'fb:app_id', content: facebook_app_id}
+  %meta{property: 'og:type', content: 'article'}
+  %meta{property: 'og:title', content: @article.title}
+  - @article.attachments.each do |attachment|
+    %meta{property: 'og:image', content: attachment.image.url(:original, false)}
+  %meta{property: 'og:description', content: @article.description}
+  %meta{property: 'og:url', content: blog_post_url(@article)}

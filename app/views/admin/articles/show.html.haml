@@ -5,6 +5,9 @@
   .article_header= "Published #{@article.published_at.strftime("%b %d, %Y")} by #{@article.author.full_name}"
   .body#article_body.mercury-region{'data-type' => 'editable'}!= @article.body
 
+  Description / Abstract (one line)
+  .description#article_description.mercury-region{data: {type: :markupable}}!= @article.description
+
 - if @article.published
   %h3= link_to 'Article is Published.', @article
 - else

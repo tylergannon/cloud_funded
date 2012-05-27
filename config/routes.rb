@@ -22,7 +22,7 @@ CloudFunded::Application.routes.draw do
     registrations: 'members/registrations'
   }
   
-  match '/blog' => 'articles#index'
+  match '/blog' => 'articles#index', as: :blog
   match '/blog/:id' => 'articles#show', as: :blog_post
   match '/admin' => 'admin/controls#index'
   root to: 'projects#index'

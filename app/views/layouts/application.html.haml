@@ -14,6 +14,7 @@
           %h1 Cloud Funded
       .header_link= link_to 'Explore the projects', projects_path
       .header_link= link_to 'Submit your project', new_project_path
+      .header_link= link_to 'Blog', blog_path
       - unless member_signed_in?
         .header_link= link_to 'Sign in', new_member_session_path
       - else
