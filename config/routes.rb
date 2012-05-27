@@ -24,5 +24,6 @@ CloudFunded::Application.routes.draw do
   
   match '/blog' => 'articles#index'
   match '/blog/:id' => 'articles#show', as: :blog_post
+  match '/admin' => 'admin/controls#index'
   root to: 'projects#index'
 end
