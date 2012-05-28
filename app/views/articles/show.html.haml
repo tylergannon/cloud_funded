@@ -11,6 +11,22 @@
   .like
     .fb-like{'data-href' => blog_post_url(@article), 'data-send' => true, 'data-width' => '450', 'data-show-faces' => true}
   .clear
+  
+  #comments
+    = render(partial: 'comments/comment', collection: @article.comments) || render(partial: 'no_comments')
+  - if member_signed_in?
+    .new_comment
+      = form_for [@article, @article.comments.build(member: current_member)], remote: true do |f|
+        = f.hidden_field :member_id
+        = f.text_area :body
+        #recaptcha_container
+          = recaptcha_tags
+        = f.submit "Comment"
+  - else
+    %h3= link_to 'Sign in to comment on this article!', new_member_session_path
+    = link_to member_omniauth_authorize_path(:facebook) do
+      = image_tag 'Button_FBConnect.png'
+    
 
 
 = content_for :head do

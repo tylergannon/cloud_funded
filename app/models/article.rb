@@ -6,6 +6,7 @@ class Article < ActiveRecord::Base
   
   belongs_to :author, class_name: 'Member'
   has_many :attachments, as: :attachable
+  has_many :comments
   
   default_scope order('published_at desc')
   

@@ -1,9 +1,13 @@
 CloudFunded::Application.routes.draw do
+  resources :comments
+
   Mercury::Engine.routes
 
   resources :feedbacks, only: [:new, :create, :index]
   resources :pages, only: :show
-  resources :articles, only: [:index, :show]
+  resources :articles, only: [:index, :show] do
+    resources :comments
+  end
   
   namespace :admin do
     resources :members, :feedbacks
