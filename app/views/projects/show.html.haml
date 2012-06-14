@@ -1,6 +1,7 @@
 - if @project.owner == current_member
   %h3 This is your project.
   %p= link_to 'Click to make changes', edit_project_path(@project)
+  %p= link_to 'Create on Facebook', '#', id: 'create_on_facebook'
 
 .project.rounded.shadow{'data-project-path' => project_path(@project)}
   %h2= @project.name
@@ -43,7 +44,7 @@
   %meta{property: 'og:title', content: "#{@project.name} on CloudFunded"}
   %meta{property: 'og:image', content: @project.image.url(:original, false)}
   %meta{property: 'og:description', content: @project.description}
-  %meta{property: 'og:url', content: project_url(@project)}
+  %meta#project_url{property: 'og:url', content: project_url(@project)}
   %meta{property: 'cloudfunded:financial_goal', content: number_to_currency(@project.financial_goal)}
   %meta{property: 'cloudfunded:amount_raised', content: number_to_currency(@project.amount_pledged)}
   %meta{property: 'cloudfunded:amount_remaining', content: number_to_currency(@project.amount_remaining)}

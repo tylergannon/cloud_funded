@@ -12,3 +12,16 @@ $ ->
     $el = $(el)
     $el.progressbar
       value: $el.data('percent-complete')
+      
+  createProject = ->
+    FB.api "/me/cloudfunded:create", "post",
+      project: $('#project_url').attr('content'), 
+      (response) ->
+        if not response or response.error
+          alert "Error occured"
+        else
+          alert "Created project!: " + response.id
+
+  $('#create_on_facebook').click ->
+    createProject()
+  
