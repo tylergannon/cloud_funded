@@ -25,3 +25,5 @@ $ ->
   $('#create_on_facebook').click ->
     createProject()
   
+  $('#project_short_description').keyup ->
+    $('#char_count').html (250 - $('#project_short_description').val().length)

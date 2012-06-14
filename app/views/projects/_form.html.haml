@@ -10,8 +10,10 @@
     = f.label :name
     = f.text_field :name
   .field
-    = f.label :description
-    = f.text_area :description
+    = f.label :short_description, 'A brief (250 characters) description of your project'
+    = f.text_area :short_description, rows: 3, maxlength: 250
+    %span#char_count= 250
+    %span Characters Remaining
   .field
     = f.label :website_url, "Your Web Site URL"
     = f.text_field :website_url
