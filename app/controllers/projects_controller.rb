@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @projects }
@@ -16,6 +16,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
+    @title = "#{@project.name} on CloudFunded"
     authorize! :read, @project
 
     respond_to do |format|
@@ -52,7 +53,7 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if @project.save
         ProjectsMailer.new_project(@project).deliver
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
+        format.html { redirect_to @project, notice: 'Congratulations!  Your project is listed.  Now you can share it with others.' }
         format.json { render json: @project, status: :created, location: @project }
       else
         format.html { render action: "new" }

@@ -59,9 +59,11 @@ body
 	font-size: 16px;
 	font-weight: bold;
 	letter-spacing: -1px;
-	margin: 0px auto;
+	margin: 5px auto;
+	padding: 3px;
 	text-decoration: none;
 	text-shadow: 1px 1px #f8d581;
+	border-radius: 5px;
 }
 .header_link a:hover, .header_link a:active
 {
