@@ -44,3 +44,7 @@
   %meta{property: 'og:image', content: @project.image.url(:original, false)}
   %meta{property: 'og:description', content: @project.description}
   %meta{property: 'og:url', content: project_url(@project)}
+  %meta{property: 'cloudfunded:financial_goal', content: number_to_currency(@project.financial_goal)}
+  %meta{property: 'cloudfunded:amount_raised', content: number_to_currency(@project.amount_pledged)}
+  %meta{property: 'cloudfunded:amount_remaining', content: number_to_currency(@project.amount_remaining)}
+  

@@ -30,6 +30,10 @@ class Project < ActiveRecord::Base
     pledges.map(&:amount).sum
   end
   
+  def amount_remaining
+    financial_goal - amount_pledged
+  end
+  
   def percent_complete
     amount_pledged * 100 / financial_goal
   end
