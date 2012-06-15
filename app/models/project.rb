@@ -21,6 +21,7 @@ class Project < ActiveRecord::Base
   validates :description, length: {maximum: 500}
   validates :financial_goal, numericality: true
   validates :name, uniqueness: true
+  validates :owner, presence: true
   
   def youtube_url=(url)
     super(url.gsub(/watch\?v=/, 'embed/'))
