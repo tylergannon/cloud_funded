@@ -1,7 +1,13 @@
 require "spec_helper"
 
 describe PledgesController do
-  describe "routing" do
+  describe "Routing: Resources for Pledges" do
+    it "routes new pledge" do
+      get("/projects/nice/pledge").should route_to("pledges#new", :project_id => "nice")
+    end
+    it "routes to my pledge" do
+      get("/projects/nice/my_pledge").should route_to("pledges#show", :project_id => "nice")
+    end
 
     it "routes to #index" do
       get("/projects/nice/pledges").should route_to("pledges#index", :project_id => "nice")

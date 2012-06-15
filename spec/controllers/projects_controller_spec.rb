@@ -61,6 +61,24 @@ describe ProjectsController do
       get :show, {:id => project.to_param}
       assigns(:project).should eq(project)
     end
+    describe "Seeing My Pledge" do
+      before :each do
+        @project_i_am_viewing = FactoryGirl.create :project
+      end
+      describe "when I have not pledged support" do
+        it "should have a nil value for @my_pledge" do
+          get :show, {id: @project_i_am_viewing.to_param}
+          assigns(:my_pledge).should be_nil
+        end
+      end
+      describe "when I have pledged support" do
+        it "should assign my pledge" do
+          pledge = FactoryGirl.create :pledge, project: @project_i_am_viewing, investor: @member
+          get :show, {id: @project_i_am_viewing.to_param}
+          assigns(:my_pledge).should == pledge
+        end
+      end
+    end
   end
 
   describe "GET new" do

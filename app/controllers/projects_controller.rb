@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_member!, except: [:index, :show]
+  respond_to :html, :json
   
   # GET /projects
   # GET /projects.json
@@ -17,12 +18,21 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @title = "#{@project.name} on CloudFunded"
+    if member_signed_in?
+      @my_pledge = Pledge.where(investor_id: current_member.id, project_id: @project.id).first
+    end
     authorize! :read, @project
 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
     end
+  end
+  
+  def publicize
+    @project = Project.find(params[:id])
+    @title = "Publicize || " + @project.name
+    respond_with @project
   end
 
   # GET /projects/new

@@ -1,10 +1,5 @@
-%p#notice= notice
+%h3 You pledged #{number_to_currency(@pledge.amount)} to this project.
+%h4 Share it with your friends!
 
-%p
-  %b Amount:
-  = @pledge.amount
-
-= link_to 'Edit', edit_project_pledge_path(@project, @pledge)
-\|
-= link_to 'Back', project_pledges_path(@project)
+%h4= link_to 'Back', project_path(@project)
 

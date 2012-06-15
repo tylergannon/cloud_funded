@@ -12,10 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui-1.8.20.custom.min
+//= require jquery.ui.tabs
+//= require jquery.ui.progressbar
 //= require header
 //= require articles
 //= require pledges
 //= require profiles
 //= require projects
-

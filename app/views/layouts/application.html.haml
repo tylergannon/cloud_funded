@@ -25,7 +25,7 @@
         
     .container
       - if flash[:notice]
-        %p.notice= flash[:notice]
+        %p#notice= notice
       - if flash[:error]
         %p.error= flash[:error]
       = yield

@@ -3,14 +3,7 @@
   %p= link_to 'Click to make changes', edit_project_path(@project)
   %p= link_to 'Create on Facebook', '#', id: 'create_on_facebook'
 
-.project.rounded.shadow{'data-project-path' => project_path(@project)}
-  %h2= @project.name
-  = image_tag @project.image.url(:medium), width: '280px'
-  .description= @project.description
-  .website_link
-    = link_to @project.website_url, @project.website_url
-  .progress{'data-percent-complete' => @project.percent_complete}
-  %h3 #{number_to_currency(@project.amount_pledged)} raised
+= render @project
 
 - unless @project.youtube_url.blank?
   .youtube
@@ -21,11 +14,14 @@
   - @project.pledges.map(&:investor).each do |investor|
     = link_to investor.profile do
       = image_tag investor.profile_pic
-    
   - if @project.pledges.empty?
     %h2 No one has pledged yet. Be the first!
-  = link_to new_project_pledge_path(@project) do
-    %h2 Pledge Your Support!
+  - if @my_pledge
+    %h2 You have already pledged support.
+    %h3 Share this project with your friends!
+  - else
+    = link_to new_project_pledge_path(@project) do
+      %h2 Pledge Your Support!
 
 .clear
 .share

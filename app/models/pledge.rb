@@ -5,4 +5,8 @@ class Pledge < ActiveRecord::Base
   
   validates :investor, presence: true
   validates :project, presence: true
+  
+  def self.my_pledge(member, project)
+    where(investor_id: member.id, project_id: project.id).first
+  end
 end

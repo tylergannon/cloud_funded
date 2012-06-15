@@ -1,14 +1,6 @@
 %h1 Make the projects you believe in happen!
 
-- @projects.each do |project|
-  .project.rounded.shadow{'data-project-path' => project_path(project)}
-    %h2= project.name
-    = image_tag project.image.url(:medium), width: '280px'
-    .description= project.description
-    .website_link
-      = link_to project.website_url, project.website_url
-    .progress{'data-percent-complete' => project.percent_complete}
-    %h3 #{number_to_currency(project.amount_pledged)} raised.  #{link_to 'Make a pledge now!', new_project_pledge_path(project)}
+= render @projects
 
 .clear
 %br/
