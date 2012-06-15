@@ -13,17 +13,17 @@ $ ->
     $el.progressbar
       value: $el.data('percent-complete')
       
-  # createProject = ->
-  #   FB.api "/me/cloudfunded:create", "post",
-  #     project: $('#project_url').attr('content'), 
-  #     (response) ->
-  #       if not response or response.error
-  #         alert "Error occured"
-  #       else
-  #         alert "Created project!: " + response.id
-  # 
-  # $('#create_on_facebook').click ->
-  #   createProject()
+  createProject = ->
+    FB.api "/me/cloudfunded:create", "post",
+      project: $('#project_url').attr('content'), 
+      (response) ->
+        if not response or response.error
+          alert "Error occured"
+        else
+          alert "Created project!: " + response.id
+  
+  $('#create_on_facebook').click ->
+    createProject()
   
   $('#project_short_description').keyup ->
     $('#char_count').html (250 - $('#project_short_description').val().length)
