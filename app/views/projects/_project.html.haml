@@ -5,4 +5,5 @@
   .website_link
     = link_to project.website_url, project.website_url
   .progress{'data-percent-complete' => project.percent_complete}
-  %h3 #{number_to_currency(project.amount_pledged)} raised.  #{link_to 'Make a pledge now!', new_project_pledge_path(project)}
+  %h3 #{number_to_currency(project.amount_pledged)} raised.  
+  %h3 #{link_to 'Make a pledge now!', new_project_pledge_path(project)}
