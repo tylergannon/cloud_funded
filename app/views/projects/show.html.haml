@@ -34,8 +34,8 @@
   .fb-like{'data-href' => project_url(@project), 'data-send' => true, 'data-width' => '450', 'data-show-faces' => true}
 .clear
 
-= link_to 'Tweet', 'https://twitter.com/share', class: 'twitter-share-button', data: {via: 'CloudFunded', related: 'CloudFunded', text: tweet_text(@project), hashtags: 'crowdfunding'}
-%script !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+-# = link_to 'Tweet', 'https://twitter.com/share', class: 'twitter-share-button', data: {via: 'CloudFunded', related: 'CloudFunded', text: tweet_text(@project), hashtags: 'crowdfunding'}
+-# %script !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 
 = content_for :head do
   %link{rel: 'image_src', href: @project.image.url(:original, false)}
