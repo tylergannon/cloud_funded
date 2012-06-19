@@ -54,4 +54,6 @@ production:
   database: cloud_funded_production
   pool: 5
   username: cloud_funded
-  password:
+  password: sourdough
+  host: localhost
+
