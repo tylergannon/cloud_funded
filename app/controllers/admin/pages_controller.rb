@@ -59,7 +59,11 @@ class Admin::PagesController < ApplicationController
   def update
     @page = Page.find(params[:id])
     @page.update_attributes(params[:page])
-    respond_with(@page)
+    respond_with(@page) do |format|
+      format.html {
+        redirect_to edit_admin_page_path(@page)
+      }
+    end
   end
 
   # DELETE /pages/1
