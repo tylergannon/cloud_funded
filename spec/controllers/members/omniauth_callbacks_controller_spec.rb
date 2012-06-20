@@ -8,6 +8,7 @@ describe Members::OmniauthCallbacksController do
         @facebook_id = OmniAuth.config.mock_auth[:facebook].uid.to_i
         @profile_pic = "http://graph.facebook.com/6714565/picture?type=square"
         @profile = OmniAuth.config.mock_auth[:facebook].info.urls.Facebook
+        @fb_token = 'AAABx9U9GY9oBAIVg2qkV7Y6yQONgZCX4oKkwNaTZBO8VtLdPPF0ZBhDzVJmxt08sibhV6joQeSdkBeBpIZAKB2burXcR0UIZD'
       }
       it "should create a new member if one does not exist" do
         lambda {
@@ -64,6 +65,9 @@ describe Members::OmniauthCallbacksController do
         end
         it "should get the last name" do
           @member.last_name.should == "Gannon"
+        end
+        it "should get the access token" do
+          @member.fb_token.should == @fb_token
         end
       end
     end
