@@ -29,19 +29,29 @@ describe PledgesController do
   end
 
   describe "GET show" do
-    it "assigns the requested pledge as @pledge" do
-      pledge = @project.pledges.create! investor: @member
-      get :show, {:project_id => @project.id, :id => pledge.to_param}
-      assigns(:pledge).should eq(pledge)
+    describe "if accessed with a pledge id" do
+      before :each do
+        @pledge = @project.pledges.create! investor: @member
+        get :show, {:project_id => @project.id, :id => @pledge.to_param}
+      end
+      it "assigns the requested pledge as @pledge" do
+        assigns(:pledge).should eq(@pledge)
+      end
+      it "should render the 'show' template" do
+        response.should render_template('show')
+      end
     end
     describe "if accessed without a pledge id" do
       before :each do
         sign_in :member, @member
+        @pledge = FactoryGirl.create :pledge, investor: @member, project: @project
+        get :show, {project_id: @project.id}
       end
       it "should load the pledge owned by the member" do
-        pledge = FactoryGirl.create :pledge, investor: @member, project: @project
-        get :show, {project_id: @project.id}
-        assigns(:pledge).should eq(pledge)
+        assigns(:pledge).should eq(@pledge)
+      end
+      it "should render the 'show_my_pledge' template" do
+        response.should render_template('show_my_pledge')
       end
     end
   end

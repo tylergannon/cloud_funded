@@ -1,0 +1,14 @@
+%h3 You pledged #{number_to_currency(@pledge.amount)} to this project.
+%h3
+  - if @pledge.public
+    Your Contribution Amount is Public.
+  - else
+    Your Contribution Amount is Private.
+    
+%h4 Share it with your friends!
+
+= link_to 'Change Your Pledge', project_my_pledge_path(@project)
+\|
+= link_to 'Remove Your Pledge', project_pledge_path(@project, @pledge), method: :delete, confirm: 'Are you sure?'
+%h4= link_to 'Back to Project', project_path(@project)
+

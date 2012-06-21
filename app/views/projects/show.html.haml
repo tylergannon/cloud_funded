@@ -14,6 +14,7 @@
   - @project.pledges.map(&:investor).each do |investor|
     = link_to investor.profile do
       = image_tag investor.profile_pic
+  = link_to 'Show all pledges', project_pledges_path(@project)
   - if @project.pledges.empty?
     %h2 No one has pledged yet. Be the first!
   - if @my_pledge

@@ -1,5 +1,7 @@
-%h3 You pledged #{number_to_currency(@pledge.amount)} to this project.
-%h4 Share it with your friends!
-
-%h4= link_to 'Back', project_path(@project)
+.pledge
+  %h2 Pledge Details
+  = render @pledge.investor
+  %h3 Amount: #{number_to_currency(@pledge.amount)} (#{@pledge.public ? 'Public' : 'Private'})
+  = link_to 'Delete', project_pledge_path(@project, @pledge), method: :delete, confirm: 'Are you sure?'
+  %h4= link_to 'Back to pledges', project_pledges_path(@project)
 

@@ -11,7 +11,11 @@ class PledgesController < ApplicationController
 
   def show
     authorize! :read, @pledge
-    respond_with @project, @pledge
+    respond_with @project, @pledge do |format|
+      format.html {
+        render action: 'show_my_pledge' unless params[:id]
+      }
+    end
   end
 
   def new
@@ -63,7 +67,8 @@ class PledgesController < ApplicationController
   
   def load_pledge
     if params[:id]
-      @pledge = @project.pledges.find(params[:id])
+      member = Member.find(params[:id])
+      @pledge = @project.pledges.where(investor_id: member.id).first
     else
       @pledge = Pledge.my_pledge(current_member, @project)
     end
