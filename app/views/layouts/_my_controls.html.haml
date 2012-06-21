@@ -1,0 +1,19 @@
+.my_controls
+  .no_controls_list
+    .header_link.member_id
+      %span= image_tag current_member.profile_pic
+      %span.member_name= link_to current_member.full_name, '#', class: 'show'
+  .control_list
+    .member_id
+      %span= image_tag current_member.profile_pic
+      %span.member_name= link_to current_member.full_name, '#', class: 'hide'
+    %ul
+      %li= link_to 'My Profile', profile_path(current_member)
+      %li= link_to 'Sign out', destroy_member_session_path, method: 'delete'
+      - if current_member.admin
+        %li Admin Controls
+        %li= link_to 'Members', admin_members_path
+        %li= link_to 'Pages', admin_pages_path
+        %li= link_to 'Feedback', admin_feedbacks_path
+        %li= link_to 'Blog Articles', admin_articles_path
+        

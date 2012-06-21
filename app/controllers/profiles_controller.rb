@@ -21,7 +21,11 @@ class ProfilesController < ApplicationController
   def update
     @member = current_member
     authorize! :edit, @member
-    @member.update_attributes(params[:member])
-    respond_with @member
+    @member.update_attributes(params[:profile])
+    respond_with @member do |format|
+      format.html {
+        redirect_to profile_path(@member)
+      }
+    end
   end
 end

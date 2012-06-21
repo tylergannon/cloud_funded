@@ -44,7 +44,7 @@ body
 	height: 104px;
 	margin: -30px 100px 0px 20px;
 	overflow: hidden;
-	text-indent: -300px;
+//  text-indent: -300px;
 	width: 250px;
 }
 .header_link
@@ -53,8 +53,8 @@ body
 	margin-right: 20px;
 	margin-top: 20px;
 }
-.header_link a
-{
+
+@mixin header-link {
 	color: #333;
 	font-size: 16px;
 	font-weight: bold;
@@ -65,11 +65,66 @@ body
 	text-shadow: 1px 1px #f8d581;
 	border-radius: 5px;
 }
+
+.header_link a
+{
+  @include header-link;
+}
 .header_link a:hover, .header_link a:active
 {
 	color: #fff;
 	text-shadow: -1px -1px #a88852;
 }
+
+.my_controls {
+  position: relative;
+  &:hover {
+    cursor: pointer;
+  }
+  .member_id {
+    @include header-link;
+    img {
+      border-radius: 5px;
+      height: 30px;
+      width: 30px;
+    }
+    margin-top: 15px;
+    padding: 0;
+    span.member_name {
+      padding: 0px;
+      margin: 0;
+      margin-left: 4px;
+      vertical-align: 9px;
+    }
+  }
+  .control_list {
+    display: none;
+    position: absolute;
+    width: 180px;
+    left: 1038px;
+    top: 0px;
+
+    ul {
+      padding-top: 10px;
+      list-style: none;
+      padding-left: 30px;
+      
+      border-color: black;
+      border-style: dotted;
+      border-width: 1px;
+      border-radius: 6px;
+      background-color: yellow;
+    }
+    li {
+      @include header-link;
+      a {
+        width: 100%;
+      }
+      height: 25px;
+    }
+  }
+}
+
 .container
 {
 	margin: 40px auto;
