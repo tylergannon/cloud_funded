@@ -131,7 +131,7 @@ body
 	margin-top: 0px;
 	padding: 40px;
 	padding-top: 0px;
-	width: 1080px;
+	width: 1120px;
 }
 .container a
 {
@@ -143,38 +143,22 @@ body
 {
 	color: #0066cc;
 }
-.project
-{
-	background: #f4f4f4;
-	border: 1px solid #ccc;
-	float: left;
-	height: 500px;
-	margin-right: 25px;
-	padding: 20px;
-	width: 280px;
-}
-.project td
-{
-	vertical-align: top;
-}
-.project p
-{
-	font-size: 11px;
-	line-height: 16px;
-}
-.project h2
-{
-	font-size: 18px;
-}
 .clear
 {
 	clear: both;
 }
-.project th
-{
-	border: 1px solid red;
-	font-size: 10px;
+
+.share {
+  margin-top: 15px;
+  margin-right: 10px;
+  height: 20px;
+  float: left;
 }
+.like {
+  margin-top: 13px;
+}
+
+
 .new .field > label
 {
 	clear: both;

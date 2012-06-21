@@ -4,20 +4,32 @@
 
 .project {
   cursor: pointer;
+	background: #f4f4f4;
+	border: 1px solid #ccc;
+	float: left;
+	height: 520px;
+	margin-right: 25px;
+	padding: 20px;
+	width: 300px;
+
   .website_link {
     padding-bottom: 6px;
   }
   .description {
     height: 150px;
   }
-}
-
-.share {
-  margin-top: 15px;
-  margin-right: 10px;
-  height: 20px;
-  float: left;
-}
-.like {
-  margin-top: 13px;
+  td {
+  	vertical-align: top;
+  }
+  p {
+  	font-size: 11px;
+  	line-height: 16px;
+  }
+  h2 {
+  	font-size: 18px;
+  }  
+  th {
+  	border: 1px solid red;
+  	font-size: 10px;
+  }
 }

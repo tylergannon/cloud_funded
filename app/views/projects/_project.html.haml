@@ -1,6 +1,6 @@
 .project.rounded.shadow{'data-project-path' => project_path(project)}
   %h2= project.name
-  = image_tag project.image.url(:medium), width: '280px'
+  = image_tag project.image.url(:medium), width: '300px'
   .description= project.short_description
   .website_link
     = link_to project.website_url, project.website_url
