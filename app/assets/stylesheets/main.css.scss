@@ -103,10 +103,17 @@ body
     width: 180px;
     left: 1038px;
     top: 0px;
+
     ul {
       padding-top: 10px;
       list-style: none;
       padding-left: 30px;
+      
+      border-color: black;
+      border-style: dotted;
+      border-width: 1px;
+      border-radius: 6px;
+      background-color: yellow;
     }
     li {
       @include header-link;
