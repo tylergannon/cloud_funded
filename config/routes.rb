@@ -27,6 +27,7 @@ CloudFunded::Application.routes.draw do
   resource :profile
   
   resources :projects do
+    resource :my_pledge, controller: :pledges
     member do
       get :publicize
     end
@@ -44,6 +45,7 @@ CloudFunded::Application.routes.draw do
   match '/feedback' => 'feedbacks#new', as: :submit_feedback
   match '/feedback_received' => 'feedbacks#index', as: :feedback_received
   match '/projects/:project_id/pledge' => 'pledges#new', as: :new_project_pledge
-  match '/projects/:project_id/my_pledge' => 'pledges#show', as: :my_pledge
+  # match '/projects/:project_id/my_pledge/edit' => 'pledges#edit', as: :edit_my_pledge
+  # match '/projects/:project_id/my_pledge' => 'pledges#show', as: :my_pledge
   root to: 'projects#index'
 end

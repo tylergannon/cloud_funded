@@ -66,6 +66,17 @@ describe PledgesController do
         get :edit, {:project_id => @project.id, :id => pledge.to_param}
         assigns(:pledge).should eq(pledge)
       end
+
+      describe "if accessed without a pledge id" do
+        before :each do
+          sign_in :member, @member
+        end
+        it "should load the pledge owned by the member" do
+          pledge = FactoryGirl.create :pledge, investor: @member, project: @project
+          get :edit, {project_id: @project.id}
+          assigns(:pledge).should eq(pledge)
+        end
+      end
     end
 
     describe "POST create" do
@@ -84,7 +95,7 @@ describe PledgesController do
 
         it "redirects to the created pledge" do
           post :create, {:project_id => @project.id, :pledge => valid_attributes}
-          response.should redirect_to(my_pledge_path(@project))
+          response.should redirect_to(project_my_pledge_path(@project))
         end
       end
 

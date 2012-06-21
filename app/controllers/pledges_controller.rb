@@ -2,6 +2,7 @@ class PledgesController < ApplicationController
   respond_to :html
   before_filter :authenticate_member!, except: [:index, :show]
   before_filter :load_project
+  before_filter :load_pledge, only: [:show, :edit, :update, :destroy]
   
   def index
     @pledges = @project.pledges
@@ -9,11 +10,6 @@ class PledgesController < ApplicationController
   end
 
   def show
-    if params[:id]
-      @pledge = @project.pledges.find(params[:id])
-    else
-      @pledge = Pledge.my_pledge(current_member, @project)
-    end
     authorize! :read, @pledge
     respond_with @project, @pledge
   end
@@ -33,7 +29,6 @@ class PledgesController < ApplicationController
   end
 
   def edit
-    @pledge = Pledge.find(params[:id])
     authorize! :edit, @pledge
     respond_with @project, @pledge
   end
@@ -44,21 +39,19 @@ class PledgesController < ApplicationController
     respond_with @project, @pledge do |format|
       format.html {
         if @pledge.valid?
-          redirect_to my_pledge_path(@project)
+          redirect_to project_my_pledge_path(@project)
         end
       }
     end
   end
 
   def update
-    @pledge = @project.pledges.find(params[:id])
     authorize! :edit, @pledge
     @pledge.update_attributes(params[:pledge])
     respond_with @project, @pledge
   end
 
   def destroy
-    @pledge = @project.pledges.find(params[:id])
     authorize! :destroy, @pledge
     @pledge.destroy
     respond_with @project, @pledge
@@ -66,5 +59,13 @@ class PledgesController < ApplicationController
   
   def load_project
     @project = Project.find(params[:project_id])
+  end
+  
+  def load_pledge
+    if params[:id]
+      @pledge = @project.pledges.find(params[:id])
+    else
+      @pledge = Pledge.my_pledge(current_member, @project)
+    end
   end
 end

@@ -1,18 +1,8 @@
-%h1 Listing pledges
+.pledge_listing
+  %h1 These People Have Pledged Support For #{@project.name}
 
-%table
-  %tr
-    %th Amount
-    %th
-    %th
-    %th
+  = render @project.pledges
 
-  - @pledges.each do |pledge|
-    %tr
-      %td= pledge.amount
-      %td= link_to 'Show', project_pledge_path(@project, pledge)
-      %td= link_to 'Edit', edit_project_pledge_path(@project, pledge)
-      %td= link_to 'Destroy', project_pledge_path(@project, pledge), :confirm => 'Are you sure?', :method => :delete
-
+  = link_to 'Back To Project', @project
 %br
 

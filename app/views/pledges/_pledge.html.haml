@@ -1,0 +1,7 @@
+.pledge
+  .investor= render pledge.investor
+  .amount
+    - if can?(:manage, @project) || pledge.public
+      = number_to_currency(pledge.amount)
+    - else
+      [Private]

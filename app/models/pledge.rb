@@ -1,5 +1,5 @@
 class Pledge < ActiveRecord::Base
-  attr_accessible :amount, :investor, :project
+  attr_accessible :amount, :investor, :project, :public
   belongs_to :investor, class_name: 'Member'
   belongs_to :project
   

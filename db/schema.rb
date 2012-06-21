@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120620172137) do
+ActiveRecord::Schema.define(:version => 20120621160633) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(:version => 20120620172137) do
     t.integer  "investor_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.boolean  "public"
   end
 
   add_index "pledges", ["project_id", "investor_id"], :name => "idx_pledges_project_investor"
