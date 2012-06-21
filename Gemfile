@@ -15,6 +15,7 @@ gem 'aws-sdk'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'cancan'
 gem 'mercury-rails', git: 'https://github.com/jejacks0n/mercury.git'
+gem 'linkedin'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

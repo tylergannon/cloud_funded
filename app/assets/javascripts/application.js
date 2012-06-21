@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.ui.tabs
 //= require jquery.ui.progressbar
+//= require jquery.effects.all
 //= require header
 //= require articles
 //= require pledges
