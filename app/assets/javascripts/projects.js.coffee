@@ -27,6 +27,9 @@ $ ->
   
   $('#project_short_description').keyup ->
     $('#char_count').html (250 - $('#project_short_description').val().length)
+    
+  $('#project_address').focusout ->
+    codeAddress()
 
   $('#check_address').click (e) ->
     e.preventDefault()
