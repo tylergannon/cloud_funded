@@ -2,7 +2,9 @@ class Project < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
   
-  attr_accessible :description, :financial_goal, :name, :owner, :pledges, :completion_date, :image, :youtube_url, :website_url, :short_description
+  attr_accessible :description, :financial_goal, :name, :owner, :pledges, 
+                  :completion_date, :image, :youtube_url, :website_url, 
+                  :short_description, :address, :lat, :long
   
   belongs_to :owner, class_name: 'Member'
   has_many :pledges
@@ -22,6 +24,9 @@ class Project < ActiveRecord::Base
   validates :financial_goal, numericality: true
   validates :name, uniqueness: true
   validates :owner, presence: true
+  validates :address, presence: true
+  validates :lat, presence: true
+  validates :long, presence: true
   
   def youtube_url=(url)
     super(url.gsub(/watch\?v=/, 'embed/'))

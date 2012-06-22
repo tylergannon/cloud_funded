@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120621160633) do
+ActiveRecord::Schema.define(:version => 20120622002905) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -144,6 +144,9 @@ ActiveRecord::Schema.define(:version => 20120621160633) do
     t.string   "website_url"
     t.boolean  "active",             :default => true
     t.string   "short_description"
+    t.string   "address"
+    t.float    "lat"
+    t.float    "long"
   end
 
   add_index "projects", ["slug"], :name => "index_projects_on_slug", :unique => true
