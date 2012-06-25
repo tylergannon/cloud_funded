@@ -32,3 +32,8 @@ group :development, :test do
   gem 'guard-spork'
   gem 'shoulda-matchers'
 end
+
+group :deployment do
+  gem 'capistrano'
+  gem 'rvm-capistrano'
+end
