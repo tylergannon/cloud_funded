@@ -20,6 +20,8 @@ load 'deploy/assets'
 # require 'rvm'
 require "rvm/capistrano"
 
+set :bundle_without,      [:development, :test, :deployment]
+
 set :rvm_ruby_string, '1.9.3'
 set :rvm_ruby_gem_set_name, 'passenger'
 set :rvm_type, :user  # Don't use system-wide RVM
