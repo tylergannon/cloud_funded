@@ -109,10 +109,6 @@ GEM
       jquery-rails
       railties (>= 3.1.0)
     json (1.7.3)
-    linkedin (0.3.7)
-      hashie (~> 1.2)
-      multi_json (~> 1.0)
-      oauth (~> 0.4)
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -129,7 +125,6 @@ GEM
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
     nokogiri (1.5.2)
-    oauth (0.4.6)
     oauth2 (0.6.1)
       faraday (~> 0.7)
       httpauth (~> 0.1)
@@ -236,7 +231,6 @@ DEPENDENCIES
   haml-rails
   jquery-rails
   jquery-ui-rails
-  linkedin
   mercury-rails!
   omniauth-facebook
   paperclip
