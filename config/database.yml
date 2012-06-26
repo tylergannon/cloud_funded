@@ -17,8 +17,8 @@ development:
   encoding: unicode
   database: cloud_funded_development
   pool: 5
-  username: polestar
-  password: sourdough
+  username: cloud_funded
+  password: onthebooks
   host: localhost
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -44,8 +44,8 @@ test:
   encoding: unicode
   database: cloud_funded_test
   pool: 5
-  username: polestar
-  password: sourdough
+  username: cloud_funded
+  password: onthebooks
   host: localhost
 
 production:
