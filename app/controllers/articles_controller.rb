@@ -1,9 +1,12 @@
 class ArticlesController < ApplicationController
+  respond_to :html, :atom
   # GET /articles
   # GET /articles.xml
   def index
     @articles = Article.where published: true
-    respond_with(@articles)
+    respond_with(@articles) do |format|
+
+    end
   end
 
   # GET /articles/1

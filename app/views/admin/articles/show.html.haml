@@ -2,7 +2,7 @@
 
 .article#article_container{'data-save-url' => mercury_update_admin_article_path(@article)}
   %h1#article_title.mercury-region{'data-type' => 'editable'}= @article.title
-  .article_header= "Published #{@article.published_at.strftime("%b %d, %Y")} by #{@article.author.full_name}"
+  .article_header= "Published #{published_at(@article)} by #{@article.author.full_name}"
   .body#article_body.mercury-region{'data-type' => 'editable'}!= @article.body
 
   Description / Abstract (one line)
