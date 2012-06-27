@@ -43,6 +43,11 @@ initialize = ->
   window.geocoder = new google.maps.Geocoder()
   latlng = new google.maps.LatLng(37.852437, -122.274392)
   myOptions =
+    scrollwheel: false
+    navigationControl: true
+    mapTypeControl: false
+    scaleControl: false
+    draggable: false
     zoom: 12
     center: latlng
     mapTypeId: google.maps.MapTypeId.ROADMAP
