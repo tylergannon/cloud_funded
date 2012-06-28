@@ -1,13 +1,18 @@
 %h3 You pledged #{number_to_currency(@pledge.amount)} to this project.
-%h3
-  - if @pledge.public
-    Your Contribution Amount is Public.
-  - else
-    Your Contribution Amount is Private.
+.lame
+  Pledge posted to FB:
+  = @pledge.post_to_fb ? 'Yes' : 'No'
+.lame
+  List me as a supporter to this project:
+  = @pledge.public_viewable ? 'Yes' : 'No'
+.lame
+  Show my contribution amount:
+  = @pledge.public_amount ? 'Yes' : 'No'
+
     
 %h4 Share it with your friends!
 
-= link_to 'Change Your Pledge', project_my_pledge_path(@project)
+= link_to 'Change Your Pledge', edit_project_my_pledge_path(@project)
 \|
 = link_to 'Remove Your Pledge', project_pledge_path(@project, @pledge), method: :delete, confirm: 'Are you sure?'
 %h4= link_to 'Back to Project', project_path(@project)

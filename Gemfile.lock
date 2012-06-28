@@ -61,6 +61,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.2.0)
+    default_value_for (2.0.1)
     devise (2.1.0)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.7)
@@ -223,6 +224,7 @@ DEPENDENCIES
   cancan
   capistrano
   coffee-rails (~> 3.2.1)
+  default_value_for
   devise (= 2.1)
   devise-encryptable
   factory_girl_rails

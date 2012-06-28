@@ -1,15 +1,22 @@
-= form_for [@project, @pledge] do |f|
-  -if @pledge.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@pledge.errors.count, "error")} prohibited this pledge from being saved:"
-      %ul
-        - @pledge.errors.full_messages.each do |msg|
-          %li= msg
+.container.white.rounded.shadow.new
+  = form_for [@project, @pledge] do |f|
+    -if @pledge.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@pledge.errors.count, "error")} prohibited this pledge from being saved:"
+        %ul
+          - @pledge.errors.full_messages.each do |msg|
+            %li= msg
 
-  .field
-    = f.label :amount, "Yes!  I can give:"
-    = f.text_field :amount
-  .field
-    = f.label :public, "Make my contribution amount public"
-    = f.check_box :public
-    = f.submit 'Contribute!'
+    .field
+      = f.label :amount
+      = f.text_field :amount
+      = f.submit
+    .field
+      = f.label :post_to_fb
+      = f.check_box :post_to_fb
+    .field
+      = f.label :public_viewable
+      = f.check_box :public_viewable
+    .field
+      = f.label :public_amount
+      = f.check_box :public_amount

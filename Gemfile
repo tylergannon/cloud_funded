@@ -9,12 +9,13 @@ gem 'devise', '2.1'
 gem 'omniauth-facebook'
 gem 'devise-encryptable'
 gem 'friendly_id'
-gem "responders", "~> 0.9.1"
+gem 'responders', '~> 0.9.1'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'cancan'
 gem 'mercury-rails', git: 'https://github.com/jejacks0n/mercury.git'
+gem 'default_value_for'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

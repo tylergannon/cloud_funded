@@ -3,3 +3,14 @@
 
 en:
   hello: "Hello world"
+  helpers:
+    label:
+      pledge:
+        amount: "Yes!  I can give:"
+        post_to_fb: "Let my FB friends know"
+        public_viewable: "Let CloudFunded members see I've contributed"
+        public_amount: "Make my contribution amount public"
+    submit:
+      pledge:
+        create: "Contribute!"
+        update: "Save changes"
