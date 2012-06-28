@@ -216,5 +216,6 @@ Devise.setup do |config|
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
   require "omniauth-facebook"
-  config.omniauth :facebook, ENV['facebook_app_id'], ENV['facebook_secret_key']
+  config.omniauth :facebook, ENV['facebook_app_id'], ENV['facebook_secret_key'],
+                  scope: 'email,publish_actions'
 end
