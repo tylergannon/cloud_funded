@@ -11,7 +11,7 @@ module CloudFunded
         action(:create, project_url, access_token)
       end
 
-      def self.pledge_to_project(project_url, access_token)
+      def self.pledge_to_support(project_url, access_token)
         action(:pledge_to_support, project_url, access_token)
       end
       
