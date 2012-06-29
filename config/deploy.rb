@@ -19,6 +19,8 @@ require 'bundler/capistrano'
 # require 'rvm'
 require "rvm/capistrano"
 
+load 'deploy/assets'
+
 set :bundle_without,      [:development, :test, :deployment]
 
 set :rvm_ruby_string, '1.9.3'
@@ -29,10 +31,6 @@ after "deploy", "deploy:migrate"
 
 task :restart, :roles => [:app], :except => {:no_release => true} do
   run "cd #{deploy_to}/current && touch tmp/restart.txt"
-end
-
-task :assets, :roles => [:app], :except => {:no_release => true} do
-  load 'deploy/assets'
 end
 
 
