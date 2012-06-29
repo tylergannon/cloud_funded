@@ -1,7 +1,6 @@
 - if @project.owner == current_member
   %h3 This is your project.
   %p= link_to 'Click to make changes', edit_project_path(@project)
-  %p= link_to 'Create on Facebook', '#', id: 'create_on_facebook'
 
 = render @project
 
