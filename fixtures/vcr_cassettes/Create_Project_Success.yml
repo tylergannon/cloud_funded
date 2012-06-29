@@ -1,0 +1,40 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://graph.facebook.com/me/cloudfunded:create?access_token=AAAEyIBSfsVoBAPyuLrDZCwn2VRJkdo5phtX2UKSc28LEsy2HpUrK7PuATyLhDjInkWEIDZBPyYZClCBKIvlhgjhS8s4LKXNqPZCoGfm6KgZDZD&project=http://demo.cloudfunded.com/projects/nourish-cafe
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - ! '*'
+      Cache-Control:
+      - private, no-cache, no-store, must-revalidate
+      Content-Type:
+      - text/javascript; charset=UTF-8
+      Expires:
+      - Sat, 01 Jan 2000 00:00:00 GMT
+      Pragma:
+      - no-cache
+      X-Fb-Rev:
+      - '582828'
+      X-Fb-Debug:
+      - HrRln/I4spkCng4FngakWdIGL+16iJW/W/hy3umUJCQ=
+      Date:
+      - Fri, 29 Jun 2012 00:54:54 GMT
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '26'
+    body:
+      encoding: US-ASCII
+      string: ! '{"id":"10100448310294438"}'
+    http_version: 
+  recorded_at: Fri, 29 Jun 2012 00:54:55 GMT
+recorded_with: VCR 2.1.1

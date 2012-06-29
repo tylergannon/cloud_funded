@@ -8,10 +8,16 @@ Spork.prefork do
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
   require 'rspec/autorun'
+  require 'vcr'
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+
+  VCR.configure do |c|
+    c.cassette_library_dir = "#{::Rails.root}/spec/vcr_fixtures"
+    c.hook_into :webmock # or :fakeweb
+  end
 
   RSpec.configure do |config|
     # ## Mock Framework
@@ -44,6 +50,11 @@ Spork.prefork do
     config.include Devise::TestHelpers, :type => :controller
     config.include Devise::TestHelpers, :type => :view
     config.include Devise::TestHelpers, :type => :helper
+  end
+  
+  VCR.configure do |c|
+    c.cassette_library_dir = 'fixtures/vcr_cassettes'
+    c.hook_into :webmock # or :fakeweb
   end
 end
 

@@ -1,0 +1,42 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://graph.facebook.com/me/cloudfunded:create?access_token=AAAEyIBSfsVoBAPyuLrDsdffkdo5phtX2UKSc28LEsy2HpUrK7PuATyLhDjInkWEIDZBPyYZClCBKIvlhgjhS8s4LKXNqPZCoGfm6KgZDZD&project=http://demo.cloudfunded.com/projects/nourish-cafe
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Access-Control-Allow-Origin:
+      - ! '*'
+      Cache-Control:
+      - no-store
+      Content-Type:
+      - text/javascript; charset=UTF-8
+      Expires:
+      - Sat, 01 Jan 2000 00:00:00 GMT
+      Pragma:
+      - no-cache
+      Www-Authenticate:
+      - OAuth "Facebook Platform" "invalid_token" "The access token could not be decrypted"
+      X-Fb-Rev:
+      - '582828'
+      X-Fb-Debug:
+      - WFYsz4u+jtHIfBbZcbHPiOQXRDj6Tjk1FVsSlHt8Ark=
+      Date:
+      - Fri, 29 Jun 2012 01:06:23 GMT
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '98'
+    body:
+      encoding: US-ASCII
+      string: ! '{"error":{"message":"The access token could not be decrypted","type":"OAuthException","code":190}}'
+    http_version: 
+  recorded_at: Fri, 29 Jun 2012 01:06:24 GMT
+recorded_with: VCR 2.1.1

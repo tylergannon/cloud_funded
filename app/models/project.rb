@@ -4,10 +4,12 @@ class Project < ActiveRecord::Base
   
   attr_accessible :description, :financial_goal, :name, :owner, :pledges, 
                   :completion_date, :image, :youtube_url, :website_url, 
-                  :short_description, :address, :lat, :long
+                  :short_description, :address, :lat, :long, :post_to_fb
   
   belongs_to :owner, class_name: 'Member'
   has_many :pledges
+  
+  default_value_for :post_to_fb, true
   
   has_attached_file :image,
     :styles => { :medium => "300x190", :thumb => "100x100" },

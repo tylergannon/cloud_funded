@@ -16,6 +16,7 @@ gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'cancan'
 gem 'mercury-rails', git: 'https://github.com/jejacks0n/mercury.git'
 gem 'default_value_for'
+gem 'httparty'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -27,10 +28,14 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'vcr'
   gem 'spork', '1.0.0rc3'
   gem 'guard-spork'
   gem 'shoulda-matchers'
+end
+
+group :test do
+  gem 'webmock'
+  gem 'vcr'
 end
 
 group :deployment do

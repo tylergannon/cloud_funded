@@ -11,7 +11,7 @@ FactoryGirl.define do
     password "yt*k*$GY$-ULKf3qy$O"
     password_confirmation "yt*k*$GY$-ULKf3qy$O"
     
-    before_create { |member|
+    before(:create) { |member|
       member.skip_confirmation!
     }
   end

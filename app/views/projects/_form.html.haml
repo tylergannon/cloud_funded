@@ -38,6 +38,10 @@
     .field
       = f.label :completion_date
       = f.date_select :completion_date, start_year: Time.now.year, end_year: Time.now.year + 2, default: (Time.now + 1.year)
+    - if @project.new_record?
+      .field
+        = f.label :post_to_fb
+        = f.check_box :post_to_fb
     .actions
       .field
         = f.submit 'Save'

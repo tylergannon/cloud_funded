@@ -22,6 +22,9 @@ describe ProjectsController do
   before :each do 
     @member = FactoryGirl.create(:member)
     sign_in :member, @member
+    Project.any_instance.stub(:save_attached_files).and_return(true)
+    Project.any_instance.stub(:destroy_attached_files).and_return(true)
+    Paperclip::Attachment.any_instance.stub(:queue_all_for_delete).and_return(true)
     @example_project = FactoryGirl.create(:project, owner: @member)
   end
   
@@ -36,6 +39,9 @@ describe ProjectsController do
       description: another_project.description,
       financial_goal: another_project.financial_goal,
       website_url: another_project.website_url,
+      address: 'nicebas',
+      lat: 123,
+      long: 123,
       image:  Rack::Test::UploadedFile.new('spec/support/onebit_33.png', 'image/png')
     }
   end
@@ -98,6 +104,9 @@ describe ProjectsController do
 
   describe "POST create" do
     describe "with valid params" do
+      before :each do
+        CloudFunded::Facebook::Actions.stub(:create_project)
+      end
       it "creates a new Project" do
         expect {
           post :create, {:project => valid_attributes}
@@ -113,6 +122,19 @@ describe ProjectsController do
       it "redirects to the created project" do
         post :create, {:project => valid_attributes}
         response.should redirect_to(Project.last)
+      end
+      
+      it "should call the create project facebook action" do
+        CloudFunded::Facebook::Actions.should_receive(:create_project) do |proj_url, access_token|
+          proj_url.should == project_url(assigns(:project))
+          access_token.should == @member.fb_token
+        end
+        post :create, {:project => valid_attributes}
+      end
+      
+      it "should not call the create project if post_to_fb not checked." do
+        CloudFunded::Facebook::Actions.should_not_receive(:create_project)
+        post :create, {:project => valid_attributes.merge(post_to_fb: false)}
       end
     end
 

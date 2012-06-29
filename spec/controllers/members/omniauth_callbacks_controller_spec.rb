@@ -35,6 +35,12 @@ describe Members::OmniauthCallbacksController do
           get :facebook
           controller.current_member.should == @member
         end
+        it "should update the access token" do
+          @member.fb_token.should be_nil
+          get :facebook
+          @member.reload
+          @member.fb_token.should == @fb_token
+        end
       end
       
       describe "when the member does not exist" do

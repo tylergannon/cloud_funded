@@ -5,6 +5,8 @@ en:
   hello: "Hello world"
   helpers:
     label:
+      project:
+        post_to_fb: "Let my FB friends know"
       pledge:
         amount: "Yes!  I can give:"
         post_to_fb: "Let my FB friends know"
@@ -14,3 +16,6 @@ en:
       pledge:
         create: "Contribute!"
         update: "Save changes"
+      project:
+        create: "Start CloudFunding!"
+        update: "Save Changes"

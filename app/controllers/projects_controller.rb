@@ -63,6 +63,9 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if @project.save
         ProjectsMailer.new_project(@project).deliver
+        if @project.post_to_fb
+          CloudFunded::Facebook::Actions.create_project project_url(@project), current_member.fb_token          
+        end
         format.html { redirect_to @project, notice: 'Congratulations!  Your project is listed.  Now you can share it with others.' }
         format.json { render json: @project, status: :created, location: @project }
       else

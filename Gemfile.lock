@@ -38,6 +38,7 @@ GEM
     activesupport (3.2.6)
       i18n (~> 0.6)
       multi_json (~> 1.0)
+    addressable (2.2.8)
     arel (3.0.2)
     aws-sdk (1.5.2)
       httparty (~> 0.7)
@@ -61,6 +62,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.2.0)
+    crack (0.3.1)
     default_value_for (2.0.1)
     devise (2.1.0)
       bcrypt-ruby (~> 3.0)
@@ -215,6 +217,9 @@ GEM
     vcr (2.1.1)
     warden (1.1.1)
       rack (>= 1.0)
+    webmock (1.8.7)
+      addressable (>= 2.2.7)
+      crack (>= 0.1.7)
 
 PLATFORMS
   ruby
@@ -231,6 +236,7 @@ DEPENDENCIES
   friendly_id
   guard-spork
   haml-rails
+  httparty
   jquery-rails
   jquery-ui-rails
   mercury-rails!
@@ -247,3 +253,4 @@ DEPENDENCIES
   spork (= 1.0.0rc3)
   uglifier (>= 1.0.3)
   vcr
+  webmock

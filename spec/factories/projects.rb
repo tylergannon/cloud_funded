@@ -14,6 +14,6 @@ FactoryGirl.define do
     long 12.12
     website_url 'http://www.google.com/'
     association :owner, factory: :member
-    image  Rack::Test::UploadedFile.new('spec/support/onebit_33.png', 'image/png')
+    image Rack::Test::UploadedFile.new('spec/support/onebit_33.png', 'image/png')
   end
 end
