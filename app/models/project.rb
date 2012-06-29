@@ -4,7 +4,8 @@ class Project < ActiveRecord::Base
   
   attr_accessible :description, :financial_goal, :name, :owner, :pledges, 
                   :completion_date, :image, :youtube_url, :website_url, 
-                  :short_description, :address, :lat, :long, :post_to_fb
+                  :short_description, :address, :lat, :long, :post_to_fb,
+                  :fb_post_id
   
   belongs_to :owner, class_name: 'Member'
   has_many :pledges

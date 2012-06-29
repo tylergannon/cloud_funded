@@ -28,6 +28,7 @@ CloudFunded::Application.routes.draw do
   
   resources :projects do
     resource :my_pledge, controller: :pledges
+    resource :facebook_action
     member do
       get :publicize
     end

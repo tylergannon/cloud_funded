@@ -42,10 +42,11 @@ class PledgesController < ApplicationController
     authorize! :create, @pledge
     respond_with @project, @pledge do |format|
       format.html {
-        if @pledge.save
+        if @pledge.valid?
           if @pledge.post_to_fb
-            CloudFunded::Facebook::Actions.pledge_to_support project_url(@project), current_member.fb_token          
+            @pledge.fb_post_id = CloudFunded::Facebook::Actions.pledge_to_support project_url(@project), current_member.fb_token          
           end
+          @pledge.save!
           redirect_to project_my_pledge_path(@project)
         else
           render action: :new
