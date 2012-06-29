@@ -31,6 +31,7 @@ CloudFunded::Application.routes.draw do
     resource :facebook_action
     member do
       get :publicize
+      get :share
     end
     resources :pledges
   end
@@ -46,6 +47,7 @@ CloudFunded::Application.routes.draw do
   match '/feedback' => 'feedbacks#new', as: :submit_feedback
   match '/feedback_received' => 'feedbacks#index', as: :feedback_received
   match '/projects/:project_id/pledge' => 'pledges#new', as: :new_project_pledge
+  match '/my_projects' => 'projects#index', defaults: {show: "mine"}, as: :my_projects
   # match '/projects/:project_id/my_pledge/edit' => 'pledges#edit', as: :edit_my_pledge
   # match '/projects/:project_id/my_pledge' => 'pledges#show', as: :my_pledge
   root to: 'projects#index'

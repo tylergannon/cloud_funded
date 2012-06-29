@@ -9,6 +9,7 @@
       %span.member_name= link_to current_member.full_name, '#', class: 'hide'
     %ul
       %li= link_to 'My Profile', profile_path(current_member)
+      %li= link_to 'My Projects', my_projects_path
       %li= link_to 'Sign out', destroy_member_session_path, method: 'delete'
       - if current_member.admin
         %li Admin Controls

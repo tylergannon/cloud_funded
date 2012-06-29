@@ -5,12 +5,25 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    if params[:show] == "mine"
+      @projects = current_member.projects
+    else
+      @projects = Project.all
+    end
     
     respond_to do |format|
-      format.html # index.html.erb
+      format.html {
+        if params[:show] == "mine"
+          render action: :my_projects
+        end
+      }
       format.json { render json: @projects }
     end
+  end
+  
+  def share
+    @project = Project.find(params[:id])
+    respond_with @project
   end
 
   # GET /projects/1

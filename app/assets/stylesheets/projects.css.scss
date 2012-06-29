@@ -42,3 +42,23 @@
     }
   }
 }
+
+.my_projects {
+  .my_project {
+    td.image {
+      img {
+        width: 200px;
+        height: 133px;
+      }
+    }
+    span.details {
+      h1 {
+        display: inline-block;
+      }
+      .goal {
+        width: 300px;
+        
+      }
+    }
+  }
+}

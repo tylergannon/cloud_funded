@@ -59,6 +59,19 @@ describe ProjectsController do
       get :index, {}
       assigns(:projects).should eq([@example_project, project])
     end
+    describe "when showing my projects" do
+      before :each do
+        3.times {FactoryGirl.create :project}
+        @my_project = FactoryGirl.create :project, owner: @member
+        get :index, {show: :mine}
+      end
+      it "loads only my projects" do
+        assigns(:projects).should == [@example_project, @my_project]
+      end
+      it "renders the my_projects action" do
+        response.should render_template('my_projects')
+      end 
+    end
   end
 
   describe "GET show" do

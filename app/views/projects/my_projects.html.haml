@@ -1,0 +1,14 @@
+%h1 My Projects
+%table.my_projects
+  - @projects.each do |project|
+    %tr.my_project
+      %td.image
+        = link_to project_path(project) do
+          = image_tag project.image.url
+      %td.details
+        %h1= project.name
+        .goal= 'Goal: ' + number_to_currency(project.financial_goal)
+        .raised= 'Raised: ' + number_to_currency(project.amount_pledged)
+        .links= link_to 'Edit Project', edit_project_path(project)
+        .links= link_to 'Sharing', share_project_path(project)
+        

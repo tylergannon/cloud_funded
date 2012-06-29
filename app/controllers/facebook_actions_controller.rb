@@ -11,8 +11,6 @@ class FacebookActionsController < ApplicationController
   def create
     # authorize! :manage, @project
     id = CloudFunded::Facebook::Actions.create_project(project_url(@project), current_member.fb_token)
-    puts "*" * 80
-    puts id
     @project.update_attributes! fb_post_id: id
     respond_with(id) do |format|
       format.json {
