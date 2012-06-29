@@ -15,7 +15,7 @@ module CloudFunded
       def self.action(action, project_url, access_token)
         response = self.post("/me/cloudfunded:#{action}", query: {project: project_url, access_token: access_token})
         unless (response["id"].to_i > 0)
-          raise response
+          raise response.inspect
         end
       end
     end
