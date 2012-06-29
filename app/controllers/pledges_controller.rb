@@ -38,12 +38,17 @@ class PledgesController < ApplicationController
   end
 
   def create
-    @pledge = @project.pledges.create({investor: current_member}.merge(params[:pledge]))
+    @pledge = @project.pledges.build({investor: current_member}.merge(params[:pledge]))
     authorize! :create, @pledge
     respond_with @project, @pledge do |format|
       format.html {
-        if @pledge.valid?
+        if @pledge.save
+          if @project.post_to_fb
+            CloudFunded::Facebook::Actions.pledge_to_support project_url(@project), current_member.fb_token          
+          end
           redirect_to project_my_pledge_path(@project)
+        else
+          render action: :new
         end
       }
     end

@@ -14,7 +14,7 @@ class Ability
         can :create, Pledge
         can :edit, Pledge, investor_id: member.id
         can :manage, Pledge, investor_id: member.id
-        can :manage, Pledge, project: {investor_id: member.id}
+        can :manage, Pledge, project: {owner_id: member.id}
         can :destroy, Comment, member_id: member.id
         can :edit, Member, id: member.id        
       end

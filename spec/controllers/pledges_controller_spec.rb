@@ -2,6 +2,9 @@ require 'spec_helper'
 
 describe PledgesController do
   before :each do 
+    Project.any_instance.stub(:save_attached_files).and_return(true)
+    Project.any_instance.stub(:destroy_attached_files).and_return(true)
+    Paperclip::Attachment.any_instance.stub(:queue_all_for_delete).and_return(true)
     @member = FactoryGirl.create(:member)
     @project = FactoryGirl.create :project
   end
@@ -90,6 +93,9 @@ describe PledgesController do
     end
 
     describe "POST create" do
+      before :each do
+        CloudFunded::Facebook::Actions.stub(:pledge_to_support)
+      end
       describe "with valid params" do
         it "creates a new Pledge" do
           expect {
@@ -106,6 +112,18 @@ describe PledgesController do
         it "redirects to the created pledge" do
           post :create, {:project_id => @project.id, :pledge => valid_attributes}
           response.should redirect_to(project_my_pledge_path(@project))
+        end
+        it "should call the create project facebook action" do
+          CloudFunded::Facebook::Actions.should_receive(:pledge_to_support) do |proj_url, access_token|
+            proj_url.should == project_url(assigns(:project))
+            access_token.should == @member.fb_token
+          end
+          post :create, {:pledge => valid_attributes, :project_id => @project.id}
+        end
+
+        it "should not call the create project if post_to_fb not checked." do
+          CloudFunded::Facebook::Actions.should_not_receive(:pledge_to_support)
+          post :create, {:pledge => valid_attributes.merge(post_to_fb: false), :project_id => @project.id}
         end
       end
 
