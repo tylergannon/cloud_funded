@@ -5,6 +5,7 @@ class Pledge < ActiveRecord::Base
   
   validates :investor, presence: true
   validates :project, presence: true
+  validates :amount, presence: true, numericality: true
   
   default_value_for :public_viewable, true
   default_value_for :public_amount, true
