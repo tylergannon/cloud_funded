@@ -1,5 +1,8 @@
 class Members::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
+    raise "blah"
+    puts "*" * 80
+    puts request.url
     facebook_info =  request.env['omniauth.auth']
     facebook_id = facebook_info.uid
     member = Member.where(facebook_id: facebook_id).first

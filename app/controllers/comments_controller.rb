@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   respond_to :js
+  before_filter :authenticate_member!, only: [:new, :edit, :create, :update, :destroy]
   before_filter :load_article
   
   # GET /comments

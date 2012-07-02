@@ -1,7 +1,7 @@
 .pledge
   .investor= render pledge.investor
   .amount
-    - if can?(:manage, pledge) || pledge.public
+    - if can?(:manage, pledge) || pledge.public_amount
       = number_to_currency(pledge.amount)
     - if can?(:manage, pledge)
       = link_to 'Show', project_pledge_path(@project, pledge)

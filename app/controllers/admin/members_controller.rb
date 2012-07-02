@@ -74,6 +74,7 @@ class Admin::MembersController < ApplicationController
   end
   
   def authorize_admin
+    authenticate_member!
     authorize! :manage, Member
   end
 end

@@ -1,4 +1,6 @@
 class Admin::ArticlesController < ApplicationController
+  before_filter :authenticate_member!
+  
   def index
     @articles = Article.all
     respond_with(@articles)

@@ -1,4 +1,6 @@
 class ProfilesController < ApplicationController
+  before_filter :authenticate_member!, only: [:edit, :update]
+  
   def index
     @members = Member.all
     respond_with @members

@@ -1,4 +1,5 @@
 class Admin::AttachmentsController < ApplicationController
+  before_filter :authenticate_member!
   before_filter :load_parent
   respond_to :html, :json
   

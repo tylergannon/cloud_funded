@@ -5,6 +5,7 @@ class FeedbacksController < ApplicationController
   end
 
   def new
+    authenticate_member!
     authorize! :create, Feedback
     @feedback = Feedback.new(member: current_member, about_page: params[:about_page])
     # raise 'fooolio'
