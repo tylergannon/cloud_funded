@@ -1,3 +1,7 @@
-= render partial: 'projects/sharing'
-
-= link_to 'next', next_wizard_path
+= form_for @project, url: wizard_path do |f|
+  .field
+    = f.label :post_to_fb
+    = f.check_box :post_to_fb
+  .field
+    = f.submit 'Next'
+  

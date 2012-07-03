@@ -1,5 +1,15 @@
-.project.container.white.rounded.shadow.new
+.edit_project.container.white.rounded.shadow.new
+  %h1 Add the urls for others pages representing your business.
   = form_for @project, url: wizard_path do |f|
+    .field
+      = f.label :website_url, "Your Web Site URL"
+      = f.text_field :website_url
+    .field
+      = f.label :youtube_url, 'URL for your YouTube video:'
+      = f.text_field :youtube_url
+    .field
+      = f.label :google_plus
+      = f.text_field :google_plus
     .field
       = f.label :google_places
       = f.text_field :google_places
@@ -15,8 +25,5 @@
     .field
       = f.label :yelp
       = f.text_field :yelp
-    .field
-      = f.label :google_plus
-      = f.text_field :google_plus
     .field
       = f.submit

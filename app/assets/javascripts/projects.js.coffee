@@ -72,11 +72,22 @@ geocodeHandler = (results, status) ->
     window.marker = new google.maps.Marker
       map: window.map
       position: results[0].geometry.location
+    window.address = results[0]
+    $('#answer').html('Ahhh.  ' + getLocality(results[0]) + '.')
     $('#project_address').val(results[0].formatted_address)
     $('#project_lat').val(results[0].geometry.location.lat())
     $('#project_long').val(results[0].geometry.location.lng())
   else
-    alert "Geocode was not successful for the following reason: " + status
+    $('#answer').html('Hmmmm, couldn\'t look that up.' +  status)
+
+getLocality = (address) ->
+  component = switch address.types[0]
+    when "street_address" then 2
+    when "postal_code" then 1
+    when "locality" then 0
+    when "administrative_area_level_1" then 0
+    else 0
+  address.address_components[component].long_name
 
 codeAddress = ->
   address = $("#project_address").val()

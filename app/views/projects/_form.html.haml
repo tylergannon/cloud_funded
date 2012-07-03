@@ -17,35 +17,16 @@
       %span#char_count= 250
       %span Characters Remaining
     .field
-      = f.label :website_url, "Your Web Site URL"
-      = f.text_field :website_url
-    .field
       = f.label :financial_goal
       = f.text_field :financial_goal
     .field
       = f.label :image, '300x200 image for your project'
       = f.file_field :image
     .field
-      = f.label :address, 'Where is it?'
-      = f.text_field :address
-      = button_tag :check, id: 'check_address'
-      = f.hidden_field :lat
-      = f.hidden_field :long
-      #map_canvas
-    .field
-      = f.label :youtube_url, 'URL for your YouTube video:'
-      = f.text_field :youtube_url
-    .field
       = f.label :completion_date
       = f.date_select :completion_date, start_year: Time.now.year, end_year: Time.now.year + 2, default: (Time.now + 1.year)
-    - if @project.new_record?
-      .field
-        = f.label :post_to_fb
-        = f.check_box :post_to_fb
     .actions
       .field
-        = f.submit 'Save'
+        = f.submit 'Next'
 
 
-= content_for :head do
-  = javascript_include_tag 'https://maps.googleapis.com/maps/api/js?sensor=false'

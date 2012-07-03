@@ -1,4 +1,6 @@
-.share_project
-  - if @project.fb_post_id
-    You posted to Facebook that you created this project.
-    = link_to 'Remove from your timeline'
+.share_project.edit_project
+  %h1 Awesome.  Get the word out.
+  = form_for @project do |f|
+    = f.check_box :post_to_fb
+    = f.submit :next
+    

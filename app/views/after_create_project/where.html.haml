@@ -1,0 +1,15 @@
+.edit_project
+  = form_for @project, url: wizard_path do |f|
+    %h1 Cool, Where is it located?
+    .field
+      = f.label :address, 'Address, City or Zip'
+      = f.text_field :address
+      = button_tag :check, id: 'check_address'
+      = f.hidden_field :lat
+      = f.hidden_field :long
+      #answer
+      #map_canvas
+      = f.submit 'Next'
+
+= content_for :head do
+  = javascript_include_tag 'https://maps.googleapis.com/maps/api/js?sensor=false'
