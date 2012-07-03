@@ -11,6 +11,7 @@ class Members::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         password: 'yt*k*$GY$-ULKf3qy$O',
         password_confirmation: 'yt*k*$GY$-ULKf3qy$O'
       member.skip_confirmation!
+      MemberMailer.new_member(member).deliver
     end
 
     member.attributes = {
