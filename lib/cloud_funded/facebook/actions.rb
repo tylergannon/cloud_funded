@@ -21,7 +21,7 @@ module CloudFunded
       
       private
       def self.action(action, project_url, access_token)
-        response = self.post("/me/cloudfunded:#{action}", query: {project: project_url, access_token: access_token})
+        response = self.post("/me/#{AppConfig.opengraph_namespace}:#{action}", query: {project: project_url, access_token: access_token})
         response["id"]
       end
     end

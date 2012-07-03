@@ -75,4 +75,5 @@ CloudFunded::Application.configure do
 
   ENV['SENDGRID_USERNAME'] = 'cloudfunded_production'
   ENV['SENDGRID_PASSWORD'] = 'rockst1zzle'
+  ENV['OPENGRAPH_NAMESPACE'] = 'cloudfunded'
 end
