@@ -1,5 +1,5 @@
 class ProjectsMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "new-projects@cloudfunded.com"
   
   def new_project(project)
     @project = project

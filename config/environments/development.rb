@@ -1,6 +1,11 @@
 CloudFunded::Application.configure do
   ENV['facebook_app_id'] = '125298410939354'
   ENV['facebook_secret_key'] = '39a8462763d22977e474c3bd01d63f10'
+  
+  ENV['DWOLLA_KEY'] = 'wGcz6BfJ34N9oRvdtY3d7ReIUoc28ds3Pn3LmSCCtD5CNluCwB'
+  ENV['DWOLLA_SECRET'] = 'ie7Vaxw+uWuc8RJBC2FDapREC+DRYe4n0LaF4+2fN1CMH5PTfp'
+  ENV['DWOLLA_SEND'] = 'https://www.dwolla.com/oauth/rest/testapi/send'
+  
 
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -37,23 +42,11 @@ CloudFunded::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-
-  Devise.setup do |config|
-    config.mailer_sender = "tgannon@gmail.com"
-  end
   
   config.action_mailer.default_url_options = { :host => 'local.cloudfunded.com:3000' }
-  config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default :charset => "utf-8"
-  config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    port: 587,
-    domain: "local.cloudfunded.com",
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: 'othertg@gmail.com',
-    password: 'gracias-mr.nice'
-  }  
+  
+  ENV['SENDGRID_USERNAME'] = 'cloudfunded_development'
+  ENV['SENDGRID_PASSWORD'] = 'B@rnD00ez!'
 end

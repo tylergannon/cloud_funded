@@ -1,4 +1,8 @@
 CloudFunded::Application.routes.draw do
+  get "dwolla/create"
+
+  get "dwolla/show"
+
   get "new_project/show"
 
   get "new_project/update"
@@ -25,6 +29,10 @@ CloudFunded::Application.routes.draw do
       member { post :mercury_update }
       resources :attachments
     end
+  end
+  
+  namespace :payments do
+    resources :dwolla, only: [:show, :create]
   end
 
   resources :profiles

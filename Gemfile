@@ -6,6 +6,7 @@ gem 'pg'
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'devise', '2.1'
+gem 'omniauth-dwolla'
 gem 'omniauth-facebook'
 gem 'devise-encryptable'
 gem 'friendly_id'
@@ -41,5 +42,6 @@ end
 
 group :deployment do
   gem 'capistrano'
+  gem 'capistrano-ext'
   gem 'rvm-capistrano'
 end
