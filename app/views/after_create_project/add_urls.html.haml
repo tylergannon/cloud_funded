@@ -1,0 +1,21 @@
+= form_for @project, url: wizard_path do |f|
+  .field
+    = f.label :google_places
+    = f.text_field :google_places
+  .field
+    = f.label :facebook
+    = f.text_field :facebook
+  .field
+    = f.label :linkedin_profile
+    = f.text_field :linkedin_profile
+  .field
+    = f.label :linkedin_business
+    = f.text_field :linkedin_business
+  .field
+    = f.label :yelp
+    = f.text_field :yelp
+  .field
+    = f.label :google_plus
+    = f.text_field :google_plus
+  .field
+    = f.submit

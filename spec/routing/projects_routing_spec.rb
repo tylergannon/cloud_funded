@@ -16,7 +16,7 @@ describe ProjectsController do
     end
 
     it "routes to #edit" do
-      get("/projects/1/edit").should route_to("projects#edit", :id => "1")
+      get("/projects/1/settings").should route_to("projects#edit", :id => "1")
     end
 
     it "routes to #create" do

@@ -17,6 +17,7 @@ gem 'cancan'
 gem 'mercury-rails', git: 'https://github.com/jejacks0n/mercury.git'
 gem 'default_value_for'
 gem 'httparty'
+gem 'wicked'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

@@ -220,6 +220,9 @@ GEM
     webmock (1.8.7)
       addressable (>= 2.2.7)
       crack (>= 0.1.7)
+    wicked (0.1.6)
+      activesupport (>= 3.0.7)
+      rails (>= 3.0.7)
 
 PLATFORMS
   ruby
@@ -254,3 +257,4 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
   vcr
   webmock
+  wicked

@@ -1,4 +1,8 @@
 CloudFunded::Application.routes.draw do
+  get "new_project/show"
+
+  get "new_project/update"
+
   resources :comments
 
   Mercury::Engine.routes
@@ -24,15 +28,12 @@ CloudFunded::Application.routes.draw do
   end
 
   resources :profiles
-  resource :profile
+  resource :profile, path_names: {edit: :settings}
   
-  resources :projects do
-    resource :my_pledge, controller: :pledges
+  resources :projects, path_names: {edit: :settings, :new => :fund_yours} do
     resource :facebook_action
-    member do
-      get :publicize
-      get :share
-    end
+    resource :my_pledge, controller: :pledges
+    resource :wizard, controller: :after_create_project
     resources :pledges
   end
   

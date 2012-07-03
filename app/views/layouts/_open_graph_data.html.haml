@@ -1,0 +1,9 @@
+- if @project
+  = render partial: 'projects/open_graph_data'
+- else
+  %link{rel: 'image_src', href: '/assets/logo.png'}
+  %meta{property: 'fb:app_id', content: facebook_app_id}
+  %meta{property: 'og:type', content: 'website'}
+  %meta{property: 'og:title', content: 'CloudFunded'}
+  %meta{property: 'og:image', content: '/assets/logo.png'}
+  %meta{property: 'og:description', content: 'Cloud Funded... Fund You Too.'}
