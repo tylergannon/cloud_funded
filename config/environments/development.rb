@@ -1,5 +1,5 @@
 CloudFunded::Application.configure do
-  if `hostname` == 'li421-113'
+  if `hostname`.strip == 'li421-113'
     ENV['facebook_app_id'] = '395940067129740'
     ENV['facebook_secret_key'] = '4a93f54a78f136b5f551ef0fbe15bcd4'
   else
