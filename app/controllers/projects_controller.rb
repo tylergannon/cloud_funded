@@ -80,7 +80,7 @@ class ProjectsController < ApplicationController
         end
         ProjectsMailer.new_project(@project).deliver
         @project.save!
-        format.html { redirect_to @project, notice: 'Congratulations!  Your project is listed.  Now you can share it with others.' }
+        format.html { redirect_to(project_wizard_path(@project)), notice: 'Congratulations!  Your project is listed.  Now you can share it with others.' }
         format.json { render json: @project, status: :created, location: @project }
       else
         format.html { render action: "new" }
