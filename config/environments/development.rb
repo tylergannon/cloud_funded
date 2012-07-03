@@ -1,6 +1,11 @@
 CloudFunded::Application.configure do
-  ENV['facebook_app_id'] = '125298410939354'
-  ENV['facebook_secret_key'] = '39a8462763d22977e474c3bd01d63f10'
+  if `hostname` == 'li421-113'
+    ENV['facebook_app_id'] = '395940067129740'
+    ENV['facebook_secret_key'] = '4a93f54a78f136b5f551ef0fbe15bcd4'
+  else
+    ENV['facebook_app_id'] = '125298410939354'
+    ENV['facebook_secret_key'] = '39a8462763d22977e474c3bd01d63f10'
+  end
   
   ENV['DWOLLA_KEY'] = 'wGcz6BfJ34N9oRvdtY3d7ReIUoc28ds3Pn3LmSCCtD5CNluCwB'
   ENV['DWOLLA_SECRET'] = 'ie7Vaxw+uWuc8RJBC2FDapREC+DRYe4n0LaF4+2fN1CMH5PTfp'
