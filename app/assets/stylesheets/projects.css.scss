@@ -8,7 +8,8 @@
 	border: 1px solid #ccc;
 	float: left;
 	height: 550px;
-	margin-right: 25px;
+	margin-right: 10px;
+	margin-bottom: 20px;
 	padding: 20px;
 	width: 300px;
 
@@ -16,7 +17,7 @@
     padding-bottom: 6px;
   }
   .description {
-    height: 50px;
+    height: 150px;
   }
   td {
   	vertical-align: top;
@@ -82,4 +83,12 @@ min-height: 550px;
 	moz-box-shadow: 2px 2px 3px #333;
 	webkit-box-shadow: 2px 2px 3px #333;
 
+}
+
+
+.project_listing h1 {
+letter-spacing: -1px;
+font-size: 36px;
+color: #fff;
+text-shadow: -1px -1px #996633;
 }
