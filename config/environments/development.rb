@@ -54,7 +54,7 @@ CloudFunded::Application.configure do
   
   config.action_mailer.default_url_options = { :host => 'local.cloudfunded.com:3000' }
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
   
   ENV['SENDGRID_USERNAME'] = 'cloudfunded_development'
   ENV['SENDGRID_PASSWORD'] = 'B@rnD00ez!'
