@@ -24,7 +24,7 @@ class Project < ActiveRecord::Base
   validates_attachment_presence :image
   validates :website_url, presence: true
   validates :description, length: {maximum: 500}
-  validates :financial_goal, numericality: true
+  validates :financial_goal, numericality: {less_than_or_equal_to: 1000000}
   validates :name, uniqueness: true
   validates :owner, presence: true
   validates :address, presence: true
