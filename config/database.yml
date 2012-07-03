@@ -48,6 +48,15 @@ test:
   password: onthebooks
   host: localhost
 
+staging:
+  adapter: postgresql
+  encoding: unicode
+  database: cloud_funded_staging
+  pool: 5
+  username: cloud_funded
+  password: sourdough
+  host: localhost
+
 production:
   adapter: postgresql
   encoding: unicode

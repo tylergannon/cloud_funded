@@ -67,12 +67,11 @@ CloudFunded::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
-  
-  
-  config.action_mailer.default_url_options = { :host => 'www.cloudfunded.com' }
+    
+  config.action_mailer.default_url_options = { :host => 'demo.cloudfunded.com' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
 
-  ENV['SENDGRID_USERNAME'] = 'cloudfunded_production'
-  ENV['SENDGRID_PASSWORD'] = 'rockst1zzle'
+  ENV['SENDGRID_USERNAME'] = 'cloudfunded_staging'
+  ENV['SENDGRID_PASSWORD'] = 'B@rnD00ez!'
 end
