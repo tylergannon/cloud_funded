@@ -13,6 +13,8 @@ CloudFunded::Application.configure do
   ENV['DWOLLA_SECRET'] = 'ie7Vaxw+uWuc8RJBC2FDapREC+DRYe4n0LaF4+2fN1CMH5PTfp'
   ENV['DWOLLA_SEND'] = 'https://www.dwolla.com/oauth/rest/testapi/send'
   
+  ENV['AMAZON_S3_BUCKET'] = 'cloud_funded_sandbox'
+  
 
   # Settings specified here will take precedence over those in config/application.rb
 
