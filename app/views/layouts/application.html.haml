@@ -16,11 +16,13 @@
       .header_link= link_to 'Explore the projects', projects_path
       .header_link= link_to 'Submit your project', new_project_path
       .header_link= link_to 'Blog', blog_path
-      .header_link= link_to 'About Us', page_path('about')
-      .header_link= link_to 'Feedback', submit_feedback_path(about_page: request.path)
-      
+      .header_link= link_to 'About Us', page_path('about')      
       - unless member_signed_in?
         .header_link= link_to 'Sign in', new_member_session_path
+        .header_link
+          = link_to member_omniauth_authorize_path(:facebook) do
+            = image_tag 'Button_FBConnect.png'
+          
       - else
         = render partial: 'layouts/my_controls'
         

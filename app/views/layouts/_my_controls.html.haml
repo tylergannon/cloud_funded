@@ -10,6 +10,7 @@
     %ul
       %li= link_to 'My Profile', profile_path(current_member)
       %li= link_to 'My Projects', my_projects_path
+      %li= link_to 'Feedback', submit_feedback_path(about_page: request.path)
       %li= link_to 'Sign out', destroy_member_session_path, method: 'delete'
       - if current_member.admin
         %li Admin Controls

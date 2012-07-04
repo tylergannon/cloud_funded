@@ -80,6 +80,13 @@ body
 
 .my_controls {
   position: relative;
+  
+  & > div {
+    position: absolute;
+    width: 180px;
+    left: 1038px;
+    top: 0px;
+  }
   &:hover {
     cursor: pointer;
   }
@@ -101,10 +108,6 @@ body
   }
   .control_list {
     display: none;
-    position: absolute;
-    width: 180px;
-    left: 1038px;
-    top: 0px;
 
     ul {
       padding-top: 10px;
