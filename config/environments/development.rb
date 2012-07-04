@@ -1,8 +1,10 @@
 CloudFunded::Application.configure do
   if `hostname`.strip == 'li421-113'
+    config.action_mailer.default_url_options = { :host => 'dev.cloudfunded.com' }
     ENV['facebook_app_id'] = '395940067129740'
     ENV['facebook_secret_key'] = '4a93f54a78f136b5f551ef0fbe15bcd4'
   else
+    config.action_mailer.default_url_options = { :host => 'local.cloudfunded.com:3000' }
     ENV['facebook_app_id'] = '125298410939354'
     ENV['facebook_secret_key'] = '39a8462763d22977e474c3bd01d63f10'
   end
@@ -52,7 +54,6 @@ CloudFunded::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
   
-  config.action_mailer.default_url_options = { :host => 'local.cloudfunded.com:3000' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   
