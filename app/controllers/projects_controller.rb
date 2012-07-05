@@ -78,12 +78,19 @@ class ProjectsController < ApplicationController
         if @project.post_to_fb
           @project.fb_post_id = CloudFunded::Facebook::Actions.create_project project_url(@project), current_member.fb_token          
         end
+        puts "*" * 100
+        puts "going to send mail"
+        puts "*" * 100
+        
         ProjectsMailer.new_project(@project).deliver
         @project.save!
         format.html { redirect_to project_wizard_path(@project), notice: 'Congratulations!  Your project is listed.  Now you can share it with others.' }
         format.json { render json: @project, status: :created, location: @project }
       else
-        format.html { render action: "new" }
+        puts @project.errors.inspect
+        format.html { 
+          render action: "new" 
+        }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
