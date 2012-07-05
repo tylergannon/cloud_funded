@@ -2,6 +2,8 @@
 
 FactoryGirl.define do
   factory :attachment do
+    attachable_id 123
+    attachable_type 'Article'
     title "MyString"
   end
 end

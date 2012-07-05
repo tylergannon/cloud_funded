@@ -70,7 +70,7 @@ describe Members::OmniauthCallbacksController do
           @member = Member.last
         end
         it "should have the correct facebook id" do
-          @member.facebook_id.should be == @facebook_id
+          @member.facebook_id.should be == @facebook_id.to_s
         end
         it "should have the correct profile pic" do
           @member.profile_pic.should be == @profile_pic
