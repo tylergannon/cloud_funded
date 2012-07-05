@@ -17,6 +17,7 @@
       .header_link= link_to 'Submit your project', new_project_path
       .header_link= link_to 'Blog', blog_path
       .header_link= link_to 'About Us', page_path('about')      
+      .header_link= link_to 'Dwolla Bill', member_omniauth_authorize_path(:dwolla)
       - unless member_signed_in?
         .header_link= link_to 'Sign in', new_member_session_path
         .header_link

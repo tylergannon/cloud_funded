@@ -19,6 +19,7 @@ gem 'mercury-rails', git: 'https://github.com/jejacks0n/mercury.git'
 gem 'default_value_for'
 gem 'httparty'
 gem 'wicked'
+gem 'dwolla', path: '/Users/tyler/src/3rd_party/dwolla'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

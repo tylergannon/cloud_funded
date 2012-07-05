@@ -1,6 +1,27 @@
 require 'spec_helper'
 
 describe Members::OmniauthCallbacksController do
+  describe "dwolla" do
+    describe "when Dwolla login is successful" do
+      before :each do
+        @member = FactoryGirl.create :member
+        sign_in :member, @member
+        @dwolla_info = OmniAuth.config.mock_auth[:facebook]
+        request.env["omniauth.auth"] = @dwolla_info
+        @dwolla_id = @dwolla_info.uid
+        @dwolla_auth_token = @dwolla_info.credentials.token
+        get :dwolla
+        @member.reload
+      end
+      it "should set the auth token" do
+        @member.dwolla_auth_token.should_not be_nil
+        @member.dwolla_auth_token.should == @dwolla_auth_token
+      end
+      it "should set the member's Dwolla ID" do
+        @member.dwolla_id.should == @dwolla_id
+      end
+    end
+  end
   describe "facebook" do    
     describe "when FB login successful" do
       before(:each) {

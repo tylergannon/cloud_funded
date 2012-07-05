@@ -220,5 +220,5 @@ Devise.setup do |config|
                   scope: 'email,publish_actions'
                   
   require 'omniauth-dwolla'
-  config.omniauth :dwolla, ENV['DWOLLA_KEY'], ENV['DWOLLA_SECRET'], :scope => 'accountinfofull|send'                  
+  config.omniauth :dwolla, ENV['DWOLLA_KEY'], ENV['DWOLLA_SECRET'], :scope => 'accountinfofull|send|contacts'                  
 end

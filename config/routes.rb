@@ -32,12 +32,10 @@ CloudFunded::Application.routes.draw do
     end
   end
   
-  namespace :payments do
-    resources :dwolla, only: [:show, :create]
-  end
-
   resources :profiles
-  resource :profile, path_names: {edit: :settings}
+  resource :profile, path_names: {edit: :settings} do
+    
+  end
   
   resources :projects, path_names: {edit: :settings, :new => :fund_yours} do
     resource :facebook_action
