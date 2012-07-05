@@ -7,5 +7,7 @@ class CreateTransactions < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :transactions, :member_id
   end
 end

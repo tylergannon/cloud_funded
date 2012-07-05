@@ -18,7 +18,9 @@ class Member < ActiveRecord::Base
   def full_name
     "#{first_name} #{last_name}"
   end
-  
+  def account_balance
+    transactions.map(&:amount).sum
+  end
   validates :first_name, presence: true
   validates :last_name, presence: true
   # attr_accessible :title, :body
