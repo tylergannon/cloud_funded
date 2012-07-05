@@ -6,8 +6,9 @@ GIT
       coffee-rails
       rails (~> 3.2)
 
-PATH
-  remote: /Users/tyler/src/3rd_party/dwolla
+GIT
+  remote: https://github.com/tylergannon/dwolla.git
+  revision: d1cbd91487e88a94a9197c8866bb936d16b4fd21
   specs:
     dwolla (0.0.15)
       activemodel (>= 3.2.3)

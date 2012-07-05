@@ -1,6 +1,5 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
-include ActionDispatch::TestProcess
 
 FactoryGirl.define do
   sequence :name do |i|
@@ -17,9 +16,6 @@ FactoryGirl.define do
     long 12.12
     website_url 'http://www.google.com/'
     association :owner, factory: :member
-    image {fixture_file_upload('spec/support/onebit_33.png')}
-    after_create do |project, proxy|
-      proxy.image.close
-    end
+    image {Foobax.crap}
   end
 end

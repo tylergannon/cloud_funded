@@ -28,7 +28,7 @@ describe ProjectsController do
     Paperclip::Attachment.any_instance.stub(:present?).and_return(true)
     @example_project = FactoryGirl.create(:project, owner: @member)
     image = @example_project.image
-    Project.any_instance.stub(:image).and_return(image)
+    # Project.any_instance.stub(:image).and_return(image)
   end
   
 
