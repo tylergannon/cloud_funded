@@ -1,5 +1,5 @@
 @mixin header-style {
-  background: url(/assets/top.png) 0 0 repeat-x;
+  background: url(/assets/images/top.png) 0 0 repeat-x;
 	height: 62px;
 	margin: 30px 0px;
 	padding: 0px;
@@ -13,7 +13,8 @@
 
 body
 {
-	background: url(/assets/orange.jpg) 0 0 repeat;
+background-image: -moz-radial-gradient(#fddea1, #e6ad54);
+background-image: -webkit-radial-gradient(#fddea1, #e6ad54);
 	color: #333;
 	font: 13px/1.5 "helvetica neue",arial,helvetica,freesans,"liberation sans", sans-serif;
 	margin: 0px;
@@ -52,20 +53,20 @@ body
 .header_link
 {
 	float: left;
-	margin-right: 20px;
 	margin-top: 20px;
 }
 
 @mixin header-link {
-	color: #333;
+	color: #fff;
+	text-shadow: -1px -1px #a88852;
 	font-size: 16px;
 	font-weight: bold;
-	letter-spacing: -1px;
-	margin: 5px auto;
-	padding: 3px;
+
 	text-decoration: none;
-	text-shadow: 1px 1px #f8d581;
-	border-radius: 5px;
+
+	padding: 15px 10px 10px 10px;
+border-right: 1px solid #fbd595;
+border-left: 1px solid #e6ad54;
 }
 
 .header_link a
@@ -74,8 +75,10 @@ body
 }
 .header_link a:hover, .header_link a:active
 {
-	color: #fff;
-	text-shadow: -1px -1px #a88852;
+	color: #333;
+	text-shadow: -1px -1px #fcdb9c;
+	background-image: -moz-radial-gradient(#fddea1, #f2bd6b);
+background-image: -webkit-radial-gradient(#fddea1, #f2bd6b);
 }
 
 .my_controls {
@@ -240,9 +243,13 @@ label
 
 h1 {
 
-letter-spacing: -2px;
+letter-spacing: -1px;
 color: #333;
 font-size: 32px;
+ 
+font-family: 'Merriweather', serif;
+
+
 }
 
 
