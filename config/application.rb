@@ -65,6 +65,6 @@ module CloudFunded
     ENV['RECAPTCHA_PUBLIC_KEY']='6LdpitESAAAAAItUxR6G6d9j4zdjrRhCkqrIIie0'
     ENV['RECAPTCHA_PRIVATE_KEY'] = '6LdpitESAAAAAHo1roAY5TfqUQ0Rwk-pdWoTksGs'
     
-    config.assets.initialize_on_precompile = true
+    config.assets.initialize_on_precompile = false    
   end
 end
