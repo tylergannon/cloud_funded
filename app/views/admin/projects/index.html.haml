@@ -4,4 +4,4 @@
     %tr
       %td= link_to project.name, project
       %td= image_tag project.image.url(:medium), width: '70px'
-      %td= link_to 'Delete', admin_project_path(project), method: :delete, confirm: 'Really?  It will be gone gone.'
+      %td= link_to 'Delete', admin_project_path(project), method: :delete, data: {confirm: 'Really?  It will be gone gone.'}

@@ -11,4 +11,4 @@
     %span.member_full_name= member.full_name
     %span.member_controls
       = link_to 'Edit', edit_admin_member_path(member)
-      = link_to 'Delete', admin_member_path(member), confirm: 'Really?', method: 'DELETE'
+      = link_to 'Delete', admin_member_path(member), data: {confirm: 'Really?'}, method: 'DELETE'
