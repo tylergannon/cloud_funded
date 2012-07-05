@@ -22,6 +22,7 @@ CloudFunded::Application.routes.draw do
       member { post :mercury_update }
       resources :attachments
     end
+    resources :projects
   end
   
   resource :my_account, as: 'account', only: [:show, :edit, :update], controller: 'accounts' do
