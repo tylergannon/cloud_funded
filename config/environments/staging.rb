@@ -7,6 +7,9 @@ CloudFunded::Application.configure do
   ENV['SENDGRID_PASSWORD'] = 'B@rnD00ez!'
   ENV['OPENGRAPH_NAMESPACE'] = 'cloudfunded'
   
+  ENV['DWOLLA_KEY'] = 'hNZPFYpFeDb2KN759OD98e+brYTW6xXnH7CXqz+Axv8nFcXJno'
+  ENV['DWOLLA_SECRET'] = 'ldwMpY70KH0zf72CaqgTjsZDyP8JhhwsSfAlvl0CWIJcdmg+SJ'
+  
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests
