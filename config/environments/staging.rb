@@ -9,6 +9,8 @@ CloudFunded::Application.configure do
   
   ENV['DWOLLA_KEY'] = 'hNZPFYpFeDb2KN759OD98e+brYTW6xXnH7CXqz+Axv8nFcXJno'
   ENV['DWOLLA_SECRET'] = 'ldwMpY70KH0zf72CaqgTjsZDyP8JhhwsSfAlvl0CWIJcdmg+SJ'
+
+  Dwolla::Transaction.test_mode = true
   
   # Settings specified here will take precedence over those in config/application.rb
 
