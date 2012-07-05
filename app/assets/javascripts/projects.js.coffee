@@ -20,12 +20,12 @@ $ ->
       alert "Created project!: " + response.id
       
   askForSupport = ->
-    FB.api "/me/cloudfunded:create", "post",
+    FB.api "/me/#{AppConfig.opengraph_namespace}:create", "post",
       project: $('#project_url').attr('content'), 
       fbResponse
       
   createProject = ->
-    FB.api "/me/cloudfunded:create", "post",
+    FB.api "/me/#{AppConfig.opengraph_namespace}:create", "post",
       project: $('#project_url').attr('content'), 
       fbResponse
   

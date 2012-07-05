@@ -1,6 +1,11 @@
 CloudFunded::Application.configure do
   ENV['facebook_app_id'] = '336588343062874'
   ENV['facebook_secret_key'] = '03ac974371620fae08891f673160117b'
+  ENV['AMAZON_S3_BUCKET'] = 'cloud_funded'
+  
+  ENV['SENDGRID_USERNAME'] = 'cloudfunded_staging'
+  ENV['SENDGRID_PASSWORD'] = 'B@rnD00ez!'
+  ENV['OPENGRAPH_NAMESPACE'] = 'cloudfunded'
   
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -72,6 +77,4 @@ CloudFunded::Application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
 
-  ENV['SENDGRID_USERNAME'] = 'cloudfunded_staging'
-  ENV['SENDGRID_PASSWORD'] = 'B@rnD00ez!'
 end

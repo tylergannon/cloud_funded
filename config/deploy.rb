@@ -21,7 +21,6 @@ after "deploy:restart", "deploy:cleanup"
 
 require 'bundler/capistrano'
 require "rvm/capistrano"
-load 'deploy/assets'
 
 task :restart, :roles => [:app], :except => {:no_release => true} do
   run "cd #{deploy_to}/current && touch tmp/restart.txt"

@@ -1,6 +1,6 @@
 !!!
 %html{xmlns: 'http://www.w3.org/1999/xhtml', dir: 'ltr', lang: 'en-US', 'xmlns:fb' => 'https://www.facebook.com/2008/fbml'}
-  %head{prefix: 'og: http://ogp.me/ns# cloudfunded: http://ogp.me/ns/apps/cloudfunded#'}
+  %head{prefix: "og: http://ogp.me/ns# #{AppConfig.opengraph_namespace}: http://ogp.me/ns/apps/#{AppConfig.opengraph_namespace}#"}
     %title= @title || 'CloudFunded: a finance platform for local and sustainable business.'
     = render partial: 'layouts/open_graph_data'
     = stylesheet_link_tag    "application", :media => "all"
@@ -16,11 +16,13 @@
       .header_link= link_to 'Explore the projects', projects_path
       .header_link= link_to 'Submit your project', new_project_path
       .header_link= link_to 'Blog', blog_path
-      .header_link= link_to 'About Us', page_path('about')
-      .header_link= link_to 'Feedback', submit_feedback_path(about_page: request.path)
-      
+      .header_link= link_to 'About Us', page_path('about')      
       - unless member_signed_in?
         .header_link= link_to 'Sign in', new_member_session_path
+        .header_link
+          = link_to member_omniauth_authorize_path(:facebook) do
+            = image_tag 'Button_FBConnect.png'
+          
       - else
         = render partial: 'layouts/my_controls'
         
@@ -32,3 +34,4 @@
       = yield
     #footer
       #footerwrap
+      #this_is_a_test

@@ -25,7 +25,7 @@ describe PledgesController do
 
   describe "GET index" do
     it "assigns all pledges as @pledges" do
-      pledge = @project.pledges.create! investor: @member
+      pledge = @project.pledges.create! investor: @member, amount: 123.45
       get :index, {project_id: @project.id}
       assigns(:pledges).should eq([pledge])
     end
@@ -34,7 +34,7 @@ describe PledgesController do
   describe "GET show" do
     describe "if accessed with a pledge id" do
       before :each do
-        @pledge = @project.pledges.create! investor: @member
+        @pledge = @project.pledges.create! investor: @member, amount: 123.45
         get :show, {:project_id => @project.id, :id => @pledge.to_param}
       end
       it "assigns the requested pledge as @pledge" do

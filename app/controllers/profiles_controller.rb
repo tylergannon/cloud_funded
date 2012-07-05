@@ -10,6 +10,7 @@ class ProfilesController < ApplicationController
     if params[:id]
       @member = Member.find(params[:id])
     else
+      authenticate_member!
       @member = current_member
     end
     respond_with @member

@@ -18,6 +18,13 @@ Spork.prefork do
     c.cassette_library_dir = "#{::Rails.root}/spec/vcr_fixtures"
     c.hook_into :webmock # or :fakeweb
   end
+  
+  class Foobax
+    extend ActionDispatch::TestProcess
+    def self.crap
+      @thing ||= fixture_file_upload('spec/support/onebit_33.png')
+    end
+  end
 
   RSpec.configure do |config|
     # ## Mock Framework

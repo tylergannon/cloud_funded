@@ -5,7 +5,7 @@
   - if can?(:edit, @member)
     .your_profile 
       This is your profile.
-      = link_to 'Make Changes', edit_profile_path
+      = link_to 'Make Changes', edit_profile_path(@member)
   .clear
 
   %h2 #{@member.full_name}'s Projects

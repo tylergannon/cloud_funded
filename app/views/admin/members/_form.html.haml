@@ -13,10 +13,10 @@
     = f.text_field :last_name
   .field
     = f.label :password
-    = f.password_field :password
+    = password_field_tag 'member[password]', '', autocomplete: 'off'
   .field
     = f.label :password_confirmation
-    = f.password_field :password_confirmation
+    = password_field_tag 'member[password_confirmation]', '', autocomplete: 'off'
   .field
     = f.label :admin
     = f.check_box :admin

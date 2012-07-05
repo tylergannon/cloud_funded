@@ -1,0 +1,13 @@
+.my_acount
+  %h1 My Account
+  You have #{number_to_currency(@member.account_balance)} in your account.
+  = link_to 'Get Some More.', new_account_fund_path
+
+  .transaction_history
+    %h2 Transaction History
+    %table
+      - @member.transactions.each do |transaction|
+        %tr
+          %td= transaction.created_at.strftime('%Y-%m-%d %H:%m')
+          %td= number_to_currency(transaction.amount)
+          

@@ -1,5 +1,5 @@
 class ProjectsMailer < ActionMailer::Base
-  default from: "new-projects@cloudfunded.com"
+  default from: "new-projects-no-reply@cloudfunded.com"
   
   def new_project(project)
     @project = project
@@ -7,10 +7,6 @@ class ProjectsMailer < ActionMailer::Base
   end
   
   def from_address
-    if Rails.env.production?
-      "project_admin@cloudfunded.com"
-    else
-      "othertg@gmail.com"
-    end
+    "new-projects-no-reply@cloudfunded.com"
   end
 end
