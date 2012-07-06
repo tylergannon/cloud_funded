@@ -1,7 +1,8 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
-
+include ActionDispatch::TestProcess
 FactoryGirl.define do
+  extend ActionDispatch::TestProcess
   sequence :name do |i|
     "nicebax#{i}#{rand}"
   end
@@ -16,6 +17,7 @@ FactoryGirl.define do
     long 12.12
     website_url 'http://www.google.com/'
     association :owner, factory: :member
-    image {Foobax.crap}
+
+    image {fixture_file_upload('spec/support/onebit_33.png')}
   end
 end

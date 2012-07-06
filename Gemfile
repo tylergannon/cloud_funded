@@ -20,6 +20,7 @@ gem 'default_value_for'
 gem 'httparty'
 gem 'wicked'
 gem 'dwolla', git: 'https://github.com/tylergannon/dwolla.git'
+# gem 'dwolla', path: '/Users/tyler/src/3rd_party/dwolla'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

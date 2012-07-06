@@ -3,8 +3,8 @@ ACCESS_TOKEN = member.dwolla_auth_token
 user = Dwolla::User.me(ACCESS_TOKEN).fetch
 user.contacts(:search => "CloudFunded")
 
-"Invalid account PIN"
-"Insufficient funds."
+# "Invalid account PIN"
+# "Insufficient funds."
 
 
 begin

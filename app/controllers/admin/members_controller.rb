@@ -39,8 +39,6 @@ class Admin::MembersController < ApplicationController
     @member.skip_confirmation!
     @member.save
     
-    puts @member.errors.inspect
-
     respond_with(@member) do |format|
       format.html {
         if @member.valid?

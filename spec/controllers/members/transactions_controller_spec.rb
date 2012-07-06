@@ -35,6 +35,21 @@ describe Members::TransactionsController do
         end
       end
     end
+    
+    describe "when the access token is invalid" do
+      # Invalid access token
+      before :each do
+        @member = FactoryGirl.create :member, dwolla_auth_token: "TuJ7nsdfsdmmyGksCZAk2OXi1q7btY6wJou71gUMl6IS/0Pcs74si5J"
+        sign_in @member
+        VCR.use_cassette 'Fund My Account Bad Auth Token' do
+          post :create, {amount: 1000000, pin: 1234}
+        end
+      end
+      it "should clear the token from the member account." do
+        @member.reload
+        @member.dwolla_auth_token.should be_nil
+      end
+    end
 
     describe "when requesting too damned much" do
       before :each do
@@ -57,12 +72,19 @@ describe Members::TransactionsController do
         VCR.use_cassette 'Fund My Account Success' do
           post :create, {amount: 0.01, pin: 1234}
         end
+        @transaction = Transaction.where(transaction_id: '1197256').first
       end
       it "should create a new transaction" do
-        Transaction.where(transaction_id: '1197256').should exist
+        @transaction.should_not be_nil
       end
       it "should be for the correct amount" do
-        Transaction.where(transaction_id: '1197256').first.amount.should == 0.01
+        @transaction.amount.should == 0.01
+      end
+      it "should set the status" do
+        @transaction.status.should == "complete"
+      end
+      it "should set the source" do
+        @transaction.source.should == "dwolla"
       end
       it "should redirect to the my_account page" do
         response.should redirect_to(account_path)

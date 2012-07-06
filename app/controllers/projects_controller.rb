@@ -90,7 +90,6 @@ class ProjectsController < ApplicationController
         format.html { redirect_to project_wizard_path(@project), notice: 'Congratulations!  Your project is listed.  Now you can share it with others.' }
         format.json { render json: @project, status: :created, location: @project }
       else
-        puts @project.errors.inspect
         format.html { 
           render action: "new" 
         }

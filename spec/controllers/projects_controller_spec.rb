@@ -44,7 +44,8 @@ describe ProjectsController do
       website_url: another_project.website_url,
       address: 'nicebas',
       lat: 123,
-      long: 123
+      long: 123,
+      image: fixture_file_upload('spec/support/onebit_33.png')
     }
   end
   
@@ -125,7 +126,6 @@ describe ProjectsController do
       it "creates a new Project" do
         expect {
           post :create, {:project => valid_attributes}
-          puts assigns(:project).errors.inspect
         }.to change(Project, :count).by(1)
       end
 

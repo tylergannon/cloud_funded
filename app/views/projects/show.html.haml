@@ -1,37 +1,34 @@
-- if @project.owner == current_member
-  %h3 This is your project.
-  %p= link_to 'Click to make changes', edit_project_path(@project)
+.show_project
+  - if @project.owner == current_member
+    %h3 This is your project.
+    %p= link_to 'Click to make changes', edit_project_path(@project)
 
-= render @project
+  = render @project
 
-- unless @project.youtube_url.blank?
-  .youtube
-    %iframe{width: '560', height: '315', frameborder: '0', allowfullscreen: true, src: @project.youtube_url}
+  - unless @project.youtube_url.blank?
+    .youtube
+      %iframe{width: '560', height: '315', frameborder: '0', allowfullscreen: true, src: @project.youtube_url}
 
-.already_pledged
-  %h1 Who's already pledged:
-  - @project.pledges.map(&:investor).each do |investor|
-    = link_to investor.profile do
-      = image_tag investor.profile_pic
-  = link_to 'Show all pledges', project_pledges_path(@project)
-  - if @project.pledges.empty?
-    %h2 No one has pledged yet. Be the first!
-  - if @my_pledge
-    %h2 You have already pledged support.
-    %h3 Share this project with your friends!
-  - else
-    = link_to new_project_pledge_path(@project) do
-      %h2 Pledge Your Support!
+  .already_pledged
+    %h1 Who's already pledged:
+    - @project.pledges.map(&:investor).each do |investor|
+      = link_to investor.profile do
+        = image_tag investor.profile_pic
+    = link_to 'Show all pledges', project_pledges_path(@project)
+    - if @project.pledges.empty?
+      %h2 No one has pledged yet. Be the first!
+    - if @my_pledge
+      %h2 You have already pledged support.
+    - else
+      = link_to new_project_pledge_path(@project) do
+        %h2 Pledge Your Support!
+    .share
+      %h3 Share this project with your friends!
+      %a{name: 'fb_share'}
+      .like
+        .fb-like{'data-href' => project_url(@project), 'data-send' => true, 'data-width' => '450', 'data-show-faces' => true}
+      %span= render partial: 'layouts/plus_one'
+      %span= render partial: 'layouts/linkedin_share'
+      %span= render partial: 'layouts/tweet'
 
-.clear
-
-%span
-  .share
-    %a{name: 'fb_share'}
-  .like
-    .fb-like{'data-href' => project_url(@project), 'data-send' => true, 'data-width' => '450', 'data-show-faces' => true}
-%span= render partial: 'layouts/plus_one'
-%span= render partial: 'layouts/linkedin_share'
-%span= render partial: 'layouts/tweet'
-
-= render partial: 'open_graph_data'  
+  .clear
