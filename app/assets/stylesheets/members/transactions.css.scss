@@ -1,3 +1,40 @@
 // Place all the styles related to the members/transactions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.transaction_history {
+  table, th, td {
+    border-style: ridge;
+    border-width: 1px;
+    border-color: gray;
+  }
+  
+  th {
+    background-color: #00565d;
+    color: white;
+  }
+  
+  table {
+    border-radius: 2px;
+    border-collapse: collapse;
+    
+    tr {
+      &:nth-child(odd) {
+        background-color: #ABABAB;
+      }
+      &:nth-child(even) {
+        background-color: #D1D1D1;
+      }
+      td {
+        text-indent: 10px;
+        min-width: 120px;
+        align: left;
+        &.amount {
+          padding-right: 5px;
+          text-align: right;
+        }
+      }
+    }
+  }
+}
