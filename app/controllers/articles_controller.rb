@@ -6,7 +6,6 @@ class ArticlesController < ApplicationController
     @title = "Official CloudFunded Blog"
     @articles = Article.where published: true
     respond_with(@articles) do |format|
-
     end
   end
 

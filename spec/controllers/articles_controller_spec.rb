@@ -35,18 +35,28 @@ describe ArticlesController do
   end
 
   describe "GET index" do
-    it "assigns all articles as @articles" do
-      article = FactoryGirl.create(:article)
+    before :each do
+      @article = FactoryGirl.create(:article, title: 'Some Title')
       get :index, {}, valid_session
-      assigns(:articles).should eq([article])
+    end
+    it "assigns all articles as @articles" do
+      assigns(:articles).should eq([@article])
+    end
+    it "assigns a title" do
+      assigns(:title).should == 'Official CloudFunded Blog'
     end
   end
 
   describe "GET show" do
+    before :each do
+      @article = FactoryGirl.create(:article, title: 'Some Title')
+      get :show, {:id => @article.to_param}, valid_session
+    end
     it "assigns the requested article as @article" do
-      article = FactoryGirl.create(:article)
-      get :show, {:id => article.to_param}, valid_session
-      assigns(:article).should eq(article)
+      assigns(:article).should eq(@article)
+    end
+    it "assigns a title" do
+      assigns(:title).should == 'Some Title'
     end
   end
 end
