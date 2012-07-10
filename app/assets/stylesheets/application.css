@@ -9,5 +9,28 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
+ * require_tree .
+ *= require accounts.css.scss
+ *= require admin/articles.css.scss
+ *= require admin/feedbacks.css.scss
+ *= require admin/pages.css.scss
+ *= require admin/projects.css.scss
+ *= require application.css
+ *= require articles.css.scss
+ *= require attachments.css.scss
+ *= require comments.css.scss
+ *= require facebook_actions.css.scss
+ *= require feedbacks.css.scss
+ *= require jquery-ui-1.8.20.custom.css
+ *= require main.css.scss
+ *= require members/transactions.css.scss
+ * mercury.css
+ * mercury_overrides.css
+ *= require new_project.css.scss
+ *= require pages.css.scss
+ *= require pledges.css.scss
+ *= require profiles.css.scss
+ *= require projects/categories.css.scss
+ *= require projects/transactions.css.scss
+ *= require projects.css.scss
 */

@@ -10,9 +10,8 @@ $ ->
         a.preventDefault()
         
     # $('#mercury_iframe').attr('style', $('#mercury_iframe').attr('style') + 'overflow: scroll;')
-    
-    $el = $(top.document.getElementById('mercury_iframe'))
-    $el.attr 'style', $el.attr('style') + 'overflow: scroll;'
+    # $el = $(top.document.getElementById('mercury_iframe'))
+    # $el.attr 'style', $el.attr('style') + 'overflow: scroll;'
     
     Mercury.config.uploading.url = window.location.href.replace('/editor', '').split('?')[0] + '/attachments';
     Mercury.config.uploading.inputName = 'attachment[image]'
