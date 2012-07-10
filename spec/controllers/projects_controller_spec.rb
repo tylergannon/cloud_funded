@@ -19,6 +19,8 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe ProjectsController do
+  render_views
+  
   before :each do 
     sign_in_as_member
     stub_attachments_for(Project)

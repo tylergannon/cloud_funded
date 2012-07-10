@@ -1,7 +1,6 @@
 .show_project
   %h1= @project.name
-  .standard_description=
-    A 
+  .standard_description= "A #{@project.category.name} project by #{@project.owner.full_name}" 
   .short_description= @project.short_description
   - if @project.owner == current_member
     .project_controls
