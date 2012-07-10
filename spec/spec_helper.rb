@@ -9,7 +9,7 @@ Spork.prefork do
   require 'rspec/rails'
   require 'rspec/autorun'
   require 'vcr'
-
+  require "paperclip/matchers"
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
@@ -50,6 +50,7 @@ Spork.prefork do
     config.include Devise::TestHelpers, :type => :controller
     config.include Devise::TestHelpers, :type => :view
     config.include Devise::TestHelpers, :type => :helper
+    config.include Paperclip::Shoulda::Matchers
   end
   
   VCR.configure do |c|

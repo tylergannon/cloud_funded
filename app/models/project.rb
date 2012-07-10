@@ -9,6 +9,7 @@ class Project < ActiveRecord::Base
                   :linkedin_profile, :linkedin_business, :yelp
   
   belongs_to :owner, class_name: 'Member'
+  belongs_to :category, class_name: 'Projects::Category'
   has_many :pledges
   
   default_value_for :post_to_fb, true

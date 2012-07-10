@@ -3,5 +3,7 @@ class Comment < ActiveRecord::Base
   belongs_to :article
   belongs_to :member
   
+  validates :member, presence: true
+  validates :article, presence: true
   validates :body, presence: true, length: {minimum: 10}
 end

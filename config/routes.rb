@@ -1,4 +1,6 @@
 CloudFunded::Application.routes.draw do
+  namespace :projects do resources :categories end
+
   resources :comments
 
   Mercury::Engine.routes

@@ -1,7 +1,10 @@
 .show_project
+  %h1= @project.name
+  .short_description= @project.short_description
   - if @project.owner == current_member
-    %h3 This is your project.
-    %p= link_to 'Click to make changes', edit_project_path(@project)
+    .project_controls
+      %h3 This is your project.
+      %p= link_to 'Click to make changes', edit_project_path(@project)
 
   = render @project
 
