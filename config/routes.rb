@@ -35,7 +35,7 @@ CloudFunded::Application.routes.draw do
   resources :projects, path_names: {edit: :settings, :new => :fund_yours} do
     resource :facebook_action
     resource :my_pledge, controller: :pledges
-    resource :wizard, controller: :after_create_project
+    resource :wizard, controller: 'projects/wizard'
     resources :pledges
     resources :transactions, controller: 'projects/transactions', path_names: {
       :new => :new, :edit => :edit
