@@ -1,6 +1,6 @@
 .show_project
   %h1= @project.name
-  .standard_description= "A #{@project.category.name} project by #{@project.owner.full_name}" 
+  .standard_description!= "A #{link_to @project.category.name, projects_category_path(@project.category)} project by #{link_to @project.owner.full_name, profile_path(@project.owner)}" 
   .short_description= @project.short_description
   - if @project.owner == current_member
     .project_controls
