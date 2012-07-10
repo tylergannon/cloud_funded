@@ -44,7 +44,7 @@ class PledgesController < ApplicationController
       format.html {
         if @pledge.valid?
           if @pledge.post_to_fb
-            # @pledge.fb_post_id = CloudFunded::Facebook::Actions.pledge_to_support project_url(@project), current_member.fb_token          
+            @pledge.fb_post_id = CloudFunded::Facebook::Actions.pledge_to_support project_url(@project), current_member.fb_token          
           end
           @pledge.save!
           redirect_to project_my_pledge_path(@project)

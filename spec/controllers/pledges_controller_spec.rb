@@ -125,13 +125,13 @@ describe PledgesController do
           post :create, {:project_id => @project.id, :pledge => valid_attributes}
           response.should redirect_to(project_my_pledge_path(@project))
         end
-        # it "should call the create project facebook action" do
-        #   CloudFunded::Facebook::Actions.should_receive(:pledge_to_support) do |proj_url, access_token|
-        #     proj_url.should == project_url(assigns(:project))
-        #     access_token.should == @member.fb_token
-        #   end
-        #   post :create, {:pledge => valid_attributes, :project_id => @project.id}
-        # end
+        it "should call the create project facebook action" do
+          CloudFunded::Facebook::Actions.should_receive(:pledge_to_support) do |proj_url, access_token|
+            proj_url.should == project_url(assigns(:project))
+            access_token.should == @member.fb_token
+          end
+          post :create, {:pledge => valid_attributes, :project_id => @project.id}
+        end
 
         it "should not call the create project if post_to_fb not checked." do
           CloudFunded::Facebook::Actions.should_not_receive(:pledge_to_support)
