@@ -34,6 +34,20 @@
   }
 }
 
+.show_project {
+  .share {
+    border-radius: 15px;
+    border-color: gray;
+    border-style: dotted;
+    border-width: 1px;
+    z-index: 0;
+    width: 350px;
+    height: 170px;
+    padding: 20px;
+    background: url(/assets/orange.jpg) 0 0 repeat;
+  }
+}
+
 .edit_project {
   form {
     #answer {

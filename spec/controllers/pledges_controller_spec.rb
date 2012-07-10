@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe PledgesController do
+  render_views
   before :each do 
     Project.any_instance.stub(:save_attached_files).and_return(true)
     Project.any_instance.stub(:destroy_attached_files).and_return(true)
@@ -25,7 +26,7 @@ describe PledgesController do
 
   describe "GET index" do
     it "assigns all pledges as @pledges" do
-      pledge = @project.pledges.create! investor: @member
+      pledge = @project.pledges.create! investor: @member, amount: 123.45
       get :index, {project_id: @project.id}
       assigns(:pledges).should eq([pledge])
     end
@@ -34,7 +35,7 @@ describe PledgesController do
   describe "GET show" do
     describe "if accessed with a pledge id" do
       before :each do
-        @pledge = @project.pledges.create! investor: @member
+        @pledge = @project.pledges.create! investor: @member, amount: 123.45
         get :show, {:project_id => @project.id, :id => @pledge.to_param}
       end
       it "assigns the requested pledge as @pledge" do
@@ -70,6 +71,17 @@ describe PledgesController do
         get :new, {:project_id => @project.id}
         controller.member_signed_in?.should be_true
         assigns(:pledge).should be_a_new(Pledge)
+      end
+      describe "when pledging to my own project" do
+        before :each do
+          @project.update_attributes owner: @member
+          FactoryGirl.create :pledge, project: @project, amount: 123
+        end
+        it "should not have an error" do
+          lambda {
+            get :new, {project_id: @project.to_param}
+          }.should_not raise_error
+        end
       end
     end
 

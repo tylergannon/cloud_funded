@@ -1,4 +1,17 @@
+require 'yaml'
+
 class Members::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  def dwolla
+    authenticate_member!
+    dwolla_info =  request.env['omniauth.auth']
+    current_member.attributes= {dwolla_id: dwolla_info.uid, 
+                                dwolla_auth_token: dwolla_info.credentials.token}
+    current_member.save!
+    next_location = session[:return_after_dwolla_login]
+    session[:return_after_dwolla_login] = nil
+    redirect_to next_location || root_path
+  end
+  
   def facebook
     facebook_info =  request.env['omniauth.auth']
     facebook_id = facebook_info.uid
@@ -11,6 +24,7 @@ class Members::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         password: 'yt*k*$GY$-ULKf3qy$O',
         password_confirmation: 'yt*k*$GY$-ULKf3qy$O'
       member.skip_confirmation!
+      MemberMailer.new_member(member).deliver
     end
 
     member.attributes = {
@@ -21,6 +35,7 @@ class Members::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       fb_token: facebook_info.credentials.token}
     
     member.save
+    
 
     sign_in_and_redirect member, :event => :authentication
     

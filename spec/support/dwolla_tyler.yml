@@ -1,0 +1,14 @@
+--- !ruby/hash:OmniAuth::AuthHash
+provider: dwolla
+uid: 812-674-6295
+info: !ruby/hash:OmniAuth::AuthHash::InfoHash
+  name: Tyler Gannon
+  latitude: 0
+  longitude: 0
+  city: Berkeley
+  state: CA
+  type: Personal
+credentials: !ruby/hash:Hashie::Mash
+  token: ybKxEo5JB7m3B9dV9dAxHsUDf5buQHMnUtvqIpHb6kyvwqhrg1
+  expires: false
+extra: !ruby/hash:Hashie::Mash {}

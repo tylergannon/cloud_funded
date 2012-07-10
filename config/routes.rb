@@ -1,8 +1,4 @@
 CloudFunded::Application.routes.draw do
-  get "new_project/show"
-
-  get "new_project/update"
-
   resources :comments
 
   Mercury::Engine.routes
@@ -14,7 +10,8 @@ CloudFunded::Application.routes.draw do
   end
   
   namespace :admin do
-    resources :members, :feedbacks
+    resources :members, path_names: {edit: :chang3_that_sh1t}
+    resources :feedbacks
     
     resources :pages do
       member { post :mercury_update }
@@ -25,8 +22,13 @@ CloudFunded::Application.routes.draw do
       member { post :mercury_update }
       resources :attachments
     end
+    resources :projects
   end
-
+  
+  resource :my_account, as: 'account', only: [:show, :edit, :update], controller: 'accounts' do
+    resources :funds, path_names: {:new => 'add'}, controller: 'members/transactions'
+  end
+  
   resources :profiles
   resource :profile, path_names: {edit: :settings}
   
@@ -35,8 +37,11 @@ CloudFunded::Application.routes.draw do
     resource :my_pledge, controller: :pledges
     resource :wizard, controller: :after_create_project
     resources :pledges
+    resources :transactions, controller: 'projects/transactions', path_names: {
+      :new => :new, :edit => :edit
+    }
   end
-  
+    
   devise_for :members, controllers: {
     omniauth_callbacks: 'members/omniauth_callbacks',
     registrations: 'members/registrations'

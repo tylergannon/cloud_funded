@@ -39,8 +39,6 @@ class Admin::MembersController < ApplicationController
     @member.skip_confirmation!
     @member.save
     
-    puts @member.errors.inspect
-
     respond_with(@member) do |format|
       format.html {
         if @member.valid?
@@ -54,7 +52,12 @@ class Admin::MembersController < ApplicationController
   
   def update
     @member = Member.find(params[:id])
-    @member.update_attributes(params[:member])
+    if params[:member][:password].blank?
+      attrs = params[:member].except(:password, :password_confirmation)
+    else
+      attrs = params[:member]
+    end
+    @member.update_attributes(attrs)
 
     respond_with(@member) do |format|
       format.html {

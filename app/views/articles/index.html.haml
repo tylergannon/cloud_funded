@@ -2,7 +2,7 @@
   - if can? :manage, Article
     %h2= link_to 'Manage Blog', admin_articles_path
   - @articles.each do |article|
-    .article_listing{data: {article_path: blog_post_path(article)}}
+    .article{data: {article_path: blog_post_path(article)}}
       %h1#article_title.mercury-region{'data-type' => 'editable'}= article.title
       .article_header
         = "Published #{article.published_at.strftime("%b %d, %Y")} by #{article.author.full_name}"
@@ -13,7 +13,7 @@
     %link{rel: :alternate, type: 'application/atom+xml', href: blog_url(format: :atom)}
     :javascript
       $(function(){
-        $('.article_listing').click(function(){
+        $('.article').click(function(){
           window.location = $(this).data('article_path');
         });
       });

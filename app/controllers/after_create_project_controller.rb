@@ -13,8 +13,6 @@ class AfterCreateProjectController < ApplicationController
     if params[:project]
       @project.update_attributes params[:project]
     end
-    puts "*" * 80
-    puts step
     if methods.include?(step)
       send(step)
     end

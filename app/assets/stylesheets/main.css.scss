@@ -83,6 +83,13 @@ background-image: -webkit-radial-gradient(#fddea1, #f2bd6b);
 
 .my_controls {
   position: relative;
+  
+  & > div {
+    position: absolute;
+    width: 180px;
+    left: 1038px;
+    top: 0px;
+  }
   &:hover {
     cursor: pointer;
   }
@@ -104,10 +111,6 @@ background-image: -webkit-radial-gradient(#fddea1, #f2bd6b);
   }
   .control_list {
     display: none;
-    position: absolute;
-    width: 180px;
-    left: 1038px;
-    top: 0px;
 
     ul {
       padding-top: 10px;

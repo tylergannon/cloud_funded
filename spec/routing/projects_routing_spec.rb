@@ -8,7 +8,7 @@ describe ProjectsController do
     end
 
     it "routes to #new" do
-      get("/projects/new").should route_to("projects#new")
+      get("/projects/fund_yours").should route_to("projects#new")
     end
 
     it "routes to #show" do

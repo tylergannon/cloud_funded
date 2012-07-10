@@ -6,6 +6,7 @@ gem 'pg'
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'devise', '2.1'
+gem 'omniauth-dwolla'
 gem 'omniauth-facebook'
 gem 'devise-encryptable'
 gem 'friendly_id'
@@ -18,6 +19,8 @@ gem 'mercury-rails', git: 'https://github.com/jejacks0n/mercury.git'
 gem 'default_value_for'
 gem 'httparty'
 gem 'wicked'
+gem 'dwolla', git: 'https://github.com/tylergannon/dwolla.git'
+# gem 'dwolla', path: '/Users/tyler/src/3rd_party/dwolla'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -41,5 +44,6 @@ end
 
 group :deployment do
   gem 'capistrano'
+  gem 'capistrano-ext'
   gem 'rvm-capistrano'
 end
