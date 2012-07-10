@@ -20,18 +20,13 @@ require 'spec_helper'
 
 describe ProjectsController do
   before :each do 
-    @member = FactoryGirl.create(:member)
-    sign_in :member, @member
-    Project.any_instance.stub(:save_attached_files).and_return(true)
-    Project.any_instance.stub(:destroy_attached_files).and_return(true)
-    Paperclip::Attachment.any_instance.stub(:queue_all_for_delete).and_return(true)
-    Paperclip::Attachment.any_instance.stub(:present?).and_return(true)
+    sign_in_as_member
+    stub_attachments_for(Project)
     @example_project = FactoryGirl.create(:project, owner: @member)
     image = @example_project.image
     # Project.any_instance.stub(:image).and_return(image)
   end
   
-
   # This should return the minimal set of attributes required to create a valid
   # Project. As you add validations to Project, be sure to
   # update the return value of this method accordingly.

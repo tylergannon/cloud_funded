@@ -33,7 +33,7 @@ class Admin::AttachmentsController < ApplicationController
   # POST /attachments.xml
   def create
     @attachment = @parent.attachments.new(params[:attachment])
-    @attachment.save
+    @attachment.save!
     respond_with(@parent, @attachment) do |format|
       format.html {
         redirect_to polymorphic_path([:admin, @parent, :attachments])

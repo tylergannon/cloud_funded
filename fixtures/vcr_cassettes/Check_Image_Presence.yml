@@ -1,0 +1,120 @@
+---
+http_interactions:
+- request:
+    method: head
+    uri: https://s3.amazonaws.com/cloud_funded_sandbox/attachments/images//original/onebit_33.png
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby/1.5.6 ruby/1.9.3 x86_64-darwin11.3.0
+      Date:
+      - Tue, 10 Jul 2012 13:59:53 -0700
+      Authorization:
+      - AWS AKIAIDEFW5P6AQLRXWGQ:2jYUu6uSMC4brZoeMYoFNRO/j34=
+      Accept:
+      - ! '*/*'
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      X-Amz-Request-Id:
+      - 85436678E1138587
+      X-Amz-Id-2:
+      - 1bSMqzHuKyc1WrDGccs+NIp14f5fB4WayBOIX88cOtzLVFCz+3pN1mJ/GBw6vchX
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Tue, 10 Jul 2012 20:59:53 GMT
+      Server:
+      - AmazonS3
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: 
+  recorded_at: Tue, 10 Jul 2012 20:59:53 GMT
+- request:
+    method: head
+    uri: https://s3.amazonaws.com/cloud_funded_sandbox/attachments/images//medium/onebit_33.png
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby/1.5.6 ruby/1.9.3 x86_64-darwin11.3.0
+      Date:
+      - Tue, 10 Jul 2012 13:59:53 -0700
+      Authorization:
+      - AWS AKIAIDEFW5P6AQLRXWGQ:wWUsx6SUZUOayTlrXTubKmNyTRI=
+      Accept:
+      - ! '*/*'
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      X-Amz-Request-Id:
+      - E55C398C3046D004
+      X-Amz-Id-2:
+      - tNFqTvhxXbdtpAPwuwoHWpzCIA34pdWa0xKu3Ui3qtgiFfW5uHHLgx9oexAgsqqB
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Tue, 10 Jul 2012 20:59:53 GMT
+      Server:
+      - AmazonS3
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: 
+  recorded_at: Tue, 10 Jul 2012 20:59:54 GMT
+- request:
+    method: head
+    uri: https://s3.amazonaws.com/cloud_funded_sandbox/attachments/images//thumb/onebit_33.png
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby/1.5.6 ruby/1.9.3 x86_64-darwin11.3.0
+      Date:
+      - Tue, 10 Jul 2012 13:59:54 -0700
+      Authorization:
+      - AWS AKIAIDEFW5P6AQLRXWGQ:58NQCHU3Yss69WnHx/QJpqAVlrA=
+      Accept:
+      - ! '*/*'
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      X-Amz-Request-Id:
+      - CDF289A1D0D335AB
+      X-Amz-Id-2:
+      - 1STa0lkcU/k+em+1gmpQMnFH2Yy9SvJ9GK9LnTkBIzv/msZ+bahvzeQZ3NncWBFd
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Tue, 10 Jul 2012 20:59:53 GMT
+      Server:
+      - AmazonS3
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: 
+  recorded_at: Tue, 10 Jul 2012 20:59:54 GMT
+recorded_with: VCR 2.2.2

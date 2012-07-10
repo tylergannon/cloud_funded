@@ -1,5 +1,5 @@
 module Admin::PagesHelper
   def editable
-    {data: {type: :editable}}
+    {data: {mercury: :full}}
   end
 end

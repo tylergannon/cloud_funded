@@ -10,5 +10,7 @@ class Attachment < ActiveRecord::Base
       :access_key_id => 'AKIAIDEFW5P6AQLRXWGQ',
       :secret_access_key => '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'
     }  
+    
+  validates :image, attachment_presence: true
 
 end

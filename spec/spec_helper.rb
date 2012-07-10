@@ -54,6 +54,8 @@ Spork.prefork do
     config.include Paperclip::Shoulda::Matchers
     config.include AdminMemberSignInHelper, type: :controller
     config.include MemberSignInHelper, type: :controller
+    config.include AttachmentStubHelper, type: :controller
+    config.include AttachmentStubHelper, type: :model
   end
   
   VCR.configure do |c|

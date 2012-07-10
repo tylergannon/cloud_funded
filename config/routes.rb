@@ -1,7 +1,7 @@
 CloudFunded::Application.routes.draw do
   resources :comments
 
-  Mercury::Engine.routes
+  mount Mercury::Engine => '/'
 
   resources :feedbacks, only: [:new, :create, :index]
   resources :pages, only: :show
@@ -14,12 +14,12 @@ CloudFunded::Application.routes.draw do
     resources :feedbacks
     
     resources :pages do
-      member { post :mercury_update }
+      member { put :mercury_update }
       resources :attachments
     end
     
     resources :articles do
-      member { post :mercury_update }
+      member { put :mercury_update }
       resources :attachments
     end
     namespace :projects do
@@ -27,7 +27,7 @@ CloudFunded::Application.routes.draw do
     end
     resources :projects
   end
-  
+
   resource :my_account, as: 'account', only: [:show, :edit, :update], controller: 'accounts' do
     resources :funds, path_names: {:new => 'add'}, controller: 'members/transactions'
   end
