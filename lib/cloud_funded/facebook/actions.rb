@@ -25,7 +25,7 @@ module CloudFunded
         response = self.post("/me/#{AppConfig.opengraph_namespace}:#{action}", query: {project: project_url, access_token: access_token})
         Rails.logger.debug response.inspect
         if response["id"].nil?
-          Rails.logger.warn "Didn't get an id back from Facebook dude!"
+          Rails.logger.error "Unable to post to facebook: #{response.inspect}"
         end
         response["id"]
       end
