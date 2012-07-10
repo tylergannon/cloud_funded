@@ -37,8 +37,11 @@ CloudFunded::Application.routes.draw do
     resource :my_pledge, controller: :pledges
     resource :wizard, controller: :after_create_project
     resources :pledges
+    resources :transactions, controller: 'projects/transactions', path_names: {
+      :new => :new, :edit => :edit
+    }
   end
-  
+    
   devise_for :members, controllers: {
     omniauth_callbacks: 'members/omniauth_callbacks',
     registrations: 'members/registrations'
