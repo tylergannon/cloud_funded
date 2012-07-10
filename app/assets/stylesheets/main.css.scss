@@ -11,6 +11,20 @@
 	width: 980px;
 }
 
+@mixin header-link-border {
+	padding: 15px 10px 10px 10px;
+  border-right: 1px solid #fbd595;
+  border-left: 1px solid #e6ad54;
+}
+
+@mixin header-link {
+	color: #fff;
+	text-shadow: -1px -1px #a88852;
+	font-size: 16px;
+	font-weight: bold;
+	text-decoration: none;
+}
+
 body
 {
 background-image: -moz-radial-gradient(#fddea1, #e6ad54);
@@ -24,6 +38,7 @@ background-image: -webkit-radial-gradient(#fddea1, #e6ad54);
 #header
 {
   @include header-style;
+  position:relative;
 }
 #headerwrap
 {
@@ -50,28 +65,46 @@ background-image: -webkit-radial-gradient(#fddea1, #e6ad54);
 //  text-indent: -300px;
 	width: 250px;
 }
+#header ul {
+  list-style:none;
+}
 .header_link
 {
+  &:hover ul{
+    left: 410px;
+  }
 	float: left;
 	margin-top: 20px;
+	ul {
+  	background:#f1c579; /* Adding a background makes the dropdown work properly in IE7+. Make this as close to your page's background as possible (i.e. white page == white background). */
+//    background:rgba(255,255,255,0); /* But! Let's make the background fully transparent where we can, we don't actually want to see it if we can help it... */
+  	list-style:none;
+  	position:absolute;
+  	padding-left: 0;
+  	padding-right: 0;
+  	top: 46px;
+    left:-9999px; /* Hide off-screen when not needed (this is more accessible than display:none;) */
+	  width: 250px;
+  	li {
+  	  width: 100%;
+  	  @include header-link;
+  	  padding-left: 0;
+  	  margin-left: 0;
+//      padding-top: 16px;
+  	  
+  	  a {
+  	    width: 100%;
+    	  display: inline-block;
+  	  }
+  	}
+	}
 }
 
-@mixin header-link {
-	color: #fff;
-	text-shadow: -1px -1px #a88852;
-	font-size: 16px;
-	font-weight: bold;
-
-	text-decoration: none;
-
-	padding: 15px 10px 10px 10px;
-border-right: 1px solid #fbd595;
-border-left: 1px solid #e6ad54;
-}
 
 .header_link a
 {
   @include header-link;
+  @include header-link-border;
 }
 .header_link a:hover, .header_link a:active
 {
@@ -86,7 +119,6 @@ background-image: -webkit-radial-gradient(#fddea1, #f2bd6b);
   
   & > div {
     position: absolute;
-    width: 180px;
     left: 1038px;
     top: 0px;
   }
@@ -95,6 +127,7 @@ background-image: -webkit-radial-gradient(#fddea1, #f2bd6b);
   }
   .member_id {
     @include header-link;
+    @include header-link-border;
     img {
       border-radius: 5px;
       height: 30px;
