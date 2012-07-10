@@ -6,11 +6,12 @@ class Project < ActiveRecord::Base
                   :completion_date, :image, :youtube_url, :website_url, 
                   :short_description, :address, :lat, :long, :post_to_fb,
                   :fb_post_id, :google_plus, :google_places, :facebook, 
-                  :linkedin_profile, :linkedin_business, :yelp
+                  :linkedin_profile, :linkedin_business, :yelp, :category_id
   
   belongs_to :owner, class_name: 'Member'
   belongs_to :category, class_name: 'Projects::Category'
   has_many :pledges
+  validates :category, presence: true
   
   default_value_for :post_to_fb, true
   

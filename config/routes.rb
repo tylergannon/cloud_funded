@@ -34,7 +34,11 @@ CloudFunded::Application.routes.draw do
   
   resources :profiles
   resource :profile, path_names: {edit: :settings}
-  
+    
+  namespace :projects do
+    resources :categories
+  end
+
   resources :projects, path_names: {edit: :settings, :new => :fund_yours} do
     resource :facebook_action
     resource :my_pledge, controller: :pledges

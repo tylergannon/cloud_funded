@@ -42,6 +42,7 @@ describe ProjectsController do
       description: another_project.description,
       financial_goal: another_project.financial_goal,
       website_url: another_project.website_url,
+      category_id: another_project.category_id,
       address: 'nicebas',
       lat: 123,
       long: 123,

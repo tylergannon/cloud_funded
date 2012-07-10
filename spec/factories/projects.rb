@@ -17,6 +17,7 @@ FactoryGirl.define do
     long 12.12
     website_url 'http://www.google.com/'
     association :owner, factory: :member
+    association :category, factory: :projects_category
 
     image {fixture_file_upload('spec/support/onebit_33.png')}
   end
