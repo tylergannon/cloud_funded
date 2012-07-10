@@ -28,9 +28,8 @@
           %li.header_link
             = link_to member_omniauth_authorize_path(:facebook) do
               = image_tag 'Button_FBConnect.png'
-          
-      - else
-        = render partial: 'layouts/my_controls'
+        - else
+          = render partial: 'layouts/my_controls'
         
     .container
       - if flash[:notice]
