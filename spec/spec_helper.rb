@@ -51,6 +51,8 @@ Spork.prefork do
     config.include Devise::TestHelpers, :type => :view
     config.include Devise::TestHelpers, :type => :helper
     config.include Paperclip::Shoulda::Matchers
+    config.include AdminMemberSignInHelper, type: :controller
+    config.include MemberSignInHelper, type: :controller
   end
   
   VCR.configure do |c|

@@ -9,9 +9,21 @@ class ApplicationController < ActionController::Base
     
   rescue_from CanCan::AccessDenied do |exception|
     if member_signed_in?
-      redirect_to root_url, :alert => exception.message
+      respond_to do |format|
+        format.html { render :file => "#{Rails.root}/public/404.html", :status => :not_found }
+        format.xml  { head :not_found }
+        format.any  { head :not_found }
+      end
+      # raise ActionController::RoutingError.new('Not Found')
+      # redirect_to root_url, :alert => exception.message
     else
       redirect_to new_member_session_path, :alert => exception.message
     end
+  end
+  
+  private
+  def authenticate_admin
+    authenticate_member!
+    authorize! :manage, :all
   end
 end

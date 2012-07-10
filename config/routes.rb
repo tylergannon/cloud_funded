@@ -1,6 +1,4 @@
 CloudFunded::Application.routes.draw do
-  namespace :projects do resources :categories end
-
   resources :comments
 
   Mercury::Engine.routes
@@ -23,6 +21,9 @@ CloudFunded::Application.routes.draw do
     resources :articles do
       member { post :mercury_update }
       resources :attachments
+    end
+    namespace :projects do
+      resources :categories
     end
     resources :projects
   end
