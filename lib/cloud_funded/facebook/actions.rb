@@ -21,11 +21,11 @@ module CloudFunded
       
       private
       def self.action(action, project_url, access_token)
-        logger.debug "Going to post your pledge to Facebook."
+        Rails.logger.debug "Going to post your pledge to Facebook."
         response = self.post("/me/#{AppConfig.opengraph_namespace}:#{action}", query: {project: project_url, access_token: access_token})
-        logger.debug response.inspect
+        Rails.logger.debug response.inspect
         if response["id"].nil?
-          logger.warn "Didn't get an id back from Facebook dude!"
+          Rails.logger.warn "Didn't get an id back from Facebook dude!"
         end
         response["id"]
       end
