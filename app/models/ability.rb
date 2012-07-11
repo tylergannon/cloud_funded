@@ -24,7 +24,13 @@ class Ability
     can :read, Pledge
     can :read, Project, active: true
     can :read, Member
-    can :read, Article
+    can :manage, Article do |article|
+      article.project &&
+        article.project.owner.id == member.id
+    end
+    can :read, Article do |article|
+      article.published
+    end
     
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
   end

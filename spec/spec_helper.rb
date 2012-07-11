@@ -10,6 +10,7 @@ Spork.prefork do
   require 'rspec/autorun'
   require 'vcr'
   require "paperclip/matchers"
+  require "cancan/matchers"
   `ulimit -n 1000`
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.

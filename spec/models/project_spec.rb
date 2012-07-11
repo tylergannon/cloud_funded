@@ -9,5 +9,5 @@ describe Project do
   it "should have post_to_fb == true" do
     subject.post_to_fb.should be_true
   end
-  
+  it {should have_many(:articles)}
 end
