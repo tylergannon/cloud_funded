@@ -65,6 +65,10 @@ Spork.prefork do
 end
 
 Spork.each_run do
-  # This code will be run each time you run your specs.
-
+  FactoryGirl.reload
+  CloudFunded::Application.reload_routes!
+  Dir[Rails.root.join('spec/support/**/*.rb')].each{|f| load f}
+  %w(cloud_funded extensions mercury).each do |dir|
+    Dir[Rails.root.join("lib/#{dir}/**/*.rb")].each{|f| load f}
+  end
 end
