@@ -44,6 +44,9 @@ CloudFunded::Application.routes.draw do
     resource :my_pledge, controller: :pledges
     resource :wizard, controller: 'projects/wizard'
     resources :pledges
+    resources :updates, controller: 'projects/articles', path_names: {
+      :new => :new, :edit => :edit
+    }
     resources :transactions, controller: 'projects/transactions', path_names: {
       :new => :new, :edit => :edit
     }
