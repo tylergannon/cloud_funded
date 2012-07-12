@@ -8,11 +8,11 @@ module CloudFunded
       #      -F 'project=http://demo.cloudfunded.com/projects/nourish-cafe' \
       #         'https://graph.facebook.com/me/cloudfunded:create'
       def self.create_project(project_url, access_token)
-        action(:create, project_url, access_token)
+        action(:launch, project_url, access_token)
       end
       
       def self.pledge_to_support(project_url, access_token)
-        action(:pledge_to_support, project_url, access_token)
+        action(:pledge, project_url, access_token)
       end
 
       def self.remove_action(id, access_token)
