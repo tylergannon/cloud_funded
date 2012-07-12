@@ -67,7 +67,7 @@ describe ProjectsController do
         get :index, {show: :mine}
       end
       it "loads only my projects" do
-        assigns(:projects).should eq([@example_project, @my_project])
+        assigns(:projects).should =~ [@example_project, @my_project]
       end
       it "renders the my_projects action" do
         response.should render_template('my_projects')
