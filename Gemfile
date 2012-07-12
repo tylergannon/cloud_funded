@@ -40,6 +40,8 @@ end
 group :test do
   gem 'webmock'
   gem 'vcr'
+  gem 'poltergeist'
+  gem 'cucumber-rails'
 end
 
 group :deployment do
