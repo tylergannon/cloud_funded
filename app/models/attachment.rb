@@ -5,6 +5,7 @@ class Attachment < ActiveRecord::Base
   has_attached_file :image,
     :styles => { :medium => "300x200", :thumb => "100x100" },
     :storage => :s3,
+    :s3_protocol => '',
     :bucket => ENV['AMAZON_S3_BUCKET'],
     :s3_credentials => {
       :access_key_id => 'AKIAIDEFW5P6AQLRXWGQ',
