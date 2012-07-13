@@ -19,8 +19,7 @@ feature "Signing up" do
       puts find('div#error_explanation').text
     end
     # <p class="alert">There was an error with the recaptcha code below. Please re-enter the code.</p>
-    
-    URI.parse(current_url).path.should == root_path
+    current_path.should == root_path
     
     Member.where(email: 'somebodynewboy@gmail.com').should exist
 
@@ -32,8 +31,8 @@ feature "Signing up" do
     visit new_member_session_path
     fill_in 'Email', with: @member.email
     fill_in 'Password', with: 'myfunkypass'
-    click_button 'Sign in'    
-    URI.parse(current_url).path.should == root_path
+    click_button 'Sign in'   
+    current_path.should == root_path 
   end
 end
 

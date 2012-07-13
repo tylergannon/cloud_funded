@@ -29,9 +29,6 @@ CloudFunded::Application.routes.draw do
   end
 
   resource :my_account, as: 'account', only: [:show, :edit, :update], controller: 'accounts' do
-    member do
-      get :change_password, as: :change_password
-    end
     resources :funds, path_names: {:new => 'add'}, controller: 'members/transactions'
   end
   
@@ -67,6 +64,11 @@ CloudFunded::Application.routes.draw do
   match '/feedback_received' => 'feedbacks#index', as: :feedback_received
   match '/projects/:project_id/pledge' => 'pledges#new', as: :new_project_pledge
   match '/my_projects' => 'projects#index', defaults: {show: "mine"}, as: :my_projects
+  
+  as :member do
+    get '/my_account/settings' => 'members/registrations#edit',  as: :account_settings
+  end
+  
   # match '/projects/:project_id/my_pledge/edit' => 'pledges#edit', as: :edit_my_pledge
   # match '/projects/:project_id/my_pledge' => 'pledges#show', as: :my_pledge
   root to: 'projects#index'

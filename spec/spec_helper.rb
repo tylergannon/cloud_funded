@@ -70,6 +70,7 @@ Spork.prefork do
     config.include Devise::TestHelpers, :type => :helper
     config.include Paperclip::Shoulda::Matchers
     config.include AdminMemberSignInHelper, type: :controller
+    config.include RequestSpecs::SignInMemberHelper, type: :request
     config.include MemberSignInHelper, type: :controller
     config.include AttachmentStubHelper, type: :controller
     config.include AttachmentStubHelper, type: :model

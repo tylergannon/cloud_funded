@@ -12,6 +12,7 @@
       %li= link_to 'My Account', account_path
       %li= link_to 'My Projects', my_projects_path
       %li= link_to 'Feedback', submit_feedback_path(about_page: request.path)
+      %li= link_to 'Change Password', account_settings_path
       %li= link_to 'Sign out', destroy_member_session_path, method: 'delete'
       - if current_member.admin
         %li Admin Controls
