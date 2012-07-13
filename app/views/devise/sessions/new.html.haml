@@ -3,6 +3,8 @@
   %h2 Welcome back!
   = link_to member_omniauth_authorize_path(:facebook) do
     = image_tag 'Button_FBConnect.png'
+  - if flash[:alert]
+    %p.alert= flash[:alert]
   = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
     .field
       = f.label :email

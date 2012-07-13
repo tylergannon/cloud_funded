@@ -11,12 +11,22 @@ Spork.prefork do
   require 'vcr'
   require "paperclip/matchers"
   require "cancan/matchers"
-  `ulimit -n 1000`
+  require 'capybara'
+  require 'capybara/poltergeist'
+
+  Capybara.register_driver :poltergeist do |app|
+    Capybara::Poltergeist::Driver.new app, debug: true, raise_errors: false
+  end
+  Capybara.javascript_driver = :poltergeist
+
+    
+  `ulimit -n 1000`  # Avoids "too many open file descriptors" error
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
   VCR.configure do |c|
+    c.ignore_localhost = true
     c.cassette_library_dir = "#{::Rails.root}/spec/vcr_fixtures"
     c.hook_into :webmock # or :fakeweb
   end
@@ -36,7 +46,7 @@ Spork.prefork do
     # If you're not using ActiveRecord, or you'd prefer not to run each of your
     # examples within a transaction, remove the following line or assign false
     # instead of true.
-    config.use_transactional_fixtures = true
+    config.use_transactional_fixtures = false
 
     # If true, the base class of anonymous controllers will be inferred
     # automatically. This will be the default behavior in future versions of
@@ -44,6 +54,12 @@ Spork.prefork do
     config.infer_base_class_for_anonymous_controllers = false
 
     OmniAuth.config.test_mode = true
+
+    DatabaseCleaner.strategy = :truncation
+    
+    config.before(:each) do
+      DatabaseCleaner.clean
+    end
     
     config.before(:each, :type => :controller) do
       request.env["devise.mapping"] = Devise.mappings[:member]

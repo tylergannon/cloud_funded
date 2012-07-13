@@ -1,11 +1,15 @@
 class AccountsController < ApplicationController
-  before_filter :authenticate_member!, :load_member
+  before_filter :authenticate_member!
   
   def show
     respond_with @member
   end
   
   def edit
+    respond_with @member
+  end
+  
+  def change_password
     respond_with @member
   end
   

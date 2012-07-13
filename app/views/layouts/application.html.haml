@@ -9,7 +9,7 @@
     = csrf_meta_tags
     = yield :head
   %body
-    = render partial: 'layouts/facebook_sdk'
+    = render partial: 'layouts/facebook_sdk' unless Rails.env.test?
     #header
       #headerwrap
         .page_title
