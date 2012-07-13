@@ -29,6 +29,9 @@ CloudFunded::Application.routes.draw do
   end
 
   resource :my_account, as: 'account', only: [:show, :edit, :update], controller: 'accounts' do
+    member do
+      get :change_password, as: :change_password
+    end
     resources :funds, path_names: {:new => 'add'}, controller: 'members/transactions'
   end
   

@@ -42,6 +42,7 @@ group :test do
   gem 'vcr'
   gem 'poltergeist'
   gem 'cucumber-rails'
+  gem 'database_cleaner'
 end
 
 group :deployment do
