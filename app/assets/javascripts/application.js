@@ -14,8 +14,10 @@
 //= require jquery_ujs
 //= require jquery.ui.tabs
 //= require jquery.ui.progressbar
+//= require 3rd_party/jquery.html5_upload.js
 //= require header
 //= require articles
 //= require pledges
 //= require profiles
 //= require projects
+//= require project_wizard

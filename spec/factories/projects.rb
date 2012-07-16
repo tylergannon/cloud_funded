@@ -19,6 +19,6 @@ FactoryGirl.define do
     association :owner, factory: :member
     association :category, factory: :projects_category
 
-    image {fixture_file_upload('spec/support/onebit_33.png')}
+    # image {fixture_file_upload('spec/support/onebit_33.png')}
   end
 end

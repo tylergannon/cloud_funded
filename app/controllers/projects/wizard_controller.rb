@@ -1,14 +1,11 @@
 class Projects::WizardController < ApplicationController
   include Wicked::Wizard
-  steps :where, :share, :add_urls
-  before_filter :load_project, :authenticate_action!
+  
+  steps :information, :basics, :more_about_you, :fund_raise, :preview, :submit
+
+  before_filter :authenticate_member!, :load_project
   
   def show
-    if @project.post_to_fb
-      @project.fb_post_id = CloudFunded::Facebook::Actions.create_project project_url(@project), current_member.fb_token          
-      @project.save!
-    end
-
     render_wizard
   end
   
@@ -23,11 +20,6 @@ class Projects::WizardController < ApplicationController
   end
   
   def load_project
-    @project = Project.find(params[:project_id])
-  end
-  
-  def authenticate_action!
-    authenticate_member!
-    authorize! :edit, @project
+    @project = current_member.project_application
   end
 end

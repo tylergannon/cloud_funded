@@ -1,0 +1,35 @@
+.project_wizard {
+//  #project_image_form {
+//    display: none;
+//  }
+  .upload_status {
+    width: 140px;
+    height: 80px;
+    position: absolute;
+    border-width: 2px;
+    border-style: dashed;
+    border-color: #9e9e9e;
+    border-radius: 4px;
+    background-color: grey;
+    opacity: 40%;
+    top: 350px;
+    left: 295px;
+    z-index: 10;
+    display: none;
+  }
+  div.project_image {
+    border-width: 2px;
+    border-style: dashed;
+    border-color: #9e9e9e;
+    border-radius: 4px;
+    width: 560px;
+    height: 310px;
+    z-index: 50;
+    
+    &:hover {
+      cursor: pointer;
+      border-color: #757575;
+    }
+  }
+  
+}

@@ -1,0 +1,21 @@
+.project_wizard
+  %h1 Company Basics
+  = form_for @project, url: wizard_path do |f|
+    .field
+      = f.text_field :name, placeholder: "Your Company Name"
+    .field
+      = f.text_field :tagline, placeholder: 'Tagline / Catch Phrase'
+    .field
+      -# = f.file_field :image
+      .project_image
+        - unless @project.image.present?
+          = image_tag 'projects/wizard/file_upload_placeholder.jpg', alt: 'Project Image Placeholder', id: 'project_image_tag'
+        - else 
+          = image_tag @project.image.url(:large), alt: 'Project Image', id: 'project_image_tag'
+      .upload_status Uploading...
+    .field
+      = f.text_area :short_description, placeholder: 'A brief description of your company'
+    .field
+      = f.submit 'Save and Continue'
+  = form_for @project, url: project_path(@project, format: :json), html: {id: 'project_image_form'} do |f|
+    = f.file_field :image

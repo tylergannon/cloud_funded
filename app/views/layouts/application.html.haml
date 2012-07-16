@@ -20,7 +20,7 @@
           %ul
             - Projects::Category.all.each do |category|
               %li= link_to category.name, projects_category_path(category)
-        %li.header_link= link_to 'Submit your project', new_project_path
+        %li.header_link= link_to 'Get Funded', get_funded_path
         %li.header_link= link_to 'Blog', blog_path
         %li.header_link= link_to 'About Us', page_path('about')      
         - unless member_signed_in?

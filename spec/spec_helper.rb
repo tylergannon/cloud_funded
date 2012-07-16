@@ -27,6 +27,7 @@ Spork.prefork do
 
   VCR.configure do |c|
     c.ignore_localhost = true
+    c.ignore_hosts 's3.amazonaws.com'
     c.cassette_library_dir = "#{::Rails.root}/spec/vcr_fixtures"
     c.hook_into :webmock # or :fakeweb
   end
@@ -71,9 +72,11 @@ Spork.prefork do
     config.include Paperclip::Shoulda::Matchers
     config.include AdminMemberSignInHelper, type: :controller
     config.include RequestSpecs::SignInMemberHelper, type: :request
+    config.include RequestSpecs::ProjectRegistrationHelpers, type: :request
     config.include MemberSignInHelper, type: :controller
     config.include AttachmentStubHelper, type: :controller
     config.include AttachmentStubHelper, type: :model
+    config.include AttachmentStubHelper, type: :routing
   end
   
   VCR.configure do |c|

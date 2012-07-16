@@ -21,6 +21,11 @@ class Member < ActiveRecord::Base
   def account_balance
     transactions.map(&:amount).sum
   end
+  
+  def project_application
+    @project_application ||= projects.where(published: false).first || projects.create!
+  end
+  
   validates :first_name, presence: true
   validates :last_name, presence: true
   # attr_accessible :title, :body

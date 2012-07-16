@@ -15,19 +15,19 @@ describe Projects::WizardController do
           sign_in @member
         end
         
-        it "should call out to the Facebook action." do
-          CloudFunded::Facebook::Actions.should_receive(:create_project).and_return('rockstar') do |url, fb_token|
-            url.should == project_url(@project)
-            fb_token.should == @member.fb_token
-          end
-          get :show, {project_id: @project.to_param, id: 'finish'}
-        end
-        
-        it "should save the fb post id to the project." do
-          CloudFunded::Facebook::Actions.stub(:create_project).and_return('rockstar')
-          get :show, {project_id: @project.to_param, id: 'finish'}
-          assigns(:project).fb_post_id.should == 'rockstar'
-        end
+        # it "should call out to the Facebook action." do
+        #   CloudFunded::Facebook::Actions.should_receive(:create_project).and_return('rockstar') do |url, fb_token|
+        #     url.should == project_url(@project)
+        #     fb_token.should == @member.fb_token
+        #   end
+        #   get :show, {project_id: @project.to_param, id: 'finish'}
+        # end
+        # 
+        # it "should save the fb post id to the project." do
+        #   CloudFunded::Facebook::Actions.stub(:create_project).and_return('rockstar')
+        #   get :show, {project_id: @project.to_param, id: 'finish'}
+        #   assigns(:project).fb_post_id.should == 'rockstar'
+        # end
       end
     end
   end

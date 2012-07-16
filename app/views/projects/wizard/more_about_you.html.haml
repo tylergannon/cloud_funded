@@ -1,0 +1,8 @@
+.project_wizard.more_about_you
+  = render partial: 'application_header'
+  %h1 More About Your Company
+  = form_for @project, url: wizard_path do |f|
+    .field
+      
+    .field
+      = f.submit 'Save and Continue'

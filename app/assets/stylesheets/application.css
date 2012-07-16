@@ -32,5 +32,6 @@
  *= require profiles.css.scss
  *= require projects/categories.css.scss
  *= require projects/transactions.css.scss
+ *= require projects/wizard.css.scss
  *= require projects.css.scss
 */

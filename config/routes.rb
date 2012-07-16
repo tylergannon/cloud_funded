@@ -42,7 +42,6 @@ CloudFunded::Application.routes.draw do
   resources :projects, path_names: {edit: :settings, :new => :fund_yours} do
     resource :facebook_action
     resource :my_pledge, controller: :pledges
-    resource :wizard, controller: 'projects/wizard'
     resources :pledges
     resources :updates, controller: 'projects/articles', path_names: {
       :new => :new, :edit => :edit
@@ -65,11 +64,17 @@ CloudFunded::Application.routes.draw do
   match '/projects/:project_id/pledge' => 'pledges#new', as: :new_project_pledge
   match '/my_projects' => 'projects#index', defaults: {show: "mine"}, as: :my_projects
   
+  resource :get_funded, controller: 'projects/wizard', as: :get_funded
+  
   as :member do
     get '/my_account/settings' => 'members/registrations#edit',  as: :account_settings
   end
   
   # match '/projects/:project_id/my_pledge/edit' => 'pledges#edit', as: :edit_my_pledge
   # match '/projects/:project_id/my_pledge' => 'pledges#show', as: :my_pledge
+  
+  match '/:id(.:format)' => 'projects#show', as: :project, :constraints => { :format => /(json|html)/ }, via: 'get'
+  match '/:id(.:format)' => 'projects#update', as: :project, :constraints => { :format => /(json|html)/ }, via: 'post'
+
   root to: 'projects#index'
 end
