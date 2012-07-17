@@ -27,8 +27,8 @@
 
 body
 {
-background-image: -moz-radial-gradient(#fddea1, #e6ad54);
-background-image: -webkit-radial-gradient(#fddea1, #e6ad54);
+background-image: -moz-radial-gradient(#ffffcc, #e6bb76);
+background-image: -webkit-radial-gradient(#ffffcc, #e6bb76);
 	color: #333;
 	font: 13px/1.5 "helvetica neue",arial,helvetica,freesans,"liberation sans", sans-serif;
 	margin: 0px;
@@ -74,6 +74,7 @@ background-image: -webkit-radial-gradient(#fddea1, #e6ad54);
     left: 410px;
   }
 	float: left;
+<<<<<<< HEAD
 	margin-top: 20px;
 	ul {
   	background:#f1c579; /* Adding a background makes the dropdown work properly in IE7+. Make this as close to your page's background as possible (i.e. white page == white background). */
@@ -98,6 +99,9 @@ background-image: -webkit-radial-gradient(#fddea1, #e6ad54);
   	  }
   	}
 	}
+=======
+	margin-top: 18px;
+>>>>>>> projects and global styles
 }
 
 
@@ -167,10 +171,18 @@ background-image: -webkit-radial-gradient(#fddea1, #f2bd6b);
 }
 
 .container {
+background-image: -moz-radial-gradient(#143458, #143458);
+background-image: -webkit-radial-gradient(#143458, #143458);
+
 	margin: 0px auto;
+<<<<<<< HEAD
 	padding: 20px;
 	padding-top: 01px;
 	width: 1100px;
+=======
+	padding: 0px;
+	width: 100%;
+>>>>>>> projects and global styles
 	a {
   	color: #0099ff;
   	font-weight: bold;
@@ -180,6 +192,19 @@ background-image: -webkit-radial-gradient(#fddea1, #f2bd6b);
   	}
 	}
 }
+
+.container .container, .pledge_listing {
+width: 1100px;
+margin: 10px auto;
+padding-top: 20px;
+margin-top: 20px;
+clear: both;
+
+
+
+}
+
+
 
 .clear
 {
@@ -197,7 +222,7 @@ background-image: -webkit-radial-gradient(#fddea1, #f2bd6b);
 }
 
 .new {
-  .field {
+  .field, .field_with_errors {
   	background-color: #f5f5f5;
   	border-radius: 6px;
   	khtml-border-radius: 6px;
@@ -209,7 +234,11 @@ background-image: -webkit-radial-gradient(#fddea1, #f2bd6b);
   	webkit-border-radius: 6px; 
 
   }
+<<<<<<< HEAD
   .field label {
+=======
+  .field > label, .field_with_errors > label {
+>>>>>>> projects and global styles
   	clear: both;
   	color: #aaa;
   	float: left;
@@ -219,7 +248,11 @@ background-image: -webkit-radial-gradient(#fddea1, #f2bd6b);
   	text-align: right;
   	width: 300px;
   }
+<<<<<<< HEAD
   .field input {
+=======
+  .field > input,   .field_with_errors > input {
+>>>>>>> projects and global styles
   	line-height: 40px;
   	font-size: 16px;
   }
@@ -242,6 +275,11 @@ background-image: -webkit-radial-gradient(#fddea1, #f2bd6b);
     background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(0%,whiteSmoke),color-stop(100%,white));
     background-image: -webkit-linear-gradient(top,whiteSmoke,white);
     border: 1px solid #CCC;
+ }
+ 
+ .field_with_errors >label {
+ 
+ color: red;
  }
 
 
@@ -275,6 +313,7 @@ h1 {
   color: #333;
   font-size: 32px;
  
+<<<<<<< HEAD
   font-family: 'Merriweather', serif;
 }
 
@@ -314,13 +353,77 @@ input[type="button"], input[type="submit"], input[type="reset"] {
   	color-stop(0.84, rgb(28,129,217)),
   	color-stop(0.87, rgb(28,129,217))
   );
+=======
+
+
 }
 
-input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hover
+
+input[type="button"], input[type="submit"], input[type="reset"]
 {
-  background-color: #46000D
+-webkit-appearance: push-button;
+
 }
 
+
+
+input[type="button"], input[type="submit"], input[type="reset"], .cta {
+
+
+white-space: pre;
+display: inline-block;
+color: white !important;
+
+font-family:"helvetica neue",arial,helvetica,freesans,"liberation sans", sans-serif;
+font-size: 25px;
+
+padding: 18px 50px;
+
+text-decoration: none;
+border: 4px solid #3078aa;
+
+border-radius: 6px;
+-moz-border-radius: 6px;
+-webkit-border-radius: 6px;
+position: relative;
+cursor: pointer;
+overflow: visible;
+width: auto;
+
+box-shadow: 0 1px 2px rgba(0, 0, 0, .25);
+
+text-align: center;
+text-shadow: 0 -1px 1px #9D5712;
+
+
+background: #FFA104;
+background: -moz-linear-gradient(top, #FFA104 0%, #C06A00 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFA104), color-stop(100%,#C06A00));
+background: -webkit-linear-gradient(top, #0479aa 0%,#043f64 100%);
+background: -o-linear-gradient(top, #FFA104 0%,#C06A00 100%);
+background: -ms-linear-gradient(top, #FFA104 0%,#C06A00 100%);
+background: linear-gradient(top, #FFA104 0%,#C06A00 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa104', endColorstr='#c06a00',GradientType=0 );
+-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.69);
+-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.69);
+box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.69);
+border: 1px solid #08588a;
+border-bottom: 1px solid #061e3a;
+line-height: 1em;
+font-weight: bold;
+-webkit-font-smoothing: antialiased;
+min-width: 300px;
+
+
+
+>>>>>>> projects and global styles
+}
+
+
+input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hover, .cta:hover
+{
+
+<<<<<<< HEAD
 .ui-progressbar {
   height: 1.2em;
   text-align: left;
@@ -332,4 +435,42 @@ input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hove
 
 .project img {
   height: 200px;
+=======
+background: #FFA104;
+background: -moz-linear-gradient(top, #043f64 0%, #0479aa 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#043f64), color-stop(100%,#0479aa));
+background: -webkit-linear-gradient(top, #043f64 0%,#0479aa 100%);
+background: -o-linear-gradient(top, #043f64 0%,#0479aa 100%);
+background: -ms-linear-gradient(top, #043f64 0%,#0479aa 100%);
+background: linear-gradient(top, #043f64 0%,#0479aa 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa104', endColorstr='#c06a00',GradientType=0 );
+-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.69);
+-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.69);
+box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.69);
+border: 1px solid #08588a;
+border-top: 1px solid #061e3a;}
+
+
+
+
+.filter {
+
+  background: url(/assets/images/top.png) 0 0 repeat-x;
+
+
+}
+
+.container h1 {
+font-family: 'Merriweather', serif;
+
+letter-spacing: -1px;
+font-size: 36px;
+color: #24628d;
+text-shadow: -1px -1px #071d36;
+padding: 40px 0px 00px 0px;
+}
+
+.container h3 {
+color: #666;
+>>>>>>> projects and global styles
 }
