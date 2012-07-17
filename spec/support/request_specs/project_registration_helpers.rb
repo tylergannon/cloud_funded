@@ -12,7 +12,8 @@ module RequestSpecs
       fill_in 'project_tagline', with: 'Something Catchy'
       fill_in 'project_short_description', with: 'A brief history of time'
       click_button 'Save and Continue'
-      page.should have_content('More About Your Company')
+      page.should have_content('Cool, Where is it located?')
+      click_button 'Save and Continue'
     end
   end
 end

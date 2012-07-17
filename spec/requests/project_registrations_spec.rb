@@ -23,15 +23,16 @@ feature "Registering a new project" do
     fill_in 'project_tagline', with: 'Something Catchy'
     fill_in 'project_short_description', with: 'A brief history of time'
     click_button 'Save and Continue'
-    page.should have_content('More About Your Company')
-  end  
+    page.should have_content('Cool, Where is it located?')
+  end
   
   scenario "Uploading a file", js: true do
     go_to_company_basics_page
-    page.should have_selector('img[alt=\'Project Image Placeholder\'][id=project_image_tag]')
+    page.find('#image_placeholder_tag').should be_visible
+    page.find('#image_tag').should_not be_visible
     page.find('.upload_status').should_not be_visible
-    attach_file 'project_image', File.expand_path('spec/support/images/bettersheen.jpeg')
-    wait_until(1) do
+    attach_file 'image', File.expand_path('spec/support/images/bettersheen.jpeg')
+    wait_until(10) do
       page.find('.upload_status').visible?
     end
     puts "ok, uploading"
@@ -39,9 +40,13 @@ feature "Registering a new project" do
       !page.find('.upload_status').visible?
       # page.has_selector?('img[alt=\'Project Image\'][id=project_image_tag]')
     end
-    page.should have_selector('img[alt=\'Project Image\'][id=project_image_tag]')
+    page.find('#image_placeholder_tag').should_not be_visible
+    page.find('#image_tag').should be_visible
+    page.find('.upload_status').should_not be_visible
     visit current_url
-    page.should have_selector('img[alt=\'Project Image\'][id=project_image_tag]')
+    page.find('#image_placeholder_tag').should_not be_visible
+    page.find('#image_tag').should be_visible
+    page.find('.upload_status').should_not be_visible
   end
   
   scenario "Filling out 'More About Your Company' page" do
@@ -61,13 +66,26 @@ feature "Registering a new project" do
     end
   end
   
-  scenario "Uploading a file to 'More About Your Company' page", js: true do
+  scenario "Submitting More About Your Company Page" do
     go_to_more_about_your_company_page
-    within '.field.about_your_product' do
-      page.should have_selector('.upload_field .image_placeholder')
+    within 'form.edit_project' do
+      fill_in('project_about_your_product', with: 'blahblah')
+      fill_in('project_how_it_helps', with: 'blahblah')
+      fill_in('project_your_target_market', with: 'blahblah')
+      fill_in('project_history', with: 'blahblah')
+      click_button('Save and Continue')
     end
+    page.should have_content('Perks go here.')
     
   end
+  
+  # scenario "Uploading a file to 'More About Your Company' page", js: true do
+  #   go_to_more_about_your_company_page
+  #   within '.field.about_your_product' do
+  #     page.should have_selector('.upload_field .image_placeholder')
+  #   end
+  #   
+  # end
 end
 
 

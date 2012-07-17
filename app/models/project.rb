@@ -8,7 +8,7 @@ class Project < ActiveRecord::Base
                   :fb_post_id, :google_plus, :google_places, :facebook, 
                   :linkedin_profile, :linkedin_business, :yelp, :category_id, :tagline,
                   :about_your_product_image, :how_it_helps_image, :your_target_market_image, 
-                  :history_image
+                  :history_image, :about_your_product, :how_it_helps, :your_target_market, :history
   
   belongs_to :owner, class_name: 'Member'
   belongs_to :category, class_name: 'Projects::Category'
