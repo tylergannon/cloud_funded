@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
     if params[:show] == "mine"
       @projects = current_member.projects
     else
-      @projects = Project.all
+      @projects = Project.where(published: true)
     end
     
     respond_to do |format|
