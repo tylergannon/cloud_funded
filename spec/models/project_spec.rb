@@ -11,6 +11,7 @@ describe Project do
   end
   it {should have_many(:articles)}
   it {should have_attached_file(:image)}
+  it {should have_many(:perks)}
   
   describe "#published" do
     it "should be false by default" do

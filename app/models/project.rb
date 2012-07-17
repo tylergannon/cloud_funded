@@ -14,6 +14,7 @@ class Project < ActiveRecord::Base
   belongs_to :category, class_name: 'Projects::Category'
   has_many :pledges
   has_many :articles
+  has_many :perks
   
   default_value_for :post_to_fb, true
   default_value_for :published, false
