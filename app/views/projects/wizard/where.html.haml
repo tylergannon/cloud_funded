@@ -1,4 +1,5 @@
-.edit_project
+= render partial: 'application_header'
+.project_wizard.edit_project
   = form_for @project, url: wizard_path do |f|
     %h1 Cool, Where is it located?
     .field

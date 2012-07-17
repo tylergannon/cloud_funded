@@ -1,0 +1,5 @@
+= render partial: 'application_header'
+.project_wizard.preview
+  %h1 This Is How Your Project Will Appear.
+  = form_for @project, url: wizard_path do |f|
+    = f.submit 'Submit Your Application'

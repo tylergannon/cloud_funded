@@ -6,7 +6,9 @@ class Project < ActiveRecord::Base
                   :completion_date, :image, :youtube_url, :website_url, 
                   :short_description, :address, :lat, :long, :post_to_fb,
                   :fb_post_id, :google_plus, :google_places, :facebook, 
-                  :linkedin_profile, :linkedin_business, :yelp, :category_id, :tagline
+                  :linkedin_profile, :linkedin_business, :yelp, :category_id, :tagline,
+                  :about_your_product_image, :how_it_helps_image, :your_target_market_image, 
+                  :history_image
   
   belongs_to :owner, class_name: 'Member'
   belongs_to :category, class_name: 'Projects::Category'
@@ -18,7 +20,7 @@ class Project < ActiveRecord::Base
   
   def published?; published; end
   
-  has_attached_file :image,
+  S3_DEETS = {
     :styles => { large: "560x310", :medium => "300x190", :thumb => "100x100" },
     :storage => :s3,
     :s3_protocol => '',
@@ -27,6 +29,13 @@ class Project < ActiveRecord::Base
       :access_key_id => 'AKIAIDEFW5P6AQLRXWGQ',
       :secret_access_key => '50gpJp/XEoaVGg4/M2JJk16AST5EefWSfWXTD9FH'
     }  
+  }
+  
+  has_attached_file :image, S3_DEETS
+  has_attached_file :about_your_product_image, S3_DEETS
+  has_attached_file :how_it_helps_image, S3_DEETS
+  has_attached_file :your_target_market_image, S3_DEETS
+  has_attached_file :history_image, S3_DEETS
   
   # validates :category, presence: true
   # validates_attachment_presence :image
@@ -55,12 +64,22 @@ class Project < ActiveRecord::Base
     amount_pledged * 100 / financial_goal
   end
   
-  def as_json
-    {
-      image: {
-        url_original: image.url(:original),
-        url_large: image.url(:large)
+  def financial_goal=(something)
+    if something.kind_of?(String)
+      something = something.gsub(/\D/, '')
+    end
+    super(something)
+  end
+  
+  def as_json(*args)
+    val = {}
+    [:image, :about_your_product_image, :how_it_helps_image, :your_target_market_image, 
+    :history_image].each do |image|
+      val[image] = {
+        url_original: self.send(image).url(:original),
+        url_large: self.send(image).url(:large)
       }
-    }
+    end
+    val
   end
 end

@@ -1,0 +1,2 @@
+module Projects::WizardHelper
+end

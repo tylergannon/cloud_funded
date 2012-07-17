@@ -115,6 +115,7 @@ class ProjectsController < ApplicationController
           format.html { redirect_to @project, notice: 'Project was successfully updated.' }
           format.json { render json: @project.as_json }
         else
+          puts @project.errors.inspect
           format.html { render action: "edit" }
           format.json { render json: @project.errors, status: :unprocessable_entity }
         end

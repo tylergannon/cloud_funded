@@ -1,0 +1,5 @@
+= render partial: 'application_header'
+.project_wizard.fund_raise
+  %h1 Perks go here.
+  = form_for @project, url: wizard_path do |f|
+    = f.submit 'Save And Continue'

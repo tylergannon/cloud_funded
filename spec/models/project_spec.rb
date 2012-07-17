@@ -24,10 +24,20 @@ describe Project do
     }.to raise_error
   end
   
+  describe "#financial_goal=" do
+    it "should strip out all non-numeric characters" do
+      subject.financial_goal = "$100,000"
+      subject.financial_goal.should == 100000
+    end
+  end
+  
   describe '#as_json' do
-    it "should have the image path" do
-      subject.as_json[:image][:url_original].should == '/images/original/missing.png'
-      subject.as_json[:image][:url_large].should == '/images/original/missing.png'
+    [:image, :about_your_product_image, :how_it_helps_image, :your_target_market_image, 
+    :history_image].each do |image|
+      it "should have the #{image} path" do
+        subject.as_json[image][:url_original].should == "/#{image.to_s.tableize}/original/missing.png"
+        subject.as_json[image][:url_large].should == "/#{image.to_s.tableize}/large/missing.png"
+      end
     end
   end
 end

@@ -20,4 +20,4 @@
 //= require pledges
 //= require profiles
 //= require projects
-//= require project_wizard
+//= require projects/wizard

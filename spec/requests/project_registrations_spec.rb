@@ -23,8 +23,8 @@ feature "Registering a new project" do
     fill_in 'project_tagline', with: 'Something Catchy'
     fill_in 'project_short_description', with: 'A brief history of time'
     click_button 'Save and Continue'
-    page.should have_content('More About You')
-  end
+    page.should have_content('More About Your Company')
+  end  
   
   scenario "Uploading a file", js: true do
     go_to_company_basics_page
@@ -42,6 +42,30 @@ feature "Registering a new project" do
     page.should have_selector('img[alt=\'Project Image\'][id=project_image_tag]')
     visit current_url
     page.should have_selector('img[alt=\'Project Image\'][id=project_image_tag]')
+  end
+  
+  scenario "Filling out 'More About Your Company' page" do
+    go_to_more_about_your_company_page
+    within 'form.edit_project' do
+      page.should have_field('project_about_your_product')
+      page.should have_field('project_how_it_helps')
+      page.should have_field('project_your_target_market')
+      page.should have_field('project_history')
+    end
+    
+    within '.file_uploads' do
+      page.should have_selector('input#about_your_product_image[type=file]')
+      page.should have_selector('input#how_it_helps_image[type=file]')
+      page.should have_selector('input#your_target_market_image[type=file]')
+      page.should have_selector('input#history_image[type=file]')
+    end
+  end
+  
+  scenario "Uploading a file to 'More About Your Company' page", js: true do
+    go_to_more_about_your_company_page
+    within '.field.about_your_product' do
+      page.should have_selector('.upload_field .image_placeholder')
+    end
     
   end
 end

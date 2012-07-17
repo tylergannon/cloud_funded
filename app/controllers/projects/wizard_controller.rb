@@ -1,7 +1,7 @@
 class Projects::WizardController < ApplicationController
   include Wicked::Wizard
   
-  steps :information, :basics, :more_about_you, :fund_raise, :preview, :submit
+  steps :information, :basics, :where, :more_about_you, :fund_raise, :preview, :submit
 
   before_filter :authenticate_member!, :load_project
   
