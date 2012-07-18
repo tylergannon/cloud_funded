@@ -10,6 +10,7 @@ $ ->
     $el = $ el
     field = $el.attr('id')
     console.log("The field is " + field)
+    console.log($('#' + field).attr('id'))
     $('#' + field).html5_upload
       url: (number) ->
         $('.file_uploads').data('action')
@@ -17,6 +18,7 @@ $ ->
       fieldName: 'project[' + field + ']'
       sendBoundary: window.FormData or $.browser.mozilla
       onStart: (event, total) ->
+        console.log('blahblah')
         $('.upload_status').show()
         return true
         # confirm "You are trying to upload " + total + " files. Are you sure?"

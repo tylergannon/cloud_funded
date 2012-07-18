@@ -44,6 +44,7 @@ group :test do
   gem 'poltergeist'
   gem 'cucumber-rails'
   gem 'database_cleaner'
+  gem "capybara-webkit"
 end
 
 group :deployment do
