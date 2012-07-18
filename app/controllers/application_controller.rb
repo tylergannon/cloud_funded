@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
       respond_to do |format|
         format.html { render :file => "#{Rails.root}/public/404", formats: [:html], :status => :not_found }
         format.xml  { head :not_found }
-        format.any  { head :not_found }
+        format.any  { head :unauthorized }
       end
       # raise ActionController::RoutingError.new('Not Found')
       # redirect_to root_url, :alert => exception.message

@@ -15,7 +15,7 @@ class Project < ActiveRecord::Base
   belongs_to :category, class_name: 'Projects::Category'
   has_many :pledges
   has_many :articles
-  has_many :perks
+  has_many :perks, class_name: 'Projects::Perk'
   
   accepts_nested_attributes_for :perks
   
