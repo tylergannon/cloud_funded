@@ -1,4 +1,5 @@
 CloudFunded::Application.routes.draw do
+
   resources :comments
 
   mount Mercury::Engine => '/'
@@ -47,6 +48,9 @@ CloudFunded::Application.routes.draw do
       :new => :new, :edit => :edit
     }
     resources :transactions, controller: 'projects/transactions', path_names: {
+      :new => :new, :edit => :edit
+    }
+    resources :perks, controller: 'projects/perks', path_names: {
       :new => :new, :edit => :edit
     }
   end

@@ -76,7 +76,13 @@ feature "Registering a new project" do
       click_button('Save and Continue')
     end
     page.should have_content('Perks go here.')
-    
+  end
+  
+  scenario "Adding Perks" do
+    visit get_funded_path(id: 'fund_raise')
+    within '.perks div:first-child' do
+      
+    end
   end
   
   # scenario "Uploading a file to 'More About Your Company' page", js: true do

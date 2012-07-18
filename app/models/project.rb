@@ -1,22 +1,34 @@
 class Project < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
   extend FriendlyId
   friendly_id :name, use: :slugged
   
-  attr_accessible :description, :financial_goal, :name, :owner, :pledges, 
-                  :completion_date, :image, :youtube_url, :website_url, 
-                  :short_description, :address, :lat, :long, :post_to_fb,
-                  :fb_post_id, :google_plus, :google_places, :facebook, 
-                  :linkedin_profile, :linkedin_business, :yelp, :category_id, :tagline,
-                  :about_your_product_image, :how_it_helps_image, :your_target_market_image, 
-                  :history_image, :about_your_product, :how_it_helps, :your_target_market, :history
+  attr_accessible :about_your_product, :about_your_product_image, :address, :category_id, 
+                  :completion_date, :description, :facebook, :fb_post_id, :financial_goal, 
+                  :financial_goal_string, :google_places, :google_plus, :history, :history_image, 
+                  :how_it_helps, :how_it_helps_image, :image, :lat, :linkedin_business, 
+                  :linkedin_profile, :long, :name, :owner, :perks_attributes, :pledges, 
+                  :post_to_fb, :short_description, :tagline, :website_url, :yelp, 
+                  :your_target_market, :your_target_market_image, :youtube_url
   
   belongs_to :owner, class_name: 'Member'
   belongs_to :category, class_name: 'Projects::Category'
   has_many :pledges
   has_many :articles
+  has_many :perks
+  
+  accepts_nested_attributes_for :perks
+  
+  DEFAULT_FUNDRAISE_LENGTH = 100
   
   default_value_for :post_to_fb, true
   default_value_for :published, false
+  default_value_for(:start_date) {Date.today}
+  default_value_for(:end_date) {(Date.today + DEFAULT_FUNDRAISE_LENGTH)}
+  
+  before_create do |project|
+    (3 - project.perks.count).times {project.perks.build}
+  end
   
   def published?; published; end
   
@@ -64,11 +76,22 @@ class Project < ActiveRecord::Base
     amount_pledged * 100 / financial_goal
   end
   
-  def financial_goal=(something)
+  def financial_goal_string=(something)
     if something.kind_of?(String)
       something = something.gsub(/\D/, '')
     end
-    super(something)
+    self.financial_goal = something
+  end
+  
+  def financial_goal_string
+    number_with_delimiter(financial_goal)
+  end
+  
+  def days
+    (end_date - start_date).to_i if start_date && end_date
+  end
+  
+  def days=(a)
   end
   
   def as_json(*args)

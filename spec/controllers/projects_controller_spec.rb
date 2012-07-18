@@ -24,7 +24,7 @@ describe ProjectsController do
   before :each do 
     sign_in_as_member
     stub_attachments_for(Project)
-    @example_project = FactoryGirl.create(:project, owner: @member)
+    @example_project = FactoryGirl.create(:project, owner: @member, published: true)
     image = @example_project.image
     # Project.any_instance.stub(:image).and_return(image)
   end
@@ -56,7 +56,7 @@ describe ProjectsController do
 
   describe "GET index" do
     it "assigns all projects as @projects" do
-      project = FactoryGirl.create(:project, {owner: @member})
+      project = FactoryGirl.create(:project, {owner: @member, published: true})
       get :index, {}
       assigns(:projects).should eq([@example_project, project])
     end

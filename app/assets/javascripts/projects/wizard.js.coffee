@@ -1,4 +1,5 @@
 $ ->
+  $('#days input').spinner()
   $('.click_to_upload').live 'click', (e) ->
     $el = $(e.target)
     field = $el.parent().data('field')
@@ -49,3 +50,29 @@ $ ->
 
       onError: (event, name, error) ->
         alert "error while uploading file " + name
+  $('.date input').datepicker()
+  window.currentDaysCount = () ->
+    parseInt $('#days input').val()
+  window.getStartDate = () ->
+    new Date($('#start_date input').val())
+  window.setStartDate = (date) ->
+    $('#start_date input').val('' + (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear())
+  window.getEndDate = () ->
+    new Date($('#end_date input').val())
+  window.setEndDate = (date) ->
+    $('#end_date input').val('' + (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear())
+  
+  $('#start_date input').change ->
+    startDate = getStartDate()
+    startDate.setDate(startDate.getDate() + currentDaysCount())
+    setEndDate(startDate)
+
+  $('#end_date input').change ->
+    startDate = getStartDate()
+    endDate = getEndDate()
+    $('#days input').val((endDate - startDate) / (1000*60*60*24))
+
+  $('#days input').change ->
+    startDate = getStartDate()
+    startDate.setDate(startDate.getDate() + currentDaysCount())
+    setEndDate(startDate)
