@@ -30,11 +30,12 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'spork', '1.0.0rc3'
   gem 'guard-spork'
+  gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'spork', '1.0.0rc3'
+  gem 'timecop'
 end
 
 group :test do

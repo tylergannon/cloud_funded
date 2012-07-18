@@ -13,6 +13,11 @@ describe Project do
   it {should have_attached_file(:image)}
   it {should have_many(:perks)}
   
+  describe "callbacks" do
+    subject {FactoryGirl.create :project}
+    it {should have(3).perks}
+  end
+  
   describe "#published" do
     it "should be false by default" do
       Project.new.published.should === false
@@ -25,10 +30,37 @@ describe Project do
     }.to raise_error
   end
   
-  describe "#financial_goal=" do
-    it "should strip out all non-numeric characters" do
-      subject.financial_goal = "$100,000"
+  describe "#start_date" do
+    it "should default to today" do
+      subject.start_date.should == Date.today
+    end
+  end
+  
+  describe "#end_date" do
+    it "should be a constant plus the start date" do
+      subject.end_date.should == (Date.today + Project::DEFAULT_FUNDRAISE_LENGTH)
+    end
+  end
+  
+  describe "#days" do
+    before :each do
+      subject.start_date = Date.today - 100
+      subject.end_date = Date.today
+    end
+    it "should give the number of days between start and end date" do
+      subject.days.should == 100
+    end
+  end
+  
+  describe "#financial_goal_string" do
+    before :each do
+      subject.financial_goal_string = "$100,000"
+    end
+    it "should set the integer value by stripping non-numeric characters" do
       subject.financial_goal.should == 100000
+    end
+    it "should return the value with delimiter" do
+      subject.financial_goal_string.should == '100,000'
     end
   end
   

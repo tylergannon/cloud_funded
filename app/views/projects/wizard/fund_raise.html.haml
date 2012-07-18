@@ -2,4 +2,35 @@
 .project_wizard.fund_raise
   %h1 Perks go here.
   = form_for @project, url: wizard_path do |f|
+    
+    .field
+      %span= f.label :financial_goal_string, 'Financial Goal'
+      %span= f.text_field :financial_goal_string
+    .field.date#start_date
+      %span= f.label :start_date
+      %span= f.text_field :start_date, :value=>f.object.start_date.strftime('%m/%d/%Y')
+    .field.date#end_date
+      %span= f.label :end_date
+      %span= f.text_field :end_date, :value=>f.object.end_date.strftime('%m/%d/%Y')
+    .field#days
+      %span= f.label :days
+      %span= f.text_field :days
+      
+    .perks
+      - @project.perks.each_with_index do |perk, idx|
+        %div[perk]
+          %h2 Perk #{idx + 1}
+          = f.fields_for :perks, perk do |pf|
+            .field.name
+              = pf.label :name
+              = pf.text_field :name
+            .image
+            .field.price
+              = pf.label :price
+              = pf.text_field :price
+            .field.description
+              = pf.label :description
+              = pf.text_area :description
+          
+      
     = f.submit 'Save And Continue'

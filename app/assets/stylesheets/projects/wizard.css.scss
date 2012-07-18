@@ -94,6 +94,28 @@ $project-basics-padding: 15px;
       }
     }
   }
+  &.fund_raise {
+    width: 800px;
+    .edit_project {
+      width: inherit;
+    }
+    .field {
+      border: 2px dashed grey;
+      width: 125px;
+      display: table-cell;
+      input {
+        width: 125px;
+        display: inline-block;
+      }
+      label {
+        
+      }
+    }
+    .perk {
+      border: 2px dotted #9e9e9e;
+      
+    }
+  }
 }
 
 .project_application_header {

@@ -7,7 +7,7 @@ class CreatePerks < ActiveRecord::Migration
       t.integer :price
       t.integer :quantity
       t.string :delivery_terms
-
+      t.has_attached_file :image
       t.timestamps
     end
     add_index :perks, :project_id

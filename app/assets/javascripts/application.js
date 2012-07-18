@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.ui.tabs
 //= require jquery.ui.progressbar
+//= require jquery.ui.datepicker
 //= require 3rd_party/jquery.html5_upload.js
 //= require header
 //= require articles
@@ -21,3 +22,4 @@
 //= require profiles
 //= require projects
 //= require projects/wizard
+//= require ui.spinner
