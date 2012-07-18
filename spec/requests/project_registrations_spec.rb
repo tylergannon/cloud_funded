@@ -31,14 +31,14 @@ feature "Registering a new project" do
     page.find('#image_placeholder_tag').should be_visible
     page.find('#image_tag').should_not be_visible
     page.find('.upload_status').should_not be_visible
+    page.execute_script("$('.file_uploads').show();")
+
     attach_file 'image', File.expand_path('spec/support/images/bettersheen.jpeg')
     wait_until(10) do
       page.find('.upload_status').visible?
     end
-    puts "ok, uploading"
     wait_until(10) do
       !page.find('.upload_status').visible?
-      # page.has_selector?('img[alt=\'Project Image\'][id=project_image_tag]')
     end
     page.find('#image_placeholder_tag').should_not be_visible
     page.find('#image_tag').should be_visible

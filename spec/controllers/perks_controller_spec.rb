@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe PerksController do
+describe Projects::PerksController do
 
 end

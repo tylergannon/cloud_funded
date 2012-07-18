@@ -15,12 +15,13 @@ Spork.prefork do
   require 'capybara/poltergeist'
   require 'timecop'
 
-  Capybara.register_driver :poltergeist do |app|
-    Capybara::Poltergeist::Driver.new app, debug: true, raise_errors: false
-  end
-  Capybara.javascript_driver = :poltergeist
+  # Capybara.register_driver :poltergeist do |app|
+  #   Capybara::Poltergeist::Driver.new app, debug: true, raise_errors: false
+  # end
+  # Capybara.javascript_driver = :poltergeist
 
-    
+  Capybara.javascript_driver = :webkit
+      
   `ulimit -n 1000`  # Avoids "too many open file descriptors" error
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
