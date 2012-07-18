@@ -6,6 +6,9 @@ $project-basics-padding: 15px;
   padding: 15px;
   margin-left: 170px;
   margin-top: 80px;
+  input {
+  	font-size: 16px;
+  }
   
   .file_uploads {
     display: none;
@@ -53,7 +56,6 @@ $project-basics-padding: 15px;
   }
   
   .edit_project {
-    background: #bdbdbd;
     width: ($project-basics-width);
     padding: $project-basics-padding;
     .field {
@@ -69,7 +71,8 @@ $project-basics-padding: 15px;
     }
     input[type=submit], select, option {
       height: 42px;
-      font-size: 25px;
+      font-size: 18px;
+      line-height: 10px;
     }
         
     #project_name {
@@ -121,17 +124,37 @@ $project-basics-padding: 15px;
 .project_application_header {
   position: absolute;
   left: 175px;
-  border-style: dashed;
-  border-width: 1px;
-  border-color: #757575;
+
   
   a {
     text-align: center;
     width: 130px;
-    height: 100px;
-    background-color: black;
+    height: 60px;
+    background-color: none;
     color: white;
-    font-size: 25px;
+    font-size: 16px;
+    line-height: 26px;
     display: table-cell;
   }
+}
+
+
+.information p{
+	background: white;
+	padding: 30px;
+
+}
+
+
+.project_wizard form, .information div{
+
+		background: white;
+	h1 {
+	font-size: 25px;
+	color: #333;
+	text-shadow: none;
+		font-family:"helvetica neue",arial,helvetica,freesans,"liberation sans", sans-serif;
+
+	}
+
 }

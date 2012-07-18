@@ -35,6 +35,7 @@ background-image: -webkit-radial-gradient(#ffffcc, #e6bb76);
 }
 
 
+
 #header
 {
   @include header-style;
@@ -70,12 +71,15 @@ background-image: -webkit-radial-gradient(#ffffcc, #e6bb76);
 }
 .header_link
 {
+	float: left;
+	margin-top: 20px;
   &:hover ul{
     left: 410px;
+    width: 240px;
+    padding-right: 0px;
+   
   }
-	float: left;
-<<<<<<< HEAD
-	margin-top: 20px;
+
 	ul {
   	background:#f1c579; /* Adding a background makes the dropdown work properly in IE7+. Make this as close to your page's background as possible (i.e. white page == white background). */
 //    background:rgba(255,255,255,0); /* But! Let's make the background fully transparent where we can, we don't actually want to see it if we can help it... */
@@ -94,14 +98,18 @@ background-image: -webkit-radial-gradient(#ffffcc, #e6bb76);
 //      padding-top: 16px;
   	  
   	  a {
-  	    width: 100%;
-    	  display: inline-block;
+  	    width: 240px;
+    	display: inline-block;
+    	border: 0px;
+  	  }
+  	  a:hover {
+  	  background: #f4f4f4;
+  	  width: 220px;
+  	  padding-right: 0px;
   	  }
   	}
 	}
-=======
-	margin-top: 18px;
->>>>>>> projects and global styles
+
 }
 
 
@@ -109,11 +117,17 @@ background-image: -webkit-radial-gradient(#ffffcc, #e6bb76);
 {
   @include header-link;
   @include header-link-border;
+  padding: 16px 18px 16px 18px;
+  color: #333;
+  text-shadow: 1px 1px  #ffffcc;
+  border-left: 2px solid #ffffcc; 
+  border-right: 1px solid #e6bb76;
+  line-height: 6px;
 }
 .header_link a:hover, .header_link a:active
 {
 	color: #333;
-	text-shadow: -1px -1px #fcdb9c;
+	text-shadow: -1px -1px  #ffffcc;
 	background-image: -moz-radial-gradient(#fddea1, #f2bd6b);
 background-image: -webkit-radial-gradient(#fddea1, #f2bd6b);
 }
@@ -122,14 +136,14 @@ background-image: -webkit-radial-gradient(#fddea1, #f2bd6b);
   position: relative;
   
   & > div {
-    position: absolute;
-    left: 1038px;
-    top: 0px;
+    float: right;
+   margin-right: 60px;
   }
   &:hover {
     cursor: pointer;
   }
   .member_id {
+  width:auto;
     @include header-link;
     @include header-link-border;
     img {
@@ -137,6 +151,10 @@ background-image: -webkit-radial-gradient(#fddea1, #f2bd6b);
       height: 30px;
       width: 30px;
     }
+    a, ul {
+    border:none;
+    }
+   
     margin-top: 15px;
     padding: 0;
     span.member_name {
@@ -154,16 +172,21 @@ background-image: -webkit-radial-gradient(#fddea1, #f2bd6b);
       list-style: none;
       padding-left: 30px;
       
-      border-color: black;
-      border-style: dotted;
-      border-width: 1px;
-      border-radius: 6px;
-      background-color: yellow;
+      border: 1px solid #fff;
+   
+      border-radius: 3px;
+      background-color: #f4f4f4;
+      width: 160px;
     }
     li {
       @include header-link;
       a {
         width: 100%;
+        font-size: 12px;
+        color: #666;
+        text-decoration: none;
+        cursor: pointer;
+        text-shadow: none;
       }
       height: 25px;
     }
@@ -171,18 +194,12 @@ background-image: -webkit-radial-gradient(#fddea1, #f2bd6b);
 }
 
 .container {
-background-image: -moz-radial-gradient(#143458, #143458);
-background-image: -webkit-radial-gradient(#143458, #143458);
-
+	background-image: -moz-radial-gradient(#143458, #143458);
+	background-image: -webkit-radial-gradient(#143458, #143458);
 	margin: 0px auto;
-<<<<<<< HEAD
-	padding: 20px;
-	padding-top: 01px;
-	width: 1100px;
-=======
 	padding: 0px;
 	width: 100%;
->>>>>>> projects and global styles
+
 	a {
   	color: #0099ff;
   	font-weight: bold;
@@ -199,8 +216,6 @@ margin: 10px auto;
 padding-top: 20px;
 margin-top: 20px;
 clear: both;
-
-
 
 }
 
@@ -234,11 +249,8 @@ clear: both;
   	webkit-border-radius: 6px; 
 
   }
-<<<<<<< HEAD
-  .field label {
-=======
+
   .field > label, .field_with_errors > label {
->>>>>>> projects and global styles
   	clear: both;
   	color: #aaa;
   	float: left;
@@ -248,11 +260,8 @@ clear: both;
   	text-align: right;
   	width: 300px;
   }
-<<<<<<< HEAD
-  .field input {
-=======
+
   .field > input,   .field_with_errors > input {
->>>>>>> projects and global styles
   	line-height: 40px;
   	font-size: 16px;
   }
@@ -277,10 +286,6 @@ clear: both;
     border: 1px solid #CCC;
  }
  
- .field_with_errors >label {
- 
- color: red;
- }
 
 
 label
@@ -313,50 +318,10 @@ h1 {
   color: #333;
   font-size: 32px;
  
-<<<<<<< HEAD
-  font-family: 'Merriweather', serif;
-}
-
-input[type="button"], input[type="submit"], input[type="reset"] {
-  -webkit-appearance: push-button;
-  white-space: pre;
-  display: inline-block;
-  color: white !important;
-
-  font-family:"helvetica neue",arial,helvetica,freesans,"liberation sans", sans-serif;
-  padding: 0px 30px;
-  font-weight: bold;
-  text-decoration: none;
-  border: 4px solid #3078aa;
-
-  border-radius: 6px;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  position: relative;
-  cursor: pointer;
-  overflow: visible;
-  width: auto;
-
-  text-shadow: 0 1px 1px #0e4064;
-  display: inline-block;
-  background-image: linear-gradient(bottom, rgb(22,51,110) 47%,  rgb(28,129,217) 87%);
-  background-image: -o-linear-gradient(bottom, rgb(22,51,110) 47%,  rgb(28,129,217) 87%);
-  background-image: -moz-linear-gradient(bottom, rgb(22,51,110) 47%,  rgb(28,129,217) 87%);
-  background-image: -webkit-linear-gradient(bottom, rgb(22,51,110) 47%, rgb(28,129,217) 87%);
-  background-image: -ms-linear-gradient(bottom, rgb(22,51,110) 47%,  rgb(28,129,217) 87%);
-
-  background-image: -webkit-gradient(
-  	linear,
-  	left bottom,
-  	left top,
-  	color-stop(0.47, rgb(22,51,110)),
-  	color-stop(0.84, rgb(28,129,217)),
-  	color-stop(0.87, rgb(28,129,217))
-  );
-=======
-
 
 }
+
+
 
 
 input[type="button"], input[type="submit"], input[type="reset"]
@@ -368,74 +333,61 @@ input[type="button"], input[type="submit"], input[type="reset"]
 
 
 input[type="button"], input[type="submit"], input[type="reset"], .cta {
+	white-space: pre;
+	display: inline-block;
+	color: white !important;
+	font-family:"helvetica neue",arial,helvetica,freesans,"liberation sans", sans-serif;
+	font-size: 25px;
+	line-height: 1em;
+	font-weight: bold;
+	-webkit-font-smoothing: antialiased;
+	text-decoration: none;
+	text-align: center;
+	text-shadow: 0 -1px 1px #9D5712;
+	position: relative;
+	cursor: pointer;
+	overflow: visible;
+	width: auto;
+	min-width: 300px;
+	padding: 18px 50px;
+	border: 4px solid #3078aa;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .25);
+	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.69);
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.69);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.69);
+
+	border: 1px solid #08588a;
+	border-bottom: 1px solid #061e3a;
 
 
-white-space: pre;
-display: inline-block;
-color: white !important;
-
-font-family:"helvetica neue",arial,helvetica,freesans,"liberation sans", sans-serif;
-font-size: 25px;
-
-padding: 18px 50px;
-
-text-decoration: none;
-border: 4px solid #3078aa;
-
-border-radius: 6px;
--moz-border-radius: 6px;
--webkit-border-radius: 6px;
-position: relative;
-cursor: pointer;
-overflow: visible;
-width: auto;
-
-box-shadow: 0 1px 2px rgba(0, 0, 0, .25);
-
-text-align: center;
-text-shadow: 0 -1px 1px #9D5712;
+	background: #FFA104;
+	background: -moz-linear-gradient(top, #FFA104 0%, #C06A00 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFA104), color-stop(100%,#C06A00));
+	background: -webkit-linear-gradient(top, #0479aa 0%,#043f64 100%);
+	background: -o-linear-gradient(top, #FFA104 0%,#C06A00 100%);
+	background: -ms-linear-gradient(top, #FFA104 0%,#C06A00 100%);
+	background: linear-gradient(top, #FFA104 0%,#C06A00 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa104', endColorstr='#c06a00',GradientType=0 );
+	}
 
 
-background: #FFA104;
-background: -moz-linear-gradient(top, #FFA104 0%, #C06A00 100%);
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFA104), color-stop(100%,#C06A00));
-background: -webkit-linear-gradient(top, #0479aa 0%,#043f64 100%);
-background: -o-linear-gradient(top, #FFA104 0%,#C06A00 100%);
-background: -ms-linear-gradient(top, #FFA104 0%,#C06A00 100%);
-background: linear-gradient(top, #FFA104 0%,#C06A00 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa104', endColorstr='#c06a00',GradientType=0 );
--moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.69);
--webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.69);
-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.69);
-border: 1px solid #08588a;
-border-bottom: 1px solid #061e3a;
-line-height: 1em;
-font-weight: bold;
--webkit-font-smoothing: antialiased;
-min-width: 300px;
-
-
-
->>>>>>> projects and global styles
+input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hover, .cta:hover {
+	background: #FFA104;
+	background: -moz-linear-gradient(top, #C06A00 0%, #FFA104 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#C06A00), color-stop(100%,#FFA104));
+	background: -webkit-linear-gradient(top, #C06A00 0%,#FFA104 100%);
+	background: -o-linear-gradient(top, #C06A00 0%,#FFA104 100%);
+	background: -ms-linear-gradient(top, #C06A00 0%,#FFA104 100%);
+	background: linear-gradient(top, #C06A00 0%,#FFA104 100%);
 }
 
-
-input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hover, .cta:hover
-{
-
-<<<<<<< HEAD
-.ui-progressbar {
-  height: 1.2em;
-  text-align: left;
-//  overflow: hidden;
-  background-color: #ccc;
-  background-image: none;
-  border: 1px solid #fff;
-}
 
 .project img {
-  height: 200px;
-=======
+
 background: #FFA104;
 background: -moz-linear-gradient(top, #043f64 0%, #0479aa 100%);
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#043f64), color-stop(100%,#0479aa));
@@ -461,16 +413,26 @@ border-top: 1px solid #061e3a;}
 }
 
 .container h1 {
-font-family: 'Merriweather', serif;
-
-letter-spacing: -1px;
-font-size: 36px;
-color: #24628d;
-text-shadow: -1px -1px #071d36;
-padding: 40px 0px 00px 0px;
+	font-family: 'Merriweather', serif;
+	letter-spacing: -1px;
+	font-size: 36px;
+	color: #24628d;
+	text-shadow: -1px -1px #071d36;
+	padding: 40px 0px 00px 0px;
 }
 
 .container h3 {
-color: #666;
->>>>>>> projects and global styles
+	color: #666;
+}
+
+.member_name a{
+font-size: 12px;
+
+}
+
+.innercontainer {
+
+width: 1100px;
+margin: 0px auto;
+border: 1px solid white;
 }
