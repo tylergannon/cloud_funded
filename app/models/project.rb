@@ -9,7 +9,8 @@ class Project < ActiveRecord::Base
                   :how_it_helps, :how_it_helps_image, :image, :lat, :linkedin_business, 
                   :linkedin_profile, :long, :name, :owner, :perks_attributes, :pledges, 
                   :post_to_fb, :short_description, :tagline, :website_url, :yelp, 
-                  :your_target_market, :your_target_market_image, :youtube_url
+                  :your_target_market, :your_target_market_image, :youtube_url,
+                  :start_date, :end_date, :days
   
   belongs_to :owner, class_name: 'Member'
   belongs_to :category, class_name: 'Projects::Category'
