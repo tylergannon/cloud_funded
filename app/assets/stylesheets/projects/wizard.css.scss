@@ -10,9 +10,9 @@ $project-basics-padding: 15px;
   	font-size: 16px;
   }
   
-//  .file_uploads {
-//    display: none;
-//  }
+  .file_uploads {
+    display: none;
+  }
   .upload_status {
     width: 140px;
     height: 80px;
@@ -114,9 +114,23 @@ $project-basics-padding: 15px;
         
       }
     }
-    .perk {
+    .perks {
+      .perk {
+        position: relative;
+      }
       border: 2px dotted #9e9e9e;
-      
+      .name, .price, .description {
+        width: 400px;
+        display: block;
+        input, textarea {
+          width: 90%;
+        }
+      }
+      .upload_field {
+        position: absolute;
+        left: 410px;
+        top: 45px;
+      }
     }
   }
 }
