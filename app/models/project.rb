@@ -10,7 +10,7 @@ class Project < ActiveRecord::Base
                   :linkedin_profile, :long, :name, :owner, :perks_attributes, :pledges, 
                   :post_to_fb, :short_description, :tagline, :website_url, :yelp, 
                   :your_target_market, :your_target_market_image, :youtube_url,
-                  :start_date, :end_date, :days
+                  :start_date, :end_date, :days, :start_date_string, :end_date_string
   
   belongs_to :owner, class_name: 'Member'
   belongs_to :category, class_name: 'Projects::Category'
@@ -19,6 +19,8 @@ class Project < ActiveRecord::Base
   has_many :perks, class_name: 'Projects::Perk'
   
   accepts_nested_attributes_for :perks
+  validates :start_date, presence: true
+  validates :end_date, presence: true
   
   DEFAULT_FUNDRAISE_LENGTH = 100
   
@@ -95,6 +97,16 @@ class Project < ActiveRecord::Base
   def days=(a)
   end
   
+  [:start_date=, :end_date=].each do |meth|
+    define_method meth do |d|
+      if d.kind_of?(String) && match = d.match(/^(\d{2})\/(\d{2})\/(\d{4})/)
+        super Date.parse("#{match[3]}-#{match[1]}-#{match[2]}")
+      else
+        super(d)
+      end
+    end
+  end
+    
   def as_json(*args)
     val = {}
     [:image, :about_your_product_image, :how_it_helps_image, :your_target_market_image, 

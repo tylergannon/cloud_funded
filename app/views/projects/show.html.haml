@@ -1,38 +1,1133 @@
-.show_project
-  %h1= @project.name
-  .standard_description!= "A #{link_to @project.category.name, projects_category_path(@project.category)} project by #{link_to @project.owner.full_name, profile_path(@project.owner)}" 
-  .short_description= @project.short_description
-  - if @project.owner == current_member
-    .project_controls
-      %h3 This is your project.
-      %p= link_to 'Click to make changes', edit_project_path(@project)
-
-  = render @project
-
-  - unless @project.youtube_url.blank?
-    .youtube
-      %iframe{width: '560', height: '315', frameborder: '0', allowfullscreen: true, src: @project.youtube_url}
-
-  .already_pledged
-    %h1 Who's already pledged:
-    - @project.pledges.map(&:investor).each do |investor|
-      = link_to investor.profile do
-        = image_tag investor.profile_pic
-    = link_to 'Show all pledges', project_pledges_path(@project)
-    - if @project.pledges.empty?
-      %h2 No one has pledged yet. Be the first!
-    - if @my_pledge
-      %h2 You have already pledged support.
-    - else
-      = link_to new_project_pledge_path(@project) do
-        %h2.cta Pledge Your Support!
-    .share
-      %h3 Share this project with your friends!
-      %a{name: 'fb_share'}
-      .like
-        .fb-like{'data-href' => project_url(@project), 'data-send' => true, 'data-width' => '450', 'data-show-faces' => true}
-      %span= render partial: 'layouts/plus_one'
-      %span= render partial: 'layouts/linkedin_share'
-      %span= render partial: 'layouts/tweet'
-
-  .clear
+.company-profile
+  .top
+    .display-view
+      .company-info.long
+        %h1.company-name= @project.name
+        %h2.elevator-pitch= @project.short_description
+      .buttons
+        %button.btn.custom2.custom.follow{"data-company-id" => "60", "data-follow-url" => "/home/following/togglefollowcompany?id=60", "data-token" => "R1kyMDxfvLOoMOihpZb6n3HMAH8lSxDa1q0dwjuaei3QmrFsdqh6WX7YTc5LvXepHGUSaVPQvvEggqP/b22h4mvfNkyYNaliMBSVdowQ2iG9ksd7MjiwLCsKt1xZhcLdAO5FyGv9617vCWLkbEhAD+2M+BEDcLt/ceDLXeY1rMPUw6GhdV/EUA9f9eRxyJ4AiWAvPYPxA4CRH1Xkv3azcPSTlCDbEUnjAA22mZzs5VhLGStZov3j0oA70b73CcW22JcrQOdWtvVrCWCkC/y5QxQVL7LK0w1AWLlWaj5wqy+xIk9vtP5lB3bEm2UQoq6lEVxhV3CYLKlUS5FmrjsZ3A==", "data-user-is-following" => "False"}
+          %span.success
+            %span.pictos 3
+            Following
+          %span.danger
+            %span.pictos *
+            Unfollow
+          %span.default
+            %span.pictos k
+            Follow
+          %span.loading Loading
+        %button.btn.custom.custom2.message{"data-body" => "", "data-subject" => "", "data-to-id" => "785", "data-to-name" => "Gistly.com", "data-toggle" => "modal", :href => "#message-modal"}
+          %span.pictos W
+          Message
+      .clear
+  .marquee
+    .content.half-noisy
+      .cover-section
+        .inner
+          .cover-media{:style => "background-image:url(https://fundable.blob.core.windows.net/logos/60/12.jpg)"}
+          .social
+            .social-links.align-center
+              .link.facebook
+                %iframe{:allowtransparency => "true", :frameborder => "0", :scrolling => "no", :src => "//www.facebook.com/plugins/like.php?href=http://www.fundable.com/gistly&amp;send=false&amp;layout=standard&amp;width=350&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font=arial&amp;height=24&amp;appId=237515676329060", :style => "border:none; overflow:hidden; width:350px; height:24px;"}
+              .link
+                %a.pin-it-button{"count-layout" => "none", :href => "http://pinterest.com/pin/create/button/?url=http://www.fundable.com/gistly?_s=4477&amp;media=https://fundable.blob.core.windows.net/logos/60/12.jpg&amp;description=Gistly.com - Apartment search featuring personalized score card ratings from real people.", :target => "_blank"}
+                  %img{:border => "0", :src => "//assets.pinterest.com/images/PinExt.png", :title => "Pin It"}/
+              .link
+                %span.IN-widget{:style => "line-height: 1; vertical-align: baseline; display: inline-block; text-align: center; "}
+                  %span{:style => "padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important; "}
+                    %span#li_ui_li_gen_1342721404353_0
+                      %a#li_ui_li_gen_1342721404353_0-link{:href => "javascript:void(0);"}
+                        %span#li_ui_li_gen_1342721404353_0-logo in
+                        %span#li_ui_li_gen_1342721404353_0-title
+                          %span#li_ui_li_gen_1342721404353_0-mark
+                          %span#li_ui_li_gen_1342721404353_0-title-text Share
+                %script{"data-url" => "http://www.fundable.com/gistly?_s=4477", :type => "IN/Share+init"}
+              .link
+                %iframe.twitter-share-button.twitter-count-none{:allowtransparency => "true", :frameborder => "0", :scrolling => "no", :src => "http://platform.twitter.com/widgets/tweet_button.1340179658.html#_=1342721403728&amp;count=none&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http%3A%2F%2Fwww.fundable.com%2Fgistly&amp;size=m&amp;text=Gistly.com%20-%20Apartment%20search%20featuring%20personalized%20score%20card%20ratings%20from%20real%20people.%20&amp;url=http%3A%2F%2Fwww.fundable.com%2Fgistly%3F_s%3D4477&amp;via=Fundable", :style => "width: 56px; height: 20px; ", :title => "Twitter Tweet Button"}
+              .clear
+      .side
+        .fundraise-highlights.highlights
+          %h3.amount-raised $3,100
+          %span.subtitle RAISED OF $10,000 GOAL
+          .outline
+            .status-bar
+              .bar{:style => "width:31%;"}
+              .clear
+          .metric
+            %h3.pictos %
+            %h4.percent-raised 31%
+            %span.subtitle FUNDED
+          .metric
+            %h3.pictos S
+            %h4.backer-count 26
+            %span.subtitle BACKERS
+          .metric
+            %h3.pictos k
+            %h4 7
+            %span.subtitle FOLLOWERS
+          .clear
+          .fundraise-unsuccessful.hide
+            %div{:style => "padding:0 5px;"}
+              .well.inset-content{:style => "padding-bottom:5px;"}
+                %h4 UNSUCESSFUL FUNDRAISE
+                %hr.dashed.dark-dashed/
+                %p
+                  This fundraise ended on 7/28/2012.
+                  %br>/
+                  No pledges will be processed.
+          .fundraise-successful.hide
+            %div{:style => "padding:0 5px;"}
+              .well.inset-content{:style => "padding-bottom:10px;"}
+                %h4 FUNDED!
+                %hr.dashed.dark-dashed/
+                %p This fundraise successfully closed on 7/28/2012.
+          .fundraise-active.hide{:style => "display: block; "}
+            .back-button
+              .cta-wrapper
+                %a.btn.auto.cta{:href => "/pledge/create/214"} Back this Startup
+            .countdown-wrapper
+              .countdown{"data-fundraise-end-time" => "07/28/12 0:00:00 +00:00", "data-fundraise-seconds-left" => "712198"}
+                .time.days
+                  %h4 8
+                  %span.subtitle DAYS
+                .time.hours
+                  %h4 5
+                  %span.subtitle HOURS
+                .time.minutes
+                  %h4 24
+                  %span.subtitle MINS
+                .time.last.seconds
+                  %h4 12
+                  %span.subtitle SECS
+                .clear
+      .profile-tabs
+        %ul
+          %li
+            %a{:href => "#profile"} Profile
+          %li
+            %a{:href => "#team"} Team
+          %li
+            %a{:href => "#comments"}
+              Comments
+              %span.label 1
+          %li
+            %a.active{:href => "#updates"}
+              Updates
+              %span.label 1
+          %li
+            %a{:href => "#followers"}
+              Followers
+              %span.label 7
+          %li
+            %a{:href => "#backers"}
+              Backers
+              %span.label 26
+        .clear
+      .clear
+  / end div.marquee
+  #profile-tab-content.profile-tab-content.with-bg{:style => "display: none; "}
+    .fat.pull-left
+      %ul#profile-sections
+        %li.profile-section.text-section{"data-section-id" => "477"}
+          .add-section-bar
+          .clear
+          .left
+            .content
+          .center.edit-view
+            %form.edit{:onsubmit => "return false;"}
+              %input{:name => "sectionId", :type => "hidden", :value => "477"}/
+              %input{:name => "position", :type => "hidden", :value => "1"}/
+              %input.heading{:name => "title", :placeholder => "Title", :type => "text", :value => "About Gistly.com"}/
+              %textarea#edit-section-477-wysiwyg.wysiwyg{:name => "body", :rows => "20"}
+                :preserve
+                  &lt;p&gt;
+                  	&lt;img src="https://fundable.blob.core.windows.net/profiles/60/11.jpg" style="max-width: 100%; cursor: default; "&gt;&lt;strong&gt;Tired&lt;/strong&gt; of searching for an apartment and getting one vanilla box listing after another? &lt;strong&gt;Scratching your head over positive and negative reviews because they just don't matter&lt;/strong&gt;? With Gistly.com, we let you rate what's important and reveal only the best apartments that make the gist! Gistly.com is an apartment listing site letting users find their perfect apartment using 1-5 rate score card on key areas and matching apartments that fit! Get the Gist and Get moving! Gistly.com&lt;/p&gt;
+              .upload-to-editor-wrapper
+                %input#edit-section-477-uploader.upload-to-editor{"data-company-id" => "60", "data-section-id" => "477", "data-token" => "HNckW1OIBSzfcCnPZB/apKIp32jtiZbPT5dOT4vr1E3fDMQgzqGnjFf84sWkAeb7clHQiMfDpLYuJucVsWePwJJXQv1XdV9rBKw75HIyuict58KRYRFapC/ujCGwHw+9nkcj0l7BCws88pbtQpLb4v4ZmF8Bx0WS9Ldy93trvU6Yr7bsA+z6ACfW+Q955b6HKFdfHCiLI4zA4gil+0RVVX0rep07Nh/JyZq2jL96gzvUQLqtPu6xpUNhviWJUL5QmWDMYr/Y67HNSGXKX7OM+3GVoXOhuzgbnkvecfCv6ilJoIrJuDgCDhzaTJSfM3fHNqtpn8f2XAysWUhMvk6avA==", "data-upload-to" => "edit-section-477-wysiwyg", "data-upload-url" => "/home/asset/addtoprofilesection", :name => "file", :type => "file"}/
+              %button.btn.success.save.pull-right{:style => "margin-top:5px;"}
+                %span.success Save
+                %span.loading Saving
+              .clear
+          .center.display-view
+            %h2.title About Gistly.com
+            .user-generated-cotnent.body
+              %p
+                %img{:src => "https://fundable.blob.core.windows.net/profiles/60/11.jpg", :style => "max-width: 100%; cursor: default; "}/
+                %strong Tired
+                of searching for an apartment and getting one vanilla box listing after another?
+                = succeed "?" do
+                  %strong Scratching your head over positive and negative reviews because they just don't matter
+                With Gistly.com, we let you rate what's important and reveal only the best apartments that make the gist! Gistly.com is an apartment listing site letting users find their perfect apartment using 1-5 rate score card on key areas and matching apartments that fit! Get the Gist and Get moving! Gistly.com
+          .right
+          .clear
+        %li.profile-section.text-section{"data-section-id" => "471"}
+          .add-section-bar
+          .clear
+          .left
+            .content
+          .center.edit-view
+            %form.edit{:onsubmit => "return false;"}
+              %input{:name => "sectionId", :type => "hidden", :value => "471"}/
+              %input{:name => "position", :type => "hidden", :value => "1"}/
+              %input.heading{:name => "title", :placeholder => "Title", :type => "text", :value => "How it Works"}/
+              %textarea#edit-section-471-wysiwyg.wysiwyg{:name => "body", :rows => "20"}
+                :preserve
+                  &lt;p&gt;
+                  	&lt;img src="https://fundable.blob.core.windows.net/profiles/60/12.jpg" style="max-width: 100%; cursor: default; "&gt;We make finding the perfect apartment super easy. Simply rate major points on your apartment lifestyle by rating them on a 1-5 scale. Also, Gistly.com matches you to apartments rated by actual renters' score cards from that community that best fit! Easy, simple, done. &lt;strong&gt;Get Gistly and Get Moving!&lt;/strong&gt;&lt;/p&gt;              .upload-to-editor-wrapper
+                %input#edit-section-471-uploader.upload-to-editor{"data-company-id" => "60", "data-section-id" => "471", "data-token" => "EsJMQW9jEj1eDeWXxT7SRDy7UlgtGU/4sgy8vEmpzLpgNIBVt4ScxQGjD/+a/VZckbsOjfvAHEyK0pqT4wr8zY3uypu5X93YQ/yqdEOkzUN0xJrpOO9fy8ATT2kS/DSdNyy5fbITS6q5n08XiAQNUy9MpnHXTmWF3u6OUamH/HVxnLuELUAxiCCSMJgsfsTfzU+6VsN34P3jT3bP7R116XpZV6YahV9SBZ9ZZ378w6ATG73SoxREtqjfSqDruGJGj9bXu8N5qDF7Kh39AoGWPH4FFuSpYvm2wAHci5v9lsfYTk21kMdnBS8DBIav6Lz3ywq5jFvseTS3tnuf7ACYMw==", "data-upload-to" => "edit-section-471-wysiwyg", "data-upload-url" => "/home/asset/addtoprofilesection", :name => "file", :type => "file"}/
+              %button.btn.success.save.pull-right{:style => "margin-top:5px;"}
+                %span.success Save
+                %span.loading Saving
+              .clear
+          .center.display-view
+            %h2.title How it Works
+            .user-generated-cotnent.body
+              %p
+                %img{:src => "https://fundable.blob.core.windows.net/profiles/60/12.jpg", :style => "max-width: 100%; cursor: default; "}>/
+                We make finding the perfect apartment super easy. Simply rate major points on your apartment lifestyle by rating them on a 1-5 scale. Also, Gistly.com matches you to apartments rated by actual renters' score cards from that community that best fit! Easy, simple, done.
+                %strong Get Gistly and Get Moving!
+          .right
+          .clear
+        %li.profile-section.text-section{"data-section-id" => "472"}
+          .add-section-bar
+          .clear
+          .left
+            .content
+          .center.edit-view
+            %form.edit{:onsubmit => "return false;"}
+              %input{:name => "sectionId", :type => "hidden", :value => "472"}/
+              %input{:name => "position", :type => "hidden", :value => "1"}/
+              %input.heading{:name => "title", :placeholder => "Title", :type => "text", :value => "Get Gistly and Get Moving"}/
+              %textarea#edit-section-472-wysiwyg.wysiwyg{:name => "body", :rows => "20"}
+                :preserve
+                  &lt;p&gt;
+                  	&lt;img src="https://fundable.blob.core.windows.net/profiles/60/14.jpg" style="max-width: 100%; cursor: default; "&gt;&lt;strong&gt;With our secret technology&lt;/strong&gt; we match your ratings score card to apartments that fit the bill based on others rated score card in that community! From the best matches you can view videos / &amp;nbsp;photo galleries of the apartment and see what other apartment dwellers said about the apartment community.&lt;/p&gt;
+                  &lt;p&gt;
+                  	Then, simply reserve the apartment from Gistly.com or schedule a time to meet with the apartment community leasing office to secure the apartment.&lt;/p&gt;
+              .upload-to-editor-wrapper
+                %input#edit-section-472-uploader.upload-to-editor{"data-company-id" => "60", "data-section-id" => "472", "data-token" => "9u6xCRXdMsvUmvK1v9/4bCnhkh9z8FDh9vgcSWjQyc7+grC8HM1nhiMHDkZonrNxywFk3Jvnzquov984HAyaziVMjmSHEEnjFBZtN3BdCn0o8Fzf1EeqvL0u+5tJKXi0cG3dy4l+o5SItla8Wt6lFHZjDdO/9Dsd7Yq/UlmiE9PDb/LlxDyhWqc3QZihx4A5hcx+cj88ReN16Pnkzrv6MXdPNC+wGjfQ1jxB0c3MxhmQszT5kpk+56UCRaVmg/vSsLN5+6h9xJnogmyYQBmp43DgOubW3eLjDszPJjpsnibHld1epsPtT4nuUxvczM/zx2b6QPBT9oBYA6S4CXaCSg==", "data-upload-to" => "edit-section-472-wysiwyg", "data-upload-url" => "/home/asset/addtoprofilesection", :name => "file", :type => "file"}/
+              %button.btn.success.save.pull-right{:style => "margin-top:5px;"}
+                %span.success Save
+                %span.loading Saving
+              .clear
+          .center.display-view
+            %h2.title Get Gistly and Get Moving
+            .user-generated-cotnent.body
+              %p
+                %img{:src => "https://fundable.blob.core.windows.net/profiles/60/14.jpg", :style => "max-width: 100%; cursor: default; "}/
+                %strong With our secret technology
+                we match your ratings score card to apartments that fit the bill based on others rated score card in that community! From the best matches you can view videos / &nbsp;photo galleries of the apartment and see what other apartment dwellers said about the apartment community.
+              %p
+                Then, simply reserve the apartment from Gistly.com or schedule a time to meet with the apartment community leasing office to secure the apartment.
+          .right
+          .clear
+        %li.profile-section.text-section{"data-section-id" => "473"}
+          .add-section-bar
+          .clear
+          .left
+            .content
+          .center.edit-view
+            %form.edit{:onsubmit => "return false;"}
+              %input{:name => "sectionId", :type => "hidden", :value => "473"}/
+              %input{:name => "position", :type => "hidden", :value => "1"}/
+              %input.heading{:name => "title", :placeholder => "Title", :type => "text", :value => "Why it Matters"}/
+              %textarea#edit-section-473-wysiwyg.wysiwyg{:name => "body", :rows => "20"}
+                :preserve
+                  &lt;p&gt;
+                  	&lt;img src="https://fundable.blob.core.windows.net/profiles/60/13.jpg" style="max-width: 100%; cursor: default; "&gt;Trying to find the right apartment online, a place you will call home for normally a year or longer, is tiring and cumbersome and takes hours, days and even weeks to sort and filter through generic apartment listing sites. Currently, these old dinosaur search sites force you to answer standard questions&lt;img src="https://fundable.blob.core.windows.net/profiles/60/6.jpg" style="max-width: 100%; cursor: default; "&gt;&amp;nbsp;&lt;/p&gt;
+                  &lt;p&gt;
+                  	that don't get to the heart of the matter on how you really live and instead match up apartments simply based primarily on the number of bedrooms and bathrooms you need.&lt;/p&gt;
+                  &lt;p&gt;
+                  	&lt;img src="https://fundable.blob.core.windows.net/profiles/60/7.jpg" style="max-width: 100%; cursor: default; "&gt;&lt;/p&gt;
+                  &lt;p&gt;
+                  	&amp;nbsp;&lt;/p&gt;
+                  &lt;p&gt;
+                  	&lt;strong&gt;THAT JUST DOESN'T CUT IT!&amp;nbsp;&lt;/strong&gt;So we are changing that by letting you take control of the search process immediately and getting to the gist of what you want out of your new apartment. And what does this do? This let's you find the right apartment faster and easier to get you moving and settled in no time!&lt;/p&gt;              .upload-to-editor-wrapper
+                %input#edit-section-473-uploader.upload-to-editor{"data-company-id" => "60", "data-section-id" => "473", "data-token" => "YQBFO5Z4zrxEgiQ4eX9rKqC8nKsw8jaCcrQQnvzDs6o2WLWpLEZ/46LC92tcAnCIGOHSGVvJjmgaIhlt56cquZBkO0NY2x/8fmnJkSmPxUanmSKDIkD8eIvo/Tl+nGQHXtE+KIn3NSnwz2AJvdMe1OylsHagfLfQHxATnHgEAgmxVbXn0vqnimDy9SfTXo6uqxXGMhVgZKHxOchS2erPqrFgnkHQlbnisxjb4G0KMTqHTQ9MGTFAU5Pn1xM8VbHgymuXzJsWMthWT5Eae/ATm3WrpD19WkrBH/mHAKGpsujfqCFXatg2571k93OlcJu2LXPdf1LHYgqqtO9gfxv65g==", "data-upload-to" => "edit-section-473-wysiwyg", "data-upload-url" => "/home/asset/addtoprofilesection", :name => "file", :type => "file"}/
+              %button.btn.success.save.pull-right{:style => "margin-top:5px;"}
+                %span.success Save
+                %span.loading Saving
+              .clear
+          .center.display-view
+            %h2.title Why it Matters
+            .user-generated-cotnent.body
+              %p
+                %img{:src => "https://fundable.blob.core.windows.net/profiles/60/13.jpg", :style => "max-width: 100%; cursor: default; "}>/
+                Trying to find the right apartment online, a place you will call home for normally a year or longer, is tiring and cumbersome and takes hours, days and even weeks to sort and filter through generic apartment listing sites. Currently, these old dinosaur search sites force you to answer standard questions
+                %img{:src => "https://fundable.blob.core.windows.net/profiles/60/6.jpg", :style => "max-width: 100%; cursor: default; "}>/
+                \&nbsp;
+              %p
+                that don't get to the heart of the matter on how you really live and instead match up apartments simply based primarily on the number of bedrooms and bathrooms you need.
+              %p
+                %img{:src => "https://fundable.blob.core.windows.net/profiles/60/7.jpg", :style => "max-width: 100%; cursor: default; "}/
+              %p
+                \&nbsp;
+              %p
+                %strong> THAT JUST DOESN'T CUT IT!&nbsp;
+                So we are changing that by letting you take control of the search process immediately and getting to the gist of what you want out of your new apartment. And what does this do? This let's you find the right apartment faster and easier to get you moving and settled in no time!
+          .right
+          .clear
+        %li.profile-section.text-section{"data-section-id" => "474"}
+          .add-section-bar
+          .clear
+          .left
+            .content
+          .center.edit-view
+            %form.edit{:onsubmit => "return false;"}
+              %input{:name => "sectionId", :type => "hidden", :value => "474"}/
+              %input{:name => "position", :type => "hidden", :value => "1"}/
+              %input.heading{:name => "title", :placeholder => "Title", :type => "text", :value => "Refer a Friend for Gistly Bucks!"}/
+              %textarea#edit-section-474-wysiwyg.wysiwyg{:name => "body", :rows => "20"}
+                :preserve
+                  &lt;p&gt;
+                  	&lt;img src="https://fundable.blob.core.windows.net/profiles/60/15.jpg" style="max-width: 100%; cursor: default; "&gt;Have a friend or family member that needs to find the perfect apartment? &lt;strong&gt;Refer Gistly.com to your friends to sign up and receive $50 Gistly bucks that you can use for your own move-in costs&lt;/strong&gt;. Once they sign-up each friend is awarded $50 Gistly bucks to use for their own move-in costs.&lt;/p&gt;              .upload-to-editor-wrapper
+                %input#edit-section-474-uploader.upload-to-editor{"data-company-id" => "60", "data-section-id" => "474", "data-token" => "Y5Ijs8ZDTOEVmXcxtRVN2+afU28aGz2nHyJ5k2Md7EgSt2ZaqXXeK71TlIzHoWJePEeiFjOuYQKNRnLFR5SB8bjvzpRWf7EcF0lsHgQpqjuOBRZ/9Q+7VytceWOC7Qfb0g4wjuF0OW7Zv+ijGrqWI1P00RHy9rmaUtShjsGI0a2Leo5lNAGlUSEGsIrWrrRv/icAv/hU3OIM+MXrSUsg/D4x25CvxXZxpqTIU1c0XN5x81Q9Ny/wtvIyhTb8k35KqTyF/FHQ0nrSN0Az0pIT6tsK1jysFdnCN+XPIWw3Gz8nn1Gz3SNM2YSzOzVNiBpBNRqdulsfJRgpOyNEhbWPaw==", "data-upload-to" => "edit-section-474-wysiwyg", "data-upload-url" => "/home/asset/addtoprofilesection", :name => "file", :type => "file"}/
+              %button.btn.success.save.pull-right{:style => "margin-top:5px;"}
+                %span.success Save
+                %span.loading Saving
+              .clear
+          .center.display-view
+            %h2.title Refer a Friend for Gistly Bucks!
+            .user-generated-cotnent.body
+              %p
+                %img{:src => "https://fundable.blob.core.windows.net/profiles/60/15.jpg", :style => "max-width: 100%; cursor: default; "}>/
+                Have a friend or family member that needs to find the perfect apartment?
+                = succeed "." do
+                  %strong Refer Gistly.com to your friends to sign up and receive $50 Gistly bucks that you can use for your own move-in costs
+                Once they sign-up each friend is awarded $50 Gistly bucks to use for their own move-in costs.
+          .right
+          .clear
+        %li.profile-section.text-section{"data-section-id" => "556"}
+          .add-section-bar
+          .clear
+          .left
+            .content
+          .center.edit-view
+            %form.edit{:onsubmit => "return false;"}
+              %input{:name => "sectionId", :type => "hidden", :value => "556"}/
+              %input{:name => "position", :type => "hidden", :value => "1"}/
+              %input.heading{:name => "title", :placeholder => "Title", :type => "text", :value => "With Gistly.com It's About You From the Start"}/
+              %textarea#edit-section-556-wysiwyg.wysiwyg{:name => "body", :rows => "20"}
+                :preserve
+                  &lt;p&gt;
+                  	&lt;img src="https://fundable.blob.core.windows.net/profiles/60/18.jpg" style="max-width: 100%; cursor: default; "&gt;&lt;/p&gt;
+                  &lt;p&gt;
+                  	&amp;nbsp;&lt;/p&gt;
+                  &lt;p&gt;
+                  	&lt;strong&gt;Gistly.com is not about matching you up with how many bedrooms and bathrooms an apartment has... heck, it &lt;em&gt;BETTER&lt;/em&gt; have that! &lt;/strong&gt;No, what Gistly.com does so differently is match you with what really matters based off your exact preferences. So, if you could care less how far it takes to get to work or whether the apartment staff is less than brilliant, but getting to your local sports pub is make or break to your pad, well Gistly.com will match you to apartments that fit that bill!&lt;/p&gt;
+                  &lt;p&gt;
+                  	What's great about our technology is that the matches come from past renters and prospects of an apartment community without their "commentary", which we know is not always that credible. &lt;strong&gt;That way you spend &lt;em&gt;LESS TIME&lt;/em&gt; searching for the great apartment and &lt;em&gt;MORE TIME&lt;/em&gt; staying focused on YOU.&lt;/strong&gt; And once you got the gist, well you won't want to move out!&lt;/p&gt;
+                  &lt;p&gt;
+                  	So, say bye-bye to all those long hours of searching online, then reading bad reviews, then going to "hopeful" apartments that are supposed to match to then finding out you were so wrong. &lt;strong&gt;Get the Gist and Get Moving! Gistly.com&lt;/strong&gt;&lt;/p&gt;
+              .upload-to-editor-wrapper
+                %input#edit-section-556-uploader.upload-to-editor{"data-company-id" => "60", "data-section-id" => "556", "data-token" => "a3Pq8eDynxHt2ZiGtUqKVtnZhq2wWJ58wVt+n3u+ST2JGYyq5QYiantvBzFYIaoLeDrYTlIQMfm7UJjZbWOIuVjfX3ESqr5uAQqs9A9FHP8fd44mAUhpFzyud8/ueA9PT9VhftPmAIxHqUwk3CDWMyhpE5NmVDd0koarIf7rO6Pr8HDLWyRJVkbxZRQ+luO1ajhze7bam8zzCT1yWBMzXezH1Kip05/BUnM8bPcLW3kO2DAHeIYSWo0/PHwNqAf2XKeu1ZdDvoeohrK3l+Uk8/v62jkpan4OTd0hOntWECaJphn1EOGgJY6xz2b4wytBea52x8tvBTYSrphvT0xCpg==", "data-upload-to" => "edit-section-556-wysiwyg", "data-upload-url" => "/home/asset/addtoprofilesection", :name => "file", :type => "file"}/
+              %button.btn.success.save.pull-right{:style => "margin-top:5px;"}
+                %span.success Save
+                %span.loading Saving
+              .clear
+          .center.display-view
+            %h2.title With Gistly.com It's About You From the Start
+            .user-generated-cotnent.body
+              %p
+                %img{:src => "https://fundable.blob.core.windows.net/profiles/60/18.jpg", :style => "max-width: 100%; cursor: default; "}/
+              %p
+                \&nbsp;
+              %p
+                %strong>
+                  Gistly.com is not about matching you up with how many bedrooms and bathrooms an apartment has... heck, it
+                  %em BETTER
+                  have that!
+                No, what Gistly.com does so differently is match you with what really matters based off your exact preferences. So, if you could care less how far it takes to get to work or whether the apartment staff is less than brilliant, but getting to your local sports pub is make or break to your pad, well Gistly.com will match you to apartments that fit that bill!
+              %p
+                What's great about our technology is that the matches come from past renters and prospects of an apartment community without their "commentary", which we know is not always that credible.
+                %strong
+                  That way you spend
+                  %em LESS TIME
+                  searching for the great apartment and
+                  %em MORE TIME
+                  staying focused on YOU.
+                And once you got the gist, well you won't want to move out!
+              %p
+                So, say bye-bye to all those long hours of searching online, then reading bad reviews, then going to "hopeful" apartments that are supposed to match to then finding out you were so wrong.
+                %strong Get the Gist and Get Moving! Gistly.com
+          .right
+          .clear
+        %li.profile-section.text-section{"data-section-id" => "557"}
+          .add-section-bar
+          .clear
+          .left
+            .content
+          .center.edit-view
+            %form.edit{:onsubmit => "return false;"}
+              %input{:name => "sectionId", :type => "hidden", :value => "557"}/
+              %input{:name => "position", :type => "hidden", :value => "1"}/
+              %input.heading{:name => "title", :placeholder => "Title", :type => "text", :value => "A Gistly Promise"}/
+              %textarea#edit-section-557-wysiwyg.wysiwyg{:name => "body", :rows => "20"}
+                :preserve
+                  &lt;p&gt;
+                  	&lt;img src="https://fundable.blob.core.windows.net/profiles/60/17.jpg" style="max-width: 100%; cursor: default; "&gt;&lt;strong&gt;Gistly promises to NEVER "Feature" apartments in your match&lt;/strong&gt;. We believe in 100% objective matches from the start. That is our promise to you. Fair and neutral matching never led by featured advertisers. &lt;strong&gt;We promise to get to the gist to help you get moving!&lt;/strong&gt;&lt;/p&gt;
+              .upload-to-editor-wrapper
+                %input#edit-section-557-uploader.upload-to-editor{"data-company-id" => "60", "data-section-id" => "557", "data-token" => "BjuEiSItqGa0kDNWnNJK6be6gMG7IxQSAhXfouQPSDDqcWoG8QSFuof2i44pX5HJAl5e7gvUt5hRLp8b9nbhpv49P4jvgwyY+57QdmNLZYjRg6wG4drd3BaXOaCv6MjkbF2VUIQNEGd5Ejy3w7TbsciTPpV7Rp/mEMYF2GjYj3BalbGJR2P2cR9LcNnM7OKdPSoWzd47gDIPhEb8lg4+r4xHyBRWzMfwQx8kBJ63HVjJXFX0eRnpBrH/ez3q+AqiTfXyhXOAuPKsrReiME1OrpEwqwotiR0AEjwdiPrChHHqsuS4Wxz9M1QhH8SBEN9v8yxTsJHUWSL4pVO9EDDAuQ==", "data-upload-to" => "edit-section-557-wysiwyg", "data-upload-url" => "/home/asset/addtoprofilesection", :name => "file", :type => "file"}/
+              %button.btn.success.save.pull-right{:style => "margin-top:5px;"}
+                %span.success Save
+                %span.loading Saving
+              .clear
+          .center.display-view
+            %h2.title A Gistly Promise
+            .user-generated-cotnent.body
+              %p
+                %img{:src => "https://fundable.blob.core.windows.net/profiles/60/17.jpg", :style => "max-width: 100%; cursor: default; "}/
+                = succeed "." do
+                  %strong Gistly promises to NEVER "Feature" apartments in your match
+                We believe in 100% objective matches from the start. That is our promise to you. Fair and neutral matching never led by featured advertisers.
+                %strong We promise to get to the gist to help you get moving!
+          .right
+          .clear
+        %li.profile-section.text-section{"data-section-id" => "476"}
+          .add-section-bar
+          .clear
+          .left
+            .content
+          .center.edit-view
+            %form.edit{:onsubmit => "return false;"}
+              %input{:name => "sectionId", :type => "hidden", :value => "476"}/
+              %input{:name => "position", :type => "hidden", :value => "1"}/
+              %input.heading{:name => "title", :placeholder => "Title", :type => "text", :value => "Help Fund Gistly.com"}/
+              %textarea#edit-section-476-wysiwyg.wysiwyg{:name => "body", :rows => "20"}
+                :preserve
+                  &lt;p&gt;
+                  	&lt;img src="https://fundable.blob.core.windows.net/profiles/60/9.jpg" style="max-width: 100%; cursor: default; "&gt;If you're like most of us, you are probably looking or know someone who is looking for a new apartment right now. And it is time to get away from the old methods of searching and into the new. We promise to deliver the best way to find an apartment online that squarely is focused on the users real wants and needs. &lt;strong&gt;Thanks again for considering Gistly.com!&lt;/strong&gt;&lt;/p&gt;
+              .upload-to-editor-wrapper
+                %input#edit-section-476-uploader.upload-to-editor{"data-company-id" => "60", "data-section-id" => "476", "data-token" => "F0Mw1gOjVcpxpiNCK+bq+b1AclSrOs2vs69AlydUcAASJtfjLIbA5LGNAdMZMLjyoJ3xu4ldgLLeG4ltMW3G+Ow/jHLFEwRJPEByMCzt0IhULTgZ6zd/6KUJuY/ND9hTag7qUlgKs1OGSwMZOsFydEx69Nq24FqZRS/Eae9JOtBqhBUUhPsDy1sSt7n4/8huDwp5jK4xUwqREN3AIwwbs+F7mrsemPjJh+Fw5Z/J80mwBM0qaZqaU8U6m+cLNNah5pDECbpnHasMDqKw+Jd3rx1++2SGSqblbP96QaY3DbANQJFeyG2v7dLtmSmdpDoep0FsIFmSthbVjanAExuKjQ==", "data-upload-to" => "edit-section-476-wysiwyg", "data-upload-url" => "/home/asset/addtoprofilesection", :name => "file", :type => "file"}/
+              %button.btn.success.save.pull-right{:style => "margin-top:5px;"}
+                %span.success Save
+                %span.loading Saving
+              .clear
+          .center.display-view
+            %h2.title Help Fund Gistly.com
+            .user-generated-cotnent.body
+              %p
+                %img{:src => "https://fundable.blob.core.windows.net/profiles/60/9.jpg", :style => "max-width: 100%; cursor: default; "}>/
+                If you're like most of us, you are probably looking or know someone who is looking for a new apartment right now. And it is time to get away from the old methods of searching and into the new. We promise to deliver the best way to find an apartment online that squarely is focused on the users real wants and needs.
+                %strong Thanks again for considering Gistly.com!
+          .right
+          .clear
+      .padding10.align-center
+        .cta-wrapper
+          %a.btn.auto.cta{:href => "/pledge/create/214"} Back this Startup
+    .skinny.pull-right
+      .section.padded.pledge-tier-list
+        .rewards
+          .header.align-center
+            .btn-group.centered.reward-tabs
+              %button.btn.custom2.active.rewards{:onclick => "Fundable.CompanyProfile.showRewards();"} Pledge Rewards
+              %button.btn.custom2.investments{:onclick => "Fundable.CompanyProfile.showInvestments();"} Equity Investments
+          .investments.padding15.hide.align-center
+            .not-investor
+              %p Equity investment details are only visible to users who opt-in as an accredited investors.
+              %a{"data-toggle" => "modal", :href => "#investor-terms-modal"} If you are an accredited investor and would like to contact Gistly.com, click here
+              %br/
+              %br/
+            .is-investor.hide
+              %p Interested in talking to Gistly.com about an equity investment? Accredited investors may contact the company directly through the button bellow.
+              %p
+              %button.btn.custom.custom2.message{"data-body" => "", "data-subject" => "", "data-to-id" => "785", "data-to-name" => "Gistly.com", "data-toggle" => "modal", :href => "#message-modal"}
+                %span.pictos W
+                Message Gistly.com
+          %ul.reward-list
+            %li.reward{"data-quantity-available" => "83"}
+              %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=902"}
+              %h3.description Pledge $25+
+              .clear
+              %p A personal phone call from the Founder of Gistly.com to you AND your boss letting each of you know just how cool you are for helping! Plus a shout out on our Gistly.com Twitter / Facebook and blog!
+              %small.terms
+                %strong.dark 17 backers
+                = succeed "Delivery" do
+                  %br/
+                within 60 days of successful raise
+              .clear
+            %li.reward{"data-quantity-available" => "46"}
+              %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=903"}
+              %h3.description Pledge $75+
+              .clear
+              %p A hand-written Gistly recipe book for when you want to get the gist on cooking at home in your new fantabulously found (or soon to be found) Gistly.com apartment
+              %small.terms
+                %strong.dark 3 backers
+                = succeed "Delivery" do
+                  %br/
+                within 60 days of successful raise
+              .clear
+            %li.reward{"data-quantity-available" => "47"}
+              %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=904"}
+              %h3.description Pledge $150+
+              .clear
+              %p A custom welcome door mat compliments of Gistly.com PLUS a custom Twitter toilet paper roll from Gistly.com's Twitter feed to make your home feel more like home!
+              %small.terms
+                %strong.dark 3 backers
+                = succeed "Delivery" do
+                  %br/
+                within 60 days of successful raise
+              .clear
+            %li.reward{"data-quantity-available" => "17"}
+              %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=906"}
+              %h3.description Pledge $500+
+              .clear
+              %p A Gistly.com tree planted in your honor in your local community plus a Gistly.com map that matches your Gistly scorecard in the neighborhood of your choice. SWEET!
+              %small.terms
+                %strong.dark 3 backers
+                = succeed "Delivery" do
+                  %br/
+                within 60 days of successful raise
+              .clear
+            %li.reward{"data-quantity-available" => "2"}
+              %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=1011"}
+              %h3.description Pledge $10,000+
+              %span.limited Only 2 remaining!
+              .clear
+              %p 10 Personal phone calls from some of the leading entrepreneurs and media moguls / journalists in the US and abroad thanking you for helping to fund Gistly.com through Fundable. And we will throw in your photo to our upcoming Gistly.com Get Gistly and Get Moving  bumper sticker!
+              %small.terms
+                %strong 0 backers
+                = succeed "Delivery" do
+                  %br/
+                within 60 days of successful raise
+              .clear
+    .clear
+  / /div.profile-tab-content
+  #team-tab-content.profile-tab-content.hide.with-bg{:style => "display: none; "}
+    .team.fat.pull-left
+      .member
+        %a.box-link.black{:href => "/carmen-benitez"}
+        .photo.resize-fill{:style => "background-image: url(https://fundable.blob.core.windows.net/avatars/785/2.jpg); background-size: auto 100%; background-position: 50% 50%; background-repeat: no-repeat no-repeat; "}
+        .bio
+          %h3 Carmen Benitez
+          %h4 Carmen is serial entrepreneur and founder of Fetch Plus a social media technology company with offices in three continents. Her current product, FetchFans.com is powering some of the world's largest brand and media companies' social media pages across 8 countries worldwide. She has a deep understanding of technology and marketing within real estate and property management. She currently serves as Chair: Technology/Strategy for Girls In Technology. She was named the Marketer of the Year by the nation's largest homebuilders association. She will oversee all areas of Gistly.com's technology and product design as well as operations.
+          .clear
+          %p
+        .clear
+      .member
+        %a.box-link.black{:href => "/kristy-millers"}
+        .photo.resize-fill{:style => "background-image: url(https://fundable.blob.core.windows.net/avatars/3381/0.jpg); background-size: 100%; background-position: 50% 50%; background-repeat: no-repeat no-repeat; "}
+        .bio
+          %h3 Kristy Millers
+          %h4 Kristy is a highly regarded sales strategist with over 15 years experience in global sales, strategy &amp; management. A specialist in start up business &amp; turn around, Kristy employs new blueprints to make businesses successful. Most recently successful in setting up Sales &amp; Marketing for a privately held online directory, a business turned profitable &amp; sold to one of the world's leading media companies within 3 years from start up. Kristy will be overseeing Sales Strategy &amp; Management for Gistly.
+          .clear
+          %p
+        .clear
+    .skinny.pull-right
+      .section.padded.pledge-tier-list
+        .rewards
+          .header.align-center
+            .btn-group.centered.reward-tabs
+              %button.btn.custom2.active.rewards{:onclick => "Fundable.CompanyProfile.showRewards();"} Pledge Rewards
+              %button.btn.custom2.investments{:onclick => "Fundable.CompanyProfile.showInvestments();"} Equity Investments
+          .investments.padding15.hide.align-center
+            .not-investor
+              %p Equity investment details are only visible to users who opt-in as an accredited investors.
+              %a{"data-toggle" => "modal", :href => "#investor-terms-modal"} If you are an accredited investor and would like to contact Gistly.com, click here
+              %br/
+              %br/
+            .is-investor.hide
+              %p Interested in talking to Gistly.com about an equity investment? Accredited investors may contact the company directly through the button bellow.
+              %p
+              %button.btn.custom.custom2.message{"data-body" => "", "data-subject" => "", "data-to-id" => "785", "data-to-name" => "Gistly.com", "data-toggle" => "modal", :href => "#message-modal"}
+                %span.pictos W
+                Message Gistly.com
+          %ul.reward-list
+            %li.reward{"data-quantity-available" => "83"}
+              %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=902"}
+              %h3.description Pledge $25+
+              .clear
+              %p A personal phone call from the Founder of Gistly.com to you AND your boss letting each of you know just how cool you are for helping! Plus a shout out on our Gistly.com Twitter / Facebook and blog!
+              %small.terms
+                %strong.dark 17 backers
+                = succeed "Delivery" do
+                  %br/
+                within 60 days of successful raise
+              .clear
+            %li.reward{"data-quantity-available" => "46"}
+              %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=903"}
+              %h3.description Pledge $75+
+              .clear
+              %p A hand-written Gistly recipe book for when you want to get the gist on cooking at home in your new fantabulously found (or soon to be found) Gistly.com apartment
+              %small.terms
+                %strong.dark 3 backers
+                = succeed "Delivery" do
+                  %br/
+                within 60 days of successful raise
+              .clear
+            %li.reward{"data-quantity-available" => "47"}
+              %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=904"}
+              %h3.description Pledge $150+
+              .clear
+              %p A custom welcome door mat compliments of Gistly.com PLUS a custom Twitter toilet paper roll from Gistly.com's Twitter feed to make your home feel more like home!
+              %small.terms
+                %strong.dark 3 backers
+                = succeed "Delivery" do
+                  %br/
+                within 60 days of successful raise
+              .clear
+            %li.reward{"data-quantity-available" => "17"}
+              %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=906"}
+              %h3.description Pledge $500+
+              .clear
+              %p A Gistly.com tree planted in your honor in your local community plus a Gistly.com map that matches your Gistly scorecard in the neighborhood of your choice. SWEET!
+              %small.terms
+                %strong.dark 3 backers
+                = succeed "Delivery" do
+                  %br/
+                within 60 days of successful raise
+              .clear
+            %li.reward{"data-quantity-available" => "2"}
+              %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=1011"}
+              %h3.description Pledge $10,000+
+              %span.limited Only 2 remaining!
+              .clear
+              %p 10 Personal phone calls from some of the leading entrepreneurs and media moguls / journalists in the US and abroad thanking you for helping to fund Gistly.com through Fundable. And we will throw in your photo to our upcoming Gistly.com Get Gistly and Get Moving  bumper sticker!
+              %small.terms
+                %strong 0 backers
+                = succeed "Delivery" do
+                  %br/
+                within 60 days of successful raise
+              .clear
+      ;
+    .clear
+  #comments-tab-content.profile-tab-content.hide.with-bg{:style => "display: none; "}
+    .fat.pull-left
+      #comments-display-view.display-view
+        #company-comments.comments.loaded
+          .new-comment.comment.highlighted
+            %form{"data-is-reply" => "0", "data-post-id" => "0", "data-reply-to-id" => "0", :onsubmit => "Fundable.CompanyProfile.publishComment(this); return false;"}
+              .photo.resize-fill{:style => "background-image: url(http://www.fundable.com/asset/avatar/me); background-size: auto 100%; background-position: 50% 50%; background-repeat: no-repeat no-repeat; "}
+              .arrow-border
+                .arrow
+              .bubble
+                .content
+                  %textarea{:name => "text", :onfocus => "$(this).attr('rows','3'); $(this).next('div.buttons').show();", :placeholder => "Post a new comment...", :rows => "1"}
+                  .buttons.hide
+                    .pull-left.comment-type.hide
+                      This is a
+                      %select
+                        %option general comment
+                        %option question
+                        %option complaint
+                    .buttons
+                      %button.btn.custom2.custom.pull-right.small
+                        %span.default Post
+                        %span.loading Posting...
+                    .clear
+              .clear
+          .comment{"data-comment-id" => "59"}
+            .photo.resize-fill{:style => "background-image: url(http://graph.facebook.com/709830280/picture?type=large); background-size: 100%; background-position: 50% 50%; background-repeat: no-repeat no-repeat; "}
+            .arrow-wrapper
+              .arrow-border
+                .arrow
+            .bubble
+              .content
+                %h1
+                  %a{:href => "/wil"} Wil Schroter
+                %h2 6/14/2012
+                %h3
+                  %span.delete-link{:style => "display:none;"}
+                    %a{:href => "#", :onclick => "Fundable.CompanyProfile.deleteComment(59);", :style => "font-size:11px;"} Delete
+                    \&nbsp; | &nbsp;
+                  %button.btn.custom.custom2.tiny{:onclick => "Fundable.CompanyProfile.toggleCommentReply(59);"}
+                    %span.pictos w
+                    Reply
+                .clear
+                %p Really love this concept.  Having done an exhaustive search for my last apartment in LA, I can definitely say there is a huge need here.
+              .post-reply{:style => "display: block; "}
+                %form{"data-is-reply" => "1", "data-post-id" => "0", "data-reply-to-id" => "59", :onsubmit => "Fundable.CompanyProfile.publishComment(this); return false;"}
+                  %textarea{:name => "text", :rows => "3"}
+                  .pull-right
+                    %button.custom.custom2.btn.small
+                      %span.default Post
+                      %span.loading Posting...
+                  .clear
+            .clear
+            .replies
+              .comment{"data-comment-id" => "60"}
+                .photo.resize-fill{:style => "background-image: url(https://fundable.blob.core.windows.net/avatars/785/2.jpg); background-size: auto 100%; background-position: 50% 50%; background-repeat: no-repeat no-repeat; "}
+                .arrow-wrapper
+                  .arrow-border
+                    .arrow
+                .bubble
+                  .content
+                    %h1
+                      %a{:href => "/carmen-benitez"} Carmen Benitez
+                    %h2 6/14/2012
+                    %h3
+                      %span.delete-link{:style => "display:none;"}
+                        %a{:href => "#", :onclick => "Fundable.CompanyProfile.deleteComment(60);", :style => "font-size:11px;"} Delete
+                        \&nbsp; | &nbsp;
+                      %button.btn.custom.custom2.tiny{:onclick => "Fundable.CompanyProfile.toggleCommentReply(60);"}
+                        %span.pictos w
+                        Reply
+                    .clear
+                    %p Hey Wil! Really appreciate it! We think it will alleviate massive time and headaches... I personally hate apartment searching online as do most! Please do share with your friends and family!
+                  .post-reply{:style => "display: block; "}
+                    %form{"data-is-reply" => "1", "data-post-id" => "0", "data-reply-to-id" => "60", :onsubmit => "Fundable.CompanyProfile.publishComment(this); return false;"}
+                      %textarea{:name => "text", :rows => "3"}
+                      .pull-right
+                        %button.custom.custom2.btn.small
+                          %span.default Post
+                          %span.loading Posting...
+                      .clear
+                .clear
+                .replies
+        .load-more.align-center.padding10
+          %button.btn.custom.custom2.load-more{"data-destination-selector" => "div#comments-tab-content div#company-comments", "data-model" => "comment", "data-none-selector" => "div#comments-tab-content div.no-comments", "data-page" => "2", "data-quantity-loaded" => "1", "data-total" => "1", :onclick => "Fundable.CompanyProfile.loadMore(this);", :style => "display: none; "}
+            %span.default Load More
+            %span.loading Loading Comments...
+      .blank-view.empty-page-set.hide
+        .no-comments
+          %h1.pictos W
+          %h2 There are no comments yet.
+          %h3{:style => "font-size:12px;"} Only backers and team members can post comments.
+    .skinny.pull-right
+      .section.padded.pledge-tier-list
+        .rewards
+          .header.align-center
+            .btn-group.centered.reward-tabs
+              %button.btn.custom2.active.rewards{:onclick => "Fundable.CompanyProfile.showRewards();"} Pledge Rewards
+              %button.btn.custom2.investments{:onclick => "Fundable.CompanyProfile.showInvestments();"} Equity Investments
+          .investments.padding15.hide.align-center
+            .not-investor
+              %p Equity investment details are only visible to users who opt-in as an accredited investors.
+              %a{"data-toggle" => "modal", :href => "#investor-terms-modal"} If you are an accredited investor and would like to contact Gistly.com, click here
+              %br/
+              %br/
+            .is-investor.hide
+              %p Interested in talking to Gistly.com about an equity investment? Accredited investors may contact the company directly through the button bellow.
+              %p
+              %button.btn.custom.custom2.message{"data-body" => "", "data-subject" => "", "data-to-id" => "785", "data-to-name" => "Gistly.com", "data-toggle" => "modal", :href => "#message-modal"}
+                %span.pictos W
+                Message Gistly.com
+          %ul.reward-list
+            %li.reward{"data-quantity-available" => "83"}
+              %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=902"}
+              %h3.description Pledge $25+
+              .clear
+              %p A personal phone call from the Founder of Gistly.com to you AND your boss letting each of you know just how cool you are for helping! Plus a shout out on our Gistly.com Twitter / Facebook and blog!
+              %small.terms
+                %strong.dark 17 backers
+                = succeed "Delivery" do
+                  %br/
+                within 60 days of successful raise
+              .clear
+            %li.reward{"data-quantity-available" => "46"}
+              %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=903"}
+              %h3.description Pledge $75+
+              .clear
+              %p A hand-written Gistly recipe book for when you want to get the gist on cooking at home in your new fantabulously found (or soon to be found) Gistly.com apartment
+              %small.terms
+                %strong.dark 3 backers
+                = succeed "Delivery" do
+                  %br/
+                within 60 days of successful raise
+              .clear
+            %li.reward{"data-quantity-available" => "47"}
+              %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=904"}
+              %h3.description Pledge $150+
+              .clear
+              %p A custom welcome door mat compliments of Gistly.com PLUS a custom Twitter toilet paper roll from Gistly.com's Twitter feed to make your home feel more like home!
+              %small.terms
+                %strong.dark 3 backers
+                = succeed "Delivery" do
+                  %br/
+                within 60 days of successful raise
+              .clear
+            %li.reward{"data-quantity-available" => "17"}
+              %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=906"}
+              %h3.description Pledge $500+
+              .clear
+              %p A Gistly.com tree planted in your honor in your local community plus a Gistly.com map that matches your Gistly scorecard in the neighborhood of your choice. SWEET!
+              %small.terms
+                %strong.dark 3 backers
+                = succeed "Delivery" do
+                  %br/
+                within 60 days of successful raise
+              .clear
+            %li.reward{"data-quantity-available" => "2"}
+              %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=1011"}
+              %h3.description Pledge $10,000+
+              %span.limited Only 2 remaining!
+              .clear
+              %p 10 Personal phone calls from some of the leading entrepreneurs and media moguls / journalists in the US and abroad thanking you for helping to fund Gistly.com through Fundable. And we will throw in your photo to our upcoming Gistly.com Get Gistly and Get Moving  bumper sticker!
+              %small.terms
+                %strong 0 backers
+                = succeed "Delivery" do
+                  %br/
+                within 60 days of successful raise
+              .clear
+    .clear
+  #updates-tab-content.profile-tab-content.hide.with-bg{:style => "display: block; "}
+    .post-update.hide
+      .fat.pull-left
+      .skinny.pull-right
+        .section.padded{:style => "margin-top:20px;"}
+          .well
+            .padding10.align-center
+              %button.btn.success.custom.custom2.biggish{:onclick => "Fundable.CompanyProfile.publishBlogPost();", :style => "width:90%;padding-left:0;padding-right:0;margin-bottom:10px;"}
+                %span.success Publish
+                %span.loading Publishing...
+              %br/
+              or
+              %a.red{:href => "#", :onclick => "Fundable.CompanyProfile.dismissNewBlogPostForm();return false;"} cancel
+      .clear
+    .view-blog
+      .fat.pull-left
+        .display-view
+          #blog.loaded
+            .specific-blog-post.specific-blog-post-wrapper{:style => "display: none; "}
+            .posts
+              .post{"data-post-id" => "36"}
+                .display-view
+                  .post-content
+                    %h1.pull-left.post-title Release the Kraken! Gistly NOW live on Fundable.com's home page
+                    .clear
+                    %hr.dashed/
+                    %h2
+                      Written by
+                      %a{:href => "#"} Carmen Benitez
+                    %h2 Posted 6/22/2012
+                    %h2 0 comments
+                    .clear
+                    .post-body.user-generated-content
+                      %p
+                        Ok... so we're much NICER than the real Kraken! But, awesome news! We've beat our 15% &nbsp;private friends &amp; family crowdfunding and are now LIVE on the Fundable.com Home Page!&nbsp;
+                      %p
+                        Please share our efforts to bring Gistly.com to apartment renters to help them get the gist on the perfect home and get moving.
+                      %p
+                        Thanks from your Gistly.com team!
+                      %p
+                        %img{:src => "https://fundable.blob.core.windows.net/profiles/60/20.jpg"}/
+                      %p
+                        (the Kraken-- from Clash of the Titans: the original version!)
+                  .well
+                    .comments
+                      .new-comment.comment.highlighted{:style => "border-bottom:none;"}
+                        .photo{:style => "background-image:url(/asset/avatar/me);"}
+                        .arrow-border
+                          .arrow
+                        .bubble
+                          %form{"data-post-id" => "36", :onsubmit => "Fundable.CompanyProfile.publishComment(this);return false;"}
+                            .content
+                              %textarea{:name => "text", :onfocus => "$(this).attr('rows', '3');$(this).next('div.buttons').show();", :placeholder => "Post a new comment...", :rows => "1", :style => "float:left;width:410px;"}
+                              .buttons.pull-right.hide
+                                %button.btn.custom2.custom.pull-right.small
+                                  %span.default Post
+                                  %span.loading Posting
+                              .clear
+                        .clear
+                      %span.heading
+                        0 COMMENTS
+                        %span.show-comments
+                          |
+                          %a{:href => "#", :onclick => "Fundable.CompanyProfile.showBlogPostComments(36);return false;"} show
+                      .comment-list.hide
+                .edit-view
+                  %span.heading EDIT POST
+                  %button.save.btn.custom.custom2.pull-right{:onclick => "Fundable.CompanyProfile.saveBlogPost(this); return false;"}
+                    %span.default Save
+                    %span.loading Saving
+                  .clear
+                  %form{:onsubmit => "false"}
+                    %input{:name => "postingId", :type => "hidden", :value => "36"}/
+                    %input.heading{:name => "title", :type => "text", :value => "Release the Kraken! Gistly NOW live on Fundable.com's home page"}/
+                    %textarea#blog-post-36-editor{:name => "body", :rows => "10"}
+                      :preserve
+                        &lt;p&gt;
+                        	Ok... so we're much NICER than the real Kraken! But, awesome news! We've beat our 15% &nbsp;private friends &amp; family crowdfunding and are now LIVE on the Fundable.com Home Page!&nbsp;&lt;/p&gt;
+                        &lt;p&gt;
+                        	Please share our efforts to bring Gistly.com to apartment renters to help them get the gist on the perfect home and get moving.&lt;/p&gt;
+                        &lt;p&gt;
+                        	Thanks from your Gistly.com team!&lt;/p&gt;
+                        &lt;p&gt;
+                        	&lt;img src="https://fundable.blob.core.windows.net/profiles/60/20.jpg" /&gt;&lt;/p&gt;
+                        &lt;p&gt;
+                        	(the Kraken-- from Clash of the Titans: the original version!)&lt;/p&gt;
+                    .upload-to-editor-wrapper
+                      %input#blog-post-36-editor-uploader.upload-to-editor{"data-company-id" => "{{Post.CompanyId}}", "data-token" => "dSciEYoGTr8OI/k2/aF43NQ9DC3QtMwOzEIZe++As/KG8IZzv5kPYOL01ZP7HCiY4jX8ko8HC2sCElYYqzZGAupE/cTRqyBRuR4Zindzl+MnfLsoyiX8GtHyNorirSOw7mu9BbdyOvE3Zj1hEON12MTEb8uFPZ+yJNu3lrgahKuVXlepAGD+Hq/Se/gbCxbJtnFu+u1pbQEH+UHoc+4yjgcvi5ggZ8SUz/3aXyx5HYg2Bwdi2jeX9Vu76ahY+zyyuv6gS447pVy2SWZ/taiYgiQGajtUsEN3e2cB6aVYp4VKtBC1mIbZLuCbYWUKqxyzkrspqA8zSY1o6PX+a4fgEg==", "data-upload-to" => "blog-post-36-editor", "data-upload-url" => "/home/asset/addtoprofilesection", :name => "file", :type => "file"}/
+                    .clear
+                  %br/
+                  %button.save.btn.custom.custom2.pull-right{:onclick => "Fundable.CompanyProfile.saveBlogPost(this); return false;"}
+                    %span.default Save
+                    %span.loading Saving
+                  %p.pull-left
+                    %a.important{:href => "#", :onclick => "Fundable.CompanyProfile.deleteBlogPost(this);return false;"} Delete Post
+                  .clear
+            .load-more.align-center.padding10
+              %button.btn.custom.custom2.load-more{"data-destination-selector" => "div#blog div.posts", "data-model" => "blog-post", "data-page" => "2", "data-quantity-loaded" => "1", "data-total" => "1", :onclick => "Fundable.CompanyProfile.loadMore(this);", :style => "display: none; "}
+                %span.default Load More
+                %span.loading Loading Posts...
+        .blank-view.empty-page-set.hide
+          %h1.pictos W
+          %h2 Gistly.com has not posted anything yet.
+      .skinny.pull-right
+        .section.padded.pledge-tier-list
+          .rewards
+            .header.align-center
+              .btn-group.centered.reward-tabs
+                %button.btn.custom2.active.rewards{:onclick => "Fundable.CompanyProfile.showRewards();"} Pledge Rewards
+                %button.btn.custom2.investments{:onclick => "Fundable.CompanyProfile.showInvestments();"} Equity Investments
+            .investments.padding15.hide.align-center
+              .not-investor
+                %p Equity investment details are only visible to users who opt-in as an accredited investors.
+                %a{"data-toggle" => "modal", :href => "#investor-terms-modal"} If you are an accredited investor and would like to contact Gistly.com, click here
+                %br/
+                %br/
+              .is-investor.hide
+                %p Interested in talking to Gistly.com about an equity investment? Accredited investors may contact the company directly through the button bellow.
+                %p
+                %button.btn.custom.custom2.message{"data-body" => "", "data-subject" => "", "data-to-id" => "785", "data-to-name" => "Gistly.com", "data-toggle" => "modal", :href => "#message-modal"}
+                  %span.pictos W
+                  Message Gistly.com
+            %ul.reward-list
+              %li.reward{"data-quantity-available" => "83"}
+                %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=902"}
+                %h3.description Pledge $25+
+                .clear
+                %p A personal phone call from the Founder of Gistly.com to you AND your boss letting each of you know just how cool you are for helping! Plus a shout out on our Gistly.com Twitter / Facebook and blog!
+                %small.terms
+                  %strong.dark 17 backers
+                  = succeed "Delivery" do
+                    %br/
+                  within 60 days of successful raise
+                .clear
+              %li.reward{"data-quantity-available" => "46"}
+                %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=903"}
+                %h3.description Pledge $75+
+                .clear
+                %p A hand-written Gistly recipe book for when you want to get the gist on cooking at home in your new fantabulously found (or soon to be found) Gistly.com apartment
+                %small.terms
+                  %strong.dark 3 backers
+                  = succeed "Delivery" do
+                    %br/
+                  within 60 days of successful raise
+                .clear
+              %li.reward{"data-quantity-available" => "47"}
+                %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=904"}
+                %h3.description Pledge $150+
+                .clear
+                %p A custom welcome door mat compliments of Gistly.com PLUS a custom Twitter toilet paper roll from Gistly.com's Twitter feed to make your home feel more like home!
+                %small.terms
+                  %strong.dark 3 backers
+                  = succeed "Delivery" do
+                    %br/
+                  within 60 days of successful raise
+                .clear
+              %li.reward{"data-quantity-available" => "17"}
+                %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=906"}
+                %h3.description Pledge $500+
+                .clear
+                %p A Gistly.com tree planted in your honor in your local community plus a Gistly.com map that matches your Gistly scorecard in the neighborhood of your choice. SWEET!
+                %small.terms
+                  %strong.dark 3 backers
+                  = succeed "Delivery" do
+                    %br/
+                  within 60 days of successful raise
+                .clear
+              %li.reward{"data-quantity-available" => "2"}
+                %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=1011"}
+                %h3.description Pledge $10,000+
+                %span.limited Only 2 remaining!
+                .clear
+                %p 10 Personal phone calls from some of the leading entrepreneurs and media moguls / journalists in the US and abroad thanking you for helping to fund Gistly.com through Fundable. And we will throw in your photo to our upcoming Gistly.com Get Gistly and Get Moving  bumper sticker!
+                %small.terms
+                  %strong 0 backers
+                  = succeed "Delivery" do
+                    %br/
+                  within 60 days of successful raise
+                .clear
+      .clear
+  #followers-tab-content.profile-tab-content.hide.with-bg{:style => "display: none; "}
+    .fat.pull-left
+      .display-view
+        .related-users.followers
+          %ul#follower-list.related-user-list
+            / Followers
+          .load-more.align-center.padding10
+            %button.btn.custom.custom2.load-more{"data-destination-selector" => "#follower-list", "data-model" => "follower", "data-page" => "1", :onclick => "Fundable.CompanyProfile.loadMore(this);"}
+              %span.default Load More
+              %span.loading Loading Followers...
+      .blank-view.empty-page-set.hide
+        %h1.pictos g
+        %h2 Nobody has followed Gistly.com yet.
+        %button.btn.custom2.custom.biggish.follow{"data-company-id" => "60", "data-follow-url" => "/home/following/togglefollowcompany?id=60", "data-token" => "6zDjg7U2Hb7BdhED9JuvKUZ467pl2Ot/1JnuvjQnIqHxj+SuprXDJZR2LhqfNF9FwKY6vN5S3XuqupNdhFTH6CizagjKnStRbHspLhyALoLHDuBH5q0wdT3Iy7TjCppmS0MTfgE4NcJ2vfsBZFzDx7bzNfzeqySs/KzhTxPq2TEwRANL4wa7YGkN/17r89Un5+8P6tzgfK1m1CZkrqV12H27CYOkGGhaHddruJqlDEJr/DXF3TqtRyZJ2ijn5Qr3sL+LO2XDHnmiQp7FxnFlv6EQ2GdjajJ2z8D5IbMwE+QTex2IckisM6n//JqfgxExNeZCGxhesLY7T66vOABT0Q==", "data-user-is-following" => "False"}
+          %span.success
+            %span.pictos 3
+            You're Now Following Gistly.com
+          %span.danger
+            %span.pictos *
+            Unfollow
+          %span.default
+            %span.pictos k
+            Be the First Follower!
+          %span.loading Loading
+    .skinny.pull-right
+      .section.padded.pledge-tier-list
+        .rewards
+          .header.align-center
+            .btn-group.centered.reward-tabs
+              %button.btn.custom2.active.rewards{:onclick => "Fundable.CompanyProfile.showRewards();"} Pledge Rewards
+              %button.btn.custom2.investments{:onclick => "Fundable.CompanyProfile.showInvestments();"} Equity Investments
+          .investments.padding15.hide.align-center
+            .not-investor
+              %p Equity investment details are only visible to users who opt-in as an accredited investors.
+              %a{"data-toggle" => "modal", :href => "#investor-terms-modal"} If you are an accredited investor and would like to contact Gistly.com, click here
+              %br/
+              %br/
+            .is-investor.hide
+              %p Interested in talking to Gistly.com about an equity investment? Accredited investors may contact the company directly through the button bellow.
+              %p
+              %button.btn.custom.custom2.message{"data-body" => "", "data-subject" => "", "data-to-id" => "785", "data-to-name" => "Gistly.com", "data-toggle" => "modal", :href => "#message-modal"}
+                %span.pictos W
+                Message Gistly.com
+          %ul.reward-list
+            %li.reward{"data-quantity-available" => "83"}
+              %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=902"}
+              %h3.description Pledge $25+
+              .clear
+              %p A personal phone call from the Founder of Gistly.com to you AND your boss letting each of you know just how cool you are for helping! Plus a shout out on our Gistly.com Twitter / Facebook and blog!
+              %small.terms
+                %strong.dark 17 backers
+                = succeed "Delivery" do
+                  %br/
+                within 60 days of successful raise
+              .clear
+            %li.reward{"data-quantity-available" => "46"}
+              %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=903"}
+              %h3.description Pledge $75+
+              .clear
+              %p A hand-written Gistly recipe book for when you want to get the gist on cooking at home in your new fantabulously found (or soon to be found) Gistly.com apartment
+              %small.terms
+                %strong.dark 3 backers
+                = succeed "Delivery" do
+                  %br/
+                within 60 days of successful raise
+              .clear
+            %li.reward{"data-quantity-available" => "47"}
+              %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=904"}
+              %h3.description Pledge $150+
+              .clear
+              %p A custom welcome door mat compliments of Gistly.com PLUS a custom Twitter toilet paper roll from Gistly.com's Twitter feed to make your home feel more like home!
+              %small.terms
+                %strong.dark 3 backers
+                = succeed "Delivery" do
+                  %br/
+                within 60 days of successful raise
+              .clear
+            %li.reward{"data-quantity-available" => "17"}
+              %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=906"}
+              %h3.description Pledge $500+
+              .clear
+              %p A Gistly.com tree planted in your honor in your local community plus a Gistly.com map that matches your Gistly scorecard in the neighborhood of your choice. SWEET!
+              %small.terms
+                %strong.dark 3 backers
+                = succeed "Delivery" do
+                  %br/
+                within 60 days of successful raise
+              .clear
+            %li.reward{"data-quantity-available" => "2"}
+              %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=1011"}
+              %h3.description Pledge $10,000+
+              %span.limited Only 2 remaining!
+              .clear
+              %p 10 Personal phone calls from some of the leading entrepreneurs and media moguls / journalists in the US and abroad thanking you for helping to fund Gistly.com through Fundable. And we will throw in your photo to our upcoming Gistly.com Get Gistly and Get Moving  bumper sticker!
+              %small.terms
+                %strong 0 backers
+                = succeed "Delivery" do
+                  %br/
+                within 60 days of successful raise
+              .clear
+    .clear
+  #backers-tab-content.profile-tab-content.hide.with-bg{:style => "display: none; "}
+    .fat.pull-left
+      .related-users.backers
+        .display-view
+          %ul#backer-list.related-user-list
+          .load-more.align-center.padding10
+            %button.btn.custom.custom2.load-more{"data-destination-selector" => "#backer-list", "data-model" => "backer", "data-page" => "1", :onclick => "Fundable.CompanyProfile.loadMore(this);"}
+              %span.default Load More
+              %span.loading Loading Backers...
+        .blank-view.empty-page-set.hide
+          %h1.pictos %
+          %h2 Gistly.com hasn't been backed yet.
+          %a.btn.custom.custom2.biggish{:href => "/pledge/create/214"} Be the First Backer!
+    .skinny.pull-right
+      .section.padded.pledge-tier-list
+        .rewards
+          .header.align-center
+            .btn-group.centered.reward-tabs
+              %button.btn.custom2.active.rewards{:onclick => "Fundable.CompanyProfile.showRewards();"} Pledge Rewards
+              %button.btn.custom2.investments{:onclick => "Fundable.CompanyProfile.showInvestments();"} Equity Investments
+          .investments.padding15.hide.align-center
+            .not-investor
+              %p Equity investment details are only visible to users who opt-in as an accredited investors.
+              %a{"data-toggle" => "modal", :href => "#investor-terms-modal"} If you are an accredited investor and would like to contact Gistly.com, click here
+              %br/
+              %br/
+            .is-investor.hide
+              %p Interested in talking to Gistly.com about an equity investment? Accredited investors may contact the company directly through the button bellow.
+              %p
+              %button.btn.custom.custom2.message{"data-body" => "", "data-subject" => "", "data-to-id" => "785", "data-to-name" => "Gistly.com", "data-toggle" => "modal", :href => "#message-modal"}
+                %span.pictos W
+                Message Gistly.com
+          %ul.reward-list
+            %li.reward{"data-quantity-available" => "83"}
+              %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=902"}
+              %h3.description Pledge $25+
+              .clear
+              %p A personal phone call from the Founder of Gistly.com to you AND your boss letting each of you know just how cool you are for helping! Plus a shout out on our Gistly.com Twitter / Facebook and blog!
+              %small.terms
+                %strong.dark 17 backers
+                = succeed "Delivery" do
+                  %br/
+                within 60 days of successful raise
+              .clear
+            %li.reward{"data-quantity-available" => "46"}
+              %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=903"}
+              %h3.description Pledge $75+
+              .clear
+              %p A hand-written Gistly recipe book for when you want to get the gist on cooking at home in your new fantabulously found (or soon to be found) Gistly.com apartment
+              %small.terms
+                %strong.dark 3 backers
+                = succeed "Delivery" do
+                  %br/
+                within 60 days of successful raise
+              .clear
+            %li.reward{"data-quantity-available" => "47"}
+              %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=904"}
+              %h3.description Pledge $150+
+              .clear
+              %p A custom welcome door mat compliments of Gistly.com PLUS a custom Twitter toilet paper roll from Gistly.com's Twitter feed to make your home feel more like home!
+              %small.terms
+                %strong.dark 3 backers
+                = succeed "Delivery" do
+                  %br/
+                within 60 days of successful raise
+              .clear
+            %li.reward{"data-quantity-available" => "17"}
+              %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=906"}
+              %h3.description Pledge $500+
+              .clear
+              %p A Gistly.com tree planted in your honor in your local community plus a Gistly.com map that matches your Gistly scorecard in the neighborhood of your choice. SWEET!
+              %small.terms
+                %strong.dark 3 backers
+                = succeed "Delivery" do
+                  %br/
+                within 60 days of successful raise
+              .clear
+            %li.reward{"data-quantity-available" => "2"}
+              %a.box-link.black{:href => "/pledge/create/214?pledgeTierId=1011"}
+              %h3.description Pledge $10,000+
+              %span.limited Only 2 remaining!
+              .clear
+              %p 10 Personal phone calls from some of the leading entrepreneurs and media moguls / journalists in the US and abroad thanking you for helping to fund Gistly.com through Fundable. And we will throw in your photo to our upcoming Gistly.com Get Gistly and Get Moving  bumper sticker!
+              %small.terms
+                %strong 0 backers
+                = succeed "Delivery" do
+                  %br/
+                within 60 days of successful raise
+              .clear
+    .clear

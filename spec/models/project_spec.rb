@@ -12,6 +12,9 @@ describe Project do
   it {should have_many(:articles)}
   it {should have_attached_file(:image)}
   it {should have_many(:perks)}
+  it {should validate_presence_of(:start_date)}
+  it {should validate_presence_of(:end_date)}
+  
   
   describe "callbacks" do
     subject {FactoryGirl.create :project}
@@ -34,11 +37,19 @@ describe Project do
     it "should default to today" do
       subject.start_date.should == Date.today
     end
+    it "should accept mm/dd/yyyy format" do
+      subject.start_date = "07/19/2012"
+      subject.start_date.should == Date.parse("2012-07-19")
+    end
   end
   
   describe "#end_date" do
     it "should be a constant plus the start date" do
       subject.end_date.should == (Date.today + Project::DEFAULT_FUNDRAISE_LENGTH)
+    end
+    it "should accept mm/dd/yyyy format" do
+      subject.end_date = "07/19/2012" 
+      subject.end_date.should == Date.parse("2012-07-19")
     end
   end
   

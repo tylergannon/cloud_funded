@@ -78,6 +78,14 @@ feature "Registering a new project" do
     page.should have_content('Perks go here.')
   end
   
+  scenario "Fillout out fund raising options" do
+    visit get_funded_path(id: 'fund_raise')
+    fill_in 'Start date', with: '7/12/2012'
+    fill_in 'End date', with: '10/22/2012'
+    click_button 'Save And Continue'
+    visit get_funded_path(id: 'fund_raise')
+  end
+  
   scenario "Adding Perks" do
     visit get_funded_path(id: 'fund_raise')
     within '.perks div:first-child' do
