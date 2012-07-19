@@ -9,16 +9,13 @@ $ ->
   $('.file_uploads input[type=file]').each (index, el) ->
     $el = $ el
     field = $el.attr('id')
-    console.log("The field is " + field)
-    console.log($('#' + field).attr('id'))
     $('#' + field).html5_upload
       url: (number) ->
-        $('.file_uploads').data('action')
+        $el.parent().data('action')
         # $('#project_image_form').attr('action')
-      fieldName: 'project[' + field + ']'
+      fieldName: $('.file_uploads').data('field') ? 'project[' + field + ']'
       sendBoundary: window.FormData or $.browser.mozilla
       onStart: (event, total) ->
-        console.log('blahblah')
         $('.upload_status').show()
         return true
         # confirm "You are trying to upload " + total + " files. Are you sure?"

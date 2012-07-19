@@ -8,6 +8,10 @@ describe Projects::PerksController do
     it "routes to edit" do
       get("/projects/nice/perks/123/edit").should route_to("projects/perks#edit", :project_id => "nice", id: '123')
     end
+    
+    it "should route to update" do
+      post('/projects/33/perks/3.json').should route_to("projects/perks#update", :project_id => "33", id: '3', format: 'json')
+    end
 
     it "routes to #index" do
       get("/projects/nice/perks").should route_to("projects/perks#index", :project_id => "nice")

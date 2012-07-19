@@ -79,6 +79,7 @@ CloudFunded::Application.routes.draw do
   
   match '/:id(.:format)' => 'projects#show', as: :project, :constraints => { :format => /(json|html)/ }, via: 'get'
   match '/:id(.:format)' => 'projects#update', as: :project, :constraints => { :format => /(json|html)/ }, via: 'post'
+  match '/projects/:project_id/perks/:id(.:format)' => 'projects/perks#update', via: :post
 
   root to: 'projects#index'
 end

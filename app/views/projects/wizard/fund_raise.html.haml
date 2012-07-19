@@ -15,16 +15,24 @@
     .field#days
       %span= f.label :days
       %span= f.text_field :days
-      
     .perks
       - @project.perks.each_with_index do |perk, idx|
+        .file_uploads{data: {field: 'perk[image]', action: project_perk_path(@project, perk, format: :json)}}
+          = file_field_tag :image, id: "perk_#{perk.id}_image"
         %div[perk]
           %h2 Perk #{idx + 1}
           = f.fields_for :perks, perk do |pf|
             .field.name
               = pf.label :name
               = pf.text_field :name
-            .image
+            .field.upload_field{id: 'upload_image', data: {field: "perk_#{perk.id}_image"}}
+              .upload_status Uploading...
+              - if perk.image.present?
+                = image_tag perk.image.url(:large), alt: 'Project Image', id: "perk_#{perk.id}_image_tag"
+              - else
+                = image_tag 'projects/wizard/onebit_33.png', alt: 'Project Image', id: "perk_#{perk.id}_image_tag", class: 'hidden'
+              = image_tag 'projects/wizard/file_upload_placeholder.jpg', alt: 'Image Placeholder', id: "perk_#{perk.id}_image_placeholder_tag", class: "click_to_upload#{perk.image.present? ? ' hidden' : ''}"
+              = image_tag 'projects/wizard/change_file_placeholder.jpg', alt: 'Change Image', id: "change_perk_#{perk.id}_image_tag", class: "click_to_upload#{perk.image.present? ? '' : ' hidden'}"
             .field.price
               = pf.label :price
               = pf.text_field :price
