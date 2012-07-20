@@ -2,7 +2,7 @@ CloudFunded::Application.configure do
   
   Dwolla::Transaction.test_mode = true
   
-  if `hostname`.strip == 'li421-113'
+  if `hostname`.strip == 'li491-83'
     config.action_mailer.default_url_options = { :host => 'dev.cloudfunded.com' }
     ENV['DWOLLA_KEY'] = 'FH8ROFZyhOd5Xp9mU3YpV5nVQQhPZ16PfWBV/FUH4eNZHKbHZR'
     ENV['DWOLLA_SECRET'] = 'FWtuQE6DY2NakB20AnjdJdvt0Jo8QapDUj2c2BsODJgA4+Yndq'
