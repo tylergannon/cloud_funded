@@ -14,22 +14,41 @@
       #headerwrap
         .page_title
           %h1
-      %ul
-        %li.header_link
-          = link_to 'Explore the projects', projects_path
-          %ul
-            - Projects::Category.all.each do |category|
-              %li= link_to category.name, projects_category_path(category)
-        %li.header_link= link_to 'Get Funded', get_funded_path
-        %li.header_link= link_to 'Blog', blog_path
-        %li.header_link= link_to 'About Us', page_path('about')      
-        - unless member_signed_in?
-          %li.header_link= link_to 'Sign in', new_member_session_path
+        %ul
           %li.header_link
-            = link_to member_omniauth_authorize_path(:facebook) do
-              = image_tag 'Button_FBConnect.png'
-        - else
-          = render partial: 'layouts/my_controls'
+            = link_to 'Support Community', projects_path
+            %ul.project_categories
+              - Projects::Category.all.each do |category|
+                %li= link_to category.name, projects_category_path(category)
+          %li.header_link= link_to 'Get Funded', get_funded_path
+          %li.header_link= link_to 'Blog', blog_path
+          %li.header_link= link_to 'About Us', page_path('about')      
+          - unless member_signed_in?
+            %li.header_link
+              = link_to 'Sign in', new_member_session_path
+              = link_to member_omniauth_authorize_path(:facebook) do
+                = image_tag 'facebook-icon.png', width: '30px'
+          - else
+            %li.header_link.member_id
+              = link_to account_path do
+                %div= image_tag current_member.profile_pic
+                %div.member_name= current_member.full_name
+              %ul.my_controls
+                %li= link_to 'My Profile', profile_path(current_member)
+                %li= link_to 'My Account', account_path
+                %li= link_to 'My Projects', my_projects_path
+                %li= link_to 'Feedback', submit_feedback_path(about_page: request.path)
+                %li= link_to 'Change Password', account_settings_path
+                %li= link_to 'Sign out', destroy_member_session_path, method: 'delete'
+                - if current_member.admin
+                  %li Admin Controls
+                  %li= link_to 'Members', admin_members_path
+                  %li= link_to 'Pages', admin_pages_path
+                  %li= link_to 'Projects', admin_projects_path
+                  %li= link_to 'Feedback', admin_feedbacks_path
+                  %li= link_to 'Blog Articles', admin_articles_path
+                  %li= link_to 'Categories', admin_projects_categories_path
+            
         
     .container
       - if flash[:notice]
