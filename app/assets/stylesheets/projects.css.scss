@@ -1,6 +1,85 @@
 // Place all the styles related to the projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$fb-like-width: 300px;
+$right-pane-width: 330px;
+
+.project_page {
+  .dashboard {
+    position: relative;
+    .titleinfo {
+      .tagline {
+        position: absolute;
+        top: 30px;
+        left: 300px;
+      }
+    }
+    
+    .social {
+      top: 0;
+      .link {
+        position: absolute;
+      }
+      .pin-it {
+        left: $fb-like-width;
+      }
+      .twitter {
+        left: $fb-like-width + 45px;
+      }
+    }
+    
+    .right-pane {
+      .fund_raising {
+        h3 {
+          font-size: 24pt;
+          text-align: center;
+          margin-top: 10px;
+          margin-bottom: 10px;
+        }
+        .subtitle {
+          text-align: center;
+        }
+        .progress {
+          margin-left: 20px;
+          margin-right: 20px;
+        }
+      }
+      .metrics {
+        height: 100px;
+        padding-left: 25px;
+        padding-right: 25px;
+        text-align: center;
+        
+        .metric {
+          height: 50px;
+          font-size: 30pt;
+        }
+      }
+      .back_it {
+        margin-top: 0;
+        padding: 4px;
+        padding-bottom: 0;
+        img {
+          border: 2px gray inset;
+          border-radius: 6px;
+        }
+      }
+      position: absolute;
+      border: 1px dotted gray;
+      background-color: white;
+      top: 118px;
+      left: 575px;
+      width: $right-pane-width;
+      
+    }
+  }
+  
+  .details {
+    position: relative;
+    top: 25px;
+    width: 560px;
+  }
+}
 
 
  .project:hover {

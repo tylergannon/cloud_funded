@@ -3,6 +3,8 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
+  $('#tabs').tabs()
+  
   $('.project').each (idx, el) ->
     $el = $(el)
     $el.click ->

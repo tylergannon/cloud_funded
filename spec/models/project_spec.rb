@@ -84,4 +84,23 @@ describe Project do
       end
     end
   end
+  
+  describe "abilities" do
+    before :each do
+      @member = FactoryGirl.create(:member)
+    end
+    subject {Ability.new(@member)}
+    describe "when I own the project" do
+      it {should be_able_to(:read,FactoryGirl.create( :project, owner: @member))}
+      it {should be_able_to(:edit,FactoryGirl.create( :project, owner: @member))}
+      # it {should be_able_to(:destroy,FactoryGirl.create( :project, owner: @member))}
+    end
+
+    describe "when I do not own the project" do
+      it {should be_able_to(:read,FactoryGirl.create( :project, published: true))}
+      it {should_not be_able_to(:read,FactoryGirl.create( :project))}
+      it {should_not be_able_to(:edit,FactoryGirl.create( :project))}
+      it {should_not be_able_to(:destroy,FactoryGirl.create( :project))}
+    end
+  end
 end

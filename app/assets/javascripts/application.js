@@ -12,9 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.tabs
-//= require jquery.ui.progressbar
-//= require jquery.ui.datepicker
+//= require jquery-ui-1.8.21.custom.min
 //= require 3rd_party/jquery.html5_upload.js
 //= require header
 //= require articles

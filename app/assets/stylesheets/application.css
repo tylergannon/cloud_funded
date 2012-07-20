@@ -10,6 +10,7 @@
  *
  *= require_self
  * require_tree .
+ *= require jquery-ui-1.8.21.custom
  *= require accounts.css.scss
  *= require admin/articles.css.scss
  *= require admin/feedbacks.css.scss
@@ -21,7 +22,6 @@
  *= require comments.css.scss
  *= require facebook_actions.css.scss
  *= require feedbacks.css.scss
- *= require jquery-ui-1.8.20.custom.css
  *= require main.css.scss
  *= require members/transactions.css.scss
  * mercury.css

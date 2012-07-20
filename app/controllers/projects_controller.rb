@@ -30,6 +30,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
+    authorize! :read, @project
     @title = "#{@project.name} on CloudFunded"
     if member_signed_in?
       @my_pledge = Pledge.where(investor_id: current_member.id, project_id: @project.id).first
