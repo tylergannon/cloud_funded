@@ -107,6 +107,7 @@ body {
       	padding-left: 0;
       	padding-right: 0;
       	top: 44px;
+      	z-index: 1000;
         left:-9999px; /* Hide off-screen when not needed (this is more accessible than display:none;) */
     	  width: 250px;
       	li {
