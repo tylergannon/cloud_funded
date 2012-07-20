@@ -20,8 +20,8 @@
         .clear
     .right-pane
       .fund_raising
-        %h3.amount-raised= number_to_currency(@project.amount_pledged)
-        .subtitle RAISED OF #{number_to_currency(@project.financial_goal)} GOAL
+        %h3.amount-raised= number_to_currency(@project.amount_pledged, precision: 0)
+        .subtitle RAISED OF #{number_to_currency(@project.financial_goal, precision: 0)} GOAL
         .progress{'data-percent-complete' => @project.percent_complete}
       .metrics
         .metric
