@@ -2,32 +2,45 @@ require 'spec_helper'
 
 describe Projects::WizardController do
   describe "get #show" do
-    describe "when id=finish" do
-      describe "when post_to_fb is set" do
+    before :each do
+      sign_in_as_member
+      @project = FactoryGirl.create :project, owner: @member, published: true
+    end
+    
+    describe "when :project_id is present" do
+      it "should load the project" do
+        get :show, project_id: @project.to_param
+        assigns(:project).should == @project
+      end
+      describe "and I don't own the project" do
         before :each do
-          Project.any_instance.stub(:save_attached_files).and_return(true)
-          Project.any_instance.stub(:destroy_attached_files).and_return(true)
-          Paperclip::Attachment.any_instance.stub(:queue_all_for_delete).and_return(true)
-          Paperclip::Attachment.any_instance.stub(:present?).and_return(true)
-          @member = FactoryGirl.create :member, fb_token: 'nicebaq'
-          @project = FactoryGirl.create :project, owner: @member,
-                     post_to_fb: true
-          sign_in @member
+          @another_project = FactoryGirl.create :project
+          get :show, project_id: @another_project.to_param
         end
-        
-        # it "should call out to the Facebook action." do
-        #   CloudFunded::Facebook::Actions.should_receive(:create_project).and_return('rockstar') do |url, fb_token|
-        #     url.should == project_url(@project)
-        #     fb_token.should == @member.fb_token
-        #   end
-        #   get :show, {project_id: @project.to_param, id: 'finish'}
-        # end
-        # 
-        # it "should save the fb post id to the project." do
-        #   CloudFunded::Facebook::Actions.stub(:create_project).and_return('rockstar')
-        #   get :show, {project_id: @project.to_param, id: 'finish'}
-        #   assigns(:project).fb_post_id.should == 'rockstar'
-        # end
+        it "should be unauthorized" do
+          response.status.should == 404
+        end
+      end
+    end
+    describe "when :project_id is not present" do
+      describe "and the member already has a current application" do
+        before :each do
+          @project_application = @member.project_application
+        end
+        it "should load the member's project application" do
+          expect {
+            get :show
+            assigns(:project).should == @project_application
+          }.to change(Project, :count).by(0)
+        end
+      end
+      describe "and the member doesn't have a current application" do
+        it "should create a new project" do
+          expect {
+            get :show
+            assigns(:project).should_not == @project
+          }.to change(Project, :count).by(1)
+        end
       end
     end
   end

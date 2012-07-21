@@ -68,7 +68,12 @@ CloudFunded::Application.routes.draw do
   match '/projects/:project_id/pledge' => 'pledges#new', as: :new_project_pledge
   match '/my_projects' => 'projects#index', defaults: {show: "mine"}, as: :my_projects
   
-  resource :get_funded, controller: 'projects/wizard', as: :get_funded
+  match '/get_funded(/:id)' => 'projects/wizard#show', as: :get_funded, via: 'get'
+  match '/get_funded(/:id)' => 'projects/wizard#update', via: 'put'
+  match '/projects/:project_id/wizard(/:id)' => 'projects/wizard#show', as: :get_funded, via: 'get', defaults: {id: 'basics'}
+  match '/projects/:project_id/get_funded(/:id)' => 'projects/wizard#update', via: 'put'
+  
+  # resource :get_funded, controller: 'projects/wizard', as: :get_funded
   
   as :member do
     get '/my_account/settings' => 'members/registrations#edit',  as: :account_settings

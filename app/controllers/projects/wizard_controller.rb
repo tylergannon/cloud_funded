@@ -6,20 +6,21 @@ class Projects::WizardController < ApplicationController
   before_filter :authenticate_member!, :load_project
   
   def show
+    authorize! :edit, @project
     render_wizard
   end
   
   def update
+    authorize! :edit, @project
     if params[:project]
       @project.update_attributes params[:project]
-    end
-    if methods.include?(step)
-      send(step)
     end
     render_wizard(@project)
   end
   
   def load_project
-    @project = current_member.project_application
+    @project = params[:project_id] ? 
+                  Project.find(params[:project_id]) : 
+                  current_member.project_application
   end
 end
