@@ -86,6 +86,16 @@ feature "Registering a new project" do
     visit get_funded_path(id: 'fund_raise')
   end
   
+  scenario "Filling out location", js: true do
+    visit get_funded_path(id: 'where')
+    fill_in 'project_address', with: '2131 Crosspoint Ave Santa Rosa CA'
+    click_button 'Check Address'
+    wait_until(2) do
+      page.has_content?('Ahhh. Santa Rosa.')
+    end
+    page.should have_selector('#project_street_number[value=2131]')
+  end
+  
   scenario "Adding Perks" do
     visit get_funded_path(id: 'fund_raise')
     within '.perks div:first-child' do

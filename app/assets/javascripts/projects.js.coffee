@@ -39,19 +39,18 @@ $ ->
     
   $('#project_address').focusout ->
     codeAddress()
-    if $('#project_city').val()
-      $('#answer').html('Ahhh.  ' + $('#project_city').val() + '.')
 
   $('#check_address').click (e) ->
     e.preventDefault()
     codeAddress()
-    if $('#project_city').val()
-      $('#answer').html('Ahhh.  ' + $('#project_city').val() + '.')
+    console.log('Coded Address.')
 
   if $('#map_canvas').length > 0
+    console.log('yipee!!')
     initialize()
     
-    
+firstLookup = true
+
 initialize = ->
   window.geocoder = new google.maps.Geocoder()
   latlng = new google.maps.LatLng(37.852437, -122.274392)
@@ -71,6 +70,7 @@ initialize = ->
     codeAddress()
 
 geocodeHandler = (results, status) ->
+  console.log('got results: ' + results[0].formatted_address)
   if status is google.maps.GeocoderStatus.OK
     map.setCenter results[0].geometry.location
     if window.marker != undefined
@@ -82,22 +82,24 @@ geocodeHandler = (results, status) ->
 
     for address_component in address.address_components
       do (address_component) ->
+        console.log address_component.types[0] + ': ' + address_component.short_name
         switch address_component.types[0]
           when "administrative_area_level_1" then type = 'state'
           when "administrative_area_level_2" then type = 'county'
           when "locality"                    then type = 'city'
           else type = address_component.types[0]
-
         $('#project_' + type).val(address_component.short_name)
-    
     
     $('#project_address').val(results[0].formatted_address)
     $('#project_lat').val(results[0].geometry.location.lat())
     $('#project_long').val(results[0].geometry.location.lng())
+    $('#answer').html('Ahhh.  ' + $('#project_city').val() + '.') if $('#project_city').val()?
   else
     $('#answer').html('Hmmmm, couldn\'t look that up.' +  status)
+  $('#answer_wrapper').append('<div id="answer"></div>') unless $('#answer').length
 
 codeAddress = ->
+  console.log('coding address')
   address = $("#project_address").val()
   window.geocoder.geocode
     address: address

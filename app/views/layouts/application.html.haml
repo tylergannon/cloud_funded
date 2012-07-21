@@ -16,7 +16,7 @@
           %h1
         %ul
           %li.header_link
-            = link_to 'Support Community', projects_path
+            = link_to 'Invest', projects_path
             %ul.project_categories
               - Projects::Category.all.each do |category|
                 %li= link_to category.name, projects_category_path(category)

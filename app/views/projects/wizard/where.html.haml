@@ -5,7 +5,7 @@
     .field
       = f.label :address, 'Address, City or Zip'
       = f.text_field :address
-      = button_tag :check, id: 'check_address'
+      = button_tag 'Check Address', id: 'check_address'
       = f.hidden_field :lat
       = f.hidden_field :long
       = f.hidden_field :street_number
@@ -13,7 +13,7 @@
       = f.hidden_field :city
       = f.hidden_field :county
       = f.hidden_field :state
-      #answer
+      #answer_wrapper
       #map_canvas
       = f.submit 'Save and Continue'
 

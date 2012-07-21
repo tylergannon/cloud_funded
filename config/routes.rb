@@ -65,7 +65,6 @@ CloudFunded::Application.routes.draw do
   match '/admin' => 'admin/controls#index'
   match '/feedback' => 'feedbacks#new', as: :submit_feedback
   match '/feedback_received' => 'feedbacks#index', as: :feedback_received
-  match '/projects/:project_id/pledge' => 'pledges#new', as: :new_project_pledge
   match '/my_projects' => 'projects#index', defaults: {show: "mine"}, as: :my_projects
   
   match '/get_funded(/:id)' => 'projects/wizard#show', as: :get_funded, via: 'get'
@@ -85,6 +84,8 @@ CloudFunded::Application.routes.draw do
   
   match '/:id(.:format)' => 'projects#show', as: :project, :constraints => { :format => /(json|html)/ }, via: 'get'
   match '/:id(.:format)' => 'projects#update', as: :project, :constraints => { :format => /(json|html)/ }, via: 'post'
+  match '/:project_id/fund_it' => 'pledges#new', as: :new_project_pledge
+
   match '/projects/:project_id/perks/:id(.:format)' => 'projects/perks#update', via: :post
 
   root to: 'projects#index'
