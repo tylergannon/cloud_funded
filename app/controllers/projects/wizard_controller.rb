@@ -22,6 +22,13 @@ class Projects::WizardController < ApplicationController
     end
   end
   
+  def submit_preview
+    if @project.valid?
+      @project.submit!
+    end
+    render_wizard(@project)
+  end
+  
   def submit_fund_raise
     @project.preview!
     @project.fail_validation! unless ok = @project.valid?

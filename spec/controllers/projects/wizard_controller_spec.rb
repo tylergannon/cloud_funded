@@ -12,19 +12,34 @@ describe Projects::WizardController do
       end
       describe "when submitting to see preview" do
         it "should call submitted_fund_raise" do
-          controller.should_receive(:submitted_fund_raise)
+          controller.should_receive(:submit_fund_raise)
           put :update, project_id: @project.to_param, id: 'fund_raise'
         end
         it "should change the workflow state to :previewing" do
           @project.should be_new
           put :update, project_id: @project.to_param, id: 'fund_raise'
           @project.reload
-          @project.should be_previewing
+          @project.should be_new
         end
         it "should redirect to the preview page" do
           put :update, project_id: @project.to_param, id: 'fund_raise'
-          response.should redirect_to("blahblah")
-          
+          response.should render_template('fund_raise')
+        end
+      end
+      
+      describe "when submitting the application" do
+        before :each do
+          Project.any_instance.stub(:valid?).and_return true
+          @project.reload
+          @project.preview!
+          put :update, project_id: @project.to_param, id: 'preview'
+          @project.reload
+        end
+        it "should go to awaiting review" do
+          @project.should be_being_reviewed
+        end
+        it "should go to the next thing" do
+          response.should redirect_to(project_wizard_path(@project, 'submitted'))
         end
       end
     end

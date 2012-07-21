@@ -74,23 +74,21 @@ class Project < ActiveRecord::Base
     
     state :previewing do
       event :fail_validation, :transitions_to => :new
-      event :pass_validation, :transitions_to => :ok_to_preview
-    end
-    
-    state :ok_to_preview do
       event :submit, :transitions_to => :being_reviewed
     end
     
-    # 
-    # # state :awaiting_review do
-    # #   event :review, :transitions_to => :being_reviewed
-    # # end
     state :being_reviewed do
       event :accept, :transitions_to => :live
       event :reject, :transitions_to => :rejected
     end
+    
     state :live
     state :rejected
+  end
+  
+  def submit
+    ProjectsMailer.new_project(self).deliver
+    # MemberMailer.new_member(member).deliver
   end
 
   def youtube_url=(url)
