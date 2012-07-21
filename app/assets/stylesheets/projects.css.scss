@@ -185,8 +185,11 @@ $right-pane-width: 330px;
       height: 24px;
     }
     #map_canvas {
-      width: 300px;
-      height: 200px;
+      width: 560px;
+      height: 310px;
+      margin-bottom: 15px;
+      border: 2px dotted gray;
+      border-radius: 5px;
     }
   }
 }
