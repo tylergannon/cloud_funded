@@ -70,7 +70,8 @@ CloudFunded::Application.routes.draw do
   
   match '/get_funded(/:id)' => 'projects/wizard#show', as: :get_funded, via: 'get'
   match '/get_funded(/:id)' => 'projects/wizard#update', via: 'put'
-  match '/projects/:project_id/wizard(/:id)' => 'projects/wizard#show', as: :get_funded, via: 'get', defaults: {id: 'basics'}
+  
+  match '/projects/:project_id/wizard(/:id)' => 'projects/wizard#show', as: :project_wizard, via: 'get', defaults: {id: 'basics'}
   match '/projects/:project_id/wizard(/:id)' => 'projects/wizard#update', via: 'put'
   
   # resource :get_funded, controller: 'projects/wizard', as: :get_funded

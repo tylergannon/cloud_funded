@@ -1,7 +1,7 @@
 class Projects::WizardController < ApplicationController
   include Wicked::Wizard
   
-  steps :information, :basics, :where, :more_about_you, :fund_raise, :preview, :submit
+  steps :information, :basics, :where, :more_about_you, :fund_raise, :preview, :submitted
 
   before_filter :authenticate_member!, :load_project
   
@@ -15,7 +15,26 @@ class Projects::WizardController < ApplicationController
     if params[:project]
       @project.update_attributes params[:project]
     end
-    render_wizard(@project)
+    if respond_to?("submit_#{params[:id]}")
+      send "submit_#{params[:id]}"
+    else
+      render_wizard(@project)
+    end
+  end
+  
+  def submit_fund_raise
+    @project.preview!
+    @project.fail_validation! unless ok = @project.valid?
+
+    respond_with @project do |format|
+      format.html {
+        if ok
+          render_wizard(@project)
+        else
+          render :fund_raise
+        end
+      }
+    end
   end
   
   def load_project

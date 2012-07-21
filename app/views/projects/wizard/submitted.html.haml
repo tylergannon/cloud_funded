@@ -1,0 +1,5 @@
+= render partial: 'application_header'
+.project_wizard.submited
+  %h1 Woo hoo!
+  = form_for @project, url: wizard_path do |f|
+    = f.submit 'Thanks, take me back'

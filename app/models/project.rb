@@ -1,6 +1,8 @@
 class Project < ActiveRecord::Base
-  include ActionView::Helpers::NumberHelper
   extend FriendlyId
+  include ActionView::Helpers::NumberHelper
+  include Workflow
+  
   friendly_id :name, use: :slugged
   
   attr_accessible :about_your_product, :about_your_product_image, :address, :category_id, 
@@ -53,17 +55,44 @@ class Project < ActiveRecord::Base
   has_attached_file :your_target_market_image, S3_DEETS
   has_attached_file :history_image, S3_DEETS
   
-  # validates :category, presence: true
-  # validates_attachment_presence :image
-  # validates :description, length: {maximum: 500}
-  # validates :financial_goal, numericality: {less_than_or_equal_to: 1000000}
-  # validates :name, uniqueness: true
+  validates :category, presence: true, :if => lambda {|project| !project.new?}
+  validates_attachment_presence :image, :if => lambda {|project| !project.new?}
+  validates :tagline, presence: true, :if => lambda {|project| !project.new?}
+  validates :short_description, length: {maximum: 500}, :if => lambda {|project| !project.new?}
+  validates :financial_goal, numericality: {less_than_or_equal_to: 1000000}, :if => lambda {|project| !project.new?}
+  validates :name, uniqueness: true, :if => lambda {|project| !project.new?}
   validates :owner, presence: true
   # validates :website_url, presence: true
-  # validates :address, presence: true
+  validates :address, presence: true, :if => lambda {|project| !project.new?}
   # validates :lat, presence: true
   # validates :long, presence: true
-  
+
+  workflow do
+    state :new do
+      event :preview, :transitions_to => :previewing
+    end
+    
+    state :previewing do
+      event :fail_validation, :transitions_to => :new
+      event :pass_validation, :transitions_to => :ok_to_preview
+    end
+    
+    state :ok_to_preview do
+      event :submit, :transitions_to => :being_reviewed
+    end
+    
+    # 
+    # # state :awaiting_review do
+    # #   event :review, :transitions_to => :being_reviewed
+    # # end
+    state :being_reviewed do
+      event :accept, :transitions_to => :live
+      event :reject, :transitions_to => :rejected
+    end
+    state :live
+    state :rejected
+  end
+
   def youtube_url=(url)
     super(url.gsub(/watch\?v=/, 'embed/'))
   end

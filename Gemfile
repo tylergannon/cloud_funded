@@ -2,33 +2,34 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.6'
 
-gem 'pg'
-gem 'jquery-rails'
-gem 'haml-rails'
+# gem 'dwolla', path: '/Users/tyler/src/3rd_party/dwolla'
+# gem 'mercury-rails', git: 'https://github.com/jejacks0n/mercury.git', ref: '1f7b142'
+# gem 'mercury-rails', path: '/Users/tyler/src/3rd_party/mercury'
+gem 'aws-sdk'
+gem 'cancan'
+gem 'default_value_for'
 gem 'devise', '2.1'
+gem 'devise-encryptable'
+gem 'dwolla', git: 'https://github.com/tylergannon/dwolla.git'
+gem 'friendly_id'
+gem 'haml-rails'
+gem 'httparty'
+gem 'jquery-rails'
+gem 'mercury-rails', git: 'git@github.com:tylergannon/mercury.git'
 gem 'omniauth-dwolla'
 gem 'omniauth-facebook'
-gem 'devise-encryptable'
-gem 'friendly_id'
-gem 'responders', '~> 0.9.1'
 gem 'paperclip'
-gem 'aws-sdk'
+gem 'pg'
 gem 'recaptcha', :require => 'recaptcha/rails'
-gem 'cancan'
-# gem 'mercury-rails', git: 'https://github.com/jejacks0n/mercury.git', ref: '1f7b142'
-gem 'mercury-rails', git: 'git@github.com:tylergannon/mercury.git'
-# gem 'mercury-rails', path: '/Users/tyler/src/3rd_party/mercury'
-gem 'default_value_for'
-gem 'httparty'
+gem 'responders', '~> 0.9.1'
 gem 'wicked'
-gem 'dwolla', git: 'https://github.com/tylergannon/dwolla.git'
-# gem 'dwolla', path: '/Users/tyler/src/3rd_party/dwolla'
+gem 'workflow'
 
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
   gem 'jquery-ui-rails'
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'uglifier', '>= 1.0.3'
 end
 
 group :development, :test do
@@ -41,12 +42,12 @@ group :development, :test do
 end
 
 group :test do
-  gem 'webmock'
-  gem 'vcr'
-  gem 'poltergeist'
+  gem "capybara-webkit"
   gem 'cucumber-rails'
   gem 'database_cleaner'
-  gem "capybara-webkit"
+  gem 'poltergeist'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :deployment do

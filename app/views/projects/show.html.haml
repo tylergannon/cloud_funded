@@ -1,41 +1,5 @@
 .project_page
-  .dashboard
-    .titleinfo
-      %h1.name= @project.name
-      %h2.tagline= @project.tagline
-    = image_tag @project.image.url(:large), width: '560px', height: '310px'
-    .social
-      .social-links.align-center
-        .link.facebook
-          %iframe{:allowtransparency => "true", :frameborder => "0", :scrolling => "no", :src => "//www.facebook.com/plugins/like.php?href=#{project_url(@project)}&amp;send=false&amp;layout=standard&amp;width=350&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font=arial&amp;height=24&amp;appId=237515676329060", :style => "border:none; overflow:hidden; width:350px; height:24px;"}
-        .link.pin-it
-          %a.pin-it-button{"count-layout" => "none", :href => "http://pinterest.com/pin/create/button/?url=#{project_url(@project)}?_s=4477&amp;media=#{@project.image.url(:large)}&amp;description=#{@project.name} - #{@project.tagline}", :target => "_blank"}
-            %img{:border => "0", :src => "//assets.pinterest.com/images/PinExt.png", :title => "Pin It"}/
-        .link
-          %span.IN-widget{:style => "line-height: 1; vertical-align: baseline; display: inline-block; text-align: center; "}
-            %span{:style => "padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important; "}
-          %script{"data-url" => "#{project_url(@project)}?_s=4477", :type => "IN/Share+init"}
-        .link.twitter
-          %iframe.twitter-share-button.twitter-count-none{:allowtransparency => "true", :frameborder => "0", :scrolling => "no", :src => "http://platform.twitter.com/widgets/tweet_button.1340179658.html#_=1342721403728&amp;count=none&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=#{u project_url(@project)}&amp;size=m&amp;text=#{u @project.name}%20-%20#{u @project.tagline}%20&amp;url=#{u project_url(@project)}%3F_s%3D4477&amp;via=CloudFunded", :style => "width: 56px; height: 20px; ", :title => "Twitter Tweet Button"}
-        .clear
-    .right-pane
-      .fund_raising
-        %h3.amount-raised= number_to_currency(@project.amount_pledged, precision: 0)
-        .subtitle RAISED OF #{number_to_currency(@project.financial_goal, precision: 0)} GOAL
-        .progress{'data-percent-complete' => @project.percent_complete}
-      .metrics
-        .metric
-          %span.large= @project.percent_complete.to_s + '%'
-          %span.small Funded
-        .metric
-          %span.large= @project.pledges.count
-          %span.small Backers
-        .metric
-          %span.large= (@project.end_date - Date.today).to_i
-          %span.small Days Left
-      .back_it
-        = link_to new_project_pledge_path(@project) do
-          = image_tag 'projects/back_it.jpg'
+  = render partial: 'dashboard'
   .details
     #tabs
       %ul
