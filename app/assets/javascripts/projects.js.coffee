@@ -43,10 +43,8 @@ $ ->
   $('#check_address').click (e) ->
     e.preventDefault()
     codeAddress()
-    console.log('Coded Address.')
 
   if $('#map_canvas').length > 0
-    console.log('yipee!!')
     initialize()
     
 firstLookup = true
@@ -68,9 +66,10 @@ initialize = ->
   window.marker = undefined
   if $('#project_address').val().length > 0
     codeAddress()
+  else
+    createAnswerField()
 
 geocodeHandler = (results, status) ->
-  console.log('got results: ' + results[0].formatted_address)
   if status is google.maps.GeocoderStatus.OK
     map.setCenter results[0].geometry.location
     if window.marker != undefined
@@ -82,7 +81,6 @@ geocodeHandler = (results, status) ->
 
     for address_component in address.address_components
       do (address_component) ->
-        console.log address_component.types[0] + ': ' + address_component.short_name
         switch address_component.types[0]
           when "administrative_area_level_1" then type = 'state'
           when "administrative_area_level_2" then type = 'county'
@@ -96,10 +94,11 @@ geocodeHandler = (results, status) ->
     $('#answer').html('Ahhh.  ' + $('#project_city').val() + '.') if $('#project_city').val()?
   else
     $('#answer').html('Hmmmm, couldn\'t look that up.' +  status)
-  $('#answer_wrapper').append('<div id="answer"></div>') unless $('#answer').length
+  createAnswerField()
 
+createAnswerField = ->
+  $('#answer_wrapper').append('<div id="answer"></div>') unless $('#answer').length
 codeAddress = ->
-  console.log('coding address')
   address = $("#project_address").val()
   window.geocoder.geocode
     address: address

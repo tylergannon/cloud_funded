@@ -13,7 +13,7 @@ class Project < ActiveRecord::Base
                   :post_to_fb, :short_description, :tagline, :website_url, :yelp, 
                   :your_target_market, :your_target_market_image, :youtube_url,
                   :start_date, :end_date, :days, :start_date_string, :end_date_string,
-                  :street_number, :route, :city, :county, :state
+                  :street_number, :route, :city, :county, :state, :postal_code
   
   belongs_to :owner, class_name: 'Member'
   belongs_to :category, class_name: 'Projects::Category'

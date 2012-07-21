@@ -89,11 +89,33 @@ feature "Registering a new project" do
   scenario "Filling out location", js: true do
     visit get_funded_path(id: 'where')
     fill_in 'project_address', with: '2131 Crosspoint Ave Santa Rosa CA'
+    wait_until(10) do
+      # puts "Your mom #{page.find('#answer').text}"
+      page.has_selector?('#answer')
+      # page.find('#answer').text == 'Ahhh. Santa Rosa.'
+    end
     click_button 'Check Address'
     wait_until(2) do
-      page.has_content?('Ahhh. Santa Rosa.')
+      # page.has_selector?('#answer')
+      page.find('#answer').text == 'Ahhh. Santa Rosa.'
     end
-    page.should have_selector('#project_street_number[value=2131]')
+    page.should have_selector("#project_street_number[value='2131']")
+    page.should have_selector("#project_route[value='Crosspoint Ave']")
+    page.should have_selector("#project_city[value='Santa Rosa']")
+    page.should have_selector("#project_county[value='Sonoma']")
+    page.should have_selector("#project_state[value='CA']")
+    page.should have_selector("#project_postal_code[value='95403']")
+    click_button 'Save and Continue'
+    @project = Project.last
+    @project.street_number.should == '2131'
+    @project.route.should == 'Crosspoint Ave'
+    @project.city.should == 'Santa Rosa'
+    @project.state.should == 'CA'
+    @project.postal_code.should == '95403'
+    @project.address.should == "2131 Crosspoint Ave, Santa Rosa, CA 95403, USA"
+    @project.lat.should == 38.455489
+    @project.long.should == -122.755758
+    
   end
   
   scenario "Adding Perks" do
