@@ -1,18 +1,19 @@
 GIT
+  remote: https://github.com/jejacks0n/mercury.git
+  revision: 169f50dd56be119980f006bb63e8e813be533479
+  ref: 169f50dd56be119980f006bb63e8e813be533479
+  specs:
+    mercury-rails (0.8.0)
+      coffee-rails
+      railties (~> 3.2)
+
+GIT
   remote: https://github.com/tylergannon/dwolla.git
   revision: a0e0ae656aa9a9f95a4a35e04259a6410f4a43ae
   specs:
     dwolla (0.0.15)
       faraday (= 0.7.6)
       multi_json (= 1.3.6)
-
-GIT
-  remote: https://github.com/tylergannon/mercury.git
-  revision: 3e0221f119f7dc806e8f415a070ff1acc48f8b76
-  specs:
-    mercury-rails (0.8.0)
-      coffee-rails
-      railties (~> 3.2)
 
 GEM
   remote: https://rubygems.org/

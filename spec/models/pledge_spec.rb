@@ -9,6 +9,8 @@ describe Pledge do
   subject {FactoryGirl.build :pledge}
   it {should belong_to(:project)}
   it {should belong_to(:investor)}
+  it {should belong_to(:perk)}
+  it {should validate_presence_of(:perk)}
   it "should have post_to_fb == true" do
     subject.post_to_fb.should be_true
   end

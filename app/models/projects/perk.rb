@@ -1,6 +1,7 @@
 class Projects::Perk < ActiveRecord::Base
   attr_accessible :delivery_terms, :description, :name, :price, :quantity, :image
   belongs_to :project
+  has_many :pledges
   
   S3_DEETS = {
     :styles => { large: "200x200", :thumb => "100x100" },

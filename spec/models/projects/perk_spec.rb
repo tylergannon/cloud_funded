@@ -4,15 +4,15 @@ describe Projects::Perk do
   subject {FactoryGirl.create :projects_perk}
   it {should belong_to(:project)}
   it {should have_attached_file(:image)}
+  it {should have_many(:pledges)}
 
   describe '#as_json' do
-    [:image].each do |image|
-      it "should have the #{image} path" do
-        subject.as_json[image][:url_original].should == "/#{image.to_s.tableize}/original/missing.png"
-        subject.as_json[image][:url_large].should == "/#{image.to_s.tableize}/large/missing.png"
-        subject.as_json[image][:url_medium].should == "/#{image.to_s.tableize}/medium/missing.png"
-        subject.as_json[image][:url_small].should == "/#{image.to_s.tableize}/small/missing.png"
-      end
+    it "should have the image path" do
+      image = "perk_#{subject.id}_image"
+      subject.as_json[image][:url_original].should == "/images/original/missing.png"
+      subject.as_json[image][:url_large].should == "/images/large/missing.png"
+      subject.as_json[image][:url_medium].should == "/images/medium/missing.png"
+      subject.as_json[image][:url_small].should == "/images/small/missing.png"
     end
   end
   

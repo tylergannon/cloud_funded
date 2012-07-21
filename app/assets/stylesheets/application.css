@@ -19,6 +19,7 @@
  *= require application.css
  *= require articles.css.scss
  *= require attachments.css.scss
+ *= require perks.css.scss
  *= require comments.css.scss
  *= require facebook_actions.css.scss
  *= require feedbacks.css.scss

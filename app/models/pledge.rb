@@ -1,11 +1,13 @@
 class Pledge < ActiveRecord::Base  
-  attr_accessible :amount, :investor, :project, :public, :post_to_fb, :public_viewable, :public_amount
+  attr_accessible :amount, :investor, :project, :public, :post_to_fb, :public_viewable, :public_amount, :perk_id
   belongs_to :investor, class_name: 'Member'
   belongs_to :project
+  belongs_to :perk
   
   validates :investor, presence: true
   validates :project, presence: true
   validates :amount, presence: true, numericality: true
+  validates :perk, presence: true
   
   default_value_for :public_viewable, true
   default_value_for :public_amount, true
