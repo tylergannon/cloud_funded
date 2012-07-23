@@ -15,22 +15,28 @@ describe Project do
   it {should validate_presence_of(:start_date)}
   it {should validate_presence_of(:end_date)}
   
+  describe "when the project goes to the previewing state" do
+    before :each do
+      subject.preview!
+    end
+    it {should validate_presence_of(:tagline)}
+  end
   
   describe "callbacks" do
     subject {FactoryGirl.create :project}
     it {should have(3).perks}
   end
   
-  describe "#published" do
-    it "should be false by default" do
-      Project.new.published.should === false
+  describe "#workflow" do
+    it "should start out new" do
+      Project.new.should be_new
     end
-  end
-  
-  it "should not allow setting published value" do
-    expect {
-      subject.update_attributes published: true
-    }.to raise_error
+
+    it "should not allow setting workflow_state value" do
+      expect {
+        subject.update_attributes workflow_state: :live
+      }.to raise_error
+    end
   end
   
   describe "#start_date" do
@@ -97,7 +103,7 @@ describe Project do
     end
 
     describe "when I do not own the project" do
-      it {should be_able_to(:read,FactoryGirl.create( :project, published: true))}
+      it {should be_able_to(:read,FactoryGirl.create( :live_project, workflow_state: :live))}
       it {should_not be_able_to(:read,FactoryGirl.create( :project))}
       it {should_not be_able_to(:edit,FactoryGirl.create( :project))}
       it {should_not be_able_to(:destroy,FactoryGirl.create( :project))}

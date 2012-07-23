@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+puts "I'm going to create the admin member."
+Member.where(email: 'transactions@cloudfunded.com').destroy_all
+cf = Member.new email: 'transactions@cloudfunded.com', password: 'onthebooks1', password_confirmation: 'onthebooks1'
+cf.admin = true
+cf.first_name = 'CloudFunded'
+cf.last_name = 'Admin'
+cf.skip_confirmation!
+cf.save!

@@ -23,7 +23,7 @@ class Ability
     
     #everyone can see projects
     can :read, Pledge
-    can :read, Project, published: true
+    can :read, Project, live?: true
     can :read, Projects::Perk do |perk|
       perk.project.published?
     end

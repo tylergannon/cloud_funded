@@ -1,8 +1,10 @@
 .my_acount
   %h1 My Account
+  != render :partial => 'dwolla_account'
+  
   You have #{number_to_currency(@member.account_balance)} in your account.
   = link_to 'Get Some More.', new_account_fund_path
-
+  
   .transaction_history
     %h2 Transaction History
     %table

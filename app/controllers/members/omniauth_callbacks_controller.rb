@@ -7,9 +7,12 @@ class Members::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     current_member.attributes= {dwolla_id: dwolla_info.uid, 
                                 dwolla_auth_token: dwolla_info.credentials.token}
     current_member.save!
-    next_location = session[:return_after_dwolla_login]
-    session[:return_after_dwolla_login] = nil
-    redirect_to next_location || root_path
+    puts "*" * 80
+    puts session[:last_request]
+    @next_location = session[:last_request] || root_path
+
+    render 'dwolla', layout: false
+    # redirect_to next_location || root_path
   end
   
   def facebook

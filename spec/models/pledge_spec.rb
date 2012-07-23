@@ -10,6 +10,18 @@ describe Pledge do
   it {should belong_to(:project)}
   it {should belong_to(:investor)}
   it {should belong_to(:perk)}
+  
+  describe "#validations" do
+    describe "when the pledge amount is less than the perk" do
+      before(:each){subject.perk.price = (subject.amount + 1)}
+      it {should_not be_valid}
+    end
+    describe "when the pledge amount is >= the perk price" do
+      before(:each){subject.perk.price = (subject.amount - 1)}
+      it {should be_valid}
+    end
+  end
+    
   it {should validate_presence_of(:perk)}
   it "should have post_to_fb == true" do
     subject.post_to_fb.should be_true

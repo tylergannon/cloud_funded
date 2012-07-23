@@ -14,8 +14,9 @@
 //= require jquery_ujs
 //= require jquery-ui-1.8.21.custom.min
 //= require 3rd_party/jquery.html5_upload.js
-//= require header
+//= require accounts
 //= require articles
+//= require header
 //= require pledges
 //= require profiles
 //= require projects

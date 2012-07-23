@@ -42,9 +42,10 @@ group :test do
   gem "capybara-webkit"
   gem 'cucumber-rails'
   gem 'database_cleaner'
-  gem 'poltergeist'
+  gem 'poltergeist', git: 'https://github.com/jonleighton/poltergeist.git'
   gem 'vcr'
   gem 'webmock'
+  gem 'syntax'
 end
 
 group :deployment do

@@ -8,7 +8,7 @@ en:
       project:
         post_to_fb: "Let my FB friends know"
       pledge:
-        amount: "Yes!  I can give:"
+        amount: "Contribution Amount"
         post_to_fb: "Let my FB friends know"
         public_viewable: "Let CloudFunded members see I've contributed"
         public_amount: "Make my contribution amount public"

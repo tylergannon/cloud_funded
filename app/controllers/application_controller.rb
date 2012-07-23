@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
   respond_to :html
   protect_from_forgery
   
+  # before_filter do |controller|
+  #   session[:last_request] = request.path if request.format == 'text/html'
+  # end
+  
   def current_ability
     @current_ability ||= Ability.new(current_member)
   end

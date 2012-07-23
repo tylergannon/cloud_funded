@@ -8,21 +8,21 @@ FactoryGirl.define do
   end
     
   factory :project do
-    
     name
     description "MyText"
     financial_goal 9.99
     address "1931 Coolio Ave, Oakland, Ca"
+    tagline 'A Nice Project That Does Stuff'
+    short_description "Pretty Cool"
     lat 123.45
     long 12.12
     website_url 'http://www.google.com/'
     association :owner, factory: :member
     association :category, factory: :projects_category
 
-    # image {fixture_file_upload('spec/support/onebit_33.png')}
   end
   
-  factory :completed_project, parent: :project do
+  factory :live_project, parent: :project do
     lat 38.455489
     long -122.755758
     street_number "2131"
@@ -31,8 +31,8 @@ FactoryGirl.define do
     city "Santa Rosa"
     county "Sonoma"
     state "CA"
-    
-    
-    
+    postal_code "95403"
+    image {fixture_file_upload('spec/support/onebit_33.png')}
+    workflow_state 'live'
   end
 end

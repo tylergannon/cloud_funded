@@ -13,7 +13,7 @@ class Member < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :facebook_id, :profile_pic, :profile,
-                  :first_name, :last_name, :admin, :fb_token, :dwolla_id, :dwolla_auth_token
+                  :first_name, :last_name, :fb_token, :dwolla_id, :dwolla_auth_token
   
   def full_name
     "#{first_name} #{last_name}"

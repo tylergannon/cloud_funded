@@ -1,6 +1,6 @@
 .perk[perk]{data: {price: perk.price, name: perk.name}}
   %h3.name= perk.name
   .price= number_to_currency(perk.price)
-  .selector= radio_button_tag 'project[perk_id]', perk.id
+  .selector= radio_button_tag 'pledge[perk_id]', perk.id
   .image= image_tag perk.image.url(:large)
   .description= perk.description

@@ -14,7 +14,8 @@
         = f.label :amount
         = f.text_field :amount
         = f.submit
-      = render @project.perks
+      .perks
+        = render @project.perks
       .field
         = f.label :post_to_fb
         = f.check_box :post_to_fb
