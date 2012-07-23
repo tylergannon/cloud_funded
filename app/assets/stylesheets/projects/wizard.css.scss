@@ -2,6 +2,7 @@ $project-basics-width: 560px;
 $project-basics-padding: 15px;
 
 .project_wizard {
+  background: #fff;
   width: $project-basics-width;
   padding: 15px;
   margin-left: 170px;
@@ -141,15 +142,35 @@ $project-basics-padding: 15px;
 
   
   a {
-    text-align: center;
-    width: 130px;
-    height: 60px;
-    background-color: none;
-    color: white;
-    font-size: 16px;
-    line-height: 26px;
-    display: table-cell;
-  }
+	width: auto;
+	background: #43adda;
+	border: 1px solid #1E728C;
+	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	color: white;
+	cursor: pointer;
+	display: inline-block;
+	font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 1;
+	margin: 0;
+	outline: none;
+	padding: 10px 20px 11px;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	-webkit-transition: background-color 0.15s ease-in-out;
+	-moz-transition: background-color 0.15s ease-in-out;
+	-o-transition: background-color 0.15s ease-in-out;
+	transition: background-color 0.15s ease-in-out;
+	}
+	a:hover {
+	background: #053458;
+	color: #f4f4f4;
+	
+	}
 }
 
 

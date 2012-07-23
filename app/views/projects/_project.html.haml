@@ -6,4 +6,4 @@
   .projecteaser= image_tag project.image.url(:medium), width: '300px'
   .progress{'data-percent-complete' => project.percent_complete}
   %h3 #{number_to_currency(project.amount_pledged)} raised.  
-  %b #{link_to 'Make a pledge now!', new_project_pledge_path(project)}
+  .button1.small.yellow #{link_to 'Make a pledge now!', new_project_pledge_path(project)}
