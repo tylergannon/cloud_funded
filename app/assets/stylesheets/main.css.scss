@@ -91,19 +91,6 @@ hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px
 
 /* HEADER ---------------------- */
 
-#header
-{
-  @include header-style;
-  padding: 0;
-  margin-top: -15px;
-//  position:relative;
-  background: url(/assets/images/headertop.png) 0 0 repeat-x;
-
-}
-#headerwrap
-{
-  @include headerwrap-style;
-}
 
 #footer
 {
@@ -113,100 +100,10 @@ hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px
 {
   @include headerwrap-style;
 }
-.page_title
-{
-	background: image-url('images/logo.png') 0 0 no-repeat;
-	clear: none;
-	cursor: pointer;
-	float: left;
-	height: 104px;
-	margin: -5px 100px 0px 20px;
-	width: 250px;
-}
-
-.page_title:hover
-{
-	background: image-url('images/logo_over.png') 0 0 no-repeat;
-	clear: none;
-	cursor: pointer;
-	float: left;
-	height: 104px;
-	margin: -5px 100px 0px 20px;
-	width: 250px;
-}
 
 
-#header ul {
-  list-style:none;
-}
-.header_link
-{
-	float: left;
-	margin-top: 20px;
-  &:hover ul{
-    left: 410px;
-    width: 240px;
-    padding-right: 0px;
-   
-  }
 
-	ul {
-  	background:#03628a; /* Adding a background makes the dropdown work properly in IE7+. Make this as close to your page's background as possible (i.e. white page == white background). */
-//    background:rgba(255,255,255,0); /* But! Let's make the background fully transparent where we can, we don't actually want to see it if we can help it... */
-  	list-style:none;
-  	position:absolute;
-  	padding-left: 0;
-  	padding-right: 0;
-  	border-left: 1px solid #ccc;
-  	border-right: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-
-  	
-  	top: 55px;
-    left:-9999px; /* Hide off-screen when not needed (this is more accessible than display:none;) */
-	  z-index: 100;
-  	li {
-  	  width: 100%;
-  	  @include header-link;
-  	  padding-left: 0;
-  	  margin-left: 0;
-  	  
-  	  a {
-  	    width: 240px;
-    	display: inline-block;
-    	border: 0px;
-    	-webkit-transition: background-color 0.15s ease-in-out;
-		-moz-transition: background-color 0.15s ease-in-out;
-		-o-transition: background-color 0.15s ease-in-out;
-		transition: background-color 0.15s ease-in-out;
-    	
-  	  }
-  	  a:hover {
-  	  background: #ddd;
-  	  text-shadow: none;
-  	  width: 240px;
-  	  }
-  	}
-	}
-
-}
-
-
-.header_link a
-{
-  @include header-link;
-  @include header-link-border;
-  padding: 16px 18px 16px 18px;
-  color: #fff;
-text-shadow: -1px -1px #0a3c67;
-  }
-.header_link a:hover, .header_link a:active
-{
-	color: #053660;
-	text-shadow: 1px 1px #098ec6;
-	cursor: pointer;
-	}
-
+.header_link 
 .my_controls {
   position: relative;
   
@@ -217,29 +114,9 @@ text-shadow: -1px -1px #0a3c67;
   &:hover {
     cursor: pointer;
   }
-  .member_id {
-  width:auto;
-    @include header-link;
-    @include header-link-border;
-    img {
-      border-radius: 5px;
-      height: 30px;
-      width: 30px;
-    }
-    a, ul {
-    border:none;
-    }
-   
-    margin-top: 15px;
-    padding: 0;
-    span.member_name {
-      padding: 0px;
-      margin: 0;
-      margin-left: 4px;
-      vertical-align: 9px;
-    }
-  }
-  .control_list {
+  
+  
+    .control_list {
     display: none;
 
     ul {
@@ -275,11 +152,6 @@ text-shadow: -1px -1px #0a3c67;
 	padding: 20px;
 	max-width: 1060px;
 	min-height: 650px;
-//	box-shadow: 2px 2px 3px #333;
-//	moz-box-shadow: 2px 2px 3px #333;
-//	webkit-box-shadow: 2px 2px 3px #333;
-//	border: 1px solid #ccc;
-
 	a {
   	color: #0099ff;
   	font-weight: bold;

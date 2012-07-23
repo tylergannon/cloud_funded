@@ -1,3 +1,4 @@
+
 @mixin header-style {
   background: url(/assets/images/top.png) 0 0 repeat-x;
 	height: 62px;
@@ -13,8 +14,7 @@
 
 @mixin header-link-border {
 	padding: 15px 10px 10px 10px;
-  border-right: 1px solid #fbd595;
-  border-left: 1px solid #e6ad54;
+border: none;
 }
 
 @mixin header-link {
@@ -25,75 +25,115 @@
 	text-decoration: none;
 }
 
+
+
 #header {
   @include header-style;
   position:relative;
+  background: url(/assets/images/headertop.png) 0 0 repeat-x;
+    padding: 0;
+  margin-top: -15px;
+
 
   .page_title {
-  	background: image-url('logo.png') 0 0 no-repeat;
-  	clear: none;
-  	cursor: pointer;
-  	float: left;
-  	height: 104px;
-  	margin: -20px 0px 0px 20px;
-  //  overflow: hidden;
-  //  text-indent: -300px;
-  	width: 250px;
+	background: image-url('images/logo.png') 0 0 no-repeat;
+	clear: none;
+	cursor: pointer;
+	float: left;
+	height: 104px;
+	margin: -5px 100px 0px 20px;
+	width: 250px;
   }
+  
+  
+  .page_title:hover
+{
+	background: image-url('images/logo_over.png') 0 0 no-repeat;
+	clear: none;
+	cursor: pointer;
+	float: left;
+	height: 104px;
+	margin: -5px 100px 0px 20px;
+	width: 250px;
+}
+
+  
 
   ul {
     list-style:none;
-  //  overflow: hidden;
 
     .header_link
     {
-      display: table-cell;
-    //  float: left;
+		display: table-cell;
+  		float: left;
     	margin-top: 20px;
-      &:hover {
-        ul.project_categories {
-          left: 312px;
-          width: 240px;
-          padding-right: 0px;
-        }
-        ul.my_controls {
-          left: 812px;
-          width: 240px;
-          padding-right: 0px;
-        }
-      }
-      &.member_id {
-//        position: relative;
-        div {
-          display: inline;
-        }
-        img {
-          width: 25px;
-          position: relative;
-          top: 5px;
-        }
-      }
-      
+    	
+    	&:hover ul{
+    		left: 410px;
+    		width: 240px;
+    		padding-right: 0px;
+    		}
+    	
+      	&:hover {
+        	ul.project_categories {
+          	left: 312px;
+          	width: 240px;
+          	padding-right: 0px;
+        	}
+        	ul.my_controls {
+          	left: 812px;
+          	width: 240px;
+          	padding-right: 0px;
+        	}
+	
+     
+     .member_id {
+  		width:auto;
+    	@include header-link;
+    	@include header-link-border;
+    	margin-top: 15px;
+    	padding: 0;
+
+    	span.member_name {
+      		padding: 0px;
+      		margin: 0;
+      		margin-left: 4px;
+      		vertical-align: 9px;
+    	}
+    	img {
+      		border-radius: 5px;
+      		height: 30px;
+      		width: 30px;
+    	}
+    	a, ul {
+    		border:none;
+    	}
+  }
+}     
     
       a {
-        @include header-link;
-        @include header-link-border;
-        padding: 16px 18px 16px 18px;
-        color: #333;
-        text-shadow: 1px 1px  #ffffcc;
-        border-left: 2px solid #ffffcc; 
-        border-right: 1px solid #e6bb76;
-        line-height: 6px;
-      }    
+         	@include header-link;
+  			@include header-link-border;
+  			padding: 16px 18px 16px 18px;
+  			color: #fff;
+			text-shadow: -1px -1px #0a3c67;      }    
       a:hover, a:active {
-      	color: #333;
-      	text-shadow: -1px -1px  #ffffcc;
-      	background-image: -moz-radial-gradient(#fddea1, #f2bd6b);
-        background-image: -webkit-radial-gradient(#fddea1, #f2bd6b);
-      }
+      		color: #053660;
+			text-shadow: 1px 1px #098ec6;
+			cursor: pointer;      }
     	ul {
-      	background:#f1c579; /* Adding a background makes the dropdown work properly in IE7+. Make this as close to your page's background as possible (i.e. white page == white background). */
-    //    background:rgba(255,255,255,0); /* But! Let's make the background fully transparent where we can, we don't actually want to see it if we can help it... */
+      	background:#03628a; /* Adding a background makes the dropdown work properly in IE7+. Make this as close to your page's background as possible (i.e. white page == white background). */
+//    background:rgba(255,255,255,0); /* But! Let's make the background fully transparent where we can, we don't actually want to see it if we can help it... */
+
+    
+        border-left: 1px solid #ccc;
+  		border-right: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+
+  		top: 55px;
+    	left:-9999px; /* Hide off-screen when not needed (this is more accessible than display:none;) */
+	 	z-index: 100;
+  
       	list-style:none;
       	position:absolute;
       	padding-left: 0;
@@ -102,30 +142,35 @@
       	z-index: 1000;
         left:-9999px; /* Hide off-screen when not needed (this is more accessible than display:none;) */
     	  width: 250px;
-      	li {
+      	li {     	  
       	  width: 100%;
       	  @include header-link;
       	  padding-left: 0;
       	  margin-left: 0;
     //      padding-top: 16px;
 
-      	  a {
-      	    width: 240px;
-        	display: inline-block;
-        	border: 0px;
-      	  }
-      	  a:hover {
-      	  background: #f4f4f4;
-      	  width: 220px;
-      	  padding-right: 0px;
-      	  }
-      	}
+      	   	  a {
+  	    		width: 240px;
+    			display: inline-block;
+    			border: 0px;
+    			-webkit-transition: background-color 0.15s ease-in-out;
+				-moz-transition: background-color 0.15s ease-in-out;
+				-o-transition: background-color 0.15s ease-in-out;
+				transition: background-color 0.15s ease-in-out;
+    			}
+  	  		a:hover {
+  	  			background: #ddd;
+  	  			text-shadow: none;
+  	  			width: 240px;
+  	  			}
+  	  		}
     	}
     }
   }
 }
 
-#headerwrap {
+#headerwrap
+{
   @include headerwrap-style;
 }
 
