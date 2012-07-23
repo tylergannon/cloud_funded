@@ -1,12 +1,4 @@
-<<<<<<< HEAD
 
-body {
-	background-image: -moz-radial-gradient(#ffffcc, #e6bb76);
-	background-image: -webkit-radial-gradient(#ffffcc, #e6bb76);
-	color: #333;
-	font: 13px/1.5 "helvetica neue",arial,helvetica,freesans,"liberation sans", sans-serif;
-	margin: 0px;
-=======
 @mixin header-style {
   background: url(/assets/images/top.png) 0 0 repeat-x;
 	height: 62px;
@@ -47,7 +39,6 @@ body {
 	-webkit-font-smoothing: antialiased; 
 	  background: url(/assets/images/grayish.png) 0 0 repeat;
 
->>>>>>> new theme
 }
 
 /* Links ---------------------- */
@@ -100,8 +91,6 @@ hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px
 
 /* HEADER ---------------------- */
 
-<<<<<<< HEAD
-=======
 #header
 {
   @include header-style;
@@ -279,7 +268,6 @@ text-shadow: -1px -1px #0a3c67;
   }
 }
 
->>>>>>> new theme
 .container {
 //	background: white;
 	margin: 10px auto;
@@ -467,13 +455,7 @@ input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hove
 	text-shadow: -1px 1px yellow;
 }
 
-<<<<<<< HEAD
-=======
 
-
-
-
->>>>>>> new theme
 .filter {
   background: url(/assets/images/top.png) 0 0 repeat-x;
 }
