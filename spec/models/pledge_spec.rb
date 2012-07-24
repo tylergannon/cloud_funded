@@ -21,6 +21,20 @@ describe Pledge do
       it {should be_valid}
     end
   end
+  
+  describe "abilities" do
+    before :each do
+      @member = FactoryGirl.create(:member)
+    end
+    subject {Ability.new(@member)}
+    describe "when I own the project" do
+      it {should be_able_to(:read,FactoryGirl.create( :pledge, project: FactoryGirl.create(:project)))}
+    end
+
+    describe "when it is my pledge" do
+      it {should be_able_to(:manage ,FactoryGirl.create( :pledge, investor: @member))}
+    end
+  end
     
   it {should validate_presence_of(:perk)}
   it "should have post_to_fb == true" do

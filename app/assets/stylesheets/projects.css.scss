@@ -6,7 +6,7 @@ $right-pane-width: 330px;
 
 .project_page {
   .dashboard {
-//    position: relative;
+    position: relative;
 
     .social {
       top: 0;
@@ -48,11 +48,11 @@ $right-pane-width: 330px;
           border-radius: 6px;
         }
       }
-//      position: absolute;
+      position: absolute;
       border: 1px dotted gray;
       background-color: white;
- //     top: 118px;
- //     left: 575px;
+      top: 141px;
+      left: 575px;
       width: $right-pane-width;
       
     }

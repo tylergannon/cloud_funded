@@ -25,15 +25,12 @@ border: none;
 	text-decoration: none;
 }
 
-
-
 #header {
   @include header-style;
   position:relative;
   background: url(/assets/images/headertop.png) 0 0 repeat-x;
   padding: 0;
   margin-top: -15px;
-
 
  .page_title {
 		background: image-url('images/logo.png') 0 0 no-repeat;
@@ -44,7 +41,6 @@ border: none;
 		margin: -5px 100px 0px 20px;
 		width: 250px;
   }
-  
   
   .page_title:hover {
 		background: image-url('images/logo_over.png') 0 0 no-repeat;

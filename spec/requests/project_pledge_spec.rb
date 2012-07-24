@@ -5,6 +5,7 @@ feature "Pledging For A Project" do
     sign_in_member
     @project = FactoryGirl.create :live_project
   end
+  
   describe "when I don't have a dwolla account", js: true do
     scenario "I should be able to submit my pledge and then sign up for dwolla." do
       visit project_path(@project)

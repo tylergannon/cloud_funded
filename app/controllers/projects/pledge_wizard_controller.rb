@@ -6,7 +6,7 @@ class Projects::PledgeWizardController < ApplicationController
   before_filter :authenticate_member!, :load_project
   
   def show
-    authorize! :edit, @project
+    authorize! :edit, @pledge
     render_wizard
   end
   
