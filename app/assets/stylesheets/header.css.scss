@@ -31,40 +31,36 @@ border: none;
   @include header-style;
   position:relative;
   background: url(/assets/images/headertop.png) 0 0 repeat-x;
-    padding: 0;
+  padding: 0;
   margin-top: -15px;
 
 
-  .page_title {
-	background: image-url('images/logo.png') 0 0 no-repeat;
-	clear: none;
-	cursor: pointer;
-	float: left;
-	height: 104px;
-	margin: -5px 100px 0px 20px;
-	width: 250px;
+ .page_title {
+		background: image-url('images/logo.png') 0 0 no-repeat;
+		clear: none;
+		cursor: pointer;
+		float: left;
+		height: 104px;
+		margin: -5px 100px 0px 20px;
+		width: 250px;
   }
   
   
-  .page_title:hover
-{
-	background: image-url('images/logo_over.png') 0 0 no-repeat;
-	clear: none;
-	cursor: pointer;
-	float: left;
-	height: 104px;
-	margin: -5px 100px 0px 20px;
-	width: 250px;
-}
+  .page_title:hover {
+		background: image-url('images/logo_over.png') 0 0 no-repeat;
+		clear: none;
+		cursor: pointer;
+		float: left;
+		height: 104px;
+		margin: -5px 100px 0px 20px;
+		width: 250px;
+	}
 
-  
+	ul {
+  	list-style:none;
 
-  ul {
-    list-style:none;
-
-    .header_link
-    {
-		display: table-cell;
+    .header_link {
+			display: table-cell;
   		float: left;
     	margin-top: 20px;
     	
@@ -74,13 +70,12 @@ border: none;
     		padding-right: 0px;
     		}
     	
-      	&:hover {
-        	ul.project_categories {
-          	left: 312px;
-          	width: 240px;
-          	padding-right: 0px;
-        	}
-
+      &:hover {
+      	ul.project_categories {
+        	left: 312px;
+          width: 240px;
+          padding-right: 0px;
+        }
 
      	.member_id {
   			width:auto;
@@ -88,74 +83,76 @@ border: none;
     		@include header-link-border;
     		margin-top: 15px;
     		padding: 0;
-
+    		
     		span.member_name {
-      			padding: 0px;
-      			margin: 0;
-      			margin-left: 4px;
-      			vertical-align: 9px;
+      		padding: 0px;
+      		margin: 0;
+      		margin-left: 4px;
+      		vertical-align: 9px;
     		}
     		img {
-      			border-radius: 5px;
-      			height: 30px;
-      			width: 30px;
-      			float: left;
+      		border-radius: 5px;
+      		height: 30px;
+      		width: 30px;
+      		float: left;
     		}
     		a, ul {
-    		border:none;
+    			border:none;
     		}
     		
     		.control_list {
-				display: none;
+					display: none;
 
     			ul {
-      				padding-top: 10px;
-      				list-style: none;
-      				padding-left: 30px;
-      				border: 1px solid #fff;
+      			padding-top: 10px;
+      			list-style: none;
+      			padding-left: 30px;
+      			border: 1px solid #fff;
    					border-radius: 3px;
      				background-color: #f4f4f4;
      	 			width: 160px;
     			}
+    			
     			li {
-      				@include header-link;
-      				a {
-        				width: 100%;
-        				font-size: 12px;
-        				color: #666;
-        				text-decoration: none;
-        				cursor: pointer;
-        				text-shadow: none;
-      				}
-      			height: 25px;
+      			@include header-link;
+      			a {
+        			width: 100%;
+        			font-size: 12px;
+        			color: #666;
+        			text-decoration: none;
+        			cursor: pointer;
+        			text-shadow: none;
+      			}
+      			
+      		height: 25px;
     			}
   			}
-
   		}
+  	}
     
-    }
-      a {
-         	@include header-link;
-  			@include header-link-border;
-  			padding: 16px 18px 16px 18px;
-  			color: #fff;
-			text-shadow: -1px -1px #0a3c67;      }    
-      a:hover, a:active {
-      		color: #053660;
+	a {
+    	@include header-link;
+  		@include header-link-border;
+  		padding: 16px 18px 16px 18px;
+  		color: #fff;
+			text-shadow: -1px -1px #0a3c67;
+		}    
+    
+    a:hover, a:active {
+    	color: #053660;
 			text-shadow: 1px 1px #098ec6;
-			cursor: pointer;      }
-    	ul {
-      	background:#03628a; /* Adding a background makes the dropdown work properly in IE7+. Make this as close to your page's background as possible (i.e. white page == white background). */
-//    background:rgba(255,255,255,0); /* But! Let's make the background fully transparent where we can, we don't actually want to see it if we can help it... */
-
+			cursor: pointer;
+		}
+  }  	
     
-        border-left: 1px solid #ccc;
-  		border-right: 1px solid #ccc;
-		border-bottom: 1px solid #ccc;
-
-  		top: 55px;
-    	left:-9999px; /* Hide off-screen when not needed (this is more accessible than display:none;) */
-	 	z-index: 100;
+    ul {
+      	background:#03628a;
+				border-left: 1px solid #ccc;
+  			border-right: 1px solid #ccc;
+				border-bottom: 1px solid #ccc;
+				top: 55px;
+    		left:-9999px; /* Hide off-screen when not needed (this is more accessible than display:none;) */
+	 			z-index: 100;
   
       	list-style:none;
       	position:absolute;
@@ -165,31 +162,33 @@ border: none;
       	z-index: 1000;
         left:-9999px; /* Hide off-screen when not needed (this is more accessible than display:none;) */
     	  width: 250px;
+      	
       	li {     	  
       	  width: 100%;
       	  @include header-link;
       	  padding-left: 0;
       	  margin-left: 0;
 
-      	   	  a {
+      	  a {
   	    		width: 240px;
-    			display: inline-block;
-    			border: 0px;
-    			-webkit-transition: background-color 0.15s ease-in-out;
-				-moz-transition: background-color 0.15s ease-in-out;
-				-o-transition: background-color 0.15s ease-in-out;
-				transition: background-color 0.15s ease-in-out;
+    				display: inline-block;
+    				border: 0px;
+    				-webkit-transition: background-color 0.15s ease-in-out;
+						-moz-transition: background-color 0.15s ease-in-out;
+						-o-transition: background-color 0.15s ease-in-out;
+						transition: background-color 0.15s ease-in-out;
     			}
+  	  		
   	  		a:hover {
   	  			background: #ddd;
   	  			text-shadow: none;
   	  			width: 240px;
-  	  			}
   	  		}
+  	  	}
     	}
     }
   }
-}
+
 
 
 #headerwrap
