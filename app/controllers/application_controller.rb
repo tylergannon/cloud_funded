@@ -3,9 +3,16 @@ class ApplicationController < ActionController::Base
   respond_to :html
   protect_from_forgery
   
-  # before_filter do |controller|
-  #   session[:last_request] = request.path if request.format == 'text/html'
-  # end
+  
+  
+  before_filter do |controller|
+    if request.format == 'text/html'
+      unless controller.kind_of?(Members::OmniauthCallbacksController) || 
+             controller.kind_of?(Members::RegistrationsController)
+        session[:last_request] = request.path 
+      end
+    end
+  end
   
   def current_ability
     @current_ability ||= Ability.new(current_member)
@@ -23,6 +30,11 @@ class ApplicationController < ActionController::Base
     else
       redirect_to new_member_session_path, :alert => exception.message
     end
+  end
+  
+  protected
+  def after_sign_in_path_for(resource)
+    session[:last_request] || root_path
   end
   
   private

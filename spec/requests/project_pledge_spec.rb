@@ -14,7 +14,9 @@ feature "Pledging For A Project" do
       fill_in 'pledge_amount', with: 1000
       choose "pledge_perk_id_#{@project.perks.first.id}"
       click_button 'Contribute!'
-      
+      within '#pay_for_pledge' do
+        page.should have_field
+      end
     end
   end
 end
