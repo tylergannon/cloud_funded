@@ -14,6 +14,12 @@ feature "Pledging For A Project" do
       fill_in 'pledge_amount', with: 1000
       choose "pledge_perk_id_#{@project.perks.first.id}"
       click_button 'Contribute!'
+      
+      puts page.body
+      sleep(9000)
+      current_path.should == new_project_pledge_path(@project, 'pay')
+      @member.pledge_for(@project).should be_pledged
+      
       within '#pay_for_pledge' do
         page.should have_field
       end

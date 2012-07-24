@@ -29,21 +29,6 @@ class Projects::PledgeWizardController < ApplicationController
     render_wizard(@pledge)
   end
   
-  def submit_fund_raise
-    @project.preview!
-    @project.fail_validation! unless ok = @project.valid?
-
-    respond_with @project do |format|
-      format.html {
-        if ok
-          render_wizard(@project)
-        else
-          render :fund_raise
-        end
-      }
-    end
-  end
-  
   def load_project
     @project = params[:project_id] ? 
                   Project.find(params[:project_id]) : 
