@@ -12,7 +12,7 @@ class Members::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @next_location = session[:last_request] || root_path
 
     render 'dwolla', layout: false
-    # redirect_to next_location || root_path
+    # redirect_to @next_location
   end
   
   def facebook

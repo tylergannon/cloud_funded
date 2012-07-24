@@ -26,6 +26,11 @@ class Member < ActiveRecord::Base
     @project_application ||= projects.where(published: false).first || projects.create!
   end
   
+  def pledge_for(project)
+    pledges = Pledge.where(project_id: project.id, investor_id: self.id)
+    pledges.empty? ? pledges.create! : pledges.first
+  end
+  
   validates :first_name, presence: true
   validates :last_name, presence: true
   # attr_accessible :title, :body

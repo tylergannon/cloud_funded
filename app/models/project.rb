@@ -19,7 +19,7 @@ class Project < ActiveRecord::Base
   belongs_to :category, class_name: 'Projects::Category'
   has_many :pledges
   has_many :articles
-  has_many :perks, class_name: 'Projects::Perk'
+  has_many :perks, class_name: 'Projects::Perk', dependent: :destroy
   
   accepts_nested_attributes_for :perks
   validates :start_date, presence: true

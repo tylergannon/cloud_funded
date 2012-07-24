@@ -7,13 +7,17 @@ class Pledge < ActiveRecord::Base
   
   validates :investor, presence: true
   validates :project, presence: true
-  validates :amount, presence: true, numericality: true
-  validates :perk, presence: true
+  validates :amount, presence: true, numericality: true, :if => lambda {|pledge| !pledge.new?}
+  validates :perk, presence: true, :if => lambda {|pledge| !pledge.new?}
   
   validate do |pledge|
     if perk && pledge.amount < perk.price
       pledge.errors.add :amount, "Pledge amount must be at least the price of the perk."
     end
+  end
+  
+  after_create do |pledge|
+    pledge.created!
   end
   
   default_value_for :public_viewable, true
@@ -34,10 +38,19 @@ class Pledge < ActiveRecord::Base
   
   workflow do
     state :new do
+      event :created, transitions_to: :not_pledged
+    end
+    
+    state :not_pledged do
+      event :pledge, transitions_to: :pledged
+    end
+    
+    state :pledged do
       event :send_payment_request, transitions_to: :setting_up_dwolla
       event :member_pay, transitions_to: :payment_received
       event :cancel, transitions_to: :cancelled
     end
+    
     state :setting_up_dwolla do
       event :finished_dwolla_setup, transitions_to: :payment_received
       event :cancel, transitions_to: :cancelled

@@ -20,7 +20,7 @@ GIT
 
 GIT
   remote: https://github.com/tylergannon/dwolla.git
-  revision: a0e0ae656aa9a9f95a4a35e04259a6410f4a43ae
+  revision: 3ece39087d7504c6608ab7f0beaf0b2eeb86a551
   specs:
     dwolla (0.0.15)
       faraday (= 0.7.6)

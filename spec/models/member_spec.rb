@@ -1,6 +1,34 @@
 require 'spec_helper'
 
 describe Member do
+  describe "#pledge_for" do
+    before :each do
+      @project = FactoryGirl.create :project
+      @member = FactoryGirl.create :member
+    end
+    describe "when I am just starting to pledge to the project" do
+      subject {@member.pledge_for(@project)}
+      it "should create a new pledge" do
+        expect {
+          subject
+        }.to change(Pledge, :count).by(1)
+      end
+      it {should be_not_pledged}
+    end
+    describe "when I have already pledged to the project" do
+      subject {@member.pledge_for(@project)}
+      before(:each) do
+        @pledge = subject
+      end
+      it {should be == @pledge}
+      it "should not create a new pledge object" do
+        expect {
+          @member.pledge_for(@project)
+        }.to change(Pledge, :count).by(0)
+      end
+    end
+  end
+  
   describe "#project_application" do
     before :each do
       @member = FactoryGirl.create :member

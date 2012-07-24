@@ -27,6 +27,7 @@ CloudFunded::Application.routes.draw do
       resources :categories
     end
     resources :projects
+    resources :test
   end
 
   resource :my_account, as: 'account', only: [:show, :edit, :update], controller: 'accounts' do
@@ -84,7 +85,9 @@ CloudFunded::Application.routes.draw do
   
   match '/:id(.:format)' => 'projects#show', as: :project, :constraints => { :format => /(json|html)/ }, via: 'get'
   match '/:id(.:format)' => 'projects#update', as: :project, :constraints => { :format => /(json|html)/ }, via: 'post'
-  match '/:project_id/fund_it' => 'pledges#new', as: :new_project_pledge
+
+  match '/:project_id/pledge(/:id)' => 'projects/pledge_wizard#show', as: :new_project_pledge, via: 'get'
+  match '/:project_id/pledge(/:id)' => 'projects/pledge_wizard#update', via: 'put'
 
   match '/projects/:project_id/perks/:id(.:format)' => 'projects/perks#update', via: :post
 

@@ -8,6 +8,19 @@ popupCenter = (url, width, height, name) ->
   window.open url, name, "menubar=no,toolbar=no,status=no,width=" + width + ",height=" + height + ",toolbar=no,left=" + left + ",top=" + top
 
 $ ->
+  $('#dwolla').dialog
+    autoOpen:      false
+    closeOnEscape: true
+    draggable:     false
+    modal:         true
+    resizable:     false
+    height:        650
+    width:         300
+
+  $(".ui-dialog-titlebar").hide()   
+  $('#link_dwolla').click ->
+    $('#dwolla').dialog 'open'
+  
   $("a.popup").click (e) ->
     popupCenter $(this).attr("href"), $(this).attr("data-width"), $(this).attr("data-height"), "authPopup"
     e.stopPropagation()
