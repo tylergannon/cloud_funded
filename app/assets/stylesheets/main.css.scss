@@ -103,47 +103,6 @@ hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px
 
 
 
-.header_link 
-.my_controls {
-  position: relative;
-  
-  & > div {
-    float: right;
-   margin-right: 60px;
-  }
-  &:hover {
-    cursor: pointer;
-  }
-  
-  
-    .control_list {
-    display: none;
-
-    ul {
-      padding-top: 10px;
-      list-style: none;
-      padding-left: 30px;
-      
-      border: 1px solid #fff;
-   
-      border-radius: 3px;
-      background-color: #f4f4f4;
-      width: 160px;
-    }
-    li {
-      @include header-link;
-      a {
-        width: 100%;
-        font-size: 12px;
-        color: #666;
-        text-decoration: none;
-        cursor: pointer;
-        text-shadow: none;
-      }
-      height: 25px;
-    }
-  }
-}
 
 .container {
 //	background: white;
