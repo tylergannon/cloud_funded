@@ -5,5 +5,5 @@
       = comment.member.full_name
   .destroy_comment
     - if can? :destroy, comment
-      = link_to 'Remove Comment', article_comment_path(@article, comment), method: :delete, remote: true, confirm: 'Really delete this comment?'
+      = link_to 'Remove Comment', article_comment_path(@article, comment), method: :delete, remote: true, data: {confirm: 'Really delete this comment?'}
   .comment_body= comment.body

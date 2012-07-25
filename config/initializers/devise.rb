@@ -215,10 +215,11 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
+
   require "omniauth-facebook"
   config.omniauth :facebook, ENV['facebook_app_id'], ENV['facebook_secret_key'],
                   scope: 'email,publish_actions'
-                  
+
   require 'omniauth-dwolla'
-  config.omniauth :dwolla, ENV['DWOLLA_KEY'], ENV['DWOLLA_SECRET'], :scope => 'accountinfofull|send'                  
+  config.omniauth :dwolla, ENV['DWOLLA_KEY'], ENV['DWOLLA_SECRET'], :scope => 'accountinfofull|send|contacts|funding'
 end

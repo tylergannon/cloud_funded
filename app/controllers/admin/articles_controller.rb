@@ -10,6 +10,7 @@ class Admin::ArticlesController < ApplicationController
   # GET /articles/1.xml
   def show
     @article = Article.find(params[:id])
+    authorize! :read, @article
     respond_with(@article)
   end
 
@@ -56,12 +57,8 @@ class Admin::ArticlesController < ApplicationController
   def update
     @article = Article.find(params[:id])
     authorize! :edit, @article
-    puts "get it????"
-    puts params[:article].inspect
     @article.update_attributes!(params[:article])
     
-    puts "********" * 10
-    puts @article.errors.inspect
     respond_with(@article) do |format|
       format.html {
         redirect_to admin_article_path(@article)

@@ -1,0 +1,7 @@
+%h1 Updates for #{@project.name}
+
+- @articles.each do |article|
+  .project_update
+    %h1.title= article.title
+    .date_published Posted at #{article.published_at.strftime('%Y-%m-%d')}
+    .body= article.body

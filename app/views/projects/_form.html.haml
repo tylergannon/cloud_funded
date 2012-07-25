@@ -11,6 +11,9 @@
       = f.label :name, "What's it called?"
       = f.text_field :name
     .field
+      = f.label :category_id, "What kind of business / project is it?"
+      = f.collection_select :category_id, Projects::Category.all, :id, :name, prompt: true
+    .field
       = f.label :short_description do
         Brief description
       = f.text_area :short_description, rows: 4, maxlength: 250

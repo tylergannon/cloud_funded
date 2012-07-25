@@ -1,37 +1,14 @@
-- if @project.owner == current_member
-  %h3 This is your project.
-  %p= link_to 'Click to make changes', edit_project_path(@project)
-
-= render @project
-
-- unless @project.youtube_url.blank?
-  .youtube
-    %iframe{width: '560', height: '315', frameborder: '0', allowfullscreen: true, src: @project.youtube_url}
-
-.already_pledged
-  %h1 Who's already pledged:
-  - @project.pledges.map(&:investor).each do |investor|
-    = link_to investor.profile do
-      = image_tag investor.profile_pic
-  = link_to 'Show all pledges', project_pledges_path(@project)
-  - if @project.pledges.empty?
-    %h2 No one has pledged yet. Be the first!
-  - if @my_pledge
-    %h2 You have already pledged support.
-    %h3 Share this project with your friends!
-  - else
-    = link_to new_project_pledge_path(@project) do
-      %h2 Pledge Your Support!
-
-.clear
-
-%span
-  .share
-    %a{name: 'fb_share'}
-  .like
-    .fb-like{'data-href' => project_url(@project), 'data-send' => true, 'data-width' => '450', 'data-show-faces' => true}
-%span= render partial: 'layouts/plus_one'
-%span= render partial: 'layouts/linkedin_share'
-%span= render partial: 'layouts/tweet'
-
-= render partial: 'open_graph_data'  
+.project_page
+  = render partial: 'dashboard'
+  .details
+    #tabs
+      %ul
+        %li= link_to 'Info', '#info'
+        %li= link_to 'Updates', '#updates'
+        %li= link_to 'Pledges', '#pledges'
+      #info
+        <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+      #updates
+        <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+      #pledges
+        <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>

@@ -2,6 +2,8 @@
 
 FactoryGirl.define do
   factory :comment do
-    body "MyText"
+    association :article
+    association :member
+    body "MyText that is long enough to pass vlaidation"
   end
 end

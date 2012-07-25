@@ -1,0 +1,15 @@
+%h1 Nice.  Good Call.  Let's get you some scrill.
+
+- unless @member.dwolla_auth_token
+  %h2 First you need to connect your Dwolla Account.
+  = link_to 'Click Here', member_omniauth_authorize_path(:dwolla)
+- else
+  = form_tag account_funds_path do
+    .field
+      = label_tag 'How Much?'
+      = text_field_tag 'amount'
+    .field
+      = label_tag 'Your Dwolla Pin'
+      = text_field_tag 'pin'
+    .field
+      = submit_tag 'Get Some!'

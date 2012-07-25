@@ -1,4 +1,4 @@
-- if @project
+- if @project && @project.published?
   = render partial: 'projects/open_graph_data'
 - else
   %link{rel: 'image_src', href: '/assets/logo.png'}

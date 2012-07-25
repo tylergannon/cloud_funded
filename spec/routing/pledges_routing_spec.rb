@@ -14,15 +14,11 @@ describe PledgesController do
     end
 
     it "routes to #new" do
-      get("/projects/nice/pledges/new").should route_to("pledges#new", :project_id => "nice")
+      get("/projects/nice/pledge").should route_to("pledges#new", :project_id => "nice")
     end
 
     it "routes to #show" do
       get("/projects/nice/pledges/1").should route_to("pledges#show", :id => "1", :project_id => "nice")
-    end
-
-    it "routes to #edit" do
-      get("/projects/nice/pledges/1/edit").should route_to("pledges#edit", :id => "1", :project_id => "nice")
     end
 
     it "routes to #create" do

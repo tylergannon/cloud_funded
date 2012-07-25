@@ -8,11 +8,11 @@ module CloudFunded
       #      -F 'project=http://demo.cloudfunded.com/projects/nourish-cafe' \
       #         'https://graph.facebook.com/me/cloudfunded:create'
       def self.create_project(project_url, access_token)
-        action(:create, project_url, access_token)
+        action(:launch, project_url, access_token)
       end
       
       def self.pledge_to_support(project_url, access_token)
-        action(:pledge_to_support, project_url, access_token)
+        action(:pledge, project_url, access_token)
       end
 
       def self.remove_action(id, access_token)
@@ -21,7 +21,12 @@ module CloudFunded
       
       private
       def self.action(action, project_url, access_token)
-        response = self.post("/me/cloudfunded:#{action}", query: {project: project_url, access_token: access_token})
+        Rails.logger.debug "Going to post to to Facebook.  Action: #{action}, Project: #{project_url}"
+        response = self.post("/me/#{AppConfig.opengraph_namespace}:#{action}", query: {project: project_url, access_token: access_token})
+        Rails.logger.debug response.inspect
+        if response["id"].nil?
+          Rails.logger.error "Unable to post to facebook: #{response.inspect}"
+        end
         response["id"]
       end
     end

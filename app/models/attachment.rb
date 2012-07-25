@@ -5,10 +5,13 @@ class Attachment < ActiveRecord::Base
   has_attached_file :image,
     :styles => { :medium => "300x200", :thumb => "100x100" },
     :storage => :s3,
-    :bucket => 'cloud_funded',
+    :s3_protocol => '',
+    :bucket => ENV['AMAZON_S3_BUCKET'],
     :s3_credentials => {
       :access_key_id => 'AKIAIDEFW5P6AQLRXWGQ',
       :secret_access_key => '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'
     }  
+    
+  validates :image, attachment_presence: true
 
 end

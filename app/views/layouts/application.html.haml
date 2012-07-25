@@ -1,28 +1,54 @@
 !!!
 %html{xmlns: 'http://www.w3.org/1999/xhtml', dir: 'ltr', lang: 'en-US', 'xmlns:fb' => 'https://www.facebook.com/2008/fbml'}
-  %head{prefix: 'og: http://ogp.me/ns# cloudfunded: http://ogp.me/ns/apps/cloudfunded#'}
+  %head{prefix: "og: http://ogp.me/ns# #{AppConfig.opengraph_namespace}: http://ogp.me/ns/apps/#{AppConfig.opengraph_namespace}#"}
     %title= @title || 'CloudFunded: a finance platform for local and sustainable business.'
+    %link{ :href => 'http://fonts.googleapis.com/css?family=Merriweather', :media => 'screen', :rel => 'stylesheet', :type => 'text/css'}
     = render partial: 'layouts/open_graph_data'
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
     = yield :head
   %body
-    = render partial: 'layouts/facebook_sdk'
+    = render partial: 'layouts/facebook_sdk' unless Rails.env.test?
     #header
       #headerwrap
         .page_title
           %h1
-      .header_link= link_to 'Explore the projects', projects_path
-      .header_link= link_to 'Submit your project', new_project_path
-      .header_link= link_to 'Blog', blog_path
-      .header_link= link_to 'About Us', page_path('about')
-      .header_link= link_to 'Feedback', submit_feedback_path(about_page: request.path)
-      
-      - unless member_signed_in?
-        .header_link= link_to 'Sign in', new_member_session_path
-      - else
-        = render partial: 'layouts/my_controls'
+        %ul
+          %li.header_link
+            = link_to 'Invest', projects_path
+            %ul.project_categories
+              - Projects::Category.all.each do |category|
+                %li= link_to category.name, projects_category_path(category)
+          %li.header_link= link_to 'Get Funded', get_funded_path
+          %li.header_link= link_to 'Blog', blog_path
+          %li.header_link= link_to 'About Us', page_path('about')      
+          - unless member_signed_in?
+            %li.header_link
+              = link_to 'Sign in', new_member_session_path
+              = link_to member_omniauth_authorize_path(:facebook) do
+                = image_tag 'facebook-icon.png', width: '30px'
+          - else
+            %li.header_link.member_id
+              = link_to account_path do
+                %div= image_tag current_member.profile_pic
+                %div.member_name= current_member.full_name
+              %ul.my_controls
+                %li= link_to 'My Profile', profile_path(current_member)
+                %li= link_to 'My Account', account_path
+                %li= link_to 'My Projects', my_projects_path
+                %li= link_to 'Feedback', submit_feedback_path(about_page: request.path)
+                %li= link_to 'Change Password', account_settings_path
+                %li= link_to 'Sign out', destroy_member_session_path, method: 'delete'
+                - if current_member.admin
+                  %li Admin Controls
+                  %li= link_to 'Members', admin_members_path
+                  %li= link_to 'Pages', admin_pages_path
+                  %li= link_to 'Projects', admin_projects_path
+                  %li= link_to 'Feedback', admin_feedbacks_path
+                  %li= link_to 'Blog Articles', admin_articles_path
+                  %li= link_to 'Categories', admin_projects_categories_path
+            
         
     .container
       - if flash[:notice]
@@ -32,3 +58,4 @@
       = yield
     #footer
       #footerwrap
+      #this_is_a_test

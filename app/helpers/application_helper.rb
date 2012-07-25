@@ -1,6 +1,6 @@
 module ApplicationHelper
   def facebook_app_id
-    '336588343062874'
+    ENV['facebook_app_id']
   end
   
   def element_id(model)

@@ -20,7 +20,7 @@ class PledgesController < ApplicationController
 
   def new
     @pledge = Pledge.where(project_id: @project.id, investor_id: current_member.id).first ||
-              @project.pledges.build(investor: current_member)
+              Pledge.new
     respond_with @project, @pledge do |format|
       format.html {
         if @pledge.new_record?

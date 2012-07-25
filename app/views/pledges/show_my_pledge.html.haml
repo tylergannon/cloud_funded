@@ -14,6 +14,6 @@
 
 = link_to 'Change Your Pledge', edit_project_my_pledge_path(@project)
 \|
-= link_to 'Remove Your Pledge', project_pledge_path(@project, @pledge), method: :delete, confirm: 'Are you sure?'
+= link_to 'Remove Your Pledge', project_pledge_path(@project, @pledge), method: :delete, data: {confirm: 'Are you sure?'}
 %h4= link_to 'Back to Project', project_path(@project)
 

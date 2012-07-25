@@ -3,9 +3,9 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.xml
   def index
+    @title = "Official CloudFunded Blog"
     @articles = Article.where published: true
     respond_with(@articles) do |format|
-
     end
   end
 
@@ -13,6 +13,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1.xml
   def show
     @article = Article.find(params[:id])
+    @title = @article.title
     respond_with(@article)
   end
 end

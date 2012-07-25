@@ -1,0 +1,12 @@
+- if current_member.dwolla_id.blank?
+  %p You have not linked a dwolla account to CloudFunded.
+  -# .dwolla_connect=link_to 'Link Dwolla Account', member_omniauth_authorize_path(:dwolla), :class => "popup", :"data-width" => 600, :"data-height" => 540
+  .dwolla_connect=link_to 'Link Dwolla Account', '#', id: 'link_dwolla'
+  
+  %iframe#dwolla{src: member_omniauth_authorize_path(:dwolla)}
+- else
+  %p 
+    You have linked to Dwolla account #{current_member.dwolla_id}.
+    = link_to 'Unlink Your Account', account_path(member: {dwolla_id: nil, dwolla_auth_token: nil}), method: :put, data: {confirm: 'Are you sure you want to unlink your Dwolla account?'}
+
+

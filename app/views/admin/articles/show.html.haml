@@ -1,12 +1,12 @@
 %p#notice= notice
 
-.article#article_container{'data-save-url' => mercury_update_admin_article_path(@article)}
-  %h1#article_title.mercury-region{'data-type' => 'editable'}= @article.title
+.article#article_container.mercury_container{data: {'save-url' => mercury_update_admin_article_path(@article)}}
+  %h1#article_title.mercury-region{editable}= @article.title
   .article_header= "Published #{published_at(@article)} by #{@article.author.full_name}"
-  .body#article_body.mercury-region{'data-type' => 'editable'}!= @article.body
+  .body#article_body.mercury-region{editable}!= @article.body
 
   Description / Abstract (one line)
-  .description#article_description.mercury-region{data: {type: :markupable}}!= @article.description
+  .description#article_description.mercury-region{data: {mercury: :markdown}}!= @article.description
 
 - if @article.published
   %h3= link_to 'Article is Published.', @article
@@ -15,16 +15,10 @@
   = form_for [:admin, @article] do |f|
     = hidden_field_tag "article[published]", true
     = f.submit "Publish Article"
+= link_to 'Edit Article', '/editor' + admin_article_path(@article), id: 'edit_link'
 = link_to 'Go To Articles Management', admin_articles_path
 = link_to 'Edit Attached Images', admin_article_attachments_path(@article)
 
 = content_for :head do
   = javascript_include_tag 'mercury'
-  :javascript
-    function onMercuryReady() {
-      Mercury.saveUrl = $('#article_container').data('save-url');
-      $('form.edit_article').hide()
-    }
-    top.window.Mercury.on('saved', function(){
-      window.parent.parent.window.location = window.parent.parent.window.location.href.replace(/\/editor\//i, '/');
-    });
+  = javascript_include_tag 'mercury_overrides'

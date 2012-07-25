@@ -10,6 +10,8 @@
   
 
 = content_for :head do
+  %link{rel => "stylesheet", href => "http://fonts.googleapis.com/css?family=Merriweather"}
+
   %meta{property: 'fb:app_id', content: facebook_app_id}
   %meta{property: 'og:type', content: 'article'}
   %meta{property: 'og:title', content: @page.title}
@@ -17,4 +19,9 @@
     %meta{property: 'og:image', content: attachment.image.url(:original, false)}
   %meta{property: 'og:description', content: @page.description}
   %meta{property: 'og:url', content: page_url(@page)}
+  
+
+  
+
+
 

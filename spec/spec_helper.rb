@@ -9,16 +9,31 @@ Spork.prefork do
   require 'rspec/rails'
   require 'rspec/autorun'
   require 'vcr'
+  require "paperclip/matchers"
+  require "cancan/matchers"
+  require 'capybara'
+  require 'capybara/poltergeist'
+  require 'timecop'
+  
+  # Capybara.register_driver :poltergeist do |app|
+  #   Capybara::Poltergeist::Driver.new app, debug: true, raise_errors: false
+  # end
+  # Capybara.javascript_driver = :poltergeist
 
+  # Capybara.javascript_driver = :webkit
+      
+  `ulimit -n 1000`  # Avoids "too many open file descriptors" error
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
   VCR.configure do |c|
+    c.ignore_localhost = true
+    c.ignore_hosts 's3.amazonaws.com'
     c.cassette_library_dir = "#{::Rails.root}/spec/vcr_fixtures"
     c.hook_into :webmock # or :fakeweb
   end
-
+  
   RSpec.configure do |config|
     # ## Mock Framework
     #
@@ -29,12 +44,12 @@ Spork.prefork do
     # config.mock_with :rr
 
     # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-    config.fixture_path = "#{::Rails.root}/spec/fixtures"
+    # config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
     # If you're not using ActiveRecord, or you'd prefer not to run each of your
     # examples within a transaction, remove the following line or assign false
     # instead of true.
-    config.use_transactional_fixtures = true
+    config.use_transactional_fixtures = false
 
     # If true, the base class of anonymous controllers will be inferred
     # automatically. This will be the default behavior in future versions of
@@ -42,6 +57,12 @@ Spork.prefork do
     config.infer_base_class_for_anonymous_controllers = false
 
     OmniAuth.config.test_mode = true
+
+    DatabaseCleaner.strategy = :truncation
+    
+    config.before(:each) do
+      DatabaseCleaner.clean
+    end
     
     config.before(:each, :type => :controller) do
       request.env["devise.mapping"] = Devise.mappings[:member]
@@ -50,6 +71,14 @@ Spork.prefork do
     config.include Devise::TestHelpers, :type => :controller
     config.include Devise::TestHelpers, :type => :view
     config.include Devise::TestHelpers, :type => :helper
+    config.include Paperclip::Shoulda::Matchers
+    config.include AdminMemberSignInHelper, type: :controller
+    config.include RequestSpecs::SignInMemberHelper, type: :request
+    config.include RequestSpecs::ProjectRegistrationHelpers, type: :request
+    config.include MemberSignInHelper, type: :controller
+    config.include AttachmentStubHelper, type: :controller
+    config.include AttachmentStubHelper, type: :model
+    config.include AttachmentStubHelper, type: :routing
   end
   
   VCR.configure do |c|
@@ -59,6 +88,10 @@ Spork.prefork do
 end
 
 Spork.each_run do
-  # This code will be run each time you run your specs.
-
+  FactoryGirl.reload
+  CloudFunded::Application.reload_routes!
+  Dir[Rails.root.join('spec/support/**/*.rb')].each{|f| load f}
+  %w(cloud_funded extensions mercury).each do |dir|
+    Dir[Rails.root.join("lib/#{dir}/**/*.rb")].each{|f| load f}
+  end
 end

@@ -2,13 +2,24 @@ require "spec_helper"
 
 describe ProjectsController do
   describe "routing" do
+    it 'routes to #show / default format' do
+      get('/10').should route_to('projects#show', id: '10')
+    end
+    
+    it 'routes to #show / default format' do
+      get('/10.json').should route_to('projects#show', id: '10', format: 'json')
+    end
 
+    it 'routes to #show / default format' do
+      post('/10.json').should route_to('projects#update', id: '10', format: 'json')
+    end
+    
     it "routes to #index" do
       get("/projects").should route_to("projects#index")
     end
 
     it "routes to #new" do
-      get("/projects/new").should route_to("projects#new")
+      get("/projects/fund_yours").should route_to("projects#new")
     end
 
     it "routes to #show" do

@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
     if params[:show] == "mine"
       @projects = current_member.projects
     else
-      @projects = Project.all
+      @projects = Project.where(workflow_state: 'live')
     end
     
     respond_to do |format|
@@ -30,6 +30,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
+    authorize! :read, @project
     @title = "#{@project.name} on CloudFunded"
     if member_signed_in?
       @my_pledge = Pledge.where(investor_id: current_member.id, project_id: @project.id).first
@@ -62,7 +63,12 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
-    @project = Project.find(params[:id])
+    if params[:id]
+      @project = Project.find(params[:id])
+    else
+      @project = current_member.project_application
+    end
+    
     authorize! :edit, @project
   end
 
@@ -75,15 +81,24 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.valid?
-        if @project.post_to_fb
-          @project.fb_post_id = CloudFunded::Facebook::Actions.create_project project_url(@project), current_member.fb_token          
+        # if @project.post_to_fb
+        #   @project.fb_post_id = CloudFunded::Facebook::Actions.create_project project_url(@project), current_member.fb_token          
+        # end
+        begin
+          ProjectsMailer.new_project(@project).deliver
+        rescue Exception => e
+          puts "Error sending email"
+          puts e
+          puts e.backtrace.join("\n")
         end
-        ProjectsMailer.new_project(@project).deliver
+        
         @project.save!
         format.html { redirect_to project_wizard_path(@project), notice: 'Congratulations!  Your project is listed.  Now you can share it with others.' }
         format.json { render json: @project, status: :created, location: @project }
       else
-        format.html { render action: "new" }
+        format.html { 
+          render action: "new" 
+        }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
@@ -92,17 +107,23 @@ class ProjectsController < ApplicationController
   # PUT /projects/1
   # PUT /projects/1.json
   def update
-    @project = Project.find(params[:id])
-    authorize! :edit, @project
+    begin
+      @project = Project.find(params[:id])
+      authorize! :edit, @project
 
-    respond_to do |format|
-      if @project.update_attributes(params[:project])
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @project.update_attributes(params[:project])
+          format.html { redirect_to @project, notice: 'Project was successfully updated.' }
+          format.json { render json: @project.as_json }
+        else
+          puts @project.errors.inspect
+          format.html { render action: "edit" }
+          format.json { render json: @project.errors, status: :unprocessable_entity }
+        end
       end
+    rescue Exception => e
+      puts e
+      puts e.backtrace.join("\n")
     end
   end
 

@@ -1,10 +1,9 @@
-.project.rounded.shadow{data: {'project-path' => project_path(project), fb_post_id: project.fb_post_id}}
- 
-  %h2= project.name
-  = image_tag project.image.url(:medium), width: '300px'
-  .description= project.short_description
-  .website_link
-    = link_to project.website_url.shorten(36), project.website_url if project.website_url
-  .progress{'data-percent-complete' => project.percent_complete}
-  %h3 #{number_to_currency(project.amount_pledged)} raised.  
-  %b #{link_to 'Make a pledge now!', new_project_pledge_path(project)}
+%li
+  .project.shadow{data: {'project-path' => project_path(project), fb_post_id: project.fb_post_id}}
+    %h2= project.name
+    .description= project.tagline
+    .website_link= link_to project.website_url.shorten(36), project.website_url if project.website_url
+    .projecteaser= image_tag project.image.url(:medium), width: '300px'
+    .progress{'data-percent-complete' => project.percent_complete}
+    %h3 #{number_to_currency(project.amount_pledged)} raised.  
+    .button1.small.yellow #{link_to 'Make a pledge now!', new_project_pledge_path(project)}

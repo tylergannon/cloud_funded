@@ -1,0 +1,7 @@
+.project_categories
+  %h1 Listing Projects By Category
+  - @categories.each do |category|
+    .project_category
+      %h2= link_to category.name, projects_category_path(category)
+      = render partial: 'projects/project', collection: category.projects
+        

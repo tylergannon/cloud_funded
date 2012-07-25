@@ -3,8 +3,8 @@
 FactoryGirl.define do
   factory :feedback do
     subject "MyString"
-    body "MyText"
-    member_id 1
+    body "MyText that is long enough to pass validation"
     about_page "MyString"
+    association :member
   end
 end

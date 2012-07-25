@@ -1,0 +1,12 @@
+.pay[@pledge]
+  %h1 CloudFunded uses Dwolla for receiving payments.
+  .selections
+    .have_a_dwolla_account
+      = radio_button_tag 'choose_payment_method', 'have_a_dwolla_account', false, id: 'have_a_dwolla_account'
+      = label_tag 'have_a_dwolla_account', 'I have a Dwolla account.'
+    .new_dwolla_account
+      = radio_button_tag 'choose_payment_method', 'new_dwolla_account', true, id: 'new_dwolla_account'
+      = label_tag 'new_dwolla_account', 'I\'d like to sign up for Dwolla.'
+    .use_paypal
+      = radio_button_tag 'choose_payment_method', 'use_paypal', true, id: 'use_paypal'
+      = label_tag 'use_paypal', 'I\'d rather use my credit card right now.'

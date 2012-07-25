@@ -9,6 +9,7 @@ class Ability
         can :read, Project, owner_id: member.id
       
         can :create, Project
+        can :manage, Projects::Perk, project: {owner_id: member.id}
         can :create, Feedback
         can :edit, Project, owner_id: member.id
         can :create, Pledge
@@ -22,9 +23,18 @@ class Ability
     
     #everyone can see projects
     can :read, Pledge
-    can :read, Project, active: true
+    can :read, Project, live?: true
+    can :read, Projects::Perk do |perk|
+      perk.project.published?
+    end
     can :read, Member
-    can :read, Article
+    can :manage, Article do |article|
+      article.project &&
+        article.project.owner.id == member.id
+    end
+    can :read, Article do |article|
+      article.published
+    end
     
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
   end

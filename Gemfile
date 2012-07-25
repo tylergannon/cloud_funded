@@ -2,42 +2,51 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.6'
 
-gem 'pg'
-gem 'jquery-rails'
-gem 'haml-rails'
+gem 'aws-sdk'
+gem 'cancan'
+gem 'default_value_for'
 gem 'devise', '2.1'
+gem 'devise-encryptable'
+# gem 'dwolla', path: '/Users/tyler/src/dev/dwolla'
+gem 'dwolla', git: 'https://github.com/tylergannon/dwolla.git'
+gem 'friendly_id'
+gem 'haml-rails'
+gem 'httparty'
+gem 'jquery-rails'
+gem 'mercury-rails', git: 'https://github.com/jejacks0n/mercury.git', ref: '169f50dd56be119980f006bb63e8e813be533479'
 gem 'omniauth-dwolla'
 gem 'omniauth-facebook'
-gem 'devise-encryptable'
-gem 'friendly_id'
-gem 'responders', '~> 0.9.1'
 gem 'paperclip'
-gem 'aws-sdk'
+gem 'pg'
 gem 'recaptcha', :require => 'recaptcha/rails'
-gem 'cancan'
-gem 'mercury-rails', git: 'https://github.com/jejacks0n/mercury.git'
-gem 'default_value_for'
-gem 'httparty'
+gem 'responders', '~> 0.9.1'
 gem 'wicked'
+gem 'workflow'
 
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
   gem 'jquery-ui-rails'
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'uglifier', '>= 1.0.3'
 end
 
 group :development, :test do
-  gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'spork', '1.0.0rc3'
   gem 'guard-spork'
+  gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'spork', '1.0.0rc3'
+  gem 'timecop'
 end
 
 group :test do
-  gem 'webmock'
+  gem "capybara-webkit"
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
+  gem 'poltergeist', git: 'https://github.com/jonleighton/poltergeist.git'
   gem 'vcr'
+  gem 'webmock'
+  gem 'syntax'
 end
 
 group :deployment do

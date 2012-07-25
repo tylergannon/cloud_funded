@@ -12,10 +12,15 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.tabs
-//= require jquery.ui.progressbar
-//= require header
+//= require jquery-ui-1.8.21.custom.min
+//= require 3rd_party/jquery.html5_upload.js
+//= require jquery.easing.1.3
+//= require jquery.bxSlider.min
+//= require accounts
 //= require articles
+//= require header
 //= require pledges
 //= require profiles
 //= require projects
+//= require projects/wizard
+//= require ui.spinner

@@ -3,6 +3,12 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
+  $('#tabs').tabs()
+  
+  $('ul#project_list').bxSlider
+    displaySlideQty: 3
+    moveSlideQty: 3
+  
   $('.project').each (idx, el) ->
     $el = $(el)
     $el.click ->
@@ -20,12 +26,12 @@ $ ->
       alert "Created project!: " + response.id
       
   askForSupport = ->
-    FB.api "/me/cloudfunded:create", "post",
+    FB.api "/me/#{AppConfig.opengraph_namespace}:create", "post",
       project: $('#project_url').attr('content'), 
       fbResponse
       
   createProject = ->
-    FB.api "/me/cloudfunded:create", "post",
+    FB.api "/me/#{AppConfig.opengraph_namespace}:create", "post",
       project: $('#project_url').attr('content'), 
       fbResponse
   
@@ -45,7 +51,8 @@ $ ->
   if $('#map_canvas').length > 0
     initialize()
     
-    
+firstLookup = true
+
 initialize = ->
   window.geocoder = new google.maps.Geocoder()
   latlng = new google.maps.LatLng(37.852437, -122.274392)
@@ -63,6 +70,8 @@ initialize = ->
   window.marker = undefined
   if $('#project_address').val().length > 0
     codeAddress()
+  else
+    createAnswerField()
 
 geocodeHandler = (results, status) ->
   if status is google.maps.GeocoderStatus.OK
@@ -73,22 +82,26 @@ geocodeHandler = (results, status) ->
       map: window.map
       position: results[0].geometry.location
     window.address = results[0]
-    $('#answer').html('Ahhh.  ' + getLocality(results[0]) + '.')
+
+    for address_component in address.address_components
+      do (address_component) ->
+        switch address_component.types[0]
+          when "administrative_area_level_1" then type = 'state'
+          when "administrative_area_level_2" then type = 'county'
+          when "locality"                    then type = 'city'
+          else type = address_component.types[0]
+        $('#project_' + type).val(address_component.short_name)
+    
     $('#project_address').val(results[0].formatted_address)
     $('#project_lat').val(results[0].geometry.location.lat())
     $('#project_long').val(results[0].geometry.location.lng())
+    $('#answer').html('Ahhh.  ' + $('#project_city').val() + '.') if $('#project_city').val()?
   else
     $('#answer').html('Hmmmm, couldn\'t look that up.' +  status)
+  createAnswerField()
 
-getLocality = (address) ->
-  component = switch address.types[0]
-    when "street_address" then 2
-    when "postal_code" then 1
-    when "locality" then 0
-    when "administrative_area_level_1" then 0
-    else 0
-  address.address_components[component].long_name
-
+createAnswerField = ->
+  $('#answer_wrapper').append('<div id="answer"></div>') unless $('#answer').length
 codeAddress = ->
   address = $("#project_address").val()
   window.geocoder.geocode

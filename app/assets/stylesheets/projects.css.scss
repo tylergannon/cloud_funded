@@ -1,48 +1,138 @@
 // Place all the styles related to the projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$fb-like-width: 300px;
+$right-pane-width: 330px;
+
+.project_page {
+  .dashboard {
+    position: relative;
+
+    .social {
+      top: 0;
+      .link {
+        position: absolute;
+      }
+      .pin-it {
+        left: $fb-like-width;
+      }
+      .twitter {
+        left: $fb-like-width + 45px;
+      }
+    }
+    
+    .right-pane {
+     position: absolute;
+     left: 575px;
+     top: 180px;
+      .fund_raising {
+        .progress {
+          margin-left: 20px;
+          margin-right: 20px;
+
+        }
+      }
+      .metrics {
+        height: 100px;
+        padding-left: 25px;
+        padding-right: 25px;
+        text-align: center;
+        
+        .metric {
+          height: 30px;
+          font-size: 24pt;
+        }
+      }
+      .back_it {
+        margin-top: 0;
+        padding: 4px;
+        padding-bottom: 0;
+        img {
+          border: 2px gray inset;
+          border-radius: 6px;
+        }
+      }
+      position: absolute;
+      border: 1px dotted gray;
+      background-color: white;
+      top: 141px;
+      left: 575px;
+      width: $right-pane-width;
+      
+    }
+  }
+  
+  .details {
+    position: relative;
+    top: 25px;
+    width: 560px;
+  }
+}
+
+#project_list {
+  width: 340px;
+}
 
 .project {
   cursor: pointer;
 	background: #f4f4f4;
 	border: 1px solid #ccc;
-	float: left;
-	height: 550px;
-	margin-right: 10px;
-	margin-bottom: 20px;
-	padding: 20px;
-	width: 300px;
+//  display: table-cell;
+	height: 420px;
+	margin: 5px;
+//  margin-right: 10px;
+//  margin-bottom: 20px;
+	padding: 0px;
+  h2 {
+  	width: 300px;
+    overflow: hidden;
+  }
+
+  img {
+    background: #FFA104;
+    background: -moz-linear-gradient(top, #043f64 0%, #0479aa 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#043f64), color-stop(100%,#0479aa));
+    background: -webkit-linear-gradient(top, #043f64 0%,#0479aa 100%);
+    background: -o-linear-gradient(top, #043f64 0%,#0479aa 100%);
+    background: -ms-linear-gradient(top, #043f64 0%,#0479aa 100%);
+    background: linear-gradient(top, #043f64 0%,#0479aa 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa104', endColorstr='#c06a00',GradientType=0 );
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.69);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.69);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.69);
+    border: 1px solid #08588a;
+    border-top: 1px solid #061e3a;
+  }
+	
 
   .website_link {
     padding-bottom: 6px;
+//    position: relative;
+//    top: 25px;
+//    width: 560px;
   }
-  .description {
-    height: 150px;
-  }
-  td {
-  	vertical-align: top;
-  }
-  p {
-  	font-size: 11px;
-  	line-height: 16px;
-  }
-  h2 {
-  	font-size: 18px;
-  }  
-  th {
-  	border: 1px solid red;
-  	font-size: 10px;
+  h2.tagline {
+    font-size: 18px;
+    font-weight: normal;
   }
 }
 
+
+
+
+
+
 .edit_project {
   form {
-    #answer {
+    #answer_wrapper {
       height: 24px;
     }
     #map_canvas {
-      width: 300px;
-      height: 200px;
+      width: 560px;
+      height: 310px;
+      margin-bottom: 15px;
+      border: 2px dotted gray;
+      border-radius: 5px;
     }
   }
 }
@@ -56,9 +146,7 @@
       }
     }
     span.details {
-      h1 {
-        display: inline-block;
-      }
+ 
       .goal {
         width: 300px;
         
@@ -68,27 +156,57 @@
 }
 
 
-.already_pledged {
 
-background: white;
-border-radius: 6px;
-khtml-border-radius: 6px;
-moz-border-radius: 6px;
-ms-border-radius: 6px;
-o-border-radius: 6px;
-webkit-border-radius: 6px;
-padding: 20px;
-min-height: 550px;	
-	box-shadow: 2px 2px 3px #333;
-	moz-box-shadow: 2px 2px 3px #333;
-	webkit-box-shadow: 2px 2px 3px #333;
+
+.ui-progressbar {
+height: 1.2em;
+text-align: left;
+overflow: hidden;
+background-color: #ccc;
+background-image: none;
+border: 1px solid #fff;
+margin-top: 10px;
 
 }
 
+.name {
+ h1 {
+ text-align: left;
+ padding-left: 0px;
+ text-indent: 0px;
+ }
 
-.project_listing h1 {
-letter-spacing: -1px;
-font-size: 36px;
-color: #fff;
-text-shadow: -1px -1px #996633;
+}
+
+.project_category {
+	.project {
+	width: 300px;
+	float: left;
+	border: 1px solid #ccc;
+	margin-right: 20px;
+	clear: both;
+	background: white;
+		h2 {
+		font-size: 20px;
+		padding: 10px 0 0 20px;
+		}
+		.description {
+		font-size: 12px;
+		line-height: 16px;
+		padding: 0px 20px;
+		margin: 0px 0px 10px 0px;
+		cursor: pointer;
+		}
+		h2:hover {
+		color: #d94277;
+		cursor: pointer;
+		}
+		h3 {
+		font-size: 16px;
+		padding: 0px 20px;
+		}
+		.button1 {
+		
+		margin: 0px 20px 20px 20px;}
+	}
 }

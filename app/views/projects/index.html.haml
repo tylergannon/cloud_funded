@@ -1,10 +1,12 @@
 .project_listing
   %h1 Make the projects you believe in happen!
+  %h3.gold.button= link_to 'Find Investments', projects_categories_path
 
-  = render @projects
+  %ul#project_list
+    = render @projects
 
 .clear
 %br/
 %br/
-= link_to new_project_path do
-  %h3 Start Funding Your Own Project!
+= link_to get_funded_path do 
+  %h3.green.button Start Funding Your Own Project!
