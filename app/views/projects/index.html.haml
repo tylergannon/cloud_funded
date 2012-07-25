@@ -2,7 +2,8 @@
   %h1 Make the projects you believe in happen!
   %h3.gold.button= link_to 'Find Investments', projects_categories_path
 
-  = render @projects
+  %ul#project_list
+    = render @projects
 
 .clear
 %br/

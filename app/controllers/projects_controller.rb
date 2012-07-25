@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
     if params[:show] == "mine"
       @projects = current_member.projects
     else
-      @projects = Project.where(published: true)
+      @projects = Project.where(workflow_state: 'live')
     end
     
     respond_to do |format|

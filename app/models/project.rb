@@ -17,8 +17,8 @@ class Project < ActiveRecord::Base
   
   belongs_to :owner, class_name: 'Member'
   belongs_to :category, class_name: 'Projects::Category'
-  has_many :pledges
-  has_many :articles
+  has_many :pledges, dependent: :destroy
+  has_many :articles, dependent: :destroy
   has_many :perks, class_name: 'Projects::Perk', dependent: :destroy
   
   accepts_nested_attributes_for :perks

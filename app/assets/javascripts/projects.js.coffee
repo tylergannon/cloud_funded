@@ -5,6 +5,10 @@
 $ ->
   $('#tabs').tabs()
   
+  $('ul#project_list').bxSlider
+    displaySlideQty: 3
+    moveSlideQty: 3
+  
   $('.project').each (idx, el) ->
     $el = $(el)
     $el.click ->
