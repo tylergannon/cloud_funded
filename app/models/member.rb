@@ -2,7 +2,7 @@ class Member < ActiveRecord::Base
   extend FriendlyId
   friendly_id :full_name, use: :slugged
   
-  has_many :projects, foreign_key: :owner_id
+  has_many :projects, foreign_key: :owner_id, dependent: :destroy
   has_many :transactions
   
   # Include default devise modules. Others available are:
