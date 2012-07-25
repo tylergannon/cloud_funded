@@ -1,7 +1,7 @@
 
 @mixin header-style {
   background: url(/assets/images/top.png) 0 0 repeat-x;
-	height: 62px;
+	height: 70px;
 	margin: 0px 0px;
 	padding: 0px;
 	width: 100%;
@@ -31,7 +31,82 @@ border: none;
   background: url(/assets/images/headertop.png) 0 0 repeat-x;
   padding: 0;
   margin-top: -15px;
+  
+	li {
+width: auto;
+	height: 30px;
+	
+	}
+  .member_id {
+    @include header-link;
+    @include header-link-border;
+    margin-top: 0px;
+    padding: 0;
+    
+    a {
+    
+    	
+    	div {
+    		display: table-cell;
+    		margin: 0px;
+    		padding: 0px;
 
+    	}
+    }
+    	
+		span.member_name {
+      padding: 0px;
+      margin: 0;
+      margin-left: 10px;
+      vertical-align: 9px;
+    }
+    		
+    img {
+				
+      border-radius: 5px;
+      height: 30px;
+      width: 30px;
+      margin-top: 0px;
+    }
+    		
+    a, ul {
+    		border:none;
+    	}
+    		
+    .control_list {
+			display: none;
+
+    	ul {
+      	padding-top: 10px;
+      	list-style: none;
+      	padding-left: 30px;
+      	border: 1px solid #fff;
+   			border-radius: 3px;
+     		background-color: #f4f4f4;
+     	 	width: 160px;
+    	}
+    			
+    	li {
+      	@include header-link;
+	      height: 25px;
+	      		
+      	a {
+        	width: 100%;
+        	font-size: 12px;
+        	color: #666;
+        	text-decoration: none;
+        	cursor: pointer;
+        	text-shadow: none;
+      		}
+    		}
+  		}
+  	}
+
+<<<<<<< HEAD
+=======
+	
+
+>>>>>>> Small css fixes
  .page_title {
 		background: image-url('images/logo.png') 0 0 no-repeat;
 		clear: none;
@@ -57,8 +132,8 @@ border: none;
 
     .header_link {
 			display: table-cell;
-  		float: left;
-    	margin-top: 20px;
+    	padding-top: 20px;
+ 
 
       &:hover {
       	ul.project_categories {
@@ -75,10 +150,11 @@ border: none;
     	      
 			a {
 		  	@include header-link;
-				@include header-link-border;
-				padding: 16px 18px 16px 18px;
+				@include header-link-border;			
 				color: #fff;
-				text-shadow: -1px -1px #0a3c67;
+				text-shadow: -1px 1px #0a3c67;
+				
+			
 			}    
 		    
 		  a:hover, a:active {
@@ -134,61 +210,7 @@ border: none;
     		padding-right: 0px;
   		}
     	
-
-     	.member_id {
-  			width:auto;
-    		@include header-link;
-    		@include header-link-border;
-    		margin-top: 15px;
-    		padding: 0;
-    		
-    		span.member_name {
-      		padding: 0px;
-      		margin: 0;
-      		margin-left: 4px;
-      		vertical-align: 9px;
-    		}
-    		
-    		img {
-      		border-radius: 5px;
-      		height: 30px;
-      		width: 30px;
-      		float: left;
-    		}
-    		
-    		a, ul {
-    			border:none;
-    		}
-    		
-    		.control_list {
-					display: none;
-
-    			ul {
-      			padding-top: 10px;
-      			list-style: none;
-      			padding-left: 30px;
-      			border: 1px solid #fff;
-   					border-radius: 3px;
-     				background-color: #f4f4f4;
-     	 			width: 160px;
-    			}
-    			
-    			li {
-      			@include header-link;
-	      		height: 25px;
-	      		
-      			a {
-        			width: 100%;
-        			font-size: 12px;
-        			color: #666;
-        			text-decoration: none;
-        			cursor: pointer;
-        			text-shadow: none;
-      			}
-    			}
-  			}
-  		}
-  	}
+     	  	}
   }
 }
 

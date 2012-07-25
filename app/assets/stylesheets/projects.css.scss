@@ -11,7 +11,7 @@ $right-pane-width: 330px;
     .social {
       top: 0;
       .link {
- //       position: absolute;
+        position: absolute;
       }
       .pin-it {
         left: $fb-like-width;
@@ -22,10 +22,14 @@ $right-pane-width: 330px;
     }
     
     .right-pane {
+     position: absolute;
+     left: 575px;
+     top: 180px;
       .fund_raising {
         .progress {
           margin-left: 20px;
           margin-right: 20px;
+
         }
       }
       .metrics {
