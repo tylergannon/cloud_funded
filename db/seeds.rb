@@ -15,3 +15,9 @@ cf.first_name = 'CloudFunded'
 cf.last_name = 'Admin'
 cf.skip_confirmation!
 cf.save!
+
+
+
+3.times {
+  FactoryGirl.create :live_project, owner: cf
+}
