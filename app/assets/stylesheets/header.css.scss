@@ -13,7 +13,7 @@
 }
 
 @mixin header-link-border {
-	padding: 15px 10px 10px 10px;
+	padding: 0px 10px 10px 10px;
 border: none;
 }
 
@@ -23,6 +23,7 @@ border: none;
 	font-size: 16px;
 	font-weight: bold;
 	text-decoration: none;
+	
 }
 
 #header {
@@ -32,11 +33,7 @@ border: none;
   padding: 0;
   margin-top: -15px;
   
-	li {
-width: auto;
-	height: 30px;
-	
-	}
+
   .member_id {
     @include header-link;
     @include header-link-border;
@@ -44,7 +41,7 @@ width: auto;
     padding: 0;
     
     a {
-    
+    	display: block;
     	
     	div {
     		display: table-cell;
@@ -67,6 +64,10 @@ width: auto;
       height: 30px;
       width: 30px;
       margin-top: 0px;
+      position: relative;
+      top: 10px;
+      margin-right: 10px;
+      margin-left: 40px;
     }
     		
     a, ul {
@@ -89,6 +90,7 @@ width: auto;
     	li {
       	@include header-link;
 	      height: 25px;
+	      position: relative
 	      		
       	a {
         	width: 100%;
@@ -100,16 +102,11 @@ width: auto;
       		}
     		}
   		}
+  
+
   	}
 
-<<<<<<< HEAD
-=======
-
-
-
-
->>>>>>> Small css fixes
- .page_title {
+.page_title {
 		background: image-url('images/logo.png') 0 0 no-repeat;
 		clear: none;
 		cursor: pointer;
@@ -133,13 +130,14 @@ width: auto;
   	list-style:none;
 
     .header_link {
-			display: table-cell;
-    	padding-top: 20px;
+		display: table-cell;
+   		
  
 
       &:hover {
       	ul.project_categories {
-        	left: 312px;
+        	left: 412px;
+        	top: 45px;
           width: 240px;
           padding-right: 0px;
         }
@@ -149,48 +147,43 @@ width: auto;
           padding-right: 0px;
         }
       }
-    	      
-			a {
-		  	@include header-link;
-				@include header-link-border;			
-				color: #fff;
-				text-shadow: -1px 1px #0a3c67;
-				
-			
-			}    
-		    
-		  a:hover, a:active {
-		  	color: #053660;
-				text-shadow: 1px 1px #098ec6;
-				cursor: pointer;
-			}
+    
+    a {
+      @include header-link;
+      @include header-link-border;
+      color: #fff;
+      text-shadow: -1px 1px #0a3c67;
+    }
+    a:hover, a:active {
+      color: #053660;
+      text-shadow: 1px 1px #098ec6;
+      cursor: pointer;
+    }
+    
+     ul {
+      background:#03628a;
+      top: 90px;
+      left:-9999px; /* Hide off-screen when not needed (this is more accessible than display:none;) */
+      z-index: 100;
+      list-style:none;
+      position:absolute;
+      padding-left: 0;
+      padding-right: 0;
+      top: 44px;
+      z-index: 1000;
+      left:-9999px; /* Hide off-screen when not needed (this is more accessible than display:none;) */
+      width: 250px;
+		  
+    li {     	  
+      width: 100%;
+        @include header-link;
+        padding-left: 0;
+        margin-left: 0;
 		
-		  ul {
-		  	background:#03628a;
-				border-left: 1px solid #ccc;
-				border-right: 1px solid #ccc;
-				border-bottom: 1px solid #ccc;
-				top: 55px;
-				left:-9999px; /* Hide off-screen when not needed (this is more accessible than display:none;) */
-					z-index: 100;
-		
-		  	list-style:none;
-		  	position:absolute;
-		  	padding-left: 0;
-		  	padding-right: 0;
-		  	top: 44px;
-		  	z-index: 1000;
-		    left:-9999px; /* Hide off-screen when not needed (this is more accessible than display:none;) */
-			  width: 250px;
-		  	
-		  	li {     	  
-		  	  width: 100%;
-		  	  @include header-link;
-		  	  padding-left: 0;
-		  	  margin-left: 0;
-		
-		  	  a {
+      a{
 		    		width: 240px;
+		    		padding: 12px;
+		    		font-size: 14px;
 						display: inline-block;
 						border: 0px;
 						-webkit-transition: background-color 0.15s ease-in-out;
