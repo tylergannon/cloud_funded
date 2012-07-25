@@ -32,6 +32,6 @@
       .metric
         %span.large= (@project.end_date - Date.today).to_i
         %span.small Days Left
-    .back_it
+      .button1.yellow.large
       = link_to new_project_pledge_path(@project), id: 'new_pledge' do
-        = image_tag 'projects/back_it.jpg'
+        %span.small Invest
