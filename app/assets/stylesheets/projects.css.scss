@@ -65,18 +65,24 @@ $right-pane-width: 330px;
   }
 }
 
-
+#project_list {
+  width: 340px;
+}
 
 .project {
   cursor: pointer;
 	background: #f4f4f4;
 	border: 1px solid #ccc;
-	float: left;
+//  display: table-cell;
 	height: 420px;
-	margin-right: 10px;
-	margin-bottom: 20px;
+	margin: 5px;
+//  margin-right: 10px;
+//  margin-bottom: 20px;
 	padding: 0px;
-	width: 300px;
+  h2 {
+  	width: 300px;
+    overflow: hidden;
+  }
 
   img {
     background: #FFA104;
@@ -101,11 +107,9 @@ $right-pane-width: 330px;
 //    top: 25px;
 //    width: 560px;
   }
-  
   h2.tagline {
-  
-  font-size: 18px;
-  font-weight: normal;
+    font-size: 18px;
+    font-weight: normal;
   }
 }
 
