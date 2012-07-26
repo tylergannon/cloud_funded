@@ -16,7 +16,7 @@ feature "Signing up" do
     click_button 'Sign up'
     # puts page.source
     if page.has_selector? 'div#error_explanation'
-      puts find('div#error_explanation').text
+      # puts find('div#error_explanation').text
     end
     # <p class="alert">There was an error with the recaptcha code below. Please re-enter the code.</p>
     current_path.should == root_path

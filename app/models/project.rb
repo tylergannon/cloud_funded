@@ -17,13 +17,19 @@ class Project < ActiveRecord::Base
   
   belongs_to :owner, class_name: 'Member'
   belongs_to :category, class_name: 'Projects::Category'
-  has_many :pledges, dependent: :destroy
+  has_many :pledges, dependent: :destroy do
+    def paid
+      where(workflow_state: 'payment_received')
+    end
+  end
   has_many :articles, dependent: :destroy
   has_many :perks, class_name: 'Projects::Perk', dependent: :destroy
   
   accepts_nested_attributes_for :perks
   validates :start_date, presence: true
   validates :end_date, presence: true
+  
+  monetize :financial_goal_cents
   
   DEFAULT_FUNDRAISE_LENGTH = 100
   
@@ -61,13 +67,21 @@ class Project < ActiveRecord::Base
   validates_attachment_presence :image, :if => lambda {|project| !project.new?}
   validates :tagline, presence: true, :if => lambda {|project| !project.new?}
   validates :short_description, length: {maximum: 500}, :if => lambda {|project| !project.new?}
-  validates :financial_goal, numericality: {less_than_or_equal_to: 1000000}, :if => lambda {|project| !project.new?}
   validates :name, uniqueness: true, :if => lambda {|project| !project.new?}
   validates :owner, presence: true
   # validates :website_url, presence: true
   validates :address, presence: true, :if => lambda {|project| !project.new?}
   # validates :lat, presence: true
   # validates :long, presence: true
+  
+  validate do |project|
+    unless project.new?
+      if project.financial_goal_cents > 1000000 * 100
+        project.errors.add :financial_goal, "Should be less than 1 million."
+      end
+    end
+  end
+  
 
   workflow do
     state :new do
@@ -88,6 +102,10 @@ class Project < ActiveRecord::Base
     state :rejected
   end
   
+  def submitted?
+    live? || rejected? || being_reviewed?
+  end
+  
   def submit
     ProjectsMailer.new_project(self).deliver
     # MemberMailer.new_member(member).deliver
@@ -96,9 +114,9 @@ class Project < ActiveRecord::Base
   def youtube_url=(url)
     super(url.gsub(/watch\?v=/, 'embed/'))
   end
-  
+    
   def amount_pledged
-    pledges.map(&:amount).sum
+    pledges.paid.empty? ? Money.us_dollar(0) : pledges.paid.map(&:amount).sum
   end
   
   def amount_remaining
@@ -106,18 +124,18 @@ class Project < ActiveRecord::Base
   end
   
   def percent_complete
-    amount_pledged * 100 / financial_goal
+    ((amount_pledged / financial_goal) * 100).to_i
   end
   
   def financial_goal_string=(something)
     if something.kind_of?(String)
-      something = something.gsub(/\D/, '')
+      something = something.gsub(/\D/, '').to_i
     end
     self.financial_goal = something
   end
   
   def financial_goal_string
-    number_with_delimiter(financial_goal)
+    financial_goal.format(symbol: false, thousands_separator: ',', no_cents: true) if financial_goal
   end
   
   def days

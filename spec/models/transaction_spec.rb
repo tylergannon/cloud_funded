@@ -2,10 +2,9 @@ require 'spec_helper'
 
 describe Transaction do
   subject {FactoryGirl.create :transaction}
-  it {should validate_presence_of(:amount)}
+  it {should validate_presence_of(:amount_cents)}
   it {should validate_presence_of(:type)}
   it {should validate_presence_of(:member)}
-  it {should validate_numericality_of(:amount)}
   
   describe '#from_stripe_charge' do
     before :each do
@@ -13,7 +12,7 @@ describe Transaction do
     end
     subject {Transaction.from_stripe_charge(@charge)}
     it {should have_attribute(:transaction_id).with_value('ch_03oC2qDAUH6m2A')}
-    it {should have_attribute(:amount).with_value(100000)}
+    it {should have_attribute(:amount_cents).with_value(100000)}
     it {should have_attribute(:amount_refunded).with_value(0)}
     it {should have_attribute(:transaction_date).with_value(DateTime.parse("Thu, 26 Jul 2012 02:01:15"))}
     it {should have_attribute(:description).with_value('CloudFunded pledge to walmart')}

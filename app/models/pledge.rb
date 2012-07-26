@@ -4,12 +4,14 @@ class Pledge < ActiveRecord::Base
   belongs_to :investor, class_name: 'Member'
   belongs_to :project
   belongs_to :perk, class_name: 'Projects::Perk'
-  has_many :stripe_transactions, dependent: :destroy
+  has_many :transactions, dependent: :destroy
   
   validates :investor, presence: true
   validates :project, presence: true
   validates :amount, presence: true, numericality: true, :if => lambda {|pledge| !pledge.new?}
   validates :perk, presence: true, :if => lambda {|pledge| !pledge.new?}
+  
+  monetize :amount_cents
   
   validate do |pledge|
     if perk && pledge.amount < perk.price
@@ -46,7 +48,7 @@ class Pledge < ActiveRecord::Base
   end
   
   def latest_transaction
-    stripe_transactions.first
+    transactions.first
   end
   
   workflow do

@@ -16,40 +16,41 @@ describe Pledge do
   end
   
   it {should belong_to(:perk)}
-  it {should have_many(:stripe_transactions)}
+  it {should have_many(:transactions)}
   
   describe "when the latest transaction was a failed payment attempt" do
-    subject {
-      subj = FactoryGirl.create :pledge_pay_by_cc
-      subj.stripe_transactions << FactoryGirl.create( :stripe_transaction, paid: false)
-      subj
-    }
+    subject {FactoryGirl.create :pledge_pay_by_cc}
+    before :each do
+      FactoryGirl.create( :stripe_transaction, paid: false, pledge: subject, member: subject.investor)
+      subject.reload
+    end
+    it {should be_pay_by_cc}
     it {should_not be_valid}
   end
   
   describe "#latest_transaction" do
     it "should give the most recent stripe transaction" do
       pledge = FactoryGirl.create :pledge
-      pledge.stripe_transactions << FactoryGirl.create(:stripe_transaction, pledge: pledge)
-      pledge.stripe_transactions << transaction = FactoryGirl.create(:stripe_transaction, pledge: pledge)
+      pledge.transactions << FactoryGirl.create(:stripe_transaction, pledge: pledge)
+      pledge.transactions << transaction = FactoryGirl.create(:stripe_transaction, pledge: pledge)
       pledge.latest_transaction.should == transaction
     end
     describe "when there are no transactions" do
       it "should be nil" do
         pledge = FactoryGirl.create :pledge
-        pledge.stripe_transactions.should be_empty
-        pledge.latest_transaction.should be_nil
+        pledge.transactions.should be_empty
+        pledge.transaction.should be_nil
       end
     end
   end
   
   describe "#validations" do
     describe "when the pledge amount is less than the perk" do
-      before(:each){subject.perk.price = (subject.amount + 1)}
+      before(:each){subject.perk.price = (subject.amount.to_f + 1)}
       it {should_not be_valid}
     end
     describe "when the pledge amount is >= the perk price" do
-      before(:each){subject.perk.price = (subject.amount - 1)}
+      before(:each){subject.perk.price = (subject.amount.to_f - 1)}
       it {should be_valid}
     end
   end

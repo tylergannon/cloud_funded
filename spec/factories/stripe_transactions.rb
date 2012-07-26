@@ -15,5 +15,11 @@ FactoryGirl.define do
     object_type "MyString"
     refunded false
     association :pledge
+    
+    after(:create) do |transaction|
+      unless transaction.fee == (transaction.amount.to_f * 0.029 + 30).to_i
+        transaction.update_attributes fee: (transaction.amount.to_f * 0.029 + 30).to_i
+      end
+    end
   end
 end

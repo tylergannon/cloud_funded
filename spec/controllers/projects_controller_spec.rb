@@ -83,7 +83,7 @@ describe ProjectsController do
     end
     describe "Seeing My Pledge" do
       before :each do
-        @project_i_am_viewing = FactoryGirl.create :project
+        @project_i_am_viewing = FactoryGirl.create :live_project
       end
       describe "when I have not pledged support" do
         it "should have a nil value for @my_pledge" do

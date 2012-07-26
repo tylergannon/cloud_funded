@@ -82,7 +82,7 @@ feature "Registering a new project" do
     visit get_funded_path(id: 'fund_raise')
     fill_in 'Start date', with: '7/12/2012'
     fill_in 'End date', with: '10/22/2012'
-    click_button 'Save And Continue'
+    click_button 'Preview and Submit'
     visit get_funded_path(id: 'fund_raise')
   end
   

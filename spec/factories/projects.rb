@@ -10,7 +10,7 @@ FactoryGirl.define do
   factory :project do
     name
     description "."
-    financial_goal 9.99
+    financial_goal_cents 1000000
     address "1931 Coolio Ave, Oakland, Ca"
     tagline "It's coming to take you away."
     short_description "Pretty Cool"

@@ -24,15 +24,18 @@ class Projects::WizardController < ApplicationController
   
   def submit_preview
     if @project.valid?
-      @project.submit!
-      @project.accept!
+      @project.submit! unless @project.submitted?
+      @project.accept! unless @project.submitted?
     end
     render_wizard(@project)
   end
   
   def submit_fund_raise
-    @project.preview!
-    @project.fail_validation! unless ok = @project.valid?
+    @project.preview! unless @project.submitted?
+    @project.fail_validation! unless ok = @project.valid? || @project.submitted?
+    unless @project.valid?
+      puts @project.errors.inspect
+    end
 
     respond_with @project do |format|
       format.html {

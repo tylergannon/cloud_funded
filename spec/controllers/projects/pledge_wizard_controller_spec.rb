@@ -116,6 +116,9 @@ describe Projects::PledgeWizardController do
           }.to change(StripeTransaction, :count).by(1)
         end
       end
+      it "should have the correct pledge amount" do
+        assigns(:stripe_transaction).amount.should == @pledge.amount
+      end
       it "should load the correct pledge" do
         assigns(:pledge).should == @pledge
       end

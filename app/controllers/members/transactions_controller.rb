@@ -2,15 +2,14 @@ class Members::TransactionsController < ApplicationController
   before_filter :authenticate_member!, :load_member
   def new
     session[:return_after_dwolla_login] = new_account_fund_path
-    @transaction = DwollaTransaction.new
-    @member.transactions << @transaction
+    @transaction = DwollaTransaction.new(member: @member)
+    # @member.transactions << @transaction
   end
   
   def create
     amount = params[:amount].to_f
     pin = params[:pin].to_i
-    @transaction = DwollaTransaction.new
-    @member.transactions << @transaction
+    @transaction = DwollaTransaction.new(member: @member)
     
     begin
       user = Dwolla::User.me(@member.dwolla_auth_token)

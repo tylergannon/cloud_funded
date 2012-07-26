@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Projects::Perk do
-  subject {FactoryGirl.create :projects_perk}
+  subject {FactoryGirl.build :projects_perk}
   it {should belong_to(:project)}
   it {should have_attached_file(:image)}
   it {should have_many(:pledges)}

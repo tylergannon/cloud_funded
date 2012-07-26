@@ -69,12 +69,23 @@ describe Project do
     end
   end
   
+  describe "#pledges.paid" do
+    before :each do
+      FactoryGirl.create :pledge, project: subject
+      @pledge = FactoryGirl.create :pledge_paid_by_cc, project: subject
+      subject.reload
+    end
+    it "should have one completed pledge" do
+      subject.pledges.paid.should == [@pledge]
+    end
+  end
+  
   describe "#financial_goal_string" do
     before :each do
       subject.financial_goal_string = "$100,000"
     end
     it "should set the integer value by stripping non-numeric characters" do
-      subject.financial_goal.should == 100000
+      subject.financial_goal.should == Money.us_dollar(100000 * 100)
     end
     it "should return the value with delimiter" do
       subject.financial_goal_string.should == '100,000'

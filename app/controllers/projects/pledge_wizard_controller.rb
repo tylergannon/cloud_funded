@@ -39,8 +39,9 @@ class Projects::PledgeWizardController < ApplicationController
   def submit_pay_by_cc
     begin
       token = params[:stripe_token]
+      raise "blahblah" if token.blank?
       @charge = Stripe::Charge.create(
-        :amount => @pledge.amount * 100, # amount in cents, again
+        :amount => @pledge.amount_cents, # amount in cents, again
         :currency => "usd",
         :card => token,
         :description => "CloudFunded pledge to #{@project.name}"
@@ -55,8 +56,13 @@ class Projects::PledgeWizardController < ApplicationController
       render_wizard(@pledge)
     rescue Stripe::CardError => e
       flash[:payment_error] = e.message
-      puts e.inspect
+      # puts e.inspect
       render :pay_by_cc
+    rescue Exception => e
+      flash[:payment_error] = e.message
+      # puts e.inspect
+      render :pay_by_cc
+      
     end
   end
   

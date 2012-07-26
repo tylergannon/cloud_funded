@@ -1,11 +1,14 @@
 class Transaction < ActiveRecord::Base
-  attr_accessible :amount, :amount_refunded, :description, :disputed, :failure_message, :fee, :invoice, :object_type, :refunded, :transaction_id, :transaction_date, :member, :pledge, :paid
+  attr_accessible :amount, :amount_refunded, :description, :disputed, :failure_message, :fee, :invoice, :object_type, :refunded, :transaction_id, :transaction_date, :member, :pledge, :paid, :amount_cents, :amount_refunded_cents
   belongs_to :member
   belongs_to :pledge
   
   validates :member, presence: true
-  validates :amount, presence: true, numericality: true
+  validates :amount_cents, presence: true
   validates :type, presence: true
+  
+  monetize :amount_cents
+  monetize :amount_refunded_cents
   
   default_scope order('id DESC')
   
@@ -17,8 +20,8 @@ class Transaction < ActiveRecord::Base
   def self.from_stripe_charge(charge)
     trans = Transaction.new \
       transaction_id: charge.id,
-      amount: charge.amount,
-      amount_refunded: charge.amount_refunded,
+      amount_cents: charge.amount,
+      amount_refunded_cents: charge.amount_refunded,
       transaction_date: DateTime.strptime(charge.created.to_s, '%s'),
       description: charge.description,
       disputed: charge.disputed,

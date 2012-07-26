@@ -32,4 +32,12 @@ FactoryGirl.define do
       pledge.save!
     end
   end
+
+  factory :pledge_paid_by_cc, parent: :pledge do
+    payment_method 'cc'
+    after(:create) do |pledge|
+      pledge.workflow_state = 'payment_received'
+      pledge.save!
+    end
+  end
 end

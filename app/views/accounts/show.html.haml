@@ -19,9 +19,6 @@
         %tr
           %td= transaction.created_at.strftime('%Y-%m-%d %H:%m')
           %td.amount{amount_css_class(transaction)}= number_to_currency(transaction.amount)
-          %td= transaction.source
-          %td= link_to transaction.project.name, transaction.project if transaction.project
-          %td= transaction.status
-          
-          
-          
+          %td= transaction.type
+          %td= link_to transaction.pledge.project.name, transaction.project if transaction.pledge
+          %td= transaction.paid ? "Paid" : "Incomplete"

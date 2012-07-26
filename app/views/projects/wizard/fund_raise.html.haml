@@ -4,8 +4,8 @@
   = form_for @project, url: wizard_path do |f|
     
     .field
-      %span= f.label :financial_goal_string, 'Financial Goal'
-      %span= f.text_field :financial_goal_string
+      %span= f.label :financial_goal, 'Financial Goal'
+      %span= f.text_field :financial_goal
     .field.date#start_date
       %span= f.label :start_date
       %span= f.text_field :start_date, :value=>f.object.start_date.strftime('%m/%d/%Y')
