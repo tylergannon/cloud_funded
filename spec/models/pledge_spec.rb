@@ -9,8 +9,39 @@ describe Pledge do
   subject {FactoryGirl.build :pledge}
   it {should belong_to(:project)}
   it {should belong_to(:investor)}
+  
+  describe "when the pledge is not new" do
+    subject {FactoryGirl.create :pledge_choose_payment_method}
+    it {should validate_presence_of(:perk)}
+  end
+  
   it {should belong_to(:perk)}
-  it {should have_many(:stripe_tranactions)}
+  it {should have_many(:stripe_transactions)}
+  
+  describe "when the latest transaction was a failed payment attempt" do
+    subject {
+      subj = FactoryGirl.create :pledge_pay_by_cc
+      subj.stripe_transactions << FactoryGirl.create( :stripe_transaction, paid: false)
+      subj
+    }
+    it {should_not be_valid}
+  end
+  
+  describe "#latest_transaction" do
+    it "should give the most recent stripe transaction" do
+      pledge = FactoryGirl.create :pledge
+      pledge.stripe_transactions << FactoryGirl.create(:stripe_transaction, pledge: pledge)
+      pledge.stripe_transactions << transaction = FactoryGirl.create(:stripe_transaction, pledge: pledge)
+      pledge.latest_transaction.should == transaction
+    end
+    describe "when there are no transactions" do
+      it "should be nil" do
+        pledge = FactoryGirl.create :pledge
+        pledge.stripe_transactions.should be_empty
+        pledge.latest_transaction.should be_nil
+      end
+    end
+  end
   
   describe "#validations" do
     describe "when the pledge amount is less than the perk" do
@@ -37,7 +68,6 @@ describe Pledge do
     end
   end
     
-  it {should validate_presence_of(:perk)}
   it "should have post_to_fb == true" do
     subject.post_to_fb.should be_true
   end

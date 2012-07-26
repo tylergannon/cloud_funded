@@ -119,9 +119,11 @@ describe Projects::PledgeWizardController do
       it "should load the correct pledge" do
         assigns(:pledge).should == @pledge
       end
-      it "should do stuff" do
-        true.should be_true
-        pp assigns(:charge)
+      it "should set the pledge status to 'payment_received'" do
+        assigns(:pledge).should be_payment_received
+      end
+      it "should redirect to share" do
+        response.should redirect_to(new_project_pledge_path(@project, 'share'))
       end
     end
   end
