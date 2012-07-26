@@ -14,7 +14,6 @@
 
 @mixin header-link-border {
 	padding: 15px 10px 10px 10px;
-
 }
 
 @mixin header-link {
@@ -180,12 +179,12 @@ hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px
 
 
   textarea {
-    background-image: linear-gradient(top,whiteSmoke,white);
-    background-image: -moz-linear-gradient(top,whiteSmoke,white);
-    background-image: -ms-linear-gradient(top,whiteSmoke,white);
-    background-image: -o-linear-gradient(top,whiteSmoke,white);
-    background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(0%,whiteSmoke),color-stop(100%,white));
-    background-image: -webkit-linear-gradient(top,whiteSmoke,white);
+ //   background-image: linear-gradient(top,whiteSmoke,white);
+ //   background-image: -moz-linear-gradient(top,whiteSmoke,white);
+ //   background-image: -ms-linear-gradient(top,whiteSmoke,white);
+ //   background-image: -o-linear-gradient(top,whiteSmoke,white);
+ //   background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(0%,whiteSmoke),color-stop(100%,white));
+ //   background-image: -webkit-linear-gradient(top,whiteSmoke,white);
     border: 1px solid #CCC;
  }
  
@@ -358,6 +357,7 @@ background-color: #ffb515;
 }
 
 
+
 @-webkit-keyframes greenPulse {
 from { background-color: #749a02; -webkit-box-shadow: 0 0 9px #333; }
 50% { background-color: #91bd09; -webkit-box-shadow: 0 0 18px #91bd09; }
@@ -375,25 +375,27 @@ font-size: 20px;
 letter-spacing: -2px;
 width: 400px;
 text-align: center;
+float: left;
+}
+
+//@-webkit-keyframes goldPulse {
+//from { background-color: #ebbd04; -webkit-box-shadow: 0 0 9px #333; }
+//50% { background-color: #f5d76d; -webkit-box-shadow: 0 0 18px #f5d76d; }
+//to { background-color: #ebbd04; -webkit-box-shadow: 0 0 9px #333; }
+//}
+
+//a.gold.button, h3.gold.button {
+//-webkit-animation-name: goldPulse;
+//-webkit-animation-duration: 2s;
+//-webkit-animation-iteration-count: infinite;
+//padding: 30px;
+//border-radius: 6px;
+//color: #fff;
+//font-size: 20px;
+//letter-spacing: -2px;
+//width: 400px;
+//text-align: center;
 //float: left;
 }
 
-@-webkit-keyframes goldPulse {
-from { background-color: #ebbd04; -webkit-box-shadow: 0 0 9px #333; }
-50% { background-color: #f5d76d; -webkit-box-shadow: 0 0 18px #f5d76d; }
-to { background-color: #ebbd04; -webkit-box-shadow: 0 0 9px #333; }
-}
 
-a.gold.button, h3.gold.button {
--webkit-animation-name: goldPulse;
--webkit-animation-duration: 2s;
--webkit-animation-iteration-count: infinite;
-padding: 30px;
-border-radius: 6px;
-color: #fff;
-font-size: 20px;
-letter-spacing: -2px;
-width: 400px;
-text-align: center;
-//float: left;
-}

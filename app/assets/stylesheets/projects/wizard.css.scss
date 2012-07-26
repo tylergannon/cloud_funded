@@ -85,8 +85,7 @@ $project-basics-padding: 15px;
       font-size: 22px;
     }
     .field.financial_goal {
-      border-style: dotted;
-      border-width: 1px;
+
       label {
         font-size: 22px;
       }
@@ -119,7 +118,6 @@ $project-basics-padding: 15px;
       .perk {
         position: relative;
       }
-      border: 2px dotted #9e9e9e;
       .name, .price, .description {
         width: 400px;
         display: block;
@@ -191,5 +189,30 @@ $project-basics-padding: 15px;
 		font-family:"helvetica neue",arial,helvetica,freesans,"liberation sans", sans-serif;
 
 	}
+
+}
+
+
+textarea{
+min-width: 660px;
+padding: 20px;
+font-size: 14px;
+line-height: 21px;
+
+}
+
+.more_about_you .field {
+background: #e0e0e0;
+padding: 20px;
+    h1 {
+    font-size: 28px;
+    
+    }
+
+}
+
+
+.field .upload_field {
+background: transparent;
 
 }
