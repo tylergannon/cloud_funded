@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :projects_category, :class => 'Projects::Category' do
-    name 'Retail'
+    name "MyString"
     desription "MyString"
   end
 end

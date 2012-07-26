@@ -1,10 +1,9 @@
 class Pledge < ActiveRecord::Base  
   include Workflow
-  attr_accessible :amount, :investor, :project, :public, :post_to_fb, :public_viewable, :public_amount, :perk_id, :payment_method
+  attr_accessible :amount, :investor, :project, :public, :post_to_fb, :public_viewable, :public_amount, :perk_id
   belongs_to :investor, class_name: 'Member'
   belongs_to :project
   belongs_to :perk, class_name: 'Projects::Perk'
-  has_many :stripe_transactions, dependent: :destroy
   
   validates :investor, presence: true
   validates :project, presence: true
@@ -14,10 +13,6 @@ class Pledge < ActiveRecord::Base
   validate do |pledge|
     if perk && pledge.amount < perk.price
       pledge.errors.add :amount, "Pledge amount must be at least the price of the perk."
-    end
-    
-    if perk && perk.project != pledge.project
-      raise "Big trouble"
     end
   end
   
@@ -47,24 +42,19 @@ class Pledge < ActiveRecord::Base
     end
     
     state :not_pledged do
-      event :pledge, transitions_to: :choose_payment_method
+      event :pledge, transitions_to: :pledged
     end
     
-    state :choose_payment_method do
-      event :choose_pay_by_dwolla, transitions_to: :dwolla
-      event :choose_pay_by_cc, transitions_to: :pay_by_cc
+    state :pledged do
+      event :send_payment_request, transitions_to: :setting_up_dwolla
+      event :member_pay, transitions_to: :payment_received
       event :cancel, transitions_to: :cancelled
     end
     
-    state :pay_by_cc do
-      event :cc_success, transitions_to: :payment_received
-    end
-    
-    state :dwolla do
+    state :setting_up_dwolla do
       event :finished_dwolla_setup, transitions_to: :payment_received
       event :cancel, transitions_to: :cancelled
     end
-    
     state :payment_received do
       event :refund, transitions_to: :refund_pending
       event :project_fail, transitions_to: :refund_pending

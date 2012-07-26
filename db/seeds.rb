@@ -16,9 +16,7 @@ cf.last_name = 'Admin'
 cf.skip_confirmation!
 cf.save!
 
-if Projects::Category.empty?
-  FactoryGirl.create :projects_category
-end
+
 
 3.times {
   FactoryGirl.create :live_project, owner: cf

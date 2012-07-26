@@ -15,9 +15,6 @@ CloudFunded::Application.configure do
     ENV['facebook_app_id'] = '125298410939354'
     ENV['facebook_secret_key'] = '39a8462763d22977e474c3bd01d63f10'
   end
-  
-  ENV['STRIPE_PUBLISHABLE_KEY'] = 'pk_KqKlnpz4ru7CvMGKPHAT1BNRnSFzC'
-  Stripe.api_key                = 'YM3s0MpK2QhAdVLomUTnOjMVblutovoZ'
 
   ENV['OPENGRAPH_NAMESPACE'] = 'cloudfundeddev'
 

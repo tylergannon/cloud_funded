@@ -20,7 +20,7 @@ border: none;
 @mixin header-link {
 	color: #fff;
 	text-shadow: -1px -1px #a88852;
-	font-size: 14px;
+	font-size: 16px;
 	font-weight: bold;
 	text-decoration: none;
 	
@@ -84,6 +84,7 @@ border: none;
       	border: 1px solid #fff;
    			border-radius: 3px;
      		background-color: #f4f4f4;
+     	 	width: 160px;
     	}
     			
     	li {
@@ -136,7 +137,7 @@ border: none;
       &:hover {
       	ul.project_categories {
         	left: 412px;
-        	top: 40px;
+        	top: 45px;
           width: 240px;
           padding-right: 0px;
         }
@@ -144,14 +145,6 @@ border: none;
         	left: 788px;
           width: 240px;
           padding-right: 0px;
-          -moz-border-radius: 6px;
-          -webkit-border-radius: 6px;
-          -khtml-border-radius: 6px;
-          border-radius: 6px;
-          a {
-            font-size: 12px;
-          
-          }
         }
       }
     
@@ -188,15 +181,15 @@ border: none;
         margin-left: 0;
 		
       a{
-        width: 240px;
-        padding: 10px;
-        font-size: 14px;
-        display: inline-block;
-        border: 0px;
-        -webkit-transition: background-color 0.15s ease-in-out;
-        -moz-transition: background-color 0.15s ease-in-out;
-        -o-transition: background-color 0.15s ease-in-out;
-        transition: background-color 0.15s ease-in-out;
+		    		width: 240px;
+		    		padding: 12px;
+		    		font-size: 14px;
+						display: inline-block;
+						border: 0px;
+						-webkit-transition: background-color 0.15s ease-in-out;
+						-moz-transition: background-color 0.15s ease-in-out;
+						-o-transition: background-color 0.15s ease-in-out;
+						transition: background-color 0.15s ease-in-out;
 					}
 		  		
 		  		a:hover {

@@ -25,7 +25,6 @@ class Projects::WizardController < ApplicationController
   def submit_preview
     if @project.valid?
       @project.submit!
-      @project.accept!
     end
     render_wizard(@project)
   end

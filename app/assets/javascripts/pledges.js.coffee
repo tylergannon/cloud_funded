@@ -9,17 +9,7 @@ $ ->
     $this.data('price', parseInt($this.data('price')))
     
   pledgeAmount = -> parseInt($('#pledge_amount').val().replace(/\D/g, ''))
-
-  $("#stripe_payment_form").submit (event) ->
-    $(".submit").attr "disabled", "disabled"
-    Stripe.setPublishableKey stripePublishableKey
-    Stripe.createToken
-      number: $('#cc_number').val()
-      cvc: $('#cc_cvc').val()
-      exp_month: $('#cc_month').val()
-      exp_year: $('#cc_year').val()
-    , stripeResponseHandler
-    false
+    
     
   $('#pledge_amount').change -> pledge_amount = $(this).val()
   $('#pledge_amount').keyup ->
@@ -45,13 +35,9 @@ $ ->
         else
           $('#pledge_amount').val(price)
           $('#pledge_amount').keyup()
+          
       
-stripeResponseHandler = (status, response) ->
-  if response.error
-    $(".payment_errors").text response.error.message
-    $(".submit").removeAttr "disabled"
-  else
-    $form = $("#stripe_payment_form")
-    token = response["id"]
-    $form.append "<input type='hidden' name='stripe_token' value='" + token + "'/>"
-    $form.get(0).submit()
+      
+    
+    
+    
