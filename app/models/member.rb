@@ -3,7 +3,8 @@ class Member < ActiveRecord::Base
   friendly_id :full_name, use: :slugged
   
   has_many :projects, foreign_key: :owner_id, dependent: :destroy
-  has_many :transactions
+  has_many :transactions, dependent: :destroy
+  has_many :stripe_transactions, dependent: :destroy
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable

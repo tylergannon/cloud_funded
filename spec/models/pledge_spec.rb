@@ -10,6 +10,7 @@ describe Pledge do
   it {should belong_to(:project)}
   it {should belong_to(:investor)}
   it {should belong_to(:perk)}
+  it {should have_many(:stripe_tranactions)}
   
   describe "#validations" do
     describe "when the pledge amount is less than the perk" do
