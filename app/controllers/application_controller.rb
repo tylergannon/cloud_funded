@@ -10,6 +10,8 @@ class ApplicationController < ActionController::Base
       unless controller.kind_of?(Members::OmniauthCallbacksController) || 
              controller.kind_of?(Members::RegistrationsController) ||
              controller.kind_of?(Devise::SessionsController)
+        puts controller.class.name
+        puts request.path
         session[:last_request] = request.path 
       end
     end

@@ -1,11 +1,12 @@
-$project-basics-width: auto;
+$project-basics-width: 560px;
 $project-basics-padding: 15px;
 
 .project_wizard {
   background: #fff;
-  width: 1080px;
-  padding: 50px 15px;
-  margin: 0px auto;
+  width: $project-basics-width;
+  padding: 15px;
+  margin-left: 170px;
+  margin-top: 80px;
   input {
   	font-size: 16px;
   }
@@ -59,19 +60,9 @@ $project-basics-padding: 15px;
     width: ($project-basics-width);
     padding: $project-basics-padding;
     .field {
-      width: 720px;
+      width: $project-basics-width;
       margin-left: 0;
       margin-bottom: 10px;
-        border-radius: 6px;
-	khtml-border-radius: 6px;
-	moz-border-radius: 6px;
-	ms-border-radius: 6px;
-	o-border-radius: 6px;
-	webkit-border-radius: 6px;
-
-      
-      
-      
     }
     input {
       text-align: center;
@@ -86,16 +77,12 @@ $project-basics-padding: 15px;
     }
         
     #project_name {
-      font-size: 24pt;
+      font-size: 35pt;
       height: 50px;
-      text-align: left;
-      width: 680px;
     }
     #project_tagline {
       height: 25px;
-      font-size: 16px;
-      width: 680px;
-      text-align: left;
+      font-size: 22px;
     }
     .field.financial_goal {
       border-style: dotted;
@@ -112,6 +99,7 @@ $project-basics-padding: 15px;
     }
   }
   &.fund_raise {
+    width: 800px;
     .edit_project {
       width: inherit;
     }
@@ -150,23 +138,13 @@ $project-basics-padding: 15px;
 
 .project_application_header {
   position: absolute;
-  margin-left: 30px;
-
+  left: 175px;
 
   
   a {
 	width: auto;
-	background: #FFA104;
-	background: -moz-linear-gradient(top, #ccc 0%, #e2aa4b 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ccc), color-stop(100%,#e2aa4b));
-	background: -webkit-linear-gradient(top, #ccc 0%,#a0a0a0 100%);
-	background: -o-linear-gradient(top, #ccc 0%,#e2aa4b 100%);
-	background: -ms-linear-gradient(top, #ccc 0%,#e2aa4b 100%);
-	background: linear-gradient(top, #ccc 0%,#e2aa4b 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ccc', endColorstr='#e2aa4b',GradientType=0 );
-
-
-	border: 1px solid #ccc;
+	background: #43adda;
+	border: 1px solid #1E728C;
 	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
@@ -174,10 +152,10 @@ $project-basics-padding: 15px;
 	cursor: pointer;
 	display: inline-block;
 	font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif;
-	font-size: 18px;
+	font-size: 14px;
 	font-weight: bold;
 	line-height: 1;
-	margin-top: 10px;
+	margin: 0;
 	outline: none;
 	padding: 10px 20px 11px;
 	position: relative;
@@ -205,31 +183,13 @@ $project-basics-padding: 15px;
 
 .project_wizard form, .information div{
 
+		background: white;
 	h1 {
+	font-size: 25px;
 	color: #333;
 	text-shadow: none;
 		font-family:"helvetica neue",arial,helvetica,freesans,"liberation sans", sans-serif;
 
 	}
-
-}
-
-textarea{
-min-width: 660px;
-padding: 20px;
-font-size: 14px;
-line-height: 21px;
-
-}
-
-.field {
-background: #e0e0e0;
-padding: 20px;
-
-}
-
-
-.field .upload_field {
-background: transparent;
 
 }

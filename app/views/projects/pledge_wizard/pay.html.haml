@@ -10,16 +10,3 @@
     .use_paypal
       = radio_button_tag 'choose_payment_method', 'use_paypal', true, id: 'use_paypal'
       = label_tag 'use_paypal', 'I\'d rather use my credit card right now.'
-
-  = form_for @pledge, url: wizard_path do |f|
-    .cc_num
-      CC#
-      %input{type: :text, id: 'cc_number', size: 20, autocomplete: :off}
-    .cvc
-      CVC
-      %input{type: :text, id: 'cc_cvc', size: 4, autocomplete: :off}
-    .exp
-      Exp MM/YYYY
-      %input{type: :text, id: 'cc_month', size: 2, autocomplete: :off}
-      %input{type: :text, id: 'cc_year', size: 4, autocomplete: :off}
-    = submit_tag 'Pay'
