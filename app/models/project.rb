@@ -33,7 +33,9 @@ class Project < ActiveRecord::Base
   default_value_for(:end_date) {(Date.today + DEFAULT_FUNDRAISE_LENGTH)}
   
   before_create do |project|
-    (3 - project.perks.count).times {project.perks.build}
+    project.perks.build price: 10
+    project.perks.build price: 100
+    project.perks.build price: 1000
   end
   
   def published?; published; end

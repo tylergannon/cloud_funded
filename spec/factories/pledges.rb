@@ -5,7 +5,10 @@ FactoryGirl.define do
     amount 1000
     association :project
     association :investor, factory: :member
-    association :perk, factory: :projects_perk
+    # association :perk, factory: :projects_perk
+    after(:build) do |pledge|
+      pledge.perk = pledge.project.perks[0]
+    end
   end
   
   factory :new_pledge, parent: :pledge do

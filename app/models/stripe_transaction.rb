@@ -6,6 +6,13 @@ class StripeTransaction < ActiveRecord::Base
   validates :member, presence: true
   validates :pledge, presence: true
   
+  default_scope order('id DESC')
+  
+  def pledge=(p)
+    self.member = p.investor
+    super(p)
+  end
+  
   def self.from_stripe_charge(charge)
     StripeTransaction.new \
       stripe_transaction_id: charge.id,

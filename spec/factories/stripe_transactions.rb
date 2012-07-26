@@ -3,15 +3,17 @@
 FactoryGirl.define do
   factory :stripe_transaction do
     stripe_transaction_id "MyString"
-    amount 1
-    amount_refunded 1
-    transaction_date "2012-07-25 19:29:49"
+    amount 10000
+    amount_refunded 0
+    transaction_date {DateTime.now}
     description "MyString"
     disputed false
     failure_message "MyString"
-    fee 1
+    fee 2930
+    paid true
     invoice "MyString"
     object_type "MyString"
     refunded false
+    association :pledge
   end
 end

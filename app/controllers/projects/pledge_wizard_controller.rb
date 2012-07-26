@@ -38,9 +38,7 @@ class Projects::PledgeWizardController < ApplicationController
   
   def submit_pay_by_cc
     token = params[:stripe_token]
-    puts "*" * 100
-    puts token
-  
+ 
     # create the charge on Stripe's servers - this will charge the user's card
     @charge = Stripe::Charge.create(
       :amount => @pledge.amount * 100, # amount in cents, again
@@ -52,6 +50,9 @@ class Projects::PledgeWizardController < ApplicationController
     @stripe_transaction.member = current_member
     @stripe_transaction.pledge = @pledge
     @stripe_transaction.save!
+    if @pledge.valid?
+      @pledge.cc_payment_succeeded!
+    end
     render_wizard(@pledge)
   end
   
@@ -65,12 +66,21 @@ class Projects::PledgeWizardController < ApplicationController
   end
   
   def redirect_as_needed
-    if @pledge.not_pledged?
-      if step != :pledge
+    if step != WORKFLOW_STATE_WIZARD_STEP[@pledge.workflow_state]
+      the_correct_step = WORKFLOW_STATE_WIZARD_STEP[@pledge.workflow_state]
+      if the_correct_step == :pledge
         redirect_to new_project_pledge_path(@project)
+      else
+        redirect_to new_project_pledge_path(@project, the_correct_step)
       end
-    elsif @pledge.workflow_state != step.to_s
-      redirect_to new_project_pledge_path(@project, @pledge.workflow_state)
     end
   end
+  
+  WORKFLOW_STATE_WIZARD_STEP = {
+    'new' => :pledge,
+    'not_pledged' => :pledge,
+    'choose_payment_method' => :choose_payment_method,
+    'pay_by_cc' => :pay_by_cc,
+    'payment_received' => :share
+  }
 end
