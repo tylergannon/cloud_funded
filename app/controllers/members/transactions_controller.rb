@@ -2,21 +2,27 @@ class Members::TransactionsController < ApplicationController
   before_filter :authenticate_member!, :load_member
   def new
     session[:return_after_dwolla_login] = new_account_fund_path
-    @transaction = @member.transactions.build
+    @transaction = DwollaTransaction.new
+    @member.transactions << @transaction
   end
   
   def create
     amount = params[:amount].to_f
     pin = params[:pin].to_i
-    @transaction = @member.transactions.build
+    @transaction = DwollaTransaction.new
+    @member.transactions << @transaction
     
     begin
       user = Dwolla::User.me(@member.dwolla_auth_token)
       transaction_id = user.send_money_to("812-608-2017", amount, pin, 'dwolla', 'Funding Account')
-      @transaction.attributes = {amount: amount, 
+      @transaction.attributes = {amount: amount * 100, 
                                  transaction_id: transaction_id,
-                                 source: 'dwolla',
-                                 status: 'complete'}
+                                 transaction_date: DateTime.now,
+                                 amount_refunded: 0,
+                                 disputed: false,
+                                 fee: (amount >= 10) ? 0 : 25,
+                                 refunded: false,
+                                 paid: true}
       @transaction.save
     rescue Dwolla::RequestException => e
       if e.message == "Invalid account PIN"

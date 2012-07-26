@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :stripe_transaction do
-    stripe_transaction_id "MyString"
+    transaction_id "MyString"
     amount 10000
     amount_refunded 0
     transaction_date {DateTime.now}

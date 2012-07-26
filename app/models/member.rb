@@ -25,7 +25,7 @@ class Member < ActiveRecord::Base
   end
   
   def project_application
-    @project_application ||= projects.where(published: false).first || projects.create!
+    @project_application ||= projects.where("workflow_state <> 'live'").first || projects.create!
   end
   
   def pledge_for(project)

@@ -78,13 +78,13 @@ describe Members::TransactionsController do
         @transaction.should_not be_nil
       end
       it "should be for the correct amount" do
-        @transaction.amount.should == 0.01
+        @transaction.amount.should == 1
       end
       it "should set the status" do
-        @transaction.status.should == "complete"
+        @transaction.paid.should be_true
       end
       it "should set the source" do
-        @transaction.source.should == "dwolla"
+        @transaction.should be_kind_of(DwollaTransaction)
       end
       it "should redirect to the my_account page" do
         response.should redirect_to(account_path)

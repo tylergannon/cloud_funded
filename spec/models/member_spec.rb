@@ -68,12 +68,12 @@ describe Member do
     describe "when there are transactions" do
       before :each do
         @member = FactoryGirl.create :member
-        FactoryGirl.create :transaction, member: @member, amount: 123.45
-        FactoryGirl.create :transaction, member: @member, amount: -112.45
-        FactoryGirl.create :transaction, member: @member, amount: 1.45
+        FactoryGirl.create :transaction, member: @member, amount: 12345
+        FactoryGirl.create :transaction, member: @member, amount: -11245
+        FactoryGirl.create :transaction, member: @member, amount: 145
       end
       it "should be the sum of the transactions" do
-        @member.account_balance.should == (123.45 + -112.45 + 1.45)
+        @member.account_balance.should == (12345 + -11245 + 145)
       end
     end
   end
