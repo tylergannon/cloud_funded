@@ -47,8 +47,11 @@ $ ->
           $('#pledge_amount').keyup()
       
 stripeResponseHandler = (status, response) ->
+  window.status = status
+  window.response = response
   if response.error
-    $(".payment_errors").text response.error.message
+    $('.payment_error .message').text response.error.message
+    $('.payment_error').removeClass('hidden')
     $(".submit").removeAttr "disabled"
   else
     $form = $("#stripe_payment_form")

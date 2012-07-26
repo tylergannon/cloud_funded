@@ -1,6 +1,10 @@
 .pay[@pledge]
   Cool, Pay by CC works for me!
   .payment_errors
+    .payment_error{:class => flash[:payment_error] ? 'flash' : 'hidden'}
+      %h3 There was a problem processing your payment:
+      .message= flash[:payment_error]
+  
   = form_for @pledge, url: wizard_path, html: {id: 'stripe_payment_form'} do |f|
     .cc_num
       CC#

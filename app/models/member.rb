@@ -5,6 +5,7 @@ class Member < ActiveRecord::Base
   has_many :projects, foreign_key: :owner_id, dependent: :destroy
   has_many :transactions, dependent: :destroy
   has_many :stripe_transactions, dependent: :destroy
+  has_many :pledges, inverse_of: :investor, foreign_key: 'investor_id'
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable

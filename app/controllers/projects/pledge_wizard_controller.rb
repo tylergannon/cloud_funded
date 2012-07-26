@@ -37,23 +37,27 @@ class Projects::PledgeWizardController < ApplicationController
   end
   
   def submit_pay_by_cc
-    token = params[:stripe_token]
- 
-    # create the charge on Stripe's servers - this will charge the user's card
-    @charge = Stripe::Charge.create(
-      :amount => @pledge.amount * 100, # amount in cents, again
-      :currency => "usd",
-      :card => token,
-      :description => "CloudFunded pledge to #{@project.name}"
-    )
-    @stripe_transaction = StripeTransaction.from_stripe_charge(@charge)
-    @stripe_transaction.member = current_member
-    @stripe_transaction.pledge = @pledge
-    @stripe_transaction.save!
-    if @pledge.valid?
-      @pledge.cc_payment_succeeded!
+    begin
+      token = params[:stripe_token]
+      @charge = Stripe::Charge.create(
+        :amount => @pledge.amount * 100, # amount in cents, again
+        :currency => "usd",
+        :card => token,
+        :description => "CloudFunded pledge to #{@project.name}"
+      )
+      @stripe_transaction = StripeTransaction.from_stripe_charge(@charge)
+      @stripe_transaction.member = current_member
+      @stripe_transaction.pledge = @pledge
+      @stripe_transaction.save!
+      if @pledge.valid?
+        @pledge.cc_payment_succeeded!
+      end
+      render_wizard(@pledge)
+    rescue Stripe::CardError => e
+      flash[:payment_error] = e.message
+      puts e.inspect
+      render :pay_by_cc
     end
-    render_wizard(@pledge)
   end
   
   
