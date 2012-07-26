@@ -4,7 +4,7 @@
   #formwrapper
     .field
       = link_to member_omniauth_authorize_path(:facebook) do
-        = image_tag 'Button_FBConnect3.png'
+        = image_tag 'Button_FBConnect4.png'
     
     - if flash[:alert]
       %p.alert= flash[:alert]
@@ -24,7 +24,7 @@
         %br/
         %br/
         =f.submit "Sign in"
-  = render "links"
+  = render "links" 
 
 
 
