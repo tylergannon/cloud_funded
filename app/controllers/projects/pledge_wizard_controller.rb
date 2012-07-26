@@ -1,9 +1,9 @@
 class Projects::PledgeWizardController < ApplicationController
   include Wicked::Wizard
   
-  steps :pledge, :pay, :share
+  steps :pledge, :choose_payment_method, :pay_by_cc, :share
 
-  before_filter :authenticate_member!, :load_project
+  before_filter :authenticate_member!, :load_project, :redirect_as_needed
   
   def show
     authorize! :edit, @pledge

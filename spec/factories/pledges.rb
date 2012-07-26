@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :pledge do
-    amount 10
+    amount 1000
     association :project
     association :investor, factory: :member
     # association :perk, factory: :projects_perk
