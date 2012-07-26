@@ -13,25 +13,25 @@ describe Projects::PledgeWizardController do
       response.should redirect_to(new_member_session_path)
     end
   end
-  
+    
   describe "when signed in" do
     before :each do
       sign_in_as_member
+      @perk = @project.perks[0]
+      @perk.update_attributes price: 50
     end
     describe "Step 1 pledge" do
       describe "when perk is selected and pledge amount is greater than the perk price" do
         before :each do
-          @perk = @project.perks[0]
-          @perk.update_attributes price: 50
           put :update, project_id: @project.to_param, pledge: {
             perk_id: @perk.id,
             amount: 50
           }
           @pledge = @member.pledge_for(@project)
         end
-        it {should redirect_to(new_project_pledge_path(@project, 'pay'))}
+        it {should redirect_to(new_project_pledge_path(@project, 'choose_payment_method'))}
         it "should transition the pledge to the pledged state" do
-          @pledge.should be_pledged
+          @pledge.should be_choose_payment_method
         end
         
         
@@ -62,6 +62,66 @@ describe Projects::PledgeWizardController do
         subject {response}
         it {should render_template('pledge')}
         it {should_not be_redirect}
+      end
+    end
+    
+    describe "redirect to the correct step" do
+      it "should redirect to new if the pledge is new" do
+        get :show, id: 'choose_payment_method', project_id: @project.to_param
+        response.should redirect_to(new_project_pledge_path(@project))
+      end
+      it "should redirect a PUT to new if the pledge is new" do
+        put :update, id: 'choose_payment_method', project_id: @project.to_param
+        response.should redirect_to(new_project_pledge_path(@project))
+      end
+      it "should redirect to choose_payment_method if that's the pledge state" do
+        @pledge = FactoryGirl.create :pledge_choose_payment_method, 
+                        project: @project, 
+                        perk: @project.perks[0],
+                        investor: @member
+        get :show, project_id: @project.to_param
+        response.should redirect_to(new_project_pledge_path(@project, id: 'choose_payment_method'))
+        
+      end
+    end
+
+    describe "Step 2 Choose Payment Method" do
+      describe "choose pay by cc" do
+        before :each do
+          @pledge = FactoryGirl.create :pledge_choose_payment_method, 
+                          project: @project, 
+                          perk: @project.perks[0],
+                          investor: @member
+          put :update, id: 'choose_payment_method', project_id: @project.to_param, pledge: {payment_method: 'cc'}
+          @pledge.reload
+        end
+        it "should be moved to the pay_by_cc state" do
+          @pledge.should be_pay_by_cc
+        end
+        it "should have cc as the payment method" do
+          @pledge.payment_method.should == 'cc'
+        end
+      end
+    end
+
+    describe "Pay By CC" do
+      before :each do
+        @pledge = FactoryGirl.create :pledge_pay_by_cc, 
+                        project: @project, 
+                        perk: @project.perks[0],
+                        investor: @member
+        VCR.use_cassette "Successful Stripe Payment" do
+          expect {
+            put :update, id: 'pay_by_cc', project_id: @project.to_param, stripe_token: 'tok_03oAdsIepzByXP'
+          }.to change(StripeTransaction, :count).by(1)
+        end
+      end
+      it "should load the correct pledge" do
+        assigns(:pledge).should == @pledge
+      end
+      it "should do stuff" do
+        true.should be_true
+        pp assigns(:charge)
       end
     end
   end

@@ -20,6 +20,7 @@ gem 'paperclip'
 gem 'pg'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'responders', '~> 0.9.1'
+gem 'stripe'
 gem 'wicked'
 gem 'workflow'
 
