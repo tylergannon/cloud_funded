@@ -1,4 +1,5 @@
 class Article < ActiveRecord::Base
+  include Workflow
   extend FriendlyId
   friendly_id :title, use: :slugged
   
@@ -11,9 +12,16 @@ class Article < ActiveRecord::Base
   
   validates :author, presence: true
   default_scope order('published_at desc')
+
+  workflow do
+    state :unpublished do
+      event :publish, transitions_to: :published
+    end
+    
+    state :published
+  end
   
-  def published=(pub)
+  def publish
     self.published_at = Time.zone.now
-    super
   end
 end

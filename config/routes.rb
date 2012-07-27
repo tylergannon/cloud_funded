@@ -20,7 +20,10 @@ CloudFunded::Application.routes.draw do
     end
     
     resources :articles do
-      member { put :mercury_update }
+      member { 
+        put :mercury_update 
+        post :publish
+      }
       resources :attachments
     end
     namespace :projects do
@@ -45,9 +48,9 @@ CloudFunded::Application.routes.draw do
     resource :facebook_action
     resource :my_pledge, controller: :pledges
     resources :pledges
-    resources :updates, controller: 'projects/articles', path_names: {
-      :new => :new, :edit => :edit
-    }
+    resources :updates, controller: 'projects/articles', path_names: {:new => :new, :edit => :edit} do
+      member { post :publish }
+    end
     resources :transactions, controller: 'projects/transactions', path_names: {
       :new => :new, :edit => :edit
     }

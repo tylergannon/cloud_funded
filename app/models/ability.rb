@@ -27,14 +27,10 @@ class Ability
     can :read, Projects::Perk do |perk|
       perk.project.published?
     end
+    
     can :read, Member
-    can :manage, Article do |article|
-      article.project &&
-        article.project.owner.id == member.id
-    end
-    can :read, Article do |article|
-      article.published
-    end
+    can :manage, Article, project: {owner_id: member.id}
+    can :read, Article, published: true
     
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
   end
