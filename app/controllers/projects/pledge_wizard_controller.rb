@@ -1,7 +1,7 @@
 class Projects::PledgeWizardController < ApplicationController
   include Wicked::Wizard
   
-  steps :pledge, :choose_payment_method, :pay_by_cc, :share
+  steps :amount, :payment_method, :pay_by_cc, :share
 
   before_filter :authenticate_member!, :load_project, :redirect_as_needed
   
@@ -22,14 +22,14 @@ class Projects::PledgeWizardController < ApplicationController
     end
   end
   
-  def submit_pledge
+  def submit_amount
     if @pledge.valid?
       @pledge.pledge!
     end
     render_wizard(@pledge)
   end
   
-  def submit_choose_payment_method
+  def submit_payment_method
     if @pledge.valid?
       @pledge.choose_pay_by_cc!
     end
@@ -87,9 +87,9 @@ class Projects::PledgeWizardController < ApplicationController
   end
   
   WORKFLOW_STATE_WIZARD_STEP = {
-    'new' => :pledge,
-    'not_pledged' => :pledge,
-    'choose_payment_method' => :choose_payment_method,
+    'new' => :amount,
+    'not_pledged' => :amount,
+    'choose_payment_method' => :payment_method,
     'pay_by_cc' => :pay_by_cc,
     'payment_received' => :share
   }
