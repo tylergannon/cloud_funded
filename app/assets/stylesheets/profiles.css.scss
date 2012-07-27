@@ -7,4 +7,21 @@
     
     display: inline;
   }
+  
+  .project_short_list {
+    .project {
+      width: 800px;
+      height: 68px;
+      position: relative;
+      img {
+        margin: 4px;
+      }
+      h3 {
+        position: absolute;
+        left: 110px;
+        top: 0;
+        margin: 16px;
+      }
+    }
+  }
 }
