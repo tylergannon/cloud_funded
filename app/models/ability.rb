@@ -30,7 +30,7 @@ class Ability
     
     can :read, Member
     can :manage, Article, project: {owner_id: member.id}
-    can :read, Article, published: true
+    can :read, Article, workflow_state: 'published'
     
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
   end

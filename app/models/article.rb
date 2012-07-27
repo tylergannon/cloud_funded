@@ -21,6 +21,8 @@ class Article < ActiveRecord::Base
     state :published
   end
   
+  default_scope order("published_at desc")
+  
   def publish
     self.published_at = Time.zone.now
   end

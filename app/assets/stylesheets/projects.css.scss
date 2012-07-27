@@ -5,6 +5,28 @@ $fb-like-width: 300px;
 $right-pane-width: 330px;
 
 .project_page {
+  .details {
+    &> div {
+      display: table-cell;
+    }
+    
+    #tab_container {
+      width: 75%;
+    }
+    
+    .update {
+      h3 {
+        height: 30px;
+      }
+      .body {
+        min-height: 100px;
+      }
+    }
+  }
+  
+  
+  
+  
   .dashboard {
     position: relative;
     background: white;

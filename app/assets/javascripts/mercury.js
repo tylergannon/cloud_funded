@@ -112,7 +112,7 @@ window.Mercury = {
         },
 
       editable: {
-        _regions:              ['full', 'markdown'],
+        _regions:              ['full', 'markdown', 'simple'],
         predefined:            {
           style:               ['Style', null, { select: '/mercury/selects/style.html', preload: true }],
           sep1:                ' ',

@@ -22,7 +22,11 @@ class Project < ActiveRecord::Base
       where(workflow_state: 'payment_received')
     end
   end
-  has_many :articles, dependent: :destroy
+  has_many :articles, dependent: :destroy do
+    def published
+      where(workflow_state: 'published')
+    end
+  end
   has_many :perks, class_name: 'Projects::Perk', dependent: :destroy
   
   accepts_nested_attributes_for :perks

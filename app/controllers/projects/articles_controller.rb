@@ -1,9 +1,19 @@
 class Projects::ArticlesController < ApplicationController
+  respond_to :html, :js, :json
   before_filter :load_project, :authenticate_member!
   
   def index
     @articles = @project.articles.accessible_by(current_ability)
     respond_with @project, @articles
+  end
+  
+  def create
+    authorize! :manage, @project
+    @article = Article.new
+    @article.project = @project
+    @article.author = current_member
+    @article.save
+    respond_with @project, @article
   end
   
   def show
