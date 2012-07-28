@@ -13,7 +13,9 @@ gem 'friendly_id'
 gem 'haml-rails'
 gem 'httparty'
 gem 'jquery-rails'
-gem 'mercury-rails', git: 'https://github.com/jejacks0n/mercury.git', ref: '169f50dd56be119980f006bb63e8e813be533479'
+# gem 'mercury-rails', git: 'https://github.com/jejacks0n/mercury.git', ref: '169f50dd56be119980f006bb63e8e813be533479'
+
+gem 'mercury-rails', git: 'https://github.com/tylergannon/mercury.git'
 gem 'money-rails'
 gem 'omniauth-dwolla'
 gem 'omniauth-facebook'
@@ -43,12 +45,12 @@ end
 
 group :test do
   gem "capybara-webkit"
-  gem 'cucumber-rails'
   gem 'database_cleaner'
   gem 'poltergeist', git: 'https://github.com/jonleighton/poltergeist.git'
   gem 'vcr'
   gem 'webmock'
   gem 'syntax'
+  gem 'growl'
 end
 
 group :deployment do

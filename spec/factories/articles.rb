@@ -8,4 +8,8 @@ FactoryGirl.define do
     published_at {Time.zone.now}
     association :author, factory: :member
   end
+  
+  factory :published_article, parent: :article do
+    workflow_state 'published'
+  end
 end

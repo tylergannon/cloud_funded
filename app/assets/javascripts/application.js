@@ -22,5 +22,6 @@
 //= require pledges
 //= require profiles
 //= require projects
+//= require projects/roles
 //= require projects/wizard
 //= require ui.spinner

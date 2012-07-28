@@ -17,12 +17,21 @@ class Project < ActiveRecord::Base
   
   belongs_to :owner, class_name: 'Member'
   belongs_to :category, class_name: 'Projects::Category'
+  has_many :roles, class_name: 'Projects::Role' do
+    def confirmed
+      where(workflow_state: 'confirmed')
+    end
+  end
   has_many :pledges, dependent: :destroy do
     def paid
       where(workflow_state: 'payment_received')
     end
   end
-  has_many :articles, dependent: :destroy
+  has_many :articles, dependent: :destroy do
+    def published
+      where(workflow_state: 'published')
+    end
+  end
   has_many :perks, class_name: 'Projects::Perk', dependent: :destroy
   
   accepts_nested_attributes_for :perks
@@ -47,14 +56,7 @@ class Project < ActiveRecord::Base
   def published?; published; end
   
   S3_DEETS = {
-    :styles => { large: "560x310", :medium => "300x190", :thumb => "100x100" },
-    :storage => :s3,
-    :s3_protocol => '',
-    :bucket => ENV['AMAZON_S3_BUCKET'],
-    :s3_credentials => {
-      :access_key_id => 'AKIAIDEFW5P6AQLRXWGQ',
-      :secret_access_key => '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'
-    }  
+    :styles => { large: "560x310", :medium => "300x190", :thumb => "100x100" },  
   }
   
   has_attached_file :image, S3_DEETS

@@ -29,7 +29,7 @@ describe Projects::PledgeWizardController do
           }
           @pledge = @member.pledge_for(@project)
         end
-        it {should redirect_to(new_project_pledge_path(@project, 'choose_payment_method'))}
+        it {should redirect_to(new_project_pledge_path(@project, 'payment_method'))}
         it "should transition the pledge to the pledged state" do
           @pledge.should be_choose_payment_method
         end
@@ -68,11 +68,11 @@ describe Projects::PledgeWizardController do
     describe "redirect to the correct step" do
       it "should redirect to new if the pledge is new" do
         get :show, id: 'choose_payment_method', project_id: @project.to_param
-        response.should redirect_to(new_project_pledge_path(@project))
+        response.should redirect_to(new_project_pledge_path(@project, id: 'amount'))
       end
       it "should redirect a PUT to new if the pledge is new" do
         put :update, id: 'choose_payment_method', project_id: @project.to_param
-        response.should redirect_to(new_project_pledge_path(@project))
+        response.should redirect_to(new_project_pledge_path(@project, id: 'amount'))
       end
       it "should redirect to choose_payment_method if that's the pledge state" do
         @pledge = FactoryGirl.create :pledge_choose_payment_method, 
@@ -80,7 +80,7 @@ describe Projects::PledgeWizardController do
                         perk: @project.perks[0],
                         investor: @member
         get :show, project_id: @project.to_param
-        response.should redirect_to(new_project_pledge_path(@project, id: 'choose_payment_method'))
+        response.should redirect_to(new_project_pledge_path(@project, id: 'payment_method'))
         
       end
     end
@@ -92,7 +92,7 @@ describe Projects::PledgeWizardController do
                           project: @project, 
                           perk: @project.perks[0],
                           investor: @member
-          put :update, id: 'choose_payment_method', project_id: @project.to_param, pledge: {payment_method: 'cc'}
+          put :update, id: 'payment_method', project_id: @project.to_param, pledge: {payment_method: 'cc'}
           @pledge.reload
         end
         it "should be moved to the pay_by_cc state" do

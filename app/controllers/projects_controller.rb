@@ -25,6 +25,25 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     respond_with @project
   end
+  
+  def mercury_update
+    @project = Project.find(params[:id])
+    authorize! :manage, @project
+    params[:content].each do |key, val|
+      match, attribute, klass, id = *key.to_s.match(/^([a-z]+)_([a-z]+)_(\d+)$/)
+      @project.articles.find(id.to_i).update_attributes attribute.to_sym => val['value']
+    end
+    
+    # article.update_attributes title: params[:content][:article_title][:value], 
+    #                           body: params[:content][:article_body][:value],
+    #                           description: params[:content][:article_description][:value]
+    
+    respond_with(@project) do |format|
+      format.json {
+        render text: ""
+      }
+    end
+  end
 
   # GET /projects/1
   # GET /projects/1.json
@@ -36,6 +55,14 @@ class ProjectsController < ApplicationController
       @my_pledge = Pledge.where(investor_id: current_member.id, project_id: @project.id).first
     end
     authorize! :read, @project
+
+    if member_signed_in? && current_member == @project.owner
+      @articles = @project.articles
+      @roles    = @project.roles 
+    else
+      @articles = @project.articles.published
+      @roles    = @project.roles.confirmed
+    end
 
     respond_to do |format|
       format.html # show.html.erb

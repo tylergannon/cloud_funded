@@ -3,6 +3,8 @@ require 'spec_helper'
 describe Member do
   subject {FactoryGirl.build :member}
   it {should have_many(:transactions)}
+  it {should have_many(:roles)}
+  
   describe "#pledge_for" do
     before :each do
       @project = FactoryGirl.create :project

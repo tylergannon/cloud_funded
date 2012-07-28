@@ -81,6 +81,27 @@ describe ProjectsController do
       get :show, {:id => project.to_param}
       assigns(:project).should eq(project)
     end
+    describe "setting of the team members variable" do
+      before :each do
+        @unconfirmed = FactoryGirl.create :projects_role, project: @example_project
+        @confirmed   = FactoryGirl.create :projects_role, project: @example_project
+        @confirmed.confirm!
+      end
+      describe "when I can manage the project" do
+        it "should load all of them" do
+          get :show, id: @example_project.to_param
+          assigns(:roles).should =~ [@confirmed, @unconfirmed]
+        end
+      end
+      describe "when I can't manage the project" do
+        it "should only load the confirmed roles" do
+          @member = FactoryGirl.create :member
+          sign_in_as_member
+          get :show, id: @example_project.to_param
+          assigns(:roles).should =~ [@confirmed]
+        end
+      end
+    end
     describe "Seeing My Pledge" do
       before :each do
         @project_i_am_viewing = FactoryGirl.create :live_project

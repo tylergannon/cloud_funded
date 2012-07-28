@@ -2,10 +2,18 @@ class Member < ActiveRecord::Base
   extend FriendlyId
   friendly_id :full_name, use: :slugged
   
-  has_many :projects, foreign_key: :owner_id, dependent: :destroy
+  has_many :projects, foreign_key: :owner_id, dependent: :destroy do
+    def live
+      where(workflow_state: 'live')
+    end
+  end
+  has_many :roles, class_name: 'Projects::Role'
   has_many :transactions, dependent: :destroy
-  has_many :transactions, dependent: :destroy
-  has_many :pledges, inverse_of: :investor, foreign_key: 'investor_id'
+  has_many :pledges, inverse_of: :investor, foreign_key: 'investor_id' do
+    def paid
+      where(workflow_state: 'payment_received')
+    end
+  end
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable

@@ -2,6 +2,10 @@ require "spec_helper"
 
 describe PledgesController do
   describe "Routing: Resources for Pledges" do
+    it "routes to #publish" do
+      post("/projects/321/updates/123/publish").should route_to("projects/articles#publish", id: '123', project_id: '321')
+    end
+
     it "routes new pledge" do
       get("/projects/nice/updates/new").should route_to("projects/articles#new", :project_id => "nice")
     end

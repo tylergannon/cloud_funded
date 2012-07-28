@@ -7,8 +7,9 @@ $ ->
       aspectRatio: true
 
     $('a').click (a) ->
-      unless confirm('Do you want to leave this page?  Be sure you have saved changes.')
-        a.preventDefault()
+      unless $(a).attr('href').match(/^\#/)?
+        unless confirm('Do you want to leave this page?  Be sure you have saved changes.')
+          a.preventDefault()
     
     Mercury.config.uploading.url = window.location.href.replace('/editor', '').split('?')[0] + '/attachments';
     Mercury.config.uploading.inputName = 'attachment[image]'
