@@ -33,10 +33,18 @@
     padding: 0;
     a {
       display: block;
+      width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -o-text-overflow: ellipsis;
+      white-space: nowrap;
+        
+
       div {
         display: table-cell;
         margin: 0px;
-        padding: 0px; } }
+        padding: 0px; }
+    }
     span.member_name {
       padding: 0px;
       margin: 0;
@@ -52,7 +60,8 @@
       margin-right: 10px;
       margin-left: 40px; }
     a, ul {
-      border: none; }
+      border: none; 
+      }
     .control_list {
       display: none;
       ul {
@@ -65,13 +74,16 @@
       li {
         @include header-link;
         height: 25px;
-        position: relative a {
+        position: relative;
+       
+        
+        a {
           width: 100%;
           font-size: 12px;
           color: #666;
           text-decoration: none;
           cursor: pointer;
-          text-shadow: none; }; } } }
+          text-shadow: none; } } } }
   .page_title {
     background: image-url("images/logo.png") 0 0 no-repeat;
     clear: none;
@@ -147,7 +159,10 @@
             -webkit-transition: background-color 0.15s ease-in-out;
             -moz-transition: background-color 0.15s ease-in-out;
             -o-transition: background-color 0.15s ease-in-out;
-            transition: background-color 0.15s ease-in-out; }
+            transition: background-color 0.15s ease-in-out; 
+          
+            
+            }
           a:hover {
             background: #ddd;
             text-shadow: none;
