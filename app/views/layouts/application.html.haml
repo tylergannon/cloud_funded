@@ -7,6 +7,9 @@
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
+    - if member_signed_in?
+      :css
+        li.member_id > a {background: url('#{current_member.profile_pic}') no-repeat 0px 10px; background-size:30px 30px;}
     = yield :head
   %body
     = render partial: 'layouts/facebook_sdk' unless Rails.env.test?
@@ -14,26 +17,27 @@
       #headerwrap
         .page_title
           %h1
-        %ul
-          %li.header_link
+        %ul.main_nav
+          %li.header_link.project_categories
             = link_to 'Invest', projects_path
-            %ul.project_categories
+            %ul
               - Projects::Category.all.each do |category|
                 %li= link_to category.name, projects_category_path(category)
           %li.header_link= link_to 'Get Funded', get_funded_path
           %li.header_link= link_to 'Blog', blog_path
           %li.header_link= link_to 'About Us', page_path('about')      
           - unless member_signed_in?
-            %li.header_link
+            %li.header_link.member_id
               = link_to 'Sign in', new_member_session_path
-              = link_to member_omniauth_authorize_path(:facebook) do
-                = image_tag 'facebook-icon.png', width: '30px'
+              %ul
+                %li
+                  = link_to member_omniauth_authorize_path(:facebook) do
+                    = image_tag 'Button_FBConnect3.png', :class => 'fb_sign_in'
           - else
             %li.header_link.member_id
               = link_to account_path do
-                %div= image_tag current_member.profile_pic
-                %div.member_name= current_member.full_name
-              %ul.my_controls
+                = current_member.full_name
+              %ul
                 %li= link_to 'My Profile', profile_path(current_member)
                 %li= link_to 'My Account', account_path
                 %li= link_to 'My Projects', my_projects_path

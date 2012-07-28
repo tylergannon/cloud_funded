@@ -1,13 +1,13 @@
 @mixin header-style {
   background: url(/assets/images/top.png) 0 0 repeat-x;
-  height: 70px;
+  height: 58px;
   margin: 0px 0px;
   padding: 0px;
   width: 100%; }
 
 @mixin headerwrap-style {
   padding: 0px 40px;
-  width: 980px; }
+  height: inherit;}
 
 @mixin header-link-border {
   padding: 0px 10px 10px 10px;
@@ -20,119 +20,106 @@
   font-weight: bold;
   text-decoration: none; }
 
+#headerwrap {
+  @include headerwrap-style; }
+
+#footer {
+  @include header-style; }
+
+#footerwrap {
+  @include headerwrap-style; }
+
+
 #header {
   @include header-style;
   position: relative;
   background: url(/assets/images/headertop.png) 0 0 repeat-x;
   padding: 0;
   margin-top: -15px;
-  .member_id {
-    @include header-link;
-    @include header-link-border;
-    margin-top: 0px;
-    padding: 0;
-    a {
-      display: block;
-      div {
-        display: table-cell;
-        margin: 0px;
-        padding: 0px; } }
-    span.member_name {
-      padding: 0px;
-      margin: 0;
-      margin-left: 10px;
-      vertical-align: 9px; }
-    img {
-      border-radius: 5px;
-      height: 30px;
-      width: 30px;
-      margin-top: 0px;
-      position: relative;
-      top: 10px;
-      margin-right: 10px;
-      margin-left: 40px; }
-    a, ul {
-      border: none; }
-    .control_list {
-      display: none;
-      ul {
-        padding-top: 10px;
-        list-style: none;
-        padding-left: 30px;
-        border: 1px solid #fff;
-        border-radius: 3px;
-        background-color: #f4f4f4; }
-      li {
-        @include header-link;
-        height: 25px;
-        position: relative a {
-          width: 100%;
-          font-size: 12px;
-          color: #666;
-          text-decoration: none;
-          cursor: pointer;
-          text-shadow: none; }; } } }
+  
+
+  /* * * * * * * * * * * * * * 
+   *
+   *   #header .page_title
+   *    sets the background image for the header.
+   *
+   * * * * * * * * * * * * * */
   .page_title {
     background: image-url("images/logo.png") 0 0 no-repeat;
     clear: none;
     cursor: pointer;
     float: left;
-    height: 104px;
+    height: 100%;
     margin: -5px 100px 0px 20px;
-    width: 250px; }
-  .page_title:hover {
-    background: image-url("images/logo_over.png") 0 0 no-repeat;
-    clear: none;
-    cursor: pointer;
-    float: left;
-    height: 104px;
-    margin: -5px 100px 0px 20px;
-    width: 250px; }
+    width: 250px; 
+    &:hover {
+      background: image-url("images/logo_over.png") 0 0 no-repeat; }}
+      
   ul {
     list-style: none;
+    
+    /* * * * * * * * * * * * * * 
+     *
+     *   styles that apply only to the main (parent) nav ul
+     *   
+     * * * * * * * * * * * * * */    
+    &.main_nav {
+      height: inherit; 
+      &> li {
+        height: 58px;
+        > a {
+          display: block;
+          height: 100%;
+          padding-top: 16px;
+        }
+      }}
+    
+    img.fb_sign_in {width: 200px;}
+    
     .header_link {
-      display: table-cell;
-      &:hover {
-        ul {
-          top: 40px; }
-        ul.project_categories {
-          left: 412px;
-          width: 240px;
-          padding-right: 0px; }
-        ul.my_controls {
-          left: 788px;
-          width: 240px;
-          padding-right: 0px;
-          -moz-border-radius: 6px;
-          -webkit-border-radius: 6px;
-          -khtml-border-radius: 6px;
-          border-radius: 6px;
-          a {
-            font-size: 12px; } } }
+      display: inline-block;
+      
+      &.project_categories:hover ul {
+        left: 412px; }
+      &.member_id:hover ul{
+        left: 768px; }
       a {
         @include header-link;
         @include header-link-border;
         color: #fff;
-        text-shadow: -1px 1px #0a3c67; }
-      a:hover, a:active {
-        color: #053660;
-        text-shadow: 1px 1px #098ec6;
-        cursor: pointer; }
+        text-shadow: -1px 1px #0a3c67; 
+        
+        &:hover, &:active {
+          color: #053660;
+          text-shadow: 1px 1px #098ec6;
+          cursor: pointer; } }
+      
+      // Give space for the user's profile pic in the header bar.
+      &.member_id {
+        padding-left: 50px;
+        a {
+          padding-left: 40px; } }
+        
+      /* * * * * * * * * * * * * * 
+       *
+       *   Styles pertaining to the nested menus.
+       *   
+       * * * * * * * * * * * * * */
       ul {
         background: #03628a;
-        top: 90px;
         left: -9999px;
-        /* Hide off-screen when not needed (this is more accessible than display:none;) */
-        z-index: 100;
         list-style: none;
-        position: absolute;
         padding-left: 0;
         padding-right: 0;
-        top: 44px;
+        position: absolute;
+        top: 40px; 
+        width: 240px;
         z-index: 1000;
-        left: -9999px;
-        /* Hide off-screen when not needed (this is more accessible than display:none;) */
-        width: 250px;
+        -moz-border-radius: 6px;
+        -webkit-border-radius: 6px;
+        -khtml-border-radius: 6px;
+        border-radius: 6px;
+          
         li {
           width: 100%;
           @include header-link;
@@ -143,25 +130,15 @@
             padding: 10px;
             font-size: 14px;
             display: inline-block;
-            border: 0px;
             -webkit-transition: background-color 0.15s ease-in-out;
             -moz-transition: background-color 0.15s ease-in-out;
             -o-transition: background-color 0.15s ease-in-out;
             transition: background-color 0.15s ease-in-out; }
+          &:last-child, &:last-child a {
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px; }
           a:hover {
             background: #ddd;
             text-shadow: none;
-            width: 240px; } } }
-      &:hover ul {
-        left: 410px;
-        width: 240px;
-        padding-right: 0px; } } } }
+            width: 240px; } } } } } }
 
-#headerwrap {
-  @include headerwrap-style; }
-
-#footer {
-  @include header-style; }
-
-#footerwrap {
-  @include headerwrap-style; }
