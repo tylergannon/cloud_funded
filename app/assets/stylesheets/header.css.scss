@@ -66,9 +66,9 @@
     &.main_nav {
       height: inherit; 
       &> li {
-        height: 58px;
+        height: 100%;
         > a {
-          display: block;
+          display: table-cell;
           height: 100%;
           padding-top: 16px;
         }
@@ -97,6 +97,9 @@
       // Give space for the user's profile pic in the header bar.
       &.member_id {
         padding-left: 50px;
+        > a {
+          height: 50px;
+        }
         a {
           padding-left: 40px; 
           width: 200px;
@@ -104,8 +107,6 @@
           text-overflow: ellipsis;
           -o-text-overflow: ellipsis;
           white-space: nowrap;
-          
-          
           } }
         
       /* * * * * * * * * * * * * * 
