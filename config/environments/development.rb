@@ -2,6 +2,11 @@ CloudFunded::Application.configure do
   
   Dwolla::Transaction.test_mode = true
   
+  ENV['DWOLLA_SEND'] = 'https://www.dwolla.com/oauth/rest/testapi/send'
+  ENV['AMAZON_S3_BUCKET'] = 'cloud_funded_sandbox'
+  ENV['SENDGRID_USERNAME'] = 'cloudfunded_development'
+  ENV['SENDGRID_PASSWORD'] = 'B@rnD00ez!'
+  
   if `hostname`.strip == 'li491-83'
     AppConfig.paperclip_storage = {
       :storage => :s3,
@@ -36,11 +41,6 @@ CloudFunded::Application.configure do
   # 
   # https://www.dwolla.com/oauth/v2/authenticate?response_type=code&client_id=wGcz6BfJ34N9oRvdtY3d7ReIUoc28ds3Pn3LmSCCtD5CNluCwB&redirect_uri=http%3A%2F%2Flocal.cloudfunded.com%3A3000%2Fmembers%2Fauth%2Fdwolla%2Fcallback&scope=accountinfofull%7Csend
     
-  ENV['DWOLLA_SEND'] = 'https://www.dwolla.com/oauth/rest/testapi/send'
-  ENV['AMAZON_S3_BUCKET'] = 'cloud_funded_sandbox'
-  ENV['SENDGRID_USERNAME'] = 'cloudfunded_development'
-  ENV['SENDGRID_PASSWORD'] = 'B@rnD00ez!'
-
   config.action_mailer.default :charset => "utf-8"
   ActionMailer::Base.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
