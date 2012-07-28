@@ -59,11 +59,11 @@ class Project < ActiveRecord::Base
     :styles => { large: "560x310", :medium => "300x190", :thumb => "100x100" },  
   }
   
-  has_attached_file :image, S3_DEETS
-  has_attached_file :about_your_product_image, S3_DEETS
-  has_attached_file :how_it_helps_image, S3_DEETS
-  has_attached_file :your_target_market_image, S3_DEETS
-  has_attached_file :history_image, S3_DEETS
+  has_attached_file :image, S3_DEETS.merge(AppConfig.paperclip_storage)
+  has_attached_file :about_your_product_image, S3_DEETS.merge(AppConfig.paperclip_storage)
+  has_attached_file :how_it_helps_image, S3_DEETS.merge(AppConfig.paperclip_storage)
+  has_attached_file :your_target_market_image, S3_DEETS.merge(AppConfig.paperclip_storage)
+  has_attached_file :history_image, S3_DEETS.merge(AppConfig.paperclip_storage)
   
   validates :category, presence: true, :if => lambda {|project| !project.new?}
   validates_attachment_presence :image, :if => lambda {|project| !project.new?}
