@@ -1,4 +1,9 @@
-%h2 Hi Tyler,
+%h2 Hi #{@role.member ? @role.member.first_name : 'there'}!
 %p
-  #{@role.invited_by.full_name} has indicated to CloudFunded that you are a member of the #{@role.project.name} team, and would like to list you in the role of <i>#{@role.name}</i>.  Please confirm your role by clicking #{link_to 'this link', confirm_project_role_url(@role.project, @role, confirmation_token: @role.confirmation_token)} or by going to the url below.
-%p= confirm_project_role_url(@role.project, @role, confirmation_token: @role.confirmation_token)
+  #{@role.invited_by.full_name} has indicated to CloudFunded that you are a member of the #{@role.project.name} team, and would like to list you in the role of <i>#{@role.name}</i>.  Please confirm your role by logging in and going to your #{link_to 'My Account', account_url} page.
+  
+  Thanks and see you there!
+  
+  Cheers,
+  CloudFunded
+  

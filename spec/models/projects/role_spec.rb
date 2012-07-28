@@ -30,7 +30,6 @@ describe Projects::Role do
     
     it "should send an email to the member being confirmed" do
       ActionMailer::Base.deliveries.last.to.should == [subject.email_address]
-      pp ActionMailer::Base.deliveries.last.body
     end
     
     it "should have a link to the correct url" do

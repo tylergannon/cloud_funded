@@ -5,6 +5,17 @@ describe Member do
   it {should have_many(:transactions)}
   it {should have_many(:roles)}
   
+  describe "finds existing team member invitations" do
+    before(:each) do
+      @role = FactoryGirl.create :projects_role
+      @member = FactoryGirl.create :member, email: @role.email_address
+      @role.reload
+    end
+    it "should set the role's member to the newly created member" do
+      @role.member.should == @member
+    end
+  end
+  
   describe "#pledge_for" do
     before :each do
       @project = FactoryGirl.create :project

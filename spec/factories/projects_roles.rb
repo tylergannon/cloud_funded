@@ -8,10 +8,10 @@ FactoryGirl.define do
   factory :projects_role, :class => 'Projects::Role' do
     name 'Supreme Chancellor'
     association :project
-    association :member
+    member nil
     association :invited_by, factory: :member
     confirmation_token nil
-    email_address "MyString"
+    email_address "somebody@somewhere.com"
     workflow_state "MyString"
     ordinal
   end
