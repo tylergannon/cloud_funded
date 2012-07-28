@@ -90,12 +90,70 @@ describe Projects::RolesController do
         end
       end
     end
-
+    
     describe "when I can't edit the project" do
       before :each do
         @member = FactoryGirl.create :member
         sign_in_as_member
         post :create, project_id: @project.to_param, format: :js
+      end
+      it "should be unauthorized" do
+        response.status.should == 401
+      end
+    end
+  end
+  
+  describe "#GET edit.js" do
+    before(:each) do
+      @role = FactoryGirl.create :projects_role, project: @project
+    end
+    describe "when I can edit the role" do
+      before(:each) do
+        get :edit, project_id: @project.to_param, id: @role.id, format: :js
+      end
+      it "should respond with success" do
+        response.status.should == 200
+      end
+      it "should render the destroy action" do
+        response.should render_template('edit')
+      end
+    end
+    
+    describe "when I don't own the project" do
+      before :each do
+        @member = FactoryGirl.create :member
+        sign_in_as_member
+        get :edit, project_id: @project.to_param, id: @role.id, format: :js
+      end
+      it "should be unauthorized" do
+        response.status.should == 401
+      end
+    end
+  end
+
+  describe "#PUT update.js" do
+    before(:each) do
+      @role = FactoryGirl.create :projects_role, project: @project
+    end
+    describe "when I can edit the role" do
+      describe "with valid params" do
+        before(:each) do
+          put :update, role: valid_params, project_id: @project.to_param, id: @role.id, format: :js
+        end
+        it "should respond with success" do
+          response.status.should == 200
+        end
+        it "should render the destroy action" do
+          response.should render_template('update')
+        end
+      end
+    end
+    
+    describe "when I don't own the project" do
+      before :each do
+        @member = FactoryGirl.create :member
+        sign_in_as_member
+        put :update, role: valid_params, project_id: @project.to_param, id: @role.id, format: :js
       end
       it "should be unauthorized" do
         response.status.should == 401

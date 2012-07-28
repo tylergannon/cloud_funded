@@ -18,8 +18,13 @@
           .links= link_to 'Edit Project', (project.published? ? edit_project_path(project) : project_wizard_path(project)) 
   
   %h2 My Teams
-  .roles
-    = render @member.roles
+  .roles.project_short_list
+    .team_membership
+      - @member.roles.each do |role|
+        = link_to role.project do
+          = image_tag role.project.image.url(:thumb)
+          %h3 #{role.project.name}: #{role.project.tagline}
+        = render role
   
   .transaction_history
     %h2 Transaction History

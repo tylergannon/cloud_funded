@@ -7,7 +7,11 @@ class Member < ActiveRecord::Base
       where(workflow_state: 'live')
     end
   end
-  has_many :roles, class_name: 'Projects::Role'
+  has_many :roles, class_name: 'Projects::Role' do
+    def confirmed
+      where(workflow_state: 'confirmed')
+    end
+  end
   has_many :transactions, dependent: :destroy
   has_many :pledges, inverse_of: :investor, foreign_key: 'investor_id' do
     def paid

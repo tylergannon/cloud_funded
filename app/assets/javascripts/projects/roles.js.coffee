@@ -2,12 +2,12 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-window.openNewMemberDialog = (htm) ->
+window.openNewMemberDialog = (htm, title) ->
   $el = $(htm)
   $('body').append($el)
   $('#cancel_new_team_member').click () ->
     $el.dialog 'close'
     $el.dialog 'destroy'
   $el.dialog
-    title: "Add A Team Member"
+    title: title
     resizable: false

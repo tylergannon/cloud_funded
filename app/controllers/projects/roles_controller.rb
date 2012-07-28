@@ -21,6 +21,19 @@ class Projects::RolesController < ApplicationController
     respond_with @project, @role
   end
   
+  def edit
+    @role = @project.roles.find(params[:id])
+    authorize! :edit, @role
+    respond_with(@role,@project)
+  end
+
+  def update
+    @role = @project.roles.find(params[:id])
+    authorize! :edit, @role
+    @role.update_attributes params[:role]
+    respond_with(@role,@project)
+  end
+  
   def confirm
     @role = @project.roles.find(params[:id])
     authorize! :confirm, @role
