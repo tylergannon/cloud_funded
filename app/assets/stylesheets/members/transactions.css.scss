@@ -56,8 +56,9 @@
     }
 
     input[type="checkbox"]{
-      width: 20px;
-      height:57px;
+      width:40px;
+      height:40px;
+      margin-top: 25px;
     }
     label
     {
@@ -104,3 +105,36 @@
     }
   }
 }
+
+.new_member {
+  .field > label, .field_with_errors > label {
+    float: left;
+    width: 240px;
+    clear: both;
+    padding-top: 15px;
+  }
+  input {
+    min-width: 300px;
+  }
+}
+
+ form .edit_pledge {
+  .field > label, .field_with_errors > label {
+  padding-top: 15px;
+  }
+
+}
+
+.payment_method {
+    border-radius: 4px;
+    khtml-border-radius: 4px;
+    moz-border-radius: 4px;
+    ms-border-radius: 4px;
+    o-border-radius: 4px;
+    webkit-border-radius: 4px;    
+    background: #f4f4f4;
+    padding: 30px;
+    width: 400px;
+    float: left;
+    margin: 20px 20px 20px 0px;
+    }

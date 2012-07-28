@@ -69,8 +69,15 @@ p img.left, p img { margin: 17px; margin-left: 0; }
 p img.right { margin: 17px; margin-right: 0; }
 aside p { font-size: 13px; line-height: 1.35; font-style: italic; }
 
+h1, h2, h3, h4, h5 {
 
-h1 { font-size: 44px; }
+
+font-weight: bold;
+color: #383B3F;
+
+}
+h1 { font-size: 44px;
+text-shadow: 2px 1px #fff; }
 
 h2 { font-size: 37px; }
 
@@ -164,10 +171,7 @@ hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px
    
     line-height: 45px;
   }
-  .field > label {
-    margin-top: 0px;
-  
-  }
+
  textarea {
     border-radius: 4px;
     khtml-border-radius: 4px;
@@ -389,14 +393,3 @@ margin: 10px;
 
 
 
-.new_member {
-  .field > label, .field_with_errors > label {
-    float: left;
-    width: 240px;
-    clear: both;
-    padding-top: 15px;
-  }
-  input {
-    width: 500px;
-  }
-}

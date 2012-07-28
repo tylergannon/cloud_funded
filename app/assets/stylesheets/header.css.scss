@@ -98,7 +98,15 @@
       &.member_id {
         padding-left: 50px;
         a {
-          padding-left: 40px; } }
+          padding-left: 40px; 
+          width: 200px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          -o-text-overflow: ellipsis;
+          white-space: nowrap;
+          
+          
+          } }
         
       /* * * * * * * * * * * * * * 
        *
