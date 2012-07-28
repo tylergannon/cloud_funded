@@ -6,6 +6,7 @@
         %ul
           %li= link_to 'Info', '#info'
           %li= link_to 'Updates', '#updates'
+          %li= link_to 'Team', '#team'
           %li= link_to 'Pledges', '#pledges'
         #info
           <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
@@ -13,6 +14,10 @@
           - if !!params[:mercury_frame] == true
             = link_to "New Article", project_updates_path(@project, format: :js), data: {remote: true}, method: :post
           = render partial: 'projects/articles/update', collection: @articles
+        #team
+          - if !!params[:mercury_frame] == true
+            = link_to "Add A Team Member", new_project_role_path(@project, format: :js), data: {remote: true}
+          = render @roles
         #pledges
           - @project.pledges.paid.each do |pledge|
             .pledge

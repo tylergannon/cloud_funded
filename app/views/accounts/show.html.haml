@@ -17,6 +17,9 @@
           .status= "Status: #{project.workflow_state.titleize}"
           .links= link_to 'Edit Project', (project.published? ? edit_project_path(project) : project_wizard_path(project)) 
   
+  %h2 My Teams
+  .roles
+    = render @member.roles
   
   .transaction_history
     %h2 Transaction History

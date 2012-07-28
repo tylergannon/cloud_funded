@@ -8,7 +8,7 @@ describe Projects::ArticlesController do
     @owner = FactoryGirl.create :member
     stub_attachments_for(Project)
     @project = FactoryGirl.create :project, owner: @owner
-    @article = FactoryGirl.create :article, author: @owner, project: @project
+    @article = FactoryGirl.create :published_article, author: @owner, project: @project
   end
   
   def valid_attributes
@@ -39,6 +39,9 @@ describe Projects::ArticlesController do
     it "should grab the correct article." do
       assigns(:article).should == @article
     end
+    it "should respond with success" do
+      response.status.should == 200
+    end
     it "should set the title" do
       assigns(:title).should == @article.title
     end
@@ -46,6 +49,8 @@ describe Projects::ArticlesController do
   
   describe "post #publish" do
     before :each do
+      @article.workflow_state = 'unpublished'
+      @article.save!
       @article.should be_unpublished
       sign_in @owner
       post :publish, project_id: @project.to_param, id: @article.to_param, format: 'json'

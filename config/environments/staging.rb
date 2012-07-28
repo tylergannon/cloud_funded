@@ -11,6 +11,27 @@ CloudFunded::Application.configure do
   ENV['DWOLLA_SECRET'] = 'ldwMpY70KH0zf72CaqgTjsZDyP8JhhwsSfAlvl0CWIJcdmg+SJ'
 
   Dwolla::Transaction.test_mode = true
+
+  config.action_mailer.default :charset => "utf-8"
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => 'cloudfunded.com'
+  }
+  ActionMailer::Base.delivery_method = :smtp
+
+  AppConfig.paperclip_storage = {
+    :storage => :s3,
+    :s3_protocol => '',
+    :bucket => ENV['AMAZON_S3_BUCKET'],
+    :s3_credentials => {
+      :access_key_id => 'AKIAIDEFW5P6AQLRXWGQ',
+      :secret_access_key => '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'
+    }
+  }
   
   # Settings specified here will take precedence over those in config/application.rb
 

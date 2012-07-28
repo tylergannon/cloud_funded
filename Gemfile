@@ -45,12 +45,12 @@ end
 
 group :test do
   gem "capybara-webkit"
-  gem 'cucumber-rails'
   gem 'database_cleaner'
   gem 'poltergeist', git: 'https://github.com/jonleighton/poltergeist.git'
   gem 'vcr'
   gem 'webmock'
   gem 'syntax'
+  gem 'growl'
 end
 
 group :deployment do

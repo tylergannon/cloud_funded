@@ -1,0 +1,13 @@
+.new_role[@role]
+  = form_for @role, as: :role, url: project_roles_path(@project), remote: true do |f|
+    .field
+      = f.label :email_address
+      = f.email_field :email_address
+    .field
+      = f.label :name, 'Role / Job Title'
+      = f.text_field :name
+    .field
+      = f.label :tagline, 'One-liner about this person\'s role'
+      = f.text_area :tagline
+    = f.submit 'Add', disable_with: 'Saving...'
+    = f.submit 'Cancel', id: 'cancel_new_team_member'

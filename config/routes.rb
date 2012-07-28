@@ -1,5 +1,7 @@
 CloudFunded::Application.routes.draw do
 
+  namespace :projects do resources :roles end
+
   resources :comments
 
   mount Mercury::Engine => '/'
@@ -49,6 +51,9 @@ CloudFunded::Application.routes.draw do
     resource :facebook_action
     resource :my_pledge, controller: :pledges
     resources :pledges
+    resources :roles, controller: 'projects/roles' do
+      member {get :confirm}
+    end
     resources :updates, controller: 'projects/articles', path_names: {:new => :new, :edit => :edit} do
       member { 
         post :publish 

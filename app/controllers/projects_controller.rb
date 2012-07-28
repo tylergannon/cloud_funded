@@ -58,8 +58,10 @@ class ProjectsController < ApplicationController
 
     if member_signed_in? && current_member == @project.owner
       @articles = @project.articles
+      @roles    = @project.roles 
     else
       @articles = @project.articles.published
+      @roles    = @project.roles.confirmed
     end
 
     respond_to do |format|

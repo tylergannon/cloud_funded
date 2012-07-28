@@ -19,7 +19,7 @@ feature "Pledging For A Project" do
 
         # puts page.body
         # sleep(9000)
-        current_path.should == new_project_pledge_path(@project, 'choose_payment_method')
+        current_path.should == new_project_pledge_path(@project, 'payment_method')
         @pledge = @member.pledge_for(@project)
         @pledge.should be_choose_payment_method
         choose 'payment_method_cc'

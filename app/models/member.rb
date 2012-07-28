@@ -7,7 +7,7 @@ class Member < ActiveRecord::Base
       where(workflow_state: 'live')
     end
   end
-  has_many :transactions, dependent: :destroy
+  has_many :roles, class_name: 'Projects::Role'
   has_many :transactions, dependent: :destroy
   has_many :pledges, inverse_of: :investor, foreign_key: 'investor_id' do
     def paid

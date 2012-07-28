@@ -1,0 +1,16 @@
+.role[role]
+  - if can? :destroy, role
+    = link_to 'Delete', project_role_path(role.project, role), method: :delete, data: {confirm: 'You really want to remove this team member?', remote: true}
+  .person
+    - if role.member
+      = image_tag role.member.profile_pic
+      .name= role.member.full_name
+    - else
+      = role.email_address
+  .role_name= role.name
+  .tagline= role.tagline
+  - if can? :edit, @project
+    .status
+      Status: #{role.workflow_state.titleize}
+      - if can? :confirm, role
+        = link_to 'Confirm', confirm_project_role_path(role.project, role), data: {confirm: 'This is to confirm that you are on this team.', remote: true}
