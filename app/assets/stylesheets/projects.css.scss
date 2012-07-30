@@ -243,6 +243,16 @@ $right-pane-width: 300px;
 }
 
 .project_category, .projects{
+   
+   h1 {
+    letter-spacing: -1px;
+    line-height: 60px;
+    padding: 5px 20px;
+    display: block;
+    text-shadow: 1px 1px #fff;
+   background: #f4f4f4;
+   
+   }
    li {
     list-style-type: none;
   }
