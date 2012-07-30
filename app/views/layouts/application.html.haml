@@ -18,23 +18,23 @@
         .page_title
           %h1
         %ul.main_nav
-          %li.header_link.project_categories
+          %li
             = link_to 'Invest', projects_path
             %ul
               - Projects::Category.all.each do |category|
                 %li= link_to category.name, projects_category_path(category)
-          %li.header_link= link_to 'Get Funded', get_funded_path
-          %li.header_link= link_to 'Blog', blog_path
-          %li.header_link= link_to 'About Us', page_path('about')      
+          %li= link_to 'Get Funded', get_funded_path
+          %li= link_to 'Blog', blog_path
+          %li= link_to 'About Us', page_path('about')      
           - unless member_signed_in?
-            %li.header_link.member_id
+            %li
               = link_to 'Sign in', new_member_session_path
               %ul
                 %li
                   = link_to member_omniauth_authorize_path(:facebook) do
                     = image_tag 'Button_FBConnect3.png', :class => 'fb_sign_in'
           - else
-            %li.header_link.member_id
+            %li
               = link_to account_path do
                 = current_member.full_name
               %ul

@@ -1,18 +1,8 @@
 @mixin header-style {
   background: url(/assets/images/top.png) 0 0 repeat-x;
-  height: 62px;
+//  height: 62px;
   margin: 0px 0px;
   padding: 0px;
-  width: 100%;
-}
-
-@mixin headerwrap-style {
-  padding: 0px 40px;
-  width: 980px;
-}
-
-@mixin header-link-border {
-  padding: 15px 10px 10px 10px;
 }
 
 @mixin header-link {
@@ -23,20 +13,18 @@
 }
 
 /* Global Reset & Standards ---------------------- */
-* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 
 html { font-size: 62.5%; }
 
 body {
   background: white;
-  font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif; font-size: 14px; font-size: 			1.4rem; line-height: 1;
+  font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif; font-size: 14px; font-size: 			1.4em; line-height: 1;
   color: #222222;
   position: relative;
   padding: 0;
   margin: 0; 
   -webkit-font-smoothing: antialiased; 
   background: url(/assets/images/grayish.png) 0 0 repeat;
-
 }
 
 /* Links ---------------------- */
@@ -97,24 +85,8 @@ hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px
 /* HEADER ---------------------- */
 
 
-#footer
-{
-  @include header-style;
-}
-#footerwrap
-{
-  @include headerwrap-style;
-}
-
-
-
-
 .container {
 //	background: white;
-  margin: 10px auto;
-  padding: 20px;
-  max-width: 1080px;
-  min-height: 650px;
   a {
     color: #0099ff;
     font-weight: bold;
@@ -156,9 +128,6 @@ hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px
     webkit-border-radius: 6px; 
 
   }
-
-
-
   .field > label, .field_with_errors > label {
     color: #aaa;
     font-size: 18px;
@@ -228,8 +197,6 @@ input[type="button"], input[type="submit"], input[type="reset"]
 -webkit-appearance: push-button;
 
 }
-
-
 
 input[type="button"], input[type="submit"], input[type="reset"], .cta {
   white-space: pre;

@@ -1,0 +1,24 @@
+.navbar {
+  
+  .navbar-inner {
+    background: image-url('headertop.png') 0 0 repeat-x;
+    height: 58px;
+  }
+
+  /* * * * * * * * * * * * * * 
+   *
+   *   #header .page_title
+   *    sets the background image for the header.
+   *
+   * * * * * * * * * * * * * */
+  .brand {
+    background: image-url("images/logo.png") 0 0 no-repeat;
+    clear: none;
+    cursor: pointer;
+    float: left;
+    height: 100%;
+    margin: -5px 100px 0px 20px;
+    width: 250px; 
+    &:hover {
+      background: image-url("images/logo_over.png") 0 0 no-repeat; }}}
+
