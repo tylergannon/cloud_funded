@@ -114,7 +114,8 @@
        *   
        * * * * * * * * * * * * * */
       ul {
-        background: #03628a;
+         background: url(/assets/images/cross.png) 0 0 repeat #11365c;
+
         left: -9999px;
         list-style: none;
         padding-left: 0;
@@ -123,11 +124,9 @@
         top: 40px; 
         width: 240px;
         z-index: 1000;
-        -moz-border-radius: 6px;
-        -webkit-border-radius: 6px;
-        -khtml-border-radius: 6px;
-        border-radius: 6px;
-          
+             border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
+                 
         li {
           width: 100%;
           @include header-link;
