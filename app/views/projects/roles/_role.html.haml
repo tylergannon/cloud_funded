@@ -12,7 +12,7 @@
       = role.email_address
   .role_name= role.name
   .tagline= role.tagline
-  - if can? :edit, @project
+  - if can? :edit, role
     .status
       Status: #{role.workflow_state.titleize}
       - if can?(:confirm, role) && role.unconfirmed?

@@ -8,8 +8,8 @@ feature "connecting dwolla account" do
   
   scenario "when I already have a dwolla account", js: true do
     visit account_path
-    page.evaluate_script('window.confirm = function() { return true; }')
-click_link 'Unlink Your Account'
+    answer_yes_to_confirmations
+    click_link 'Unlink Your Account'
     if (page.has_link?('Unlink Your Account'))
       
     end

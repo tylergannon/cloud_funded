@@ -75,6 +75,7 @@ Spork.prefork do
     config.include AdminMemberSignInHelper, type: :controller
     config.include RequestSpecs::SignInMemberHelper, type: :request
     config.include RequestSpecs::ProjectRegistrationHelpers, type: :request
+    config.include RequestSpecs::StubConfirmationDialog, type: :request
     config.include MemberSignInHelper, type: :controller
     config.include AttachmentStubHelper, type: :controller
     config.include AttachmentStubHelper, type: :model
