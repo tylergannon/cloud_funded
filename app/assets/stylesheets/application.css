@@ -11,6 +11,7 @@
  *= require_self
  * require_tree .
  *= require jquery-ui-1.8.21.custom
+ *= require jquery_ui_overrides
  *= require accounts.css.scss
  *= require admin/articles.css.scss
  *= require admin/feedbacks.css.scss
