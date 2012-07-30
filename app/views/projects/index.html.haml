@@ -1,12 +1,26 @@
-.project_listing
-  %h1 Make the projects you believe in happen!
-  .button1.green.large= link_to 'Find Investments', projects_categories_path
+.home-banner
+  .banner-inner
+    .home-info
+    %br/
+    %br/
+    %br/
+    %br/
+    %h1 Grassroots investing 
+    %br/
+    %h1 for main street
+    %h5 A platform for investing in local businesses and startups
+    
+    
+    = link_to get_funded_path do 
+      .button1.green.large.glow Fund Your Project
+    .button1.yellow.large= link_to 'Find Investments', projects_categories_path
 
+
+.spacer
+.project_listing  
   %ul#project_list
     = render @projects
 
 .clear
 %br/
 %br/
-= link_to get_funded_path do 
-  .button1.yellow.large.glow Start Funding Your Own Project!
