@@ -18,21 +18,18 @@
     = render partial: 'layouts/open_graph_data'
     = stylesheet_link_tag    "application", :media => "all"
     = csrf_meta_tags
-    - if member_signed_in?
-      :css
-        li.member_id > a {background: url('#{current_member.profile_pic}') no-repeat 0px 10px; background-size:30px 30px;}
     = yield :head
   %body
     = render partial: 'layouts/facebook_sdk' unless Rails.env.test?
     .navbar.navbar-fixed-top
       .navbar-inner
-        .container
+        .container-fluid
           .row
             .span3
               %a.brand{href: root_path} &nbsp;
             .span6.offset3
               .container.nav-collapse
-                %ul.nav
+                %ul.nav.nav-pills
                   %li.dropdown.project_categories
                     %a.dropdown-toggle{href: '#', data: {toggle: :dropdown}}
                       Invest
@@ -47,6 +44,7 @@
                   %li.dropdown
                     %a.droptown-toggle{href: '#', data: {toggle: :dropdown}}
                       My Account
+                      = image_tag current_member.profile_pic, height: 24
                       %b.caret
                     %ul.dropdown-menu
                       - unless member_signed_in?
@@ -70,21 +68,10 @@
                           %li= link_to 'Blog Articles', admin_articles_path
                           %li= link_to 'Categories', admin_projects_categories_path
 
-    .container
-
+    .container-fluid
       .content
-        .row
-          .span9
-            = bootstrap_flash
-            = yield
-          .span3
-            .well.sidebar-nav
-              %h3 Sidebar
-              %ul.nav.nav-list
-                %li.nav-header Sidebar
-                %li= link_to "Link 1", "/path1"
-                %li= link_to "Link 2", "/path2"
-                %li= link_to "Link 3", "/path3"
+        = bootstrap_flash
+        = yield
   
       %footer
         %p &copy; Company 2012

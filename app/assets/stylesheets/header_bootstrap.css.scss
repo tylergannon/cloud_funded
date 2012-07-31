@@ -1,24 +1,204 @@
+@mixin header-link-border {
+  padding: 0px 10px 10px 10px;
+  border: none; }
+
+@mixin header-link {
+  color: #fff;
+  text-shadow: -1px -1px #a88852;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none; }
+body > .container {
+//  margin-left: 0;
+//  margin-right: 0;
+}
+
 .navbar {
-  
   .navbar-inner {
     background: image-url('headertop.png') 0 0 repeat-x;
-    height: 58px;
+    > .container {
+      padding: 0;
+      margin: 0;
+    }
   }
 
-  /* * * * * * * * * * * * * * 
-   *
-   *   #header .page_title
-   *    sets the background image for the header.
-   *
-   * * * * * * * * * * * * * */
   .brand {
-    background: image-url("images/logo.png") 0 0 no-repeat;
-    clear: none;
+    background: image-url("logo.png") 0 0 no-repeat;
+    width: 190px;
+    margin-left: 45px;
+    padding: 0;
+    margin-top: -6px;
+    height: 50px;
     cursor: pointer;
-    float: left;
-    height: 100%;
-    margin: -5px 100px 0px 20px;
-    width: 250px; 
     &:hover {
-      background: image-url("images/logo_over.png") 0 0 no-repeat; }}}
+      background: image-url("logo_over.png") 0 0 no-repeat; }
+  }
+  .nav {
+    padding-top: 14px;
+    > li {
+      > a {
+        @include header-link;
+        @include header-link-border;
+        color: #fff;
+        text-shadow: -1px 1px #0a3c67; 
+        
+        &:hover, &:active {
+          color: #053660;
+          text-shadow: 1px 1px #098ec6;
+          cursor: pointer; } }
+      
+    }
+  }
+}
+
+.home-banner {
+  background: image-url('bannertop.png') 0 0 repeat-x;
+margin-top: -25px;
+text-align: center;
+  h1 {
+    color: #fff;
+  //  text-shadow: 1px -1px #03577a;
+    margin-top: 40px; 
+    font-size: 42px;
+    line-height: 56px;
+    padding: 5px 20px;
+    display: inline;
+   background: image-url('cross.png') 0 0 repeat #11365c;
+
+       
+	zoom: 1;
+	filter: alpha(opacity=70);
+	opacity: 0.7;
+ }
+ 
+ .button1.green {
+ //   margin-left: 30px;
+ 
+ }
+ 
+ .button1.large  {
+    width: 100px;
+    margin-top: 10px;
+ 
+ }
+  h5 {
+    color: #5cc1e5;
+      font-family:'AdelleRegular', sans-serif;
+      
+
+    font-size:20px;
+    letter-spacing: -1px;
+    letter-spacing: 0.5px;
+    line-height: 36px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    font-weight: normal;
+    text-shadow: 0 1px 0 rgba(38, 67, 91, 0.33);
+    }
+    
+    .button1 {
+    
+    float: left;
+    font-size: 16px;
+    margin-top: 0px;
+    width: 100px;
+    }
+}
+
+
+.button1 {
+margin: 10px;
+  display: inline-block;
+  padding: 5px 10px 6px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  line-height: 1;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-box-shadow: 0 1px 3px #999;
+  -webkit-box-shadow: 0 1px 3px #999;
+  text-shadow: 0 -1px 1px #222;
+  border-bottom: 1px solid #222;
+  position: relative;
+  cursor: pointer;
+  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+  border-bottom: 1px solid rgba(0,0,0,0.25);
+  text-align: center;
+
+  a {
+    color: #333;
+    text-shadow: 1px 1px #fff;
+  }
+    
+  a:hover {
+    color: #fff;
+  } 
+  
+  a span  {
+  font-size: 18px;
+  color: #666;
+  }
+}
+
+
+.small.button1 {
+  font-size: 11px;
+}
+
+.medium.button1 {
+  font-size: 14px;
+}
+
+.large.button1 {
+  font-size: 24px;
+  padding: 20px;
+  min-width: 300px;
+}
+
+
+ 
+/* Colors ---------- */
+.blue.button1 {
+  background-color: #2daebf;
+}
+.red.button1 {
+  background-color: #e33100;
+}
+.magenta.button1 {
+  background-color: #a9014b;
+}
+.green.button1 {
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(135, 203, 135)), to(rgb(88, 137, 88)));
+  background-color: #79b979;
+  a {
+    color: white;
+    text-shadow: -1px -1px #416f41;
+  }
+
+}
+
+.green.button1:hover {
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(102, 153, 102)), to(rgb(51, 102, 51)));
+  background-color: #79b979;
+}
+
+
+.yellow.button1{
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255, 214, 114)), to(rgb(251, 176, 16)));
+  background-color: #ffb515;
+  text-shadow: -1px -1px yellow;
+  color: #333;
+}
+.yellow.button1 a:hover {
+  text-shadow: 1px 1px #d3a529;
+  color: #333;
+}
+
+.yellow.button1:hover {
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(251, 176, 16)), to(rgb(255, 214, 114)));
+  background-color: #ffb515;
+}
 
