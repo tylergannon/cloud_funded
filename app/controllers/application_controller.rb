@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  layout 'bootstrap_fixed'
   responders :flash, :http_cache
   respond_to :html
   protect_from_forgery
