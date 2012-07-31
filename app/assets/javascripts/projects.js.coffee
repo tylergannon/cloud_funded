@@ -8,7 +8,7 @@ $ ->
   $('ul#project_list').bxSlider
     displaySlideQty: 3
     moveSlideQty: 3
-  
+  $('.money').money_field()
   $('.project').each (idx, el) ->
     $el = $(el)
     $el.click ->

@@ -1,9 +1,16 @@
-.project_application_header
-  = link_to 'Info', wizard_path(:information)
-  = link_to 'Basics', wizard_path(:basics)
-  = link_to 'Location', wizard_path(:where)
-  = link_to 'Your Company', wizard_path(:more_about_you)
-  = link_to 'Fund Raise', wizard_path(:fund_raise)
-  = link_to 'Preview', wizard_path(:preview)
-  = link_to 'Apply', wizard_path(:submit)
-  
+.project_application_header.navbar
+  .container
+    .navbar-inner
+      %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      .nav-collapse
+        %ul.nav
+          %li{active?(:information)}= link_to 'Info', wizard_path(:information)
+          %li{active?(:basics)}= link_to 'Basics', wizard_path(:basics)
+          %li{active?(:where)}= link_to 'Location', wizard_path(:where)
+          %li{active?(:more_about_you)}= link_to 'Your Company', wizard_path(:more_about_you)
+          %li{active?(:fund_raise)}= link_to 'Fund Raise', wizard_path(:fund_raise)
+          %li{active?(:preview)}= link_to 'Preview', wizard_path(:preview)
+          %li{active?(:submit)}= link_to 'Apply', wizard_path(:submit)

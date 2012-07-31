@@ -19,5 +19,3 @@ $ ->
 
     Mercury.on 'saved', ->
       window.parent.parent.window.location = window.parent.parent.window.location.href.replace(/\/editor\//i, '/');
-  
-    

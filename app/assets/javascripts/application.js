@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require bootstrap/jquery.bootstrap-money-field
 //= require jquery-ui-1.8.21.custom.min
 //= require 3rd_party/jquery.html5_upload.js
 //= require jquery.easing.1.3

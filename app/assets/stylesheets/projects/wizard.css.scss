@@ -3,7 +3,6 @@ $project-basics-padding: 15px;
 
 .project_wizard {
   background: #fff;
-  width: 1080px;
   padding: 50px 15px;
   margin: 0px auto;
   input {
@@ -71,9 +70,9 @@ $project-basics-padding: 15px;
     input {
       text-align: center;
     }
-    input, textarea, select {
-      width: $project-basics-width;
-    }
+//    input, textarea, select {
+//      width: $project-basics-width;
+//    }
     input[type=submit], select, option {
       height: 42px;
       font-size: 18px;
@@ -114,9 +113,12 @@ $project-basics-padding: 15px;
 //     border: 2px dashed grey;
       width: 125px;
       display: table-cell;
-      input {
-        width: 125px;
-        display: inline-block;
+//      input {
+//        width: 125px;
+//        display: inline-block;
+//      }
+      input.money {
+        
       }
       label {
       font-size: 16px;
@@ -137,57 +139,57 @@ $project-basics-padding: 15px;
         width: 250px;
       }
       .upload_field {
-        position: absolute;
-        left: 410px;
-        top: 45px;
+//        position: absolute;
+//        left: 410px;
+//        top: 45px;
       }
     }
   }
 }
 
 .project_application_header {
-  position: absolute;
-  margin-left: 30px;
+  .navbar-inner {
+    box-shadow: none;
+    background: transparent;
+    
+  }
+  li {
+  	width: auto;
+  	background: #FFA104;
+  	background: -moz-linear-gradient(top, #ccc 0%, #e2aa4b 100%);
+  	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ccc), color-stop(100%,#e2aa4b));
+  	background: -webkit-linear-gradient(top, #ccc 0%,#a0a0a0 100%);
+  	background: -o-linear-gradient(top, #ccc 0%,#e2aa4b 100%);
+  	background: -ms-linear-gradient(top, #ccc 0%,#e2aa4b 100%);
+  	background: linear-gradient(top, #ccc 0%,#e2aa4b 100%);
+  	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ccc', endColorstr='#e2aa4b',GradientType=0 );
 
 
-  
-  a {
-	width: auto;
-	background: #FFA104;
-	background: -moz-linear-gradient(top, #ccc 0%, #e2aa4b 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ccc), color-stop(100%,#e2aa4b));
-	background: -webkit-linear-gradient(top, #ccc 0%,#a0a0a0 100%);
-	background: -o-linear-gradient(top, #ccc 0%,#e2aa4b 100%);
-	background: -ms-linear-gradient(top, #ccc 0%,#e2aa4b 100%);
-	background: linear-gradient(top, #ccc 0%,#e2aa4b 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ccc', endColorstr='#e2aa4b',GradientType=0 );
-
-
-	border: 1px solid #ccc;
-	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
-	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
-	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
-	color: white;
-	cursor: pointer;
-	display: inline-block;
-	font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif;
-	font-size: 18px;
-	font-weight: bold;
-	line-height: 1;
-	margin-top: 10px;
-	outline: none;
-	padding: 10px 20px 11px;
-	position: relative;
-	text-align: center;
-	text-decoration: none;
-	-webkit-transition: background-color 0.15s ease-in-out;
-	-moz-transition: background-color 0.15s ease-in-out;
-	-o-transition: background-color 0.15s ease-in-out;
-	transition: background-color 0.15s ease-in-out;
+  	border: 1px solid #ccc;
+  	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  	color: white;
+  	cursor: pointer;
+  	display: inline-block;
+  	font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  	font-size: 18px;
+  	font-weight: bold;
+  	line-height: 1;
+//    margin-top: 10px;
+  	outline: none;
+  	padding: 10px 20px 11px;
+  	position: relative;
+  	text-align: center;
+  	text-decoration: none;
+  	-webkit-transition: background-color 0.15s ease-in-out;
+  	-moz-transition: background-color 0.15s ease-in-out;
+  	-o-transition: background-color 0.15s ease-in-out;
+  	transition: background-color 0.15s ease-in-out;
 	}
 	a:hover {
-	background: #053458;
-	color: #f4f4f4;
+  	background: #053458;
+  	color: #f4f4f4;
 	
 	}
 }
@@ -206,12 +208,12 @@ $project-basics-padding: 15px;
 
 }
 
-textarea{
-min-width: 660px;
-padding: 20px;
-font-size: 14px;
-line-height: 21px;
-
+textarea {
+//  min-width: 660px;
+  width: 100%;
+  padding: 20px;
+  font-size: 14px;
+  line-height: 21px;
 }
 
 .more_about_you .field {
