@@ -38,9 +38,15 @@
                       %li= link_to 'All Companies', projects_path
                       - Projects::Category.all.each do |category|
                         %li= link_to category.name, projects_category_path(category)
-                  %li.header_link= link_to 'Get Funded', get_funded_path
-                  %li.header_link= link_to 'Blog', blog_path
-                  %li.header_link= link_to 'About Us', page_path('about')    
+                  %li= link_to 'Get Funded', get_funded_path
+                  %li= link_to 'Blog', blog_path
+                  %li.dropdown
+                    %a.droptown-toggle{href: '#', data: {toggle: :dropdown}}
+                      About Us
+                      %b.caret
+                    %ul.dropdown-menu
+                      %li= link_to 'Our Company', '/about'
+                      %li= link_to 'How It Works', how_it_works_path
                   %li.dropdown
                     %a.droptown-toggle{href: '#', data: {toggle: :dropdown}}
                       My Account
