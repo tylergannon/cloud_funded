@@ -24,7 +24,11 @@
     .navbar.navbar-fixed-top
       .navbar-inner
         .container-fluid
-          .row
+          %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          .row-fluid
             .span3
               %a.brand{href: root_path} &nbsp;
             .span6.offset3
@@ -39,6 +43,7 @@
                       - Projects::Category.all.each do |category|
                         %li= link_to category.name, projects_category_path(category)
                   %li= link_to 'Get Funded', get_funded_path
+                  %li= link_to 'Feedback', submit_feedback_path(about_page: request.path)
                   %li= link_to 'Blog', blog_path
                   %li.dropdown
                     %a.droptown-toggle{href: '#', data: {toggle: :dropdown}}
@@ -62,7 +67,6 @@
                         %li= link_to 'My Profile', profile_path(current_member)
                         %li= link_to 'My Account', account_path
                         %li= link_to 'My Projects', my_projects_path
-                        %li= link_to 'Feedback', submit_feedback_path(about_page: request.path)
                         %li= link_to 'Change Password', account_settings_path
                         %li= link_to 'Sign out', destroy_member_session_path, method: 'delete'
                         - if current_member.admin
@@ -74,13 +78,14 @@
                           %li= link_to 'Blog Articles', admin_articles_path
                           %li= link_to 'Categories', admin_projects_categories_path
 
-    .container-fluid
+    = yield :banner
+    .container
       .content
         = bootstrap_flash
         = yield
   
-      %footer
-        %p &copy; Company 2012
+    %footer
+      %p &copy; Company 2012
     /
       Javascripts
       \==================================================

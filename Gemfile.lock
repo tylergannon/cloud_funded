@@ -28,6 +28,14 @@ GIT
       multi_json (= 1.3.6)
 
 GIT
+  remote: https://github.com/tylergannon/haml.git
+  revision: f8f545117d3a5d2fe90884e532fe93bb31192571
+  branch: 3-2-stable
+  specs:
+    haml (3.2.0.beta.1)
+      tilt
+
+GIT
   remote: https://github.com/tylergannon/mercury.git
   revision: e0a52a88c19b23035098b063ffe7be10598a69ac
   specs:
@@ -139,7 +147,6 @@ GEM
     guard-spork (1.1.0)
       guard (>= 1.1)
       spork (>= 0.8.4)
-    haml (3.1.6)
     haml-rails (0.3.4)
       actionpack (~> 3.0)
       activesupport (~> 3.0)
@@ -339,6 +346,7 @@ DEPENDENCIES
   friendly_id
   growl
   guard-spork
+  haml!
   haml-rails
   httparty
   jquery-rails
