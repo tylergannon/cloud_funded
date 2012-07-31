@@ -8,6 +8,8 @@
     
     - if flash[:alert]
       %p.alert= flash[:alert]
+    - if session[:twitter_login_id]
+      %p.alert Successfully logged in via Twitter.  Please log in or sign up to connect your twitter account.
     = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
       .field
         = f.label :email

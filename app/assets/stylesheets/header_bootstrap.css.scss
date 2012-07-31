@@ -57,39 +57,33 @@ body > .container {
 
 .home-banner {
   background: image-url('bannertop.png') 0 0 repeat-x;
-margin-top: -25px;
-text-align: center;
+  margin-top: -25px;
+  text-align: center;
   h1 {
     color: #fff;
-  //  text-shadow: 1px -1px #03577a;
+    //  text-shadow: 1px -1px #03577a;
     margin-top: 40px; 
     font-size: 42px;
     line-height: 56px;
     padding: 5px 20px;
     display: inline;
-   background: image-url('cross.png') 0 0 repeat #11365c;
-
-       
-	zoom: 1;
-	filter: alpha(opacity=70);
-	opacity: 0.7;
- }
+    background: image-url('cross.png') 0 0 repeat #11365c;
+    zoom: 1;
+    filter: alpha(opacity=70);
+    opacity: 0.7;
+   }
  
- .button1.green {
- //   margin-left: 30px;
+   .button1.green {
+   //   margin-left: 30px;
+   }
  
- }
- 
- .button1.large  {
+  .button1.large  {
     width: 100px;
     margin-top: 10px;
- 
- }
+  }
   h5 {
     color: #5cc1e5;
-      font-family:'AdelleRegular', sans-serif;
-      
-
+    font-family:'AdelleRegular', sans-serif;
     font-size:20px;
     letter-spacing: -1px;
     letter-spacing: 0.5px;
@@ -98,20 +92,18 @@ text-align: center;
     margin-top: 15px;
     font-weight: normal;
     text-shadow: 0 1px 0 rgba(38, 67, 91, 0.33);
-    }
+  }
     
-    .button1 {
-    
+  .button1 {
     float: left;
     font-size: 16px;
     margin-top: 0px;
     width: 100px;
-    }
+  }
 }
 
-
 .button1 {
-margin: 10px;
+  margin: 10px;
   display: inline-block;
   padding: 5px 10px 6px;
   color: #fff;
@@ -136,14 +128,14 @@ margin: 10px;
     color: #333;
     text-shadow: 1px 1px #fff;
   }
-    
+  
   a:hover {
     color: #fff;
   } 
-  
+
   a span  {
-  font-size: 18px;
-  color: #666;
+    font-size: 18px;
+    color: #666;
   }
 }
 
@@ -162,8 +154,6 @@ margin: 10px;
   min-width: 300px;
 }
 
-
- 
 /* Colors ---------- */
 .blue.button1 {
   background-color: #2daebf;
@@ -181,14 +171,12 @@ margin: 10px;
     color: white;
     text-shadow: -1px -1px #416f41;
   }
-
 }
 
 .green.button1:hover {
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(102, 153, 102)), to(rgb(51, 102, 51)));
   background-color: #79b979;
 }
-
 
 .yellow.button1{
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255, 214, 114)), to(rgb(251, 176, 16)));
@@ -205,4 +193,3 @@ margin: 10px;
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(251, 176, 16)), to(rgb(255, 214, 114)));
   background-color: #ffb515;
 }
-

@@ -38,6 +38,7 @@ CloudFunded::Application.routes.draw do
   end
 
   resource :my_account, as: 'account', only: [:show, :edit, :update], controller: 'accounts' do
+    member {put :send_reset_password_instructions, as: :send_reset_password_instructions}
     resources :funds, path_names: {:new => 'add'}, controller: 'members/transactions'
   end
   
@@ -72,7 +73,8 @@ CloudFunded::Application.routes.draw do
     
   devise_for :members, controllers: {
     omniauth_callbacks: 'members/omniauth_callbacks',
-    registrations: 'members/registrations'
+    registrations: 'members/registrations',
+    sessions: 'members/sessions'
   }
   
   match '/blog' => 'articles#index', as: :blog
@@ -91,7 +93,7 @@ CloudFunded::Application.routes.draw do
   # resource :get_funded, controller: 'projects/wizard', as: :get_funded
   
   as :member do
-    get '/my_account/settings' => 'members/registrations#edit',  as: :account_settings
+    get '/my_account/change_password' => 'members/registrations#edit',  as: :change_password
   end
   
   # match '/projects/:project_id/my_pledge/edit' => 'pledges#edit', as: :edit_my_pledge

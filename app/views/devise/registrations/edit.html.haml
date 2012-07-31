@@ -10,6 +10,7 @@
     %i (we need your current password to confirm your changes)
     %br/
     = f.password_field :current_password
+    = link_to 'Forgot My Password', send_reset_password_instructions_account_path, method: :put, data: {confirm: 'You will be logged out until you click the link in the email that is sent to you.  Ok?', remote: true}
   %div
     = f.label :password, 'New password'
     -# %i (leave blank if you don't want to change it)

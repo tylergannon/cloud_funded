@@ -1,0 +1,231 @@
+--- !ruby/hash:OmniAuth::AuthHash
+provider: twitter
+uid: '63281177'
+info: !ruby/hash:OmniAuth::AuthHash::InfoHash
+  nickname: tybo22
+  name: Tyler Gannon
+  location: Oakland, Ca
+  image: http://a0.twimg.com/profile_images/350221530/Tyler_normal.jpeg
+  description: ''
+  urls: !ruby/hash:Hashie::Mash
+    Website: http://www.cloudfunded.com
+    Twitter: http://twitter.com/tybo22
+credentials: !ruby/hash:Hashie::Mash
+  token: 63281177-fq1LNr8jQzjRTKtRGeYMkAhx3sMGOGf3eLoRjw8IU
+  secret: DbUizVtQtPKwV2Ld3DI2oWsWqQja9uJI1xgFMhZsP4
+extra: !ruby/hash:Hashie::Mash
+  access_token: !ruby/object:OAuth::AccessToken
+    token: 63281177-fq1LNr8jQzjRTKtRGeYMkAhx3sMGOGf3eLoRjw8IU
+    secret: DbUizVtQtPKwV2Ld3DI2oWsWqQja9uJI1xgFMhZsP4
+    consumer: !ruby/object:OAuth::Consumer
+      key: OaRejg8MEUfGeGINxOtYw
+      secret: OlLxkwkvkcUus66GZrAHUhzGhBWY4BFsk8mlt5jc
+      options:
+        :signature_method: HMAC-SHA1
+        :request_token_path: /oauth/request_token
+        :authorize_path: /oauth/authenticate
+        :access_token_path: /oauth/access_token
+        :proxy: 
+        :scheme: :header
+        :http_method: :post
+        :oauth_version: '1.0'
+        :site: https://api.twitter.com
+      http: !ruby/object:Net::HTTP
+        address: api.twitter.com
+        port: 443
+        curr_http_version: '1.1'
+        no_keepalive_server: false
+        close_on_empty_response: false
+        socket: 
+        started: false
+        open_timeout: 30
+        read_timeout: 30
+        continue_timeout: 
+        debug_output: 
+        use_ssl: true
+        ssl_context: !ruby/object:OpenSSL::SSL::SSLContext
+          cert: 
+          key: 
+          client_ca: 
+          ca_file: 
+          ca_path: 
+          timeout: 
+          verify_mode: 0
+          verify_depth: 
+          verify_callback: 
+          options: 4095
+          cert_store: 
+          extra_chain_cert: 
+          client_cert_cb: 
+          tmp_dh_callback: 
+          session_id_context: 
+          session_get_cb: 
+          session_new_cb: 
+          session_remove_cb: 
+          servername_cb: 
+        enable_post_connection_check: true
+        compression: 
+        sspi_enabled: false
+        ssl_version: 
+        key: 
+        cert: 
+        ca_file: 
+        ca_path: 
+        cert_store: 
+        ciphers: 
+        verify_mode: 0
+        verify_callback: 
+        verify_depth: 
+        ssl_timeout: 
+      http_method: :post
+      uri: !ruby/object:URI::HTTPS
+        scheme: https
+        user: 
+        password: 
+        host: api.twitter.com
+        port: 443
+        path: ''
+        query: 
+        opaque: 
+        registry: 
+        fragment: 
+        parser: 
+    params:
+      :oauth_token: 63281177-fq1LNr8jQzjRTKtRGeYMkAhx3sMGOGf3eLoRjw8IU
+      oauth_token: 63281177-fq1LNr8jQzjRTKtRGeYMkAhx3sMGOGf3eLoRjw8IU
+      :oauth_token_secret: DbUizVtQtPKwV2Ld3DI2oWsWqQja9uJI1xgFMhZsP4
+      oauth_token_secret: DbUizVtQtPKwV2Ld3DI2oWsWqQja9uJI1xgFMhZsP4
+      :user_id: '63281177'
+      user_id: '63281177'
+      :screen_name: tybo22
+      screen_name: tybo22
+    response: !ruby/object:Net::HTTPOK
+      http_version: '1.1'
+      code: '200'
+      message: OK
+      header:
+        date:
+        - Tue, 31 Jul 2012 18:12:26 GMT
+        status:
+        - 200 OK
+        x-transaction-mask:
+        - a6183ffa5f8ca943ff1b53b5644ef114e135b449
+        expires:
+        - Tue, 31 Mar 1981 05:00:00 GMT
+        last-modified:
+        - Tue, 31 Jul 2012 18:12:26 GMT
+        pragma:
+        - no-cache
+        cache-control:
+        - no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+        x-mid:
+        - b78f7604ba4e6f0ba095c05f84a81ee5f21a74ca
+        content-length:
+        - '1890'
+        x-frame-options:
+        - SAMEORIGIN
+        x-ratelimit-limit:
+        - '350'
+        x-ratelimit-remaining:
+        - '342'
+        content-type:
+        - application/json; charset=utf-8
+        etag:
+        - ! '"f3045da0a662e3d6fa5686a435109edb"'
+        x-transaction:
+        - e3c291820db4ea80
+        x-runtime:
+        - '0.03426'
+        x-ratelimit-reset:
+        - '1343758625'
+        x-access-level:
+        - read
+        x-ratelimit-class:
+        - api_identified
+        set-cookie:
+        - k=10.35.45.125.1343758346870493; path=/; expires=Tue, 07-Aug-12 18:12:26
+          GMT; domain=.twitter.com
+        - guest_id=v1%3A134375834687479006; domain=.twitter.com; path=/; expires=Fri,
+          01-Aug-2014 06:12:26 GMT
+        - dnt=; domain=.twitter.com; path=/; expires=Thu, 01-Jan-1970 00:00:00 GMT
+        - lang=en; path=/
+        - lang=en; path=/
+        - lang=en; path=/
+        - twid=u%3D63281177%7CifI%2FuR%2FjMNonQZT%2F8YCwDYZvolg%3D; domain=.twitter.com;
+          path=/; secure
+        - _twitter_sess=BAh7CToPY3JlYXRlZF9hdGwrCIYqPd44ASIKZmxhc2hJQzonQWN0aW9uQ29u%250AdHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoKQHVzZWR7ADoMY3NyZl9p%250AZCIlZWIwZjBjNDcwMDk4YTM4YzliMWE2ZDg3MjU4ODdmYmE6B2lkIiU4YmY0%250AMjhkMGRiZTU4NmM1NGNmMGY2YmI5ZTc3MTg0NA%253D%253D--bed647d77c4c2d80167201d5a259e008e86e3442;
+          domain=.twitter.com; path=/; HttpOnly
+        vary:
+        - Accept-Encoding
+        server:
+        - tfe
+      body: ! '{"id":63281177,"listed_count":0,"profile_image_url":"http:\/\/a0.twimg.com\/profile_images\/350221530\/Tyler_normal.jpeg","following":false,"followers_count":16,"location":"Oakland,
+        Ca","contributors_enabled":false,"profile_background_color":"C0DEED","time_zone":"Arizona","geo_enabled":true,"utc_offset":-25200,"is_translator":false,"name":"Tyler
+        Gannon","profile_background_image_url":"http:\/\/a0.twimg.com\/images\/themes\/theme1\/bg.png","show_all_inline_media":false,"screen_name":"tybo22","protected":false,"profile_link_color":"0084B4","default_profile_image":false,"follow_request_sent":false,"profile_background_image_url_https":"https:\/\/si0.twimg.com\/images\/themes\/theme1\/bg.png","favourites_count":0,"notifications":false,"verified":false,"profile_use_background_image":true,"profile_text_color":"333333","description":"","id_str":"63281177","lang":"en","profile_sidebar_border_color":"C0DEED","profile_image_url_https":"https:\/\/si0.twimg.com\/profile_images\/350221530\/Tyler_normal.jpeg","default_profile":true,"url":"http:\/\/www.cloudfunded.com","statuses_count":51,"status":{"in_reply_to_user_id":null,"truncated":false,"created_at":"Wed
+        Jul 25 04:23:29 +0000 2012","possibly_sensitive_editable":true,"coordinates":null,"geo":null,"favorited":false,"possibly_sensitive":false,"in_reply_to_screen_name":null,"contributors":null,"in_reply_to_status_id_str":null,"place":null,"source":"\u003Ca
+        href=\"http:\/\/twitter.com\/tweetbutton\" rel=\"nofollow\"\u003ETweet Button\u003C\/a\u003E","in_reply_to_user_id_str":null,"id":227982377568305154,"id_str":"227982377568305154","retweeted":false,"retweet_count":0,"in_reply_to_status_id":null,"text":"I
+        think I''m gonna like @uberconference for conference calls. http:\/\/t.co\/Mi1mZtZ2"},"profile_background_tile":false,"friends_count":20,"created_at":"Wed
+        Aug 05 22:34:55 +0000 2009","profile_sidebar_fill_color":"DDEEF6"}'
+      read: true
+      socket: 
+      body_exist: true
+  raw_info: !ruby/hash:Hashie::Mash
+    id: 63281177
+    listed_count: 0
+    profile_image_url: http://a0.twimg.com/profile_images/350221530/Tyler_normal.jpeg
+    following: false
+    followers_count: 16
+    location: Oakland, Ca
+    contributors_enabled: false
+    profile_background_color: C0DEED
+    time_zone: Arizona
+    geo_enabled: true
+    utc_offset: -25200
+    is_translator: false
+    name: Tyler Gannon
+    profile_background_image_url: http://a0.twimg.com/images/themes/theme1/bg.png
+    show_all_inline_media: false
+    screen_name: tybo22
+    protected: false
+    profile_link_color: 0084B4
+    default_profile_image: false
+    follow_request_sent: false
+    profile_background_image_url_https: https://si0.twimg.com/images/themes/theme1/bg.png
+    favourites_count: 0
+    notifications: false
+    verified: false
+    profile_use_background_image: true
+    profile_text_color: '333333'
+    description: ''
+    id_str: '63281177'
+    lang: en
+    profile_sidebar_border_color: C0DEED
+    profile_image_url_https: https://si0.twimg.com/profile_images/350221530/Tyler_normal.jpeg
+    default_profile: true
+    url: http://www.cloudfunded.com
+    statuses_count: 51
+    status: !ruby/hash:Hashie::Mash
+      in_reply_to_user_id: 
+      truncated: false
+      created_at: Wed Jul 25 04:23:29 +0000 2012
+      possibly_sensitive_editable: true
+      coordinates: 
+      geo: 
+      favorited: false
+      possibly_sensitive: false
+      in_reply_to_screen_name: 
+      contributors: 
+      in_reply_to_status_id_str: 
+      place: 
+      source: <a href="http://twitter.com/tweetbutton" rel="nofollow">Tweet Button</a>
+      in_reply_to_user_id_str: 
+      id: 227982377568305154
+      id_str: '227982377568305154'
+      retweeted: false
+      retweet_count: 0
+      in_reply_to_status_id: 
+      text: I think I'm gonna like @uberconference for conference calls. http://t.co/Mi1mZtZ2
+    profile_background_tile: false
+    friends_count: 20
+    created_at: Wed Aug 05 22:34:55 +0000 2009
+    profile_sidebar_fill_color: DDEEF6

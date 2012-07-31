@@ -4,6 +4,7 @@ describe Member do
   subject {FactoryGirl.build :member}
   it {should have_many(:transactions)}
   it {should have_many(:roles)}
+  it {should belong_to(:twitter_login)}
   
   describe "finds existing team member invitations" do
     before(:each) do

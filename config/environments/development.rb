@@ -30,6 +30,8 @@ CloudFunded::Application.configure do
     ENV['DWOLLA_SECRET'] = 'qyXerrvhvxj6fvsngIvMkS8du9E0Y4LX7ObDsgIRMKr0WOzBdZ'
     ENV['facebook_app_id'] = '125298410939354'
     ENV['facebook_secret_key'] = '39a8462763d22977e474c3bd01d63f10'
+    ENV['TWITTER_APP_ID'] = 'OaRejg8MEUfGeGINxOtYw'
+    ENV['TWITTER_SECRET_KEY'] = 'OlLxkwkvkcUus66GZrAHUhzGhBWY4BFsk8mlt5jc'
   end
   
   ENV['STRIPE_PUBLISHABLE_KEY'] = 'pk_KqKlnpz4ru7CvMGKPHAT1BNRnSFzC'

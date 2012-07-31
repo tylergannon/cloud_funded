@@ -16,7 +16,7 @@ class AppConfig
   end
   
   def self.paperclip_storage
-    @paperclip_storage
+    @paperclip_storage || {}
   end
   
   def self.paperclip_storage=(s)

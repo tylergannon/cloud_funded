@@ -59,15 +59,27 @@
                       %b.caret
                     %ul.dropdown-menu
                       - unless member_signed_in?
-                        %li= link_to 'Sign in', new_member_session_path
+                        %li
+                          = link_to new_member_session_path do
+                            %i.icon.icon-user
+                            Sign In
+                        %li
+                          = link_to new_member_registration_path do
+                            %i.icon.icon-star
+                            Sign Up
+                        %li
+                          = link_to member_omniauth_authorize_path(:twitter) do
+                            %i.icon= image_tag 'icons/dark/16px/16_twitter.png'
+                            Sign In With Twitter
                         %li
                           = link_to member_omniauth_authorize_path(:facebook) do
-                            = image_tag 'Button_FBConnect3.png', :class => 'fb_sign_in'
+                            = image_tag 'icons/dark/16px/16_facebook.png', :class => 'fb_sign_in'
+                            = 'Sign In With Facebook'
                       - else
                         %li= link_to 'My Profile', profile_path(current_member)
                         %li= link_to 'My Account', account_path
                         %li= link_to 'My Projects', my_projects_path
-                        %li= link_to 'Change Password', account_settings_path
+                        %li= link_to 'Change Password', change_password_path
                         %li= link_to 'Sign out', destroy_member_session_path, method: 'delete'
                         - if current_member.admin
                           %li.nav-header Admin Controls

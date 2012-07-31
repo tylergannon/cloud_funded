@@ -9,6 +9,15 @@ class AccountsController < ApplicationController
     respond_with @member
   end
   
+  def send_reset_password_instructions
+    @member.send_reset_password_instructions
+    respond_to do |format|
+      format.js {
+        render action: 'send_reset_password_instructions'
+      }
+    end
+  end
+  
   def edit
     respond_with @member
   end
