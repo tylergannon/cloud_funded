@@ -21,7 +21,7 @@
     = yield :head
   %body
     = render partial: 'layouts/facebook_sdk' unless Rails.env.test?
-    .navbar.navbar-fixed-top
+    .navbar.navbar-fixed-top.header
       .navbar-inner
         .container-fluid
           %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
@@ -70,7 +70,7 @@
                         %li= link_to 'Change Password', account_settings_path
                         %li= link_to 'Sign out', destroy_member_session_path, method: 'delete'
                         - if current_member.admin
-                          %li Admin Controls
+                          %li.nav-header Admin Controls
                           %li= link_to 'Members', admin_members_path
                           %li= link_to 'Pages', admin_pages_path
                           %li= link_to 'Projects', admin_projects_path
@@ -95,3 +95,4 @@
       \==================================================
     / Placed at the end of the document so the pages load faster
     = javascript_include_tag "application"
+    = yield(:javascripts)
