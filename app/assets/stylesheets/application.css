@@ -12,6 +12,7 @@
  * require_tree .
  *= require jquery-ui-1.8.21.custom
  *= require jquery_ui_overrides
+ *= require bootstrap_and_overrides
  *= require accounts.css.scss
  *= require admin/articles.css.scss
  *= require admin/feedbacks.css.scss
@@ -24,8 +25,9 @@
  *= require comments.css.scss
  *= require facebook_actions.css.scss
  *= require feedbacks.css.scss
- *= require main.css.scss
- *= require header.css.scss
+ * require main.css.scss
+ *= require fonts
+ *= require header_bootstrap.css.scss
  *= require members/transactions.css.scss
  * mercury.css
  * mercury_overrides.css

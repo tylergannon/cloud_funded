@@ -1,26 +1,21 @@
-.home-banner
-  .banner-inner
-    .home-info
-    %br/
-    %br/
-    %br/
-    %br/
-    %h1 Grassroots investing 
-    %br/
-    %h1 for main street
-    %h5 A platform for investing in local businesses and startups
-    
-    
-    = link_to get_funded_path do 
-      .button1.green.large.glow Fund Your Project
-    .button1.yellow.large= link_to 'Find Investments', projects_categories_path
+= content_for :banner do
+  .row.home-banner
+    .span8
+      %br/
+      %br/
+      %br/
+      %h1 Grassroots investing 
+      %br/
+      %h1 for main street
+      %h5 A platform for investing in local businesses and startups
 
+      = link_to get_funded_path do 
+        .button1.green.large.glow Fund Your Project
+      .button1.yellow.large= link_to 'Find Investments', projects_categories_path
+    .span4
 
-.spacer
-.project_listing  
-  %ul#project_list
-    = render @projects
-
-.clear
-%br/
-%br/
+.row.spacer
+  .span4
+    %h1 Projects In Your Area
+.row
+  = render @projects

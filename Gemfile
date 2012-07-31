@@ -10,11 +10,11 @@ gem 'devise-encryptable'
 # gem 'dwolla', path: '/Users/tyler/src/dev/dwolla'
 gem 'dwolla', git: 'https://github.com/tylergannon/dwolla.git'
 gem 'friendly_id'
+gem 'haml', git: 'https://github.com/tylergannon/haml.git', branch: '3-2-stable'
 gem 'haml-rails'
 gem 'httparty'
 gem 'jquery-rails'
 # gem 'mercury-rails', git: 'https://github.com/jejacks0n/mercury.git', ref: '169f50dd56be119980f006bb63e8e813be533479'
-
 gem 'mercury-rails', git: 'https://github.com/tylergannon/mercury.git'
 gem 'money-rails'
 gem 'omniauth-dwolla'
@@ -32,6 +32,7 @@ group :assets do
   gem 'jquery-ui-rails'
   gem 'sass-rails',   '~> 3.2.3'
   gem 'uglifier', '>= 1.0.3'
+  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 end
 
 group :development, :test do

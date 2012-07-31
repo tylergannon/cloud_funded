@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  layout 'bootstrap_fixed'
   before_filter :authenticate_member!, except: [:index, :show]
   respond_to :html, :json
   
