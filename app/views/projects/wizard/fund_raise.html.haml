@@ -26,6 +26,14 @@
             .file_uploads{data: {field: 'perk[image]', action: project_perk_path(@project, perk, format: :json)}}
               = file_field_tag :image, id: "perk_#{perk.id}_image"
             %h2 Perk #{idx + 1}
+            .field.upload_field{id: 'upload_image', data: {field: "perk_#{perk.id}_image"}}
+              .upload_status Uploading...
+              - if perk.image.present?
+                = image_tag perk.image.url(:large), alt: 'Project Image', id: "perk_#{perk.id}_image_tag"
+              - else
+                = image_tag 'projects/wizard/onebit_33.png', alt: 'Project Image', id: "perk_#{perk.id}_image_tag", class: 'hidden'
+              = image_tag 'projects/wizard/perk_image_placeholder.jpg', alt: 'Image Placeholder', id: "perk_#{perk.id}_image_placeholder_tag", class: "click_to_upload#{perk.image.present? ? ' hidden' : ''}"
+              = image_tag 'projects/wizard/perk_upload_placeholder.jpg', alt: 'Change Image', id: "change_perk_#{perk.id}_image_tag", class: "click_to_upload#{perk.image.present? ? '' : ' hidden'}"
           = f.fields_for :perks, perk do |pf|
             .span4
               .control-group
@@ -37,14 +45,6 @@
               .control-group
                 = pf.label :description, :class => 'control-label'
                 = pf.text_area :description, :class => 'input-medium', rows: 3
-            .span3.field.upload_field{id: 'upload_image', data: {field: "perk_#{perk.id}_image"}}
-              .upload_status Uploading...
-              - if perk.image.present?
-                = image_tag perk.image.url(:large), alt: 'Project Image', id: "perk_#{perk.id}_image_tag"
-              - else
-                = image_tag 'projects/wizard/onebit_33.png', alt: 'Project Image', id: "perk_#{perk.id}_image_tag", class: 'hidden'
-              = image_tag 'projects/wizard/perk_image_placeholder.jpg', alt: 'Image Placeholder', id: "perk_#{perk.id}_image_placeholder_tag", class: "click_to_upload#{perk.image.present? ? ' hidden' : ''}"
-              = image_tag 'projects/wizard/perk_upload_placeholder.jpg', alt: 'Change Image', id: "change_perk_#{perk.id}_image_tag", class: "click_to_upload#{perk.image.present? ? '' : ' hidden'}"
-        
-      
-    = f.submit 'Preview and Submit'
+    .row
+      .span3.offset3
+        = f.submit 'Preview and Submit'

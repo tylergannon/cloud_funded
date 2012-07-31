@@ -1,7 +1,7 @@
 .span3.shadow[project]{data: {'project-path' => project_path(project), fb_post_id: project.fb_post_id}}
   %h2= project.name
   .description= project.tagline
-  .website_link= link_to project.website_url.shorten(36), project.website_url if project.website_url
+  -# .website_link= link_to project.website_url.shorten(36), project.website_url if project.website_url
   .projecteaser= image_tag project.image.url(:medium), width: '300px'
   .progress.progress-success
     .bar{style: "width: #{project.percent_complete}%;"}

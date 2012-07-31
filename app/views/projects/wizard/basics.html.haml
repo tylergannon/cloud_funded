@@ -3,9 +3,9 @@
   %h1 Company Basics
   = form_for @project, url: wizard_path do |f|
     .field
-      = f.text_field :name, placeholder: "Your Company Name"
+      = f.text_field :name, placeholder: "Your Company Name", :class => 'span6'
     .field
-      = f.text_field :tagline, placeholder: 'Tagline / Catch Phrase'
+      = f.text_field :tagline, placeholder: 'Tagline / Catch Phrase', :class => 'span6'
     .field.upload_field{id: 'upload_image', data: {field: :image}}
       .upload_status Uploading...
       - if @project.image.present?
@@ -15,11 +15,11 @@
       = image_tag 'projects/wizard/file_upload_placeholder.jpg', alt: 'Image Placeholder', id: 'image_placeholder_tag', class: "click_to_upload#{@project.image.present? ? ' hidden' : ''}"
       = image_tag 'projects/wizard/change_file_placeholder.jpg', alt: 'Change Image', id: 'change_image_tag', class: "click_to_upload#{@project.image.present? ? '' : ' hidden'}"
     .field
-      = f.collection_select :category_id, Projects::Category.all, :id, :name, prompt: "What kind of company is it?"
+      = f.collection_select :category_id, Projects::Category.all, :id, :name, {prompt: "What kind of company is it?"}, {:class => 'span6'}
     
 
     .field
-      = f.text_area :short_description, placeholder: 'A brief description of your company'
+      = f.text_area :short_description, placeholder: 'A brief description of your company', :class => 'span6', rows: 6
     .field.financial_goal
       = f.label :financial_goal
       = f.text_field :financial_goal

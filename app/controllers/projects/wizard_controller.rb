@@ -7,6 +7,7 @@ class Projects::WizardController < ApplicationController
   
   def show
     authorize! :edit, @project
+    @project.valid?
     render_wizard
   end
   
