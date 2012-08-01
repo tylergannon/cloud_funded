@@ -10,9 +10,9 @@
  *
  *= require_self
  * require_tree .
- *= require jquery-ui-1.8.21.custom
  *= require jquery_ui_overrides
  *= require bootstrap_and_overrides
+ *= require bootstrap/datepicker
  *= require accounts.css.scss
  *= require admin/articles.css.scss
  *= require admin/feedbacks.css.scss
@@ -40,6 +40,4 @@
  *= require projects/wizard.css.scss
  *= require projects/roles.css.scss
  *= require projects.css.scss
- *= require ui.spinner
- *= require bx_styles/bx_styles
 */

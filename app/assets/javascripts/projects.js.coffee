@@ -3,12 +3,25 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
-  $('#tabs').tabs()
+  # $('#tabs').tabs()
+  $('#tabs ul.nav-tabs a').click (e) ->
+    e.preventDefault()
+    $(this).tab('show')
   
-  $('ul#project_list').bxSlider
-    displaySlideQty: 3
-    moveSlideQty: 3
-  $('.money').money_field()
+  
+  $('input.date').each ->
+    $this = $(this)
+    $this.wrap("<div class='input-prepend'>")
+    $this.before("<span class='add-on'><i class='icon icon-th'/></span>")
+  $('input.number').each ->
+    $this = $(this)
+    $this.wrap("<div class='input-prepend'>")
+    $this.before("<span class='add-on'><i class='icon icon-resize-vertical'/></span>")
+
+
+
+  
+  $('input.money').money_field()
   $('.project').each (idx, el) ->
     $el = $(el)
     $el.click ->

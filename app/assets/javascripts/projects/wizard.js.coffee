@@ -1,5 +1,4 @@
 $ ->
-  $('#days input').spinner()
   $('.click_to_upload').live 'click', (e) ->
     $el = $(e.target)
     field = $el.parent().data('field')
@@ -49,7 +48,7 @@ $ ->
 
       onError: (event, name, error) ->
         alert "error while uploading file " + name
-  $('.date input').datepicker()
+  $('input.date').datepicker()
   window.currentDaysCount = () ->
     parseInt $('#days input').val()
   window.getStartDate = () ->

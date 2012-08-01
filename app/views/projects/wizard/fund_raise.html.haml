@@ -5,20 +5,20 @@
       %h1 Perks go here.
   = form_for @project, url: wizard_path, html: {:class => 'form-horizontal'} do |f|
     .row
-      .span4
+      .span4.well
         .control-group
           =f.label :financial_goal, 'Financial Goal', :class => 'control-label'
-          .controls= f.text_field :financial_goal, :class => 'money input-small'
-        .control-group.span2
+          .controls= f.text_field :financial_goal, :class => 'input-small money'
+        .control-group#days
           = f.label :days, :class => 'control-label'
-          .controls= f.text_field :days, :class => 'input-small'
-      .span4
-        .control-group.date.span2#start_date
+          .controls= f.number_field :days, :class => 'input-small number'
+        .control-group#start_date
           = f.label :start_date, :class => 'control-label'
-          .controls= f.text_field :start_date, :value=>f.object.start_date.strftime('%m/%d/%Y'), :class => 'input-small'
-        .control-group.date.span2#end_date
+          .controls.date
+            = f.text_field :start_date, :value=>f.object.start_date.strftime('%m/%d/%Y'), :class => 'input-small date'
+        .control-group#end_date
           = f.label :end_date, :class => 'control-label'
-          .controls= f.text_field :end_date, :value=>f.object.end_date.strftime('%m/%d/%Y'), :class => 'input-small'
+          .controls.date= f.text_field :end_date, :value=>f.object.end_date.strftime('%m/%d/%Y'), :class => 'input-small date'
     .perks
       - @project.perks.each_with_index do |perk, idx|
         .row[perk]
