@@ -55,6 +55,16 @@ body > .container {
   margin-top: 40px;
 }
 
+.signin {
+  .icon {
+    font-size: 24pt;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    top: 9px;
+  }
+}
+
 .home-banner {
   background: image-url('bannertop.png') 0 0 repeat-x;
   margin-top: -25px;

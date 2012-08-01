@@ -1,32 +1,32 @@
-.container.white.rounded.shadow.new
-  %br/
-  %h2.testheading Welcome back!
-  #formwrapper
-    .field
-      = link_to member_omniauth_authorize_path(:facebook) do
-        = image_tag 'Button_FBConnect4.png'
-    
-    - if flash[:alert]
-      %p.alert= flash[:alert]
-    - if session[:twitter_login_id]
-      %p.alert Successfully logged in via Twitter.  Please log in or sign up to connect your twitter account.
-    = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-      .field
-        = f.label :email
-        %br/
-        = f.email_field :email
-        %br/
-        = f.label :password
-        %br/
-        = f.password_field :password
-        %br/
-        - if devise_mapping.rememberable?
-          = f.label :remember_me
-          = f.check_box :remember_me
-        %br/
-        %br/
-        =f.submit "Sign in"
-  = render "links" 
-
-
-
+.container.signin
+  - if flash[:alert]
+    %p.alert= flash[:alert]
+  - if session[:twitter_login_id]
+    %p.alert Successfully logged in via Twitter.  Please log in or sign up to connect your twitter account.
+  .row
+    .span3.offset3.well
+      .row.title
+        .span3
+          %h2 Sign In
+      .row
+        .span3
+          = form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {:class => 'form-vertical'}) do |f|
+            .control-group
+              = f.label :email, "Email #{link_to '(Sign Up)', new_member_registration_path}".html_safe, :class => 'control-label'
+              .controls= f.email_field :email
+            .control-group
+              = f.label :password, "Password #{link_to '(I forgot mine)', new_member_password_path}".html_safe,:class => 'control-label'
+              .controls= f.password_field :password
+            .control_group
+              .controls
+                =f.submit "Sign in", :class => 'btn-large btn'
+                = link_to member_omniauth_authorize_path(:facebook), title: 'Sign In With Facebook', :class => 'tippy' do
+                  = image_tag 'icons/dark/24px/24_facebook.png'
+                - unless session[:twitter_login_id]
+                  = link_to member_omniauth_authorize_path(:twitter), title: 'Sign In With Twitter', :class => 'tippy' do
+                    = image_tag 'icons/dark/24px/24_twitter.png'
+                  = link_to new_member_confirmation_path, title: 'Re-send Email Confirmation', :class => 'tippy' do
+                    %i.icon.icon-envelope
+                  = link_to new_member_unlock_path, title: 'My Account Is Locked!', :class => 'tippy' do
+                    %i.icon.icon-exclamation-sign
+  

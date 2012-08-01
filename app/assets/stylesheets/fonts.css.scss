@@ -131,10 +131,10 @@ i {
  
 
 
-label
-{
-  vertical-align: top;
-}
+//label
+//{
+//  vertical-align: top;
+//}
 
 .shadow
 {
@@ -166,7 +166,7 @@ input[type="button"], input[type="submit"], input[type="reset"]
 
 }
 
-input[type="button"], input[type="submit"], input[type="reset"], .cta {
+input[type="button"], input[type="submit"]:not(.btn), input[type="reset"], .cta {
   white-space: pre;
   display: inline-block;
   color: #333 !important;
