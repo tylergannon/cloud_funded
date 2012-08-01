@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
   before_filter :authenticate_member!, :load_member
+  respond_to :json
   
   before_filter do |controller|
     session[:last_request] = request.path if request.format == 'text/html'
@@ -7,6 +8,14 @@ class AccountsController < ApplicationController
 
   def show
     respond_with @member
+  end
+  
+  def search
+    raise "I don't do nil" if params[:q].blank?
+    puts ["email like ? OR full_name like ?", "%#{params[:q]}%", "%#{params[:q]}%"].inspect
+    @members = Member.where("email like ? OR full_name like ?", "%#{params[:q]}%", "%#{params[:q]}%").
+                      select('full_name, profile_pic, id, slug').limit(10)
+    respond_with @members
   end
   
   def send_reset_password_instructions

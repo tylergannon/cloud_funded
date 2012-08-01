@@ -12,9 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require underscore
 //= require twitter/bootstrap
 //= require bootstrap/jquery.bootstrap-money-field
 //= require bootstrap/bootstrap-tooltip
+//= require bootstrap/bootstrap-modal
+//= require bootstrap/typeahead
 //= require jquery-ui-1.8.21.custom.min
 //= require 3rd_party/jquery.html5_upload.js
 //= require jquery.easing.1.3

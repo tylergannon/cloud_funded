@@ -6,6 +6,25 @@ describe Member do
   it {should have_many(:roles)}
   it {should belong_to(:twitter_login)}
   
+  describe "full_name" do
+    before :each do
+      subject.first_name = 'Tyler'
+      subject.last_name = 'Gannon'
+    end
+    it "should be the concatenation of first and last" do
+      subject.full_name.should == 'Tyler Gannon'
+    end
+    it "should be updated when the first name is changed" do
+      subject.first_name = 'Mister'
+      subject.full_name.should == 'Mister Gannon'
+    end
+    it "should be updated when the last name is changed" do
+      subject.last_name = 'Twister'
+      subject.full_name.should == 'Tyler Twister'
+    end
+  end
+  
+  
   describe "finds existing team member invitations" do
     before(:each) do
       @role = FactoryGirl.create :projects_role

@@ -35,9 +35,16 @@ class Member < ActiveRecord::Base
     Projects::Role.where(member_id: nil, email_address: member.email).update_all member_id: member.id
   end
   
-  def full_name
-    "#{first_name} #{last_name}"
+  def first_name=(name)
+    super(name)
+    self.full_name = "#{first_name} #{last_name}"
   end
+
+  def last_name=(name)
+    super(name)
+    self.full_name = "#{first_name} #{last_name}"
+  end
+  
   def account_balance
     transactions.map(&:amount).sum
   end

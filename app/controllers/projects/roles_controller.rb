@@ -12,6 +12,9 @@ class Projects::RolesController < ApplicationController
   def create
     authorize! :edit, @project
     @role = @project.roles.build(params[:role])
+    if @role.member
+      @role.email_address = @role.member.email
+    end
     @role.invited_by = current_member
     @member = Member.where(email: @role.email_address).first
     if @member

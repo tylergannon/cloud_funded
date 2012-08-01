@@ -1,0 +1,36 @@
+<div class="modal hide" id="new_role">
+  <%= form_for @role, as: :role, url: project_roles_path(@project), remote: true do |f| -%>
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">×</button>
+      <h3>Add a Team Member</h3>
+    </div>
+    <div class="modal-body">
+      <div class="control-group" id="email_address_controls">
+        <%= f.hidden_field :member_id %>
+        <%= f.label :email_address, "Email or Name", :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :email_address, :class => 'input-xlarge', data: {provide: :typeahead} %>
+          <p class="help-block">Name or Email.  If no one is found, provide an email and we'll invite them to join.</p>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :name, "Role / Title", :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :name, :class => 'input-xlarge' %>
+          <p class="help-block">This person's Job Title</p>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :tagline, "Tagline", :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :tagline, :class => 'input-xlarge' %>
+          <p class="help-block">One-liner about this person's role</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+      <%= f.submit "Save", :disable_with => 'Saving...', :class => "btn btn-primary" %>
+    </div>
+  <% end -%>
+</div>

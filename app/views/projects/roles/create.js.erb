@@ -1,7 +1,5 @@
-$('.dialog').dialog('destroy');
-$('.dialog').remove();
+$('#new_role').modal('hide');
 $('#team').append('<%= escape_javascript render @role %>');
 var xSeconds = 3; // 2 seconds
 var myDialog = $('<%= escape_javascript render partial: 'created' %>').dialog();
 setTimeout(function() { myDialog.dialog('close'); myDialog.dialog('destroy'); }, xSeconds * 1000);
-

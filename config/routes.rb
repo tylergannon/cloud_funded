@@ -84,6 +84,7 @@ CloudFunded::Application.routes.draw do
   match '/feedback' => 'feedbacks#new', as: :submit_feedback
   match '/feedback_received' => 'feedbacks#index', as: :feedback_received
   match '/my_projects' => 'projects#index', defaults: {show: "mine"}, as: :my_projects
+  match '/member_search(.:format)' => 'accounts#search', as: :member_search
   
   match '/get_funded(/:id)' => 'projects/wizard#show', as: :get_funded, via: 'get'
   match '/get_funded(/:id)' => 'projects/wizard#update', via: 'put'
