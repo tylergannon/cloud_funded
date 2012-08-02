@@ -9,35 +9,31 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- * require_tree .
  *= require jquery_ui_overrides
  *= require bootstrap_and_overrides
  *= require bootstrap/datepicker
- *= require accounts.css.scss
- *= require admin/articles.css.scss
- *= require admin/feedbacks.css.scss
- *= require admin/pages.css.scss
- *= require admin/projects.css.scss
+ *= require accounts
+ *= require admin/articles
+ *= require admin/feedbacks
+ *= require admin/pages
+ *= require admin/projects
  *= require application.css
- *= require articles.css.scss
- *= require attachments.css.scss
- *= require perks.css.scss
- *= require comments.css.scss
- *= require facebook_actions.css.scss
- *= require feedbacks.css.scss
- * require main.css.scss
+ *= require articles
+ *= require attachments
+ *= require perks
+ *= require comments
+ *= require facebook_actions
+ *= require feedbacks
  *= require fonts
- *= require header_bootstrap.css.scss
- *= require members/transactions.css.scss
- * mercury.css
- * mercury_overrides.css
- *= require new_project.css.scss
- *= require pages.css.scss
- *= require pledges.css.scss
- *= require profiles.css.scss
- *= require projects/categories.css.scss
- *= require projects/transactions.css.scss
- *= require projects/wizard.css.scss
- *= require projects/roles.css.scss
- *= require projects.css.scss
+ *= require header_bootstrap
+ *= require members/transactions
+ *= require new_project
+ *= require pages
+ *= require pledges
+ *= require profiles
+ *= require projects/categories
+ *= require projects/transactions
+ *= require projects/wizard
+ *= require projects/roles
+ *= require projects
 */

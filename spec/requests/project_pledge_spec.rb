@@ -6,6 +6,23 @@ feature "Pledging For A Project" do
     @project = FactoryGirl.create :full_project
   end
   
+  describe "Choosing Dwolla", js: true do
+    background do
+      @pledge = FactoryGirl.create :pledge_choose_payment_method, project: @project, amount: 1000, perk: @project.perks.first, investor: @member
+    end
+    describe "When I choose Dwolla from the Select Payment Method box" do
+      describe "If I have not yet linked my account" do
+        scenario "I should be asked whether I have a Dwolla Account" do
+          visit new_project_pledge_path(project_id: @project.id, id: :choose_payment_method)
+          click_button 'Choose Payment Method'
+          wait_until(1) do
+            page.has_content? "Are you already signed up?"
+          end
+        end
+      end
+    end
+  end
+  
   describe "when I don't have a dwolla account" do
     scenario "I should be able to submit my pledge and then pay.", js: true do
 

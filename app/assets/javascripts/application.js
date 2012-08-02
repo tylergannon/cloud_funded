@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require underscore
 //= require twitter/bootstrap
+//= require twitter/bootstrap/bootstrap-transition
 //= require bootstrap/bootbox.min
 //= require bootstrap/bootstrap-alert
 //= require bootstrap/bootstrap-datepicker

@@ -1,13 +1,30 @@
-<h1>Please select your payment method</h1>
-<% form_for @pledge, url: wizard_path do |f| -%>
+<div class="pledge_wizard">
+  <h1>Please select your payment method</h1>
+  <%= form_for @pledge, url: wizard_path do |f| -%>
+    <div class="payment_method">
+      Payment with Dwolla (Recommended)
+      <%= radio_button_tag 'pledge[payment_method]', 'dwolla', true, id: 'payment_method_dwolla' %>
+    </div>
+    <div class="payment_method">
+      Payment with Credit Card (Slightly higher fee for <%= @pledge.project.name %>)
+      <%= radio_button_tag 'pledge[payment_method]', 'dwolla', false, id: 'payment_method_cc' %>
+    </div>
+    <%= f.submit "Choose Payment Method" %>
+  <% end -%>
   
-<% end -%>
-= form_for @pledge, url: wizard_path do |f|
-  .payment_method
-    Dwolla bitch!
-    = radio_button_tag 'pledge[payment_method]', 'dwolla', true, id: 'payment_method_dwolla'
-  .payment_method
-    Credit Card (I'm a loser)
-    = radio_button_tag 'pledge[payment_method]', 'cc', true, id: 'payment_method_cc'
-  = f.submit 'Choose Payment Method'
-  
+  <div class="modal hide" id="modal_dwolla_details">
+    <div class="modal-header">
+      <h3>
+        <%= image_tag "pledges/chalice.jpeg" , :title => "Wise Choice", :class => "tippy" %>
+        You have chosen wisely.
+      </h3>
+    </div>
+    <div class="modal-body">
+      We just need to link to your Dwolla account.
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn" data-dismiss="modal" id="dwolla_sign_up">Sign Up for Dwolla</a>
+      <a href="#" class="btn btn-primary" id="dwolla_link_account">Connect to My Dwolla Account</a>
+    </div>
+  </div>
+</div>
