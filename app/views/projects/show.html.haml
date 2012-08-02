@@ -1,6 +1,6 @@
 .project_page
   = render partial: 'dashboard'
-  .details
+  .details.span8
     #tab_container
       #tabs
         %ul.nav.nav-tabs
@@ -23,6 +23,7 @@
             - @project.pledges.paid.each do |pledge|
               .pledge
                 = render pledge.investor
+
     #perks.perks
       = render @project.perks
 

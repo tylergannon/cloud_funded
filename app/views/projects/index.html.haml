@@ -4,18 +4,18 @@
       %br/
       %br/
       %br/
-      %h1 Grassroots investing 
+      %h1 Crowdfunding for
       %br/
-      %h1 for main street
-      %h5 A platform for investing in local businesses and startups
+      %h1 Main Street
+      %h5 Everyone's platform for investing in great ideas
 
       = link_to get_funded_path do 
         .button1.green.large.glow Fund Your Project
       .button1.yellow.large= link_to 'Find Investments', projects_categories_path
     .span4
 
-.row.spacer
-  .span4
-    %h1 Projects In Your Area
-.row
-  = render @projects
+    .row.spacer.filterbar
+      .span4
+        %h1 Projects In Your Area
+    .row
+    = render @projects

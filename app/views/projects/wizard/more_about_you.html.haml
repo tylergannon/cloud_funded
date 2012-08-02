@@ -3,27 +3,27 @@
   %h1 More About Your Company
   = form_for @project, url: wizard_path do |f|
     .field.about_your_product
-      %h1 Tell Us About Your Company
+      %h2 Tell Us About Your Company
       %p What does your company do?  What is your product or service?  How will funding help, and what will you do with the money?
       = f.text_area :about_your_product
       = render partial: 'upload_field', locals: {field: :about_your_product_image}
     .field
-      %h1 How Does It Help?
+      %h2 How Does It Help?
       %p In what ways does your product or service change or enhance lives or communities or places?  Who is affected by it?
       = f.text_area :how_it_helps
       = render partial: 'upload_field', locals: {field: :how_it_helps_image}
     .field
-      %h1 Your Target Market
+      %h2 Your Target Market
       %p Who will purchase your product or service?  How will you speak to them?  What makes you think they will buy it?
       = f.text_area :your_target_market
       = render partial: 'upload_field', locals: {field: :your_target_market_image}
     .field
-      %h1 History
+      %h2 History
       %p Tell us a story about how this came to be.  Who are you?  What other sources of investment do you have?  Who are you collaborating with, and what other resources are you utilizing?
       = f.text_area :history
       = render partial: 'upload_field', locals: {field: :history_image}
     .field
-      = f.submit 'Save and Continue'
+      = f.submit.nobg 'Save and Continue'
   .file_uploads{data: {action: project_path(@project, format: :json)}}
     = file_field_tag 'about_your_product_image'
     = file_field_tag 'how_it_helps_image'
