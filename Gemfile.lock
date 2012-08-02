@@ -168,7 +168,7 @@ GEM
     jquery-ui-rails (1.0.0)
       jquery-rails
       railties (>= 3.1.0)
-    json (1.7.3)
+    json (1.7.4)
     less (2.2.1)
       commonjs (~> 0.2.6)
     less-rails (2.2.3)

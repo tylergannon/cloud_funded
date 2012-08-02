@@ -26,6 +26,7 @@ gem 'rabl'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'responders', '~> 0.9.1'
 gem 'stripe'
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'underscore-rails'
 gem 'wicked'
 gem 'workflow'
@@ -35,7 +36,6 @@ group :assets do
   gem 'jquery-ui-rails'
   gem 'sass-rails',   '~> 3.2.3'
   gem 'uglifier', '>= 1.0.3'
-  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 end
 
 group :development, :test do
