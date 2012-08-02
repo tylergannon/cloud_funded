@@ -1,2 +1,2 @@
-class Members::FacebookLogin < OmniauthLogin
+class Members::FacebookLogin < ::Members::OmniauthLogin
 end
