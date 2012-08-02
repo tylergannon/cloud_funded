@@ -110,7 +110,7 @@ class Project < ActiveRecord::Base
   end
   
   def submit
-    ProjectsMailer.new_project(self).deliver
+    MemberMailer.new_project(self).deliver
     # MemberMailer.new_member(member).deliver
   end
 

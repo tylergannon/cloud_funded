@@ -112,7 +112,7 @@ class ProjectsController < ApplicationController
         #   @project.fb_post_id = CloudFunded::Facebook::Actions.create_project project_url(@project), current_member.fb_token          
         # end
         begin
-          ProjectsMailer.new_project(@project).deliver
+          MemberMailer.new_project(@project).deliver
         rescue Exception => e
           puts "Error sending email"
           puts e
