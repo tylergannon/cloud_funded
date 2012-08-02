@@ -15,6 +15,7 @@ describe Project do
   it {should have_many(:perks)}
   it {should validate_presence_of(:start_date)}
   it {should validate_presence_of(:end_date)}
+  it {should have_many(:attachments)}
   
   describe "when the project goes to the previewing state" do
     before :each do

@@ -73,7 +73,9 @@ class Admin::AttachmentsController < ApplicationController
       @article = @parent = Article.find(params[:article_id])
     elsif params[:page_id]
       @page = @parent = Page.find(params[:page_id])
+    elsif params[:project_id]
+      @project = @parent = Project.find(params[:project_id])
     end
-    authorize! :manage, @parent
+    authorize! :edit, @parent
   end
 end

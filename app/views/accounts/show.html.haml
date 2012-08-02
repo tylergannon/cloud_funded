@@ -16,6 +16,7 @@
           %h1= link_to project.name, project
           .status= "Status: #{project.workflow_state.titleize}"
           .links= link_to 'Edit Project', (project.published? ? edit_project_path(project) : project_wizard_path(project)) 
+          .links= link_to 'Mega Edit', '/editor/projects' + project_path(project)
   
   %h2 My Teams
   .roles.project_short_list

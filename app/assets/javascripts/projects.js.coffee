@@ -27,11 +27,6 @@ $ ->
     $el.click ->
       window.location.href = $el.data('project-path')
     
-  $('.progress').each (idx, el) ->
-    $el = $(el)
-    $el.progressbar
-      value: $el.data('percent-complete')
-      
   fbResponse = (response) ->
     if not response or response.error
       alert "Error occured"

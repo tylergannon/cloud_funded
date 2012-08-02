@@ -1,5 +1,2 @@
 $('#projects_role_<%= @role.id %>').remove();
-var xSeconds = 3; // 2 seconds
-var myDialog = $('<%= escape_javascript render partial: 'destroyed' %>').dialog();
-setTimeout(function() { myDialog.dialog('close'); myDialog.dialog('destroy'); }, xSeconds * 1000);
-
+bootbox.alert('<%= escape_javascript render(partial: 'destroyed') %>')

@@ -19,6 +19,4 @@
 = link_to 'Go To Articles Management', admin_articles_path
 = link_to 'Edit Attached Images', admin_article_attachments_path(@article)
 
-= content_for :javascripts do
-  = javascript_include_tag 'mercury'
-  = javascript_include_tag 'mercury_overrides'
+= render partial: 'shared/mercury_includes' if can? :edit, @article

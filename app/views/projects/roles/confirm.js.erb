@@ -1,7 +1,2 @@
 $('#projects_role_<%= @role.id %>').replaceWith('<%= escape_javascript render @role %>');
-<%= raw render partial: 'shared/show_flash', locals: {type: :notice, message: render(partial: 'confirmed')} %>
-
-// var xSeconds = 3; // 2 seconds
-// var myDialog = $('<%= escape_javascript render partial: 'confirmed' %>').dialog();
-// setTimeout(function() { myDialog.dialog('close'); myDialog.dialog('destroy'); }, xSeconds * 1000);
-
+bootbox.alert('<%= escape_javascript render(partial: 'confirmed') %>')

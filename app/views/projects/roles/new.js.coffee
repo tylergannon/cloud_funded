@@ -1,7 +1,6 @@
 $('#new_role').remove()
 $modal = $("<%= escape_javascript(render partial: 'new') %>")
 $('body').append($modal)
-# window.openNewMemberDialog("<%= escape_javascript(render partial: 'new') %>", "Add A Team Member")
 $modal.modal()
 $('#role_email_address').typeahead
   ajax:

@@ -17,21 +17,6 @@ $ ->
       onStart: (event, total) ->
         $('.upload_status').show()
         return true
-        # confirm "You are trying to upload " + total + " files. Are you sure?"
-
-      # onProgress: (event, progress, name, number, total) ->
-      #   $('.upload_status').html('%' + progress.toString())
-      #   console.log progress, number
-      # 
-      # setName: (text) ->
-      #   $("#progress_report_name").text text
-      # 
-      # setStatus: (text) ->
-      #   $("#progress_report_status").text text
-
-      # setProgress: (val) ->
-      #   $('.upload_status').html('%' + val.toString())
-      #   # $("#progress_report_bar").css "width", Math.ceil(val * 100) + "%"
 
       onFinishOne: (event, response, name, number, total) ->
         console.log("The field still is " + field)

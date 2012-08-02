@@ -26,6 +26,5 @@
     #perks.perks
       = render @project.perks
 
-= content_for :javascripts do
-  = javascript_include_tag 'mercury'
-  = javascript_include_tag 'mercury_overrides'
+= render partial: 'shared/mercury_includes' if can? :edit, @project
+

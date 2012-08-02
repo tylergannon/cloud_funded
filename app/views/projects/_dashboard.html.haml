@@ -21,7 +21,8 @@
     .fund_raising
       %h3.amount-raised= number_to_currency(@project.amount_pledged, precision: 0)
       .subtitle RAISED OF #{number_to_currency(@project.financial_goal, precision: 0)} GOAL
-      .progress{'data-percent-complete' => @project.percent_complete}
+      .progress
+        .bar{style: "width: #{@project.percent_complete}%;"}
     .metrics
       .metric
         %span.large= @project.percent_complete.to_s + '%'
