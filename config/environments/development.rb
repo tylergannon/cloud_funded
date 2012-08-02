@@ -85,11 +85,20 @@ CloudFunded::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   config.active_record.auto_explain_threshold_in_seconds = 0.5
 
-  # Do not compress assets
+  Do not compress assets
   config.assets.compress = false
-
+  
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # config.assets.compress = true
+  # 
+  # # Don't fallback to assets pipeline if a precompiled asset is missed
+  # config.assets.compile = false
+  # 
+  # # Generate digests for assets URLs
+  # config.assets.digest = true
+
   
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true

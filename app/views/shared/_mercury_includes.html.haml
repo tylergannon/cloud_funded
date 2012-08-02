@@ -1,6 +1,4 @@
 - if !!params[:mercury_frame] == true
   = content_for :javascripts do
-    = stylesheet_link_tag 'jquery-ui-1.8.22.custom'
-    = javascript_include_tag 'jquery-ui-1.8.22.custom.min'
-    = javascript_include_tag 'mercury'
-    = javascript_include_tag 'mercury_overrides'
+    = stylesheet_link_tag 'mercury_includes'
+    = javascript_include_tag 'mercury_includes'
