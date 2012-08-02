@@ -4,6 +4,7 @@ gem 'rails', '3.2.6'
 
 gem 'aws-sdk'
 gem 'cancan'
+gem 'coffee-rails', '~> 3.2.1'
 gem 'default_value_for'
 gem 'devise', '2.1'
 gem 'devise-encryptable'
@@ -32,8 +33,6 @@ gem 'wicked'
 gem 'workflow'
 
 group :assets do
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'jquery-ui-rails'
   gem 'sass-rails',   '~> 3.2.3'
   gem 'uglifier', '>= 1.0.3'
 end
