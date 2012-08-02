@@ -1,19 +1,12 @@
 class Projects::Perk < ActiveRecord::Base
   attr_accessible :delivery_terms, :description, :name, :price, :quantity, :image
-  attr_accessible :price_in_cents
   belongs_to :project
   has_many :pledges
   
   monetize :price_cents
-  
-  def price_in_cents=(p)
-    self.price = p.to_f / 100
-  end
-  
-  def price_in_cents
-    (price * 100).to_i
-  end
-  
+
+  default_scope order(:id)
+
   S3_DEETS = {
     :styles => { large: "200x200", :thumb => "100x100" }
   }

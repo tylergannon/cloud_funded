@@ -27,13 +27,13 @@
               = file_field_tag :image, id: "perk_#{perk.id}_image"
             %h2 Perk #{idx + 1}
             .field.upload_field{id: 'upload_image', data: {field: "perk_#{perk.id}_image"}}
-              .upload_status Uploading...
+              .upload_status Uploading...<br/><div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>
               - if perk.image.present?
                 = image_tag perk.image.url(:large), alt: 'Project Image', id: "perk_#{perk.id}_image_tag"
               - else
-                = image_tag 'projects/wizard/onebit_33.png', alt: 'Project Image', id: "perk_#{perk.id}_image_tag", class: 'hidden'
-              = image_tag 'projects/wizard/perk_image_placeholder.jpg', alt: 'Image Placeholder', id: "perk_#{perk.id}_image_placeholder_tag", class: "click_to_upload#{perk.image.present? ? ' hidden' : ''}"
-              = image_tag 'projects/wizard/perk_upload_placeholder.jpg', alt: 'Change Image', id: "change_perk_#{perk.id}_image_tag", class: "click_to_upload#{perk.image.present? ? '' : ' hidden'}"
+                = image_tag 'projects/wizard/onebit_33.png', alt: 'Project Image', id: "perk_#{perk.id}_image_tag", class: 'hide'
+              = image_tag 'projects/wizard/perk_image_placeholder.jpg', alt: 'Image Placeholder', id: "perk_#{perk.id}_image_placeholder_tag", class: "click_to_upload#{perk.image.present? ? ' hide' : ''}"
+              = image_tag 'projects/wizard/perk_upload_placeholder.jpg', alt: 'Change Image', id: "change_perk_#{perk.id}_image_tag", class: "click_to_upload#{perk.image.present? ? '' : ' hide'}"
           = f.fields_for :perks, perk do |pf|
             .span4
               .control-group
