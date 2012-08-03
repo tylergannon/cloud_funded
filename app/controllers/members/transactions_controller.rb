@@ -19,7 +19,7 @@ class Members::TransactionsController < ApplicationController
     begin
       user = Dwolla::User.me(@member.dwolla_auth_token)
       transaction_id = user.send_money_to("812-608-2017", amount, pin, 'dwolla', 'Funding Account', funds_source)
-      @transaction.attributes = {amount: amount * 100, 
+      @transaction.attributes = {amount: amount, 
                                  transaction_id: transaction_id,
                                  transaction_date: DateTime.now,
                                  pledge_id: params[:pledge_id],
