@@ -5,12 +5,19 @@ class Members::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   
   include Members
   def dwolla
-    authenticate_member!
-    dwolla_info =  request.env['omniauth.auth']
-    current_member.attributes= {dwolla_id: dwolla_info.uid, 
-                                dwolla_auth_token: dwolla_info.credentials.token}
-    current_member.save!
     @next_location = session[:last_request] || root_path
+
+    unless params[:error].blank?
+      flash[:error] = "There was a problem signing in to your Dwolla account.  We have been notified and are working on a solution."
+      request.env['omniauth.auth'].clear
+    else
+      authenticate_member!
+      
+      dwolla_info =  request.env['omniauth.auth']
+      current_member.attributes= {dwolla_id: dwolla_info.uid, 
+                                  dwolla_auth_token: dwolla_info.credentials.token}
+      current_member.save!
+    end
 
     render 'dwolla', layout: false
     # redirect_to @next_location
