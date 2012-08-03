@@ -40,7 +40,7 @@
       - @member.transactions.each do |transaction|
         %tr
           %td= transaction.created_at.strftime('%Y-%m-%d %H:%m')
-          %td.amount{amount_css_class(transaction)}= number_to_currency(transaction.amount)
+          %td.amount{amount_css_class(transaction)}= number_to_currency(transaction.dollars)
           %td= transaction.type
           %td= link_to transaction.pledge.project.name, transaction.pledge.project if transaction.pledge
           %td= transaction.paid ? "Paid" : "Incomplete"
