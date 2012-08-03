@@ -7,45 +7,83 @@ $ ->
     $this = $(this)
     $this.find('input[type=\'radio\']').data('perk', $this)
     $this.data('price', parseInt($this.data('price')))
-    
-  pledgeAmount = -> parseInt($('#pledge_amount').val().replace(/\D/g, ''))
+  $('#join_dwolla_email').keyup validateEmailAddress
+  
 
-  $("#stripe_payment_form").submit (event) ->
-    $(".submit").attr "disabled", "disabled"
-    Stripe.setPublishableKey stripePublishableKey
-    Stripe.createToken
-      number: $('#cc_number').val()
-      cvc: $('#cc_cvc').val()
-      exp_month: $('#cc_month').val()
-      exp_year: $('#cc_year').val()
-    , stripeResponseHandler
-    false
-    
+  $("#stripe_payment_form").submit stripePaymentFormSubmitHandler
   $('#pledge_amount').change -> pledge_amount = $(this).val()
-  $('#pledge_amount').keyup ->
-    pledge_amount = pledgeAmount()
-    $('.perk').each (idx) ->
-      $this = $(this)
-      if pledge_amount >= parseInt($this.data('price'))
-        $this.addClass('available')
-        console.log('nicebaz')
+  $('#pledge_amount').keyup pledgeAmountKeyUpHandler
+  $('.perk input[type=\'radio\']').change changeSelectedPerkHandler
+  $('#dwolla_sign_up').click dwollaSignupClickHandler
+  $('#dwolla_link_account').click dwollaLinkupClickHandler
+  $('#link_dwolla_modal').on 'hidden', linkDwollaHiddenHandler
+  $('#submit-payment').click submitPaymentHandler
+
+submitPaymentHandler = (e) ->
+  $('[rel=popover]').popover('hide')
+  $('#processing').modal
+    keyboard: false
+
+dwollaLinkupClickHandler = (e) ->
+  e.preventDefault()
+  $('#link_dwolla_modal .modal-footer').before('<iframe src="/members/auth/dwolla" frameborder="0" id="dwolla"></iframe>')
+  $('#link_dwolla_modal').modal()
+
+linkDwollaHiddenHandler = (e) ->
+  $('#dwolla').remove()
+
+dwollaSignupClickHandler = (e) ->
+  e.preventDefault()
+  alert('huh?')
+  $('#sign_up_for_dwolla').modal('show')
+  
+getPledgeAmount = () -> 
+  parseInt($('#pledge_amount').val().replace(/\D/g, ''))
+  
+validateEmailAddress = () ->
+  if this.checkValidity()
+    $('#invalid_email').hide()
+    $('#sign_up_button').unbind('click', false)
+  else
+    $('#invalid_email').show()
+    $('#sign_up_button').bind('click', false)
+  
+changeSelectedPerkHandler = () ->
+  $this = $(this)
+  $perk = $this.data('perk')
+  price = $perk.data('price')
+  unless getPledgeAmount() > 0
+    $('#pledge_amount').val(price)
+    $('#pledge_amount').keyup()
+  else
+    if price > getPledgeAmount()
+      unless confirm('Choosing the ' + $perk.data('name') + ' will increase your pledge amount.  Ok?')
+        $this.prop('selected', false)
       else
-        $this.removeClass('available')
-  $('.perk input[type=\'radio\']').change () ->
+        $('#pledge_amount').val(price)
+        $('#pledge_amount').keyup()
+  
+pledgeAmountKeyUpHandler = ->
+  pledge_amount = getPledgeAmount()
+  $('.perk').each (idx) ->
     $this = $(this)
-    $perk = $this.data('perk')
-    price = $perk.data('price')
-    unless pledgeAmount() > 0
-      $('#pledge_amount').val(price)
-      $('#pledge_amount').keyup()
+    if pledge_amount >= parseInt($this.data('price'))
+      $this.addClass('available')
+      console.log('nicebaz')
     else
-      if price > pledgeAmount()
-        unless confirm('Choosing the ' + $perk.data('name') + ' will increase your pledge amount.  Ok?')
-          $this.prop('selected', false)
-        else
-          $('#pledge_amount').val(price)
-          $('#pledge_amount').keyup()
-      
+      $this.removeClass('available')
+
+stripePaymentFormSubmitHandler =  (event) ->
+  $(".submit").attr "disabled", "disabled"
+  Stripe.setPublishableKey stripePublishableKey
+  Stripe.createToken
+    number: $('#cc_number').val()
+    cvc: $('#cc_cvc').val()
+    exp_month: $('#cc_month').val()
+    exp_year: $('#cc_year').val()
+  , stripeResponseHandler
+  false
+
 stripeResponseHandler = (status, response) ->
   window.status = status
   window.response = response
@@ -58,3 +96,4 @@ stripeResponseHandler = (status, response) ->
     token = response["id"]
     $form.append "<input type='hidden' name='stripe_token' value='" + token + "'/>"
     $form.get(0).submit()
+    

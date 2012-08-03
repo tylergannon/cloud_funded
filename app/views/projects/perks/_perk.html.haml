@@ -1,7 +1,8 @@
-.perk[perk]{data: {price: perk.price, name: perk.name}}
+.perk.span4[perk]{data: {price: perk.price, name: perk.name}}
   %h3.name= perk.name
-  .price= number_to_currency(perk.price)
-  - if @pledge
-    .selector= radio_button_tag 'pledge[perk_id]', perk.id, (perk.id == @pledge.perk_id)
+  .row
+    - if @pledge
+      .span1= radio_button_tag 'pledge[perk_id]', perk.id, (perk.id == @pledge.perk_id)
+    .span2.pull-right.money= number_to_currency(perk.price)
   .image= image_tag perk.image.url(:large)
   .description= perk.description

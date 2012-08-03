@@ -1,5 +1,5 @@
 class Transaction < ActiveRecord::Base
-  attr_accessible :amount, :amount_refunded, :description, :disputed, :failure_message, :fee, :invoice, :object_type, :refunded, :transaction_id, :transaction_date, :member, :pledge, :paid, :amount_cents, :amount_refunded_cents
+  attr_accessible :amount, :amount_refunded, :description, :disputed, :failure_message, :fee, :invoice, :object_type, :refunded, :transaction_id, :transaction_date, :member, :pledge, :paid, :amount_cents, :amount_refunded_cents, :pledge_id
   belongs_to :member
   belongs_to :pledge
   

@@ -21,10 +21,6 @@ class Pledge < ActiveRecord::Base
     if perk && perk.project != pledge.project
       raise "Big trouble"
     end
-    
-    if pay_by_cc? && latest_transaction && !latest_transaction.paid
-      pledge.errors.add :payment_error, "There was a problem processing your payment."
-    end
   end
   
   after_create do |pledge|
@@ -53,39 +49,14 @@ class Pledge < ActiveRecord::Base
   
   workflow do
     state :new do
-      event :created, transitions_to: :not_pledged
+      event :created, transitions_to: :unpaid
     end
     
-    state :not_pledged do
-      event :pledge, transitions_to: :choose_payment_method
+    state :unpaid do
+      event :pay_by_cc, transitions_to: :paid
+      event :pay_by_dwolla, transitions_to: :paid
     end
     
-    state :choose_payment_method do
-      event :choose_pay_by_dwolla, transitions_to: :dwolla
-      event :choose_pay_by_cc, transitions_to: :pay_by_cc
-      event :cancel, transitions_to: :cancelled
-    end
-    
-    state :pay_by_cc do
-      event :cc_payment_succeeded, transitions_to: :payment_received
-    end
-    
-    state :dwolla do
-      event :finished_dwolla_setup, transitions_to: :payment_received
-      event :cancel, transitions_to: :cancelled
-    end
-    
-    state :payment_received do
-      event :refund, transitions_to: :refund_pending
-      event :project_fail, transitions_to: :refund_pending
-      event :project_success, transitions_to: :completed
-    end
-    state :refund_pending do
-      event :refund, transitions_to: :refunded
-    end
-
-    state :cancelled
-    state :refunded
-    state :completed
+    state :paid
   end
 end

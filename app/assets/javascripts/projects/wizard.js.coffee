@@ -33,7 +33,6 @@ $ ->
 
       onError: (event, name, error) ->
         alert "error while uploading file " + name
-  $('input.date').datepicker()
   window.currentDaysCount = () ->
     parseInt $('#days input').val()
   window.getStartDate = () ->

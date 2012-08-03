@@ -6,6 +6,22 @@ describe Member do
   it {should have_many(:roles)}
   it {should belong_to(:twitter_login)}
   
+  describe "#linked_to_dwolla" do
+    describe "when there is a dwolla auth token" do
+      it "should be false" do
+        subject.dwolla_auth_token = nil
+        subject.should_not be_linked_to_dwolla
+      end
+    end
+    describe "when there is no dwolla auth token" do
+      it "should be true" do
+        subject.dwolla_auth_token = "34235wdfasdfasd"
+        subject.should be_linked_to_dwolla
+      end
+    end
+    
+  end
+  
   describe "full_name" do
     before :each do
       subject.first_name = 'Tyler'
@@ -48,7 +64,7 @@ describe Member do
           subject
         }.to change(Pledge, :count).by(1)
       end
-      it {should be_not_pledged}
+      it {should be_unpaid}
     end
     describe "when I have already pledged to the project" do
       subject {@member.pledge_for(@project)}

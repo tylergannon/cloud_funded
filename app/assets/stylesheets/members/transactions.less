@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "twitter/bootstrap/variables.less";
+@import "twitter/bootstrap/mixins.less";
+
 .testheading
 {
 
@@ -126,15 +129,8 @@
 }
 
 .payment_method {
-    border-radius: 4px;
-    khtml-border-radius: 4px;
-    moz-border-radius: 4px;
-    ms-border-radius: 4px;
-    o-border-radius: 4px;
-    webkit-border-radius: 4px;    
-    background: #f4f4f4;
-    padding: 30px;
-    width: 400px;
-    float: left;
-    margin: 20px 20px 20px 0px;
-    }
+  .border-radius(4px);
+  background: #f4f4f4;
+  padding: 30px;
+  margin: 20px 20px 20px 0px;
+}

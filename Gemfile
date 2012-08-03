@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.6'
+gem 'rails', '3.2.7'
 
 gem 'aws-sdk'
 gem 'cancan'
@@ -33,7 +33,6 @@ gem 'wicked'
 gem 'workflow'
 
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
   gem 'uglifier', '>= 1.0.3'
 end
 

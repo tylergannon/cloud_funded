@@ -1,0 +1,14 @@
+<div class="pledge_wizard">
+  <%= render partial: 'breadcrumbs' %>
+  <div class="container">
+    <div class="row">
+      <div class="span5 offset2">
+        <% if current_member.linked_to_dwolla? %>
+          <%= render partial: 'pay_dwolla' %>
+        <% else %>
+          <%= render partial: 'link_dwolla' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
