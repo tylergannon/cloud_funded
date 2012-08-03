@@ -25,7 +25,7 @@ class Project < ActiveRecord::Base
   end
   has_many :pledges, dependent: :destroy do
     def paid
-      where(workflow_state: 'payment_received')
+      where(workflow_state: 'paid')
     end
   end
   has_many :articles, dependent: :destroy do
