@@ -7,27 +7,28 @@
 .payment_error.hidden {
   visibility: hidden;
 }
+#link_dwolla_modal {
+  width: 730px;
+  height: 400px;
+  .modal-body {
+    position: relative;
+    a {
+      position: absolute;
+      bottom: 20px;
+      right: 22px;
+    }
+  }
+  .icon {
+    color: black;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
 
 .pledge_wizard {
-  #link_dwolla_modal {
-    width: 300px;
-    height: 540px;
-    position: relative;
-    iframe {
-      height: 540px;
-    }
-    .icon {
-      color: black;
-      position: absolute;
-      top: 0;
-      right: 0;
-    }
-  }
   
-  .modal-header img {
-    width: 30px;
-    .border-radius(4px);
-  }
   .box {
     .border-radius(6px);
     .box-shadow( 0 1px 3px rgba(0,0,0,.25) );

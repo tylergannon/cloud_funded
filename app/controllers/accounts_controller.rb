@@ -27,6 +27,10 @@ class AccountsController < ApplicationController
     end
   end
   
+  def dwolla_auth_failure
+    flash[:error] = "Why you no like Dwolla?"
+  end
+  
   def edit
     respond_with @member
   end

@@ -9,10 +9,16 @@ popupCenter = (url, width, height, name) ->
 
 $ ->
   $('#link_dwolla').click ->
-    $('#dwolla').height(500)
-    $('#dwolla').modal()
+    $('.dwolla_connect').append('<iframe class="modal hide" id="dwolla" src="/members/auth/dwolla"></iframe>')
+    $('#dwolla').load () ->
+      $('#dwolla').height(350)
+      $('#dwolla').width(700)
+      $('#dwolla').modal()
+      $('#dwolla').on 'hidden', () ->
+        $('#dwolla').remove()
   
   $("a.popup").click (e) ->
     popupCenter $(this).attr("href"), $(this).attr("data-width"), $(this).attr("data-height"), "authPopup"
     e.stopPropagation()
     false
+

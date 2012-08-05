@@ -16,6 +16,7 @@ class Projects::WizardController < ApplicationController
     if params[:project]
       @project.update_attributes params[:project]
     end
+    puts @project.errors.inspect unless @project.valid?
     if respond_to?("submit_#{params[:id]}")
       send "submit_#{params[:id]}"
     else

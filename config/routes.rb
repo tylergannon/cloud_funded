@@ -39,7 +39,10 @@ CloudFunded::Application.routes.draw do
   end
 
   resource :my_account, as: 'account', only: [:show, :edit, :update], controller: 'accounts' do
-    member {put :send_reset_password_instructions, as: :send_reset_password_instructions}
+    member do 
+      put :send_reset_password_instructions, as: :send_reset_password_instructions
+      get :dwolla_auth_failure
+    end
     resources :funds, path_names: {:new => 'add'}, controller: 'members/transactions'
   end
   
@@ -56,7 +59,7 @@ CloudFunded::Application.routes.draw do
     resources :attachments, controller: 'admin/attachments'
     resource :my_pledge, controller: :pledges
     resources :pledges
-    resources :roles, controller: 'projects/roles' do
+    resources :team, as: :roles, controller: 'projects/roles' do
       member {get :confirm}
     end
     resources :updates, controller: 'projects/articles', path_names: {:new => :new, :edit => :edit} do
@@ -68,10 +71,14 @@ CloudFunded::Application.routes.draw do
     resources :transactions, controller: 'projects/transactions', path_names: {
       :new => :new, :edit => :edit
     }
-    resources :perks, controller: 'projects/perks', path_names: {
-      :new => :new, :edit => :edit
-    }
+    resources :perks, controller: 'projects/perks' do
+      collection do
+        post :sort
+      end
+    end
   end
+  
+  match '/members/auth/dwolla/callback' => 'accounts#dwolla_auth_failure' , constraints: {query_string: "access_denied&error_description=The+user+denied+the+request."}
     
   devise_for :members, controllers: {
     omniauth_callbacks: 'members/omniauth_callbacks',
@@ -90,7 +97,7 @@ CloudFunded::Application.routes.draw do
   match '/get_funded(/:id)' => 'projects/wizard#show', as: :get_funded, via: 'get'
   match '/get_funded(/:id)' => 'projects/wizard#update', via: 'put'
   
-  match '/projects/:project_id/wizard(/:id)' => 'projects/wizard#show', as: :project_wizard, via: 'get', defaults: {id: 'basics'}
+  match '/projects/:project_id/wizard(/:id)' => 'projects/wizard#show', as: :project_wizard, via: 'get'
   match '/projects/:project_id/wizard(/:id)' => 'projects/wizard#update', via: 'put'
   
   # resource :get_funded, controller: 'projects/wizard', as: :get_funded

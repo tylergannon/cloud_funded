@@ -16,7 +16,6 @@ $ ->
   $('.perk input[type=\'radio\']').change changeSelectedPerkHandler
   $('#dwolla_sign_up').click dwollaSignupClickHandler
   $('#dwolla_link_account').click dwollaLinkupClickHandler
-  $('#link_dwolla_modal').on 'hidden', linkDwollaHiddenHandler
   $('#submit-payment').click submitPaymentHandler
 
 submitPaymentHandler = (e) ->
@@ -25,16 +24,20 @@ submitPaymentHandler = (e) ->
     keyboard: false
 
 dwollaLinkupClickHandler = (e) ->
+  console.log('nicebaz')
   e.preventDefault()
-  $('#link_dwolla_modal .modal-footer').before('<iframe src="/members/auth/dwolla" frameborder="0" id="dwolla"></iframe>')
-  $('#link_dwolla_modal').modal()
-
-linkDwollaHiddenHandler = (e) ->
-  $('#dwolla').remove()
+  $('[rel=popover]').popover('hide')
+  $('#link_dwolla_modal .modal-body').append('<iframe src="/members/auth/dwolla" frameborder="0" id="dwolla"></iframe>')
+  $dwolla = $('#dwolla')
+  $dwolla.load () ->
+    $dwolla.height(350)
+    $dwolla.width(700)
+    $('#link_dwolla_modal').modal()
+    $('#link_dwolla_modal').on 'hidden', () ->
+      $('#dwolla').remove()
 
 dwollaSignupClickHandler = (e) ->
   e.preventDefault()
-  alert('huh?')
   $('#sign_up_for_dwolla').modal('show')
   
 getPledgeAmount = () -> 

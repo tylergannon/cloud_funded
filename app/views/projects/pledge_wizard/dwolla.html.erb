@@ -4,9 +4,9 @@
     <div class="row">
       <div class="span5 offset2">
         <% if current_member.linked_to_dwolla? %>
-          <%= render partial: 'pay_dwolla' %>
+          <%= render partial: 'dwolla/pay_dwolla' %>
         <% else %>
-          <%= render partial: 'link_dwolla' %>
+          <%= render partial: 'dwolla/link_dwolla' %>
         <% end %>
       </div>
     </div>

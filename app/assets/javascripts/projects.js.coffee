@@ -18,9 +18,6 @@ $ ->
     $this.wrap("<div class='input-prepend'>")
     $this.before("<span class='add-on'><i class='icon icon-resize-vertical'/></span>")
 
-
-
-  
   $('input.money').money_field()
   $('.project').each (idx, el) ->
     $el = $(el)

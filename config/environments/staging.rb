@@ -10,6 +10,9 @@ CloudFunded::Application.configure do
   ENV['DWOLLA_KEY'] = 'hNZPFYpFeDb2KN759OD98e+brYTW6xXnH7CXqz+Axv8nFcXJno'
   ENV['DWOLLA_SECRET'] = 'ldwMpY70KH0zf72CaqgTjsZDyP8JhhwsSfAlvl0CWIJcdmg+SJ'
 
+  ENV['TWITTER_APP_ID'] = 'HNdNinpVKKXKzkOjet2g'
+  ENV['TWITTER_SECRET_KEY'] = 'NcIejMNhs8S3XvzvM6Xwj3PUhUQDbpsOqt1k4g50'
+
   Dwolla::Transaction.test_mode = true
 
   config.action_mailer.default :charset => "utf-8"

@@ -8,9 +8,14 @@ class Members::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @next_location = session[:last_request] || root_path
 
     unless params[:error].blank?
-      flash[:error] = "There was a problem signing in to your Dwolla account.  We have been notified and are working on a solution."
-      request.env['omniauth.auth'].clear
+      if params[:error] == "access_denied" && params[:error_description] == "The user denied the request."
+        flash[:error] = "Why you no like Dwolla?"
+      else
+        flash[:error] = "There was a problem signing in to your Dwolla account.  We have been notified and are working on a solution."
+        request.env['omniauth.auth'].clear
+      end
     else
+      
       authenticate_member!
       
       dwolla_info =  request.env['omniauth.auth']

@@ -1,19 +1,26 @@
-.role[role]
-  - if can? :edit, role
-    = link_to 'Edit', edit_project_role_path(role.project, role), data: {remote: true}
-  - if can? :destroy, role
-    = link_to 'Delete', project_role_path(role.project, role), method: :delete, data: {confirm: 'You really want to remove this team member?', remote: true}
-  .person
+.role.row[role]
+  .span1
     - if role.member
       = link_to profile_path(role.member) do
         = image_tag role.member.profile_pic
-        .name= role.member.full_name
-    - else
-      = role.email_address
-  .role_name= role.name
-  .tagline= role.tagline
-  - if can? :edit, role
-    .status
-      Status: #{role.workflow_state.titleize}
-      - if can?(:confirm, role) && role.unconfirmed?
-        = link_to 'Confirm', confirm_project_role_path(role.project, role), data: {confirm: 'This is to confirm that you are on this team.', remote: true}
+  .span4
+    - if can? :edit, role
+      = link_to edit_project_role_path(role.project, role), rel: 'tooltip', title: 'Edit This Role', data: {remote: true} do
+        %i.icon.icon-cog
+    - if can? :destroy, role
+      = link_to project_role_path(role.project, role), class: 'tippy', rel: 'tooltip', title: 'Remove This Role', method: :delete, data: {confirm: 'You really want to remove this team member?', remote: true} do
+        %i.icon.icon-remove
+    .person
+      - if role.member
+        = link_to profile_path(role.member) do
+          %span.name= role.member.full_name
+      - else
+        %span= role.email_address
+      %span.role_name / #{role.name}
+    .tagline= role.tagline
+    - if can? :edit, role
+      .status
+        Status: #{role.workflow_state.titleize}
+        - if can?(:confirm, role) && role.unconfirmed?
+          = link_to 'Confirm', confirm_project_role_path(role.project, role), data: {confirm: 'This is to confirm that you are on this team.', remote: true}
+  %hr/

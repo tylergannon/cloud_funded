@@ -1,11 +1,11 @@
 class Projects::Perk < ActiveRecord::Base
-  attr_accessible :delivery_terms, :description, :name, :price, :quantity, :image
+  attr_accessible :delivery_terms, :description, :name, :price, :quantity, :image, :sort_order
   belongs_to :project
   has_many :pledges
   
   monetize :price_cents
 
-  default_scope order(:id)
+  default_scope order(:sort_order)
 
   S3_DEETS = {
     :styles => { large: "200x200", :thumb => "100x100" }

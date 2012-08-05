@@ -23,7 +23,7 @@
       = f.text_area :history
       = render partial: 'upload_field', locals: {field: :history_image}
     .field
-      = f.submit.nobg 'Save and Continue'
+      = f.submit 'Save and Continue', class: 'nobg'
   .file_uploads{data: {action: project_path(@project, format: :json)}}
     = file_field_tag 'about_your_product_image'
     = file_field_tag 'how_it_helps_image'

@@ -1,0 +1,13 @@
+<div class="span4 shadow">
+  <h3><%= role.name %> at <%= link_to role.project.name, role.project %> </h3>
+  <b>Tagline: </b><%= role.tagline || "No tagline set" %>
+</div>
+<div class="span3">
+  <div class="link">
+    <%= link_to 'Make Changes', edit_project_role_path(role.project, role) %>
+  </div>
+  <div class="link">
+    <%= link_to 'Remove', project_role_path(role.project, role), method: :delete %>
+  </div>
+</div>
+<hr />

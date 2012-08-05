@@ -9,6 +9,12 @@ class Projects::RolesController < ApplicationController
     respond_with @project, @role
   end
   
+  def index
+    authorize! :edit, @project
+    @roles = @project.roles
+    
+  end
+  
   def create
     authorize! :edit, @project
     @role = @project.roles.build(params[:role])

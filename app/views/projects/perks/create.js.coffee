@@ -1,0 +1,1 @@
+$('#sort_perks').append('<%= escape_javascript render(partial: 'edit' %>')

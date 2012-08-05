@@ -22,6 +22,10 @@ CloudFunded::Application.configure do
     ENV['DWOLLA_SECRET'] = 'FWtuQE6DY2NakB20AnjdJdvt0Jo8QapDUj2c2BsODJgA4+Yndq'
     ENV['facebook_app_id'] = '395940067129740'
     ENV['facebook_secret_key'] = '4a93f54a78f136b5f551ef0fbe15bcd4'
+    
+    ENV['TWITTER_APP_ID'] = 'H963ARu7ljcSdlWNoVg'
+    ENV['TWITTER_SECRET_KEY'] = 'QlxzpfXdAbeyfhSWx2Rng1B7ixDv4ViiX6xdKobG8'
+    
   else
     AppConfig.paperclip_storage = {}
     

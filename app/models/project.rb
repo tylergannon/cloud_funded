@@ -127,7 +127,11 @@ class Project < ActiveRecord::Base
   end
   
   def percent_complete
-    ((amount_pledged / financial_goal) * 100).to_i
+    unless amount_pledged && financial_goal
+      0
+    else
+      ((amount_pledged / financial_goal) * 100).to_i
+    end
   end
   
   def financial_goal_string=(something)

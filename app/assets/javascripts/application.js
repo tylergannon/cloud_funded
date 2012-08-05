@@ -32,6 +32,7 @@
 //= require pledges
 //= require profiles
 //= require projects
+//= require projects/perks
 //= require projects/roles
 //= require projects/wizard
 //= require general_goodies

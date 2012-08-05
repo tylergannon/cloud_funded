@@ -12,6 +12,8 @@
  *= require jquery_ui_overrides
  *= require bootstrap_and_overrides
  *= require bootstrap/datepicker
+ *= require header_bootstrap
+ *= require tables
  *= require accounts
  *= require admin/articles
  *= require admin/feedbacks
@@ -20,19 +22,19 @@
  *= require application.css
  *= require articles
  *= require attachments
- *= require perks
  *= require comments
+ *= require dwolla
  *= require facebook_actions
  *= require feedbacks
  *= require fonts
- *= require header_bootstrap
  *= require members/transactions
  *= require new_project
  *= require pages
+ *= require perks
  *= require pledges
  *= require profiles
- *= require projects/categories
- *= require projects/wizard
- *= require projects/roles
  *= require projects
+ *= require projects/categories
+ *= require projects/roles
+ *= require projects/wizard
 */
