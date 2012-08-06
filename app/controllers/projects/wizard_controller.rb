@@ -7,6 +7,17 @@ class Projects::WizardController < ApplicationController
   
   def show
     authorize! :edit, @project
+    case step
+    when :preview
+      @project.preview!
+      unless @project.valid?
+        @project.fail_validation!
+        flash[:error] = ("We haven't collected enough information to show you a preview just yet!<br/>" + 
+        @project.errors.messages.map{|key, err| "#{key.to_s.titleize} #{err.join(', ')}"}.join("<br/>")).html_safe
+        redirect_to wizard_path(previous_step)
+        return
+      end
+    end
     @project.valid?
     render_wizard
   end

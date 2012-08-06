@@ -67,7 +67,7 @@ class Project < ActiveRecord::Base
   has_attached_file :history_image, S3_DEETS.merge(AppConfig.paperclip_storage)
   
   validates :category, presence: true, :if => lambda {|project| !project.new?}
-  validates_attachment_presence :image, :if => lambda {|project| !project.new?}
+  validates_attachment :image, presence: true, :if => lambda {|project| !project.new?}
   validates :tagline, presence: true, :if => lambda {|project| !project.new?}
   validates :short_description, length: {maximum: 500}, :if => lambda {|project| !project.new?}
   validates :name, uniqueness: true, :if => lambda {|project| !project.new?}
@@ -76,6 +76,7 @@ class Project < ActiveRecord::Base
   validates :address, presence: true, :if => lambda {|project| !project.new?}
   # validates :lat, presence: true
   # validates :long, presence: true
+  validates :financial_goal, presence: true
   
   validate do |project|
     unless project.new?
@@ -127,7 +128,7 @@ class Project < ActiveRecord::Base
   end
   
   def percent_complete
-    unless amount_pledged && financial_goal
+    unless amount_pledged && financial_goal && financial_goal > 0
       0
     else
       ((amount_pledged / financial_goal) * 100).to_i
