@@ -8,14 +8,19 @@
 .project_page {
   width: 100%;
   .details {
-    &> div {
-//      display: table-cell;
-    }
+    background:  #1a5984;
+    width: 100%;
+    padding: 20px;
     
-    #tab_container {
-  //    width: 75%;
+    .btn {
+      padding: 10px;
+        a {
+        color: #fff;
+        font-weight: bold;
+        padding: 20px;
+        font-size: 16px;
+      }
     }
-    
     .update {
       h3 {
         height: 30px;
@@ -27,12 +32,9 @@
   }
   
 
-  
   .dashboard {
- //   position: relative;
- //   background: white;
+    background: white;
     padding: 20px;
- //   min-height: 540px;
     
     li {
       list-style-type: none;
@@ -41,9 +43,8 @@
     .social {
       top: 0;
       .link {
- //       position: absolute;
- float: left;
-  margin: 5px 5px 0px 0px;
+        float: left;
+        margin: 5px 5px 0px 0px;
       }
       .pin-it {
         left: @fb-like-width;
@@ -53,20 +54,22 @@
       }
     }
     
+    h1 {
+      font-size: 40px;
+      letter-spacing: -1px;
+      color: #333;
+    }
     h2 {
-    
-        font-size: 18px;
-        font-weight: normal;
+      font-size: 18px;
+      font-weight: 300;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 20px;
     }
     
     .right-pane {
-
-  //   position: absolute;
      background: #ececec;
      width: 100%; 
      padding: 20px;
-   //  top: 160px;
-   //  left: 600px;
      border-radius: 6px;
      khtml-border-radius: 6px;
      moz-border-radius: 6px;
@@ -108,11 +111,6 @@
     }
   }
   
-  .details {
-//    position: relative;
-//    top: 25px;
-//    width: 100%;
-  }
 }
 
 #project_list {
@@ -126,13 +124,8 @@
   display: table-cell;
   height: 380px;
   margin: 5px;
-//  margin-right: 10px;
-//  margin-bottom: 20px;
   padding: 10px;
   h2 {
-  //  width: 300px;
-  //  overflow: hidden;
-  
     font-size: 20px;
     padding-top: 20px;
   }
@@ -152,23 +145,14 @@
     padding: 0px 20px;
     }
 
-
-
-
   .website_link {
     padding-bottom: 6px;
-//    position: relative;
-//    top: 25px;
-//    width: 560px;
   }
   h2.tagline {
     font-size: 18px;
     font-weight: normal;
   }
 }
-
-
-
 
 
 
@@ -179,7 +163,7 @@
     }
     #map_canvas {
  //     width: 560px;
-      height: 310px;
+//      height: 310px;
       margin-bottom: 15px;
       border: 2px dotted gray;
       border-radius: 5px;
@@ -222,20 +206,13 @@
     list-style-type: none;
   }
   li {
-//  width: 300px;
-  display: table-cell;
+    display: table-cell;
   
   }
    .project {
-//  width: 300px;
-  display: block;
-//  border: 1px solid #ccc;
-//  margin-right: 20px;
-//  clear: both;
-//  background: white;
+      display: block;
   
- 
-      .button1 {
+       .button1 {
     margin: 0px 20px 20px 20px;}
   }
 }
@@ -251,9 +228,12 @@ field.more_about_you {
 }
 
 
-.projecteaser {
-//  width: 300px;
-//  float: left;
+
+.dashboard_image_wrapper {
+  width: 100%;
+  height: 350px;
+  background: #ddd;
+  text-align: center;
 }
 
 

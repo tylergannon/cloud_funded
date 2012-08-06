@@ -4,6 +4,18 @@
 @import "twitter/bootstrap/variables.less";
 @import "twitter/bootstrap/mixins.less";
 
+
+.new_pledge {
+    background: white;
+    padding: 20px;
+    
+    .perks {
+    
+    float: left;
+    }
+
+}
+
 .payment_error.hidden {
   visibility: hidden;
 }
@@ -12,7 +24,18 @@
   height: 400px;
   .modal-body {
     position: relative;
-    a {
+    }
+}
+.pledge_wizard {
+  #link_dwolla_modal {
+//    width: 300px;
+//    height: 540px;
+//    position: relative;
+    iframe {
+      height: 540px;
+    }
+    .icon {
+      color: black;
       position: absolute;
       bottom: 20px;
       right: 22px;
@@ -41,6 +64,7 @@
 }
 
 .projects_perk {
+    width: 26%;
   .price, .selector {
     float: right;
     padding: 20px;

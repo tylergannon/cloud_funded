@@ -2,7 +2,7 @@
   %h1 Ready to fund #{@project.name}?
   %h2 Awesome.  You're a job creator!
 
-  .container.white.rounded.shadow.new
+  .container.new
     = form_for [@project, @pledge] do |f|
       -if @pledge.errors.any?
         #error_explanation
