@@ -18,11 +18,13 @@ CloudFunded::Application.configure do
       }
     }
     config.action_mailer.default_url_options = { :host => 'dev.cloudfunded.com' }
+    
+    ENV['DISQUS_APPNAME'] = 'cloudfundeddev'
+    ENV['DISQUS_DEVMODE'] = '0'
     ENV['DWOLLA_KEY'] = 'FH8ROFZyhOd5Xp9mU3YpV5nVQQhPZ16PfWBV/FUH4eNZHKbHZR'
     ENV['DWOLLA_SECRET'] = 'FWtuQE6DY2NakB20AnjdJdvt0Jo8QapDUj2c2BsODJgA4+Yndq'
     ENV['facebook_app_id'] = '395940067129740'
     ENV['facebook_secret_key'] = '4a93f54a78f136b5f551ef0fbe15bcd4'
-    
     ENV['TWITTER_APP_ID'] = 'H963ARu7ljcSdlWNoVg'
     ENV['TWITTER_SECRET_KEY'] = 'QlxzpfXdAbeyfhSWx2Rng1B7ixDv4ViiX6xdKobG8'
     
@@ -30,6 +32,8 @@ CloudFunded::Application.configure do
     AppConfig.paperclip_storage = {}
     
     config.action_mailer.default_url_options = { :host => 'local.cloudfunded.com:3000' }
+    ENV['DISQUS_APPNAME'] = 'cloudfundedtest'
+    ENV['DISQUS_DEVMODE'] = '1'
     ENV['DWOLLA_KEY'] = 'onyiTxhgtndNywPHqTJ2GJ98srT1F88h1EAnsKmYLMkKaqJqsa'
     ENV['DWOLLA_SECRET'] = 'qyXerrvhvxj6fvsngIvMkS8du9E0Y4LX7ObDsgIRMKr0WOzBdZ'
     ENV['facebook_app_id'] = '125298410939354'

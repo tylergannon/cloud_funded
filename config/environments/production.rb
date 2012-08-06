@@ -2,6 +2,8 @@ CloudFunded::Application.configure do
   ENV['facebook_app_id'] = '336588343062874'
   ENV['facebook_secret_key'] = '03ac974371620fae08891f673160117b'
   ENV['AMAZON_S3_BUCKET'] = 'cloud_funded'
+  ENV['DISQUS_APPNAME'] = 'cloudfunded'
+  ENV['DISQUS_DEVMODE'] = '0'
 
   ENV['SENDGRID_USERNAME'] = 'cloudfunded_production'
   ENV['SENDGRID_PASSWORD'] = 'rockst1zzle'

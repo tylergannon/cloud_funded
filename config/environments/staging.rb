@@ -1,15 +1,15 @@
 CloudFunded::Application.configure do
-  ENV['facebook_app_id'] = '336588343062874'
-  ENV['facebook_secret_key'] = '03ac974371620fae08891f673160117b'
+  
   ENV['AMAZON_S3_BUCKET'] = 'cloud_funded'
-  
-  ENV['SENDGRID_USERNAME'] = 'cloudfunded_staging'
-  ENV['SENDGRID_PASSWORD'] = 'B@rnD00ez!'
-  ENV['OPENGRAPH_NAMESPACE'] = 'cloudfunded'
-  
+  ENV['DISQUS_APPNAME'] = 'cloudfundedstaging'
+  ENV['DISQUS_DEVMODE'] = '0'
   ENV['DWOLLA_KEY'] = 'hNZPFYpFeDb2KN759OD98e+brYTW6xXnH7CXqz+Axv8nFcXJno'
   ENV['DWOLLA_SECRET'] = 'ldwMpY70KH0zf72CaqgTjsZDyP8JhhwsSfAlvl0CWIJcdmg+SJ'
-
+  ENV['facebook_app_id'] = '336588343062874'
+  ENV['facebook_secret_key'] = '03ac974371620fae08891f673160117b'
+  ENV['OPENGRAPH_NAMESPACE'] = 'cloudfunded'
+  ENV['SENDGRID_PASSWORD'] = 'B@rnD00ez!'
+  ENV['SENDGRID_USERNAME'] = 'cloudfunded_staging'
   ENV['TWITTER_APP_ID'] = 'HNdNinpVKKXKzkOjet2g'
   ENV['TWITTER_SECRET_KEY'] = 'NcIejMNhs8S3XvzvM6Xwj3PUhUQDbpsOqt1k4g50'
 
