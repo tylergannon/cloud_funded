@@ -14,7 +14,9 @@
       .button1.yellow= link_to 'Find Investments', projects_categories_path
     .span6
       %br/
-      %img{ :src => "assets/info.png", :alt => "Description of image" }
+      = image_tag 'info.png', rel: 'popover', data: |
+        {placement: 'left', original_title: 'The JOBS Act', |
+        content: 'Enables companies that are not yet publicly traded, to seek investment capital from community members.'}
       %br/
       %br/ 
     .row.spacer.filterbar
