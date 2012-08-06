@@ -4,7 +4,7 @@
     var disqus_shortname = '<%= ENV['DISQUS_APPNAME'] %>';
     var disqus_developer = <%= ENV['DISQUS_DEVMODE'] || 0 %>;
     var disqus_identifier = '<%= project_path(@project) %>';
-    var disqus_title = '<%= @project.name %> on CloudFunded';
+    var disqus_title = '<%= escape_javascript @project.name %> on CloudFunded';
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {

@@ -8,7 +8,6 @@ class @Mercury.CustomPageEditor extends @Mercury.PageEditor
       $el = $(this)
       $img = $el.find('img')
       $img.removeClass('ui-resizable')
-      alert('replacing element with:' + 'height: ' + $img.height() + 'px; width: ' + $img.width() + 'px;')
       $img.attr('width', $img.width())
       $img.attr('height', $img.height())
       $el.replaceWith $img

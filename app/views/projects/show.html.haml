@@ -32,4 +32,4 @@
     #perks.perks.span4
       = render @project.perks
 
-= render partial: 'shared/mercury_includes' if can? :edit, @project
+= render partial: 'shared/mercury_includes' if can? :edit, @project && !!params[:mercury_frame] == true
