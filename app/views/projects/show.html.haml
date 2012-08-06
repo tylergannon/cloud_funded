@@ -1,29 +1,30 @@
 .project_page
   = render partial: 'dashboard'
   .row
-    .details.span8
+    .details.span8.mercury_container{data: {'save-url' => mercury_update_project_path(@project)}}
       #tab_container
-        #tabs
+        #tabs{data: {base_url: project_path(@project)}}
           %ul.nav.nav-tabs
-            %li.active= link_to 'Info', '#info', data: {toggle: 'tab'}
-            %li= link_to 'Updates', '#updates', data: {toggle: 'tab'}
-            %li= link_to 'Team', '#team', data: {toggle: 'tab'}
-            %li= link_to 'Comments', '#comments', data: {toggle: 'tab'}
-            %li= link_to 'Pledges', '#pledges', data: {toggle: 'tab'}
+            %li{active_tab?('info', true)}= link_to 'Info', '#info', data: {toggle: 'tab'}
+            %li{active_tab?('updates')}= link_to 'Updates', '#updates', data: {toggle: 'tab'}
+            %li{active_tab?('team')}= link_to 'Team', '#team', data: {toggle: 'tab'}
+            %li{active_tab?('comments')}= link_to 'Comments', '#comments', data: {toggle: 'tab'}
+            %li{active_tab?('pledges')}= link_to 'Pledges', '#pledges', data: {toggle: 'tab'}
           .tab-content
-            #info.tab-pane
-              <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
-            #updates.tab-pane.mercury_container{data: {'save-url' => mercury_update_project_path(@project)}}
+            #info.tab-pane{active_tab?('info', true)}
+              .container
+                .span6#project_information.mercury-region{data: {mercury: :full}}!= @project.information_text
+            #updates.tab-pane{active_tab?('updates')}
               - if !!params[:mercury_frame] == true
                 = link_to "New Article", project_updates_path(@project, format: :js), data: {remote: true}, method: :post
               = render partial: 'projects/articles/update', collection: @articles
-            #team.tab-pane
+            #team.tab-pane{active_tab?('team')}
               - if !!params[:mercury_frame] == true
                 = link_to "Add A Team Member", new_project_role_path(@project, format: :js), data: {remote: true}
               = render @roles
-            #comments.tab-pane
+            #comments.tab-pane{active_tab?('comments')}
               = render partial: 'disqus'
-            #pledges.tab-pane
+            #pledges.tab-pane{active_tab?('pledges')}
               - @project.pledges.paid.each do |pledge|
                 .pledge
                   = render pledge.investor

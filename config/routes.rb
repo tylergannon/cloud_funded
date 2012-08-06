@@ -52,6 +52,7 @@ CloudFunded::Application.routes.draw do
   namespace :projects do
     resources :categories
   end
+  
 
   resources :projects, path_names: {edit: :settings, :new => :fund_yours} do
     member {put :mercury_update}
@@ -108,7 +109,11 @@ CloudFunded::Application.routes.draw do
   
   # match '/projects/:project_id/my_pledge/edit' => 'pledges#edit', as: :edit_my_pledge
   # match '/projects/:project_id/my_pledge' => 'pledges#show', as: :my_pledge
-  
+  match '/:id/comments' => 'projects#show', as: :project, defaults: {show: 'comments'}, via: 'get'
+  match '/:id/team' => 'projects#show', as: :project, defaults: {show: 'team'}, via: 'get'
+  match '/:id/updates' => 'projects#show', as: :project, defaults: {show: 'updates'}, via: 'get'
+  match '/:id/pledges' => 'projects#show', as: :project, defaults: {show: 'pledges'}, via: 'get'
+  match '/:id/info' => 'projects#show', as: :project, defaults: {show: 'info'}, via: 'get'
   match '/:id(.:format)' => 'projects#show', as: :project, :constraints => { :format => /(json|html)/ }, via: 'get'
   match '/:id(.:format)' => 'projects#update', as: :project, :constraints => { :format => /(json|html)/ }, via: 'post'
 

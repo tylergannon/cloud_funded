@@ -4,7 +4,6 @@ class @Mercury.CustomPageEditor extends @Mercury.PageEditor
     super
 
   save: ->
-    alert('hello')
     $('#mercury_iframe').contents().find('.mercury-region .ui-wrapper').each (idx) ->
       $el = $(this)
       $img = $el.find('img')

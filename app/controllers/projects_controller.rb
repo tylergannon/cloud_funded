@@ -30,13 +30,13 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     authorize! :manage, @project
     params[:content].each do |key, val|
-      match, attribute, klass, id = *key.to_s.match(/^([a-z]+)_([a-z]+)_(\d+)$/)
-      @project.articles.find(id.to_i).update_attributes attribute.to_sym => val['value']
+      if key == "project_information"
+        @project.update_attributes information_text: val['value']
+      else
+        match, attribute, klass, id = *key.to_s.match(/^([a-z]+)_([a-z]+)_(\d+)$/)
+        @project.articles.find(id.to_i).update_attributes attribute.to_sym => val['value']
+      end
     end
-    
-    # article.update_attributes title: params[:content][:article_title][:value], 
-    #                           body: params[:content][:article_body][:value],
-    #                           description: params[:content][:article_description][:value]
     
     respond_with(@project) do |format|
       format.json {

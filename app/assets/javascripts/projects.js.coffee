@@ -5,9 +5,8 @@
 $ ->
   # $('#tabs').tabs()
   $('#tabs ul.nav-tabs a').click (e) ->
-    e.preventDefault()
+    history.pushState({foo: 'bar'}, "page 2", $('#tabs').data('base-url') + $(this).attr('href').replace('#', '/'));
     $(this).tab('show')
-  
   
   $('input.date').each ->
     $this = $(this)
