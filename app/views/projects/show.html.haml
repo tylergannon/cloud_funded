@@ -1,4 +1,4 @@
-.project_page
+.project_page.span12
   = render partial: 'dashboard'
   .row
     .details.span8.mercury_container{data: {'save-url' => mercury_update_project_path(@project)}}
@@ -28,43 +28,12 @@
               - @project.pledges.paid.each do |pledge|
                 .pledge
                   = render pledge.investor
+                  
+              
 
-<<<<<<< HEAD
-    #perks.perks.span4
-      = render @project.perks
-=======
-  .details.span8
-   
-
-   
-   
-   
-    #tab_container.btn-toolbar
-      #tabs
-        %ul.btn-group
-          %li.btn.btn-info.active= link_to 'Info', '#info', data: {toggle: 'tab'}
-          %li.btn.btn-info= link_to 'Updates', '#updates', data: {toggle: 'tab'}
-          %li.btn.btn-info= link_to 'Team', '#team', data: {toggle: 'tab'}
-          %li.btn.btn-info= link_to 'Pledges', '#pledges', data: {toggle: 'tab'}
-        .tab-content
-          #info.tab-pane
-            <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
-          #updates.tab-pane.mercury_container{data: {'save-url' => mercury_update_project_path(@project)}}
-            - if !!params[:mercury_frame] == true
-              = link_to "New Article", project_updates_path(@project, format: :js), data: {remote: true}, method: :post
-            = render partial: 'projects/articles/update', collection: @articles
-          #team.tab-pane
-            - if !!params[:mercury_frame] == true
-              = link_to "Add A Team Member", new_project_role_path(@project, format: :js), data: {remote: true}
-            = render @roles
-          #pledges.tab-pane
-            - @project.pledges.paid.each do |pledge|
-              .pledge
-                = render pledge.investor
-
-          #perks.perks.span4
-            = render @project.perks
-            = render partial: 'shared/mercury_includes' if can? :edit, @project
->>>>>>> perks
 
 = render partial: 'shared/mercury_includes' if can? :edit, @project && !!params[:mercury_frame] == true
+    #perks.perks.span3
+      = render @project.perks
+  
+

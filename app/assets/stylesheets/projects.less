@@ -6,15 +6,21 @@
 @fb-like-width: 300px;
 
 .project_page {
-  width: 100%;
   .details {
     background:  #1a5984;
-    width: 100%;
     padding: 20px;
+    min-height: 300px;
+    .project_perks {
+     
     
+    }
+    .tab-pane {
+      background: white;
+      padding: 10px;
+    }
     .btn {
       padding: 10px;
-        a {
+      a {
         color: #fff;
         font-weight: bold;
         padding: 20px;
@@ -35,6 +41,7 @@
   .dashboard {
     background: white;
     padding: 20px;
+    margin-left: 0px;
     
     li {
       list-style-type: none;
@@ -56,15 +63,22 @@
     
     h1 {
       font-size: 40px;
+      line-height: 45px;
       letter-spacing: -1px;
       color: #333;
+      margin-top: 30px;
+      margin-bottom: 0px;
     }
     h2 {
+      margin: 20px 0px;
       font-size: 18px;
+      line-height: 26px;
       font-weight: 300;
       border-bottom: 1px solid #ddd;
-      margin-bottom: 20px;
     }
+    
+ 
+    
     
     .right-pane {
      background: #ececec;
@@ -119,22 +133,23 @@
 
 .project {
   cursor: pointer;
-  background: #f4f4f4;
+  background: #fff;
   border: 1px solid #ccc;
   display: table-cell;
-  height: 380px;
+  min-height: 380px;
   margin: 5px;
   padding: 10px;
   h2 {
     font-size: 20px;
-    padding-top: 20px;
+   letter-spacing: -1px;
+   color: #333;
+   margin-top: 20px;
   }
   .description {
     font-size: 12px;
     line-height: 16px;
-    padding: 0px 20px;
-    margin: 0px 0px 10px 0px;
-    cursor: pointer;
+
+    text-overflow: ellipsis;
     }
   h2:hover {
     color: #d94277;
@@ -148,10 +163,7 @@
   .website_link {
     padding-bottom: 6px;
   }
-  h2.tagline {
-    font-size: 18px;
-    font-weight: normal;
-  }
+
 }
 
 
@@ -162,7 +174,7 @@
       height: 24px;
     }
     #map_canvas {
-/*      width: 560px;*/
+     width: 560px;
       height: 310px;
       margin-bottom: 15px;
       border: 2px dotted gray;
@@ -193,15 +205,7 @@
 
 .project_category, .projects{
    
-   h1 {
-    letter-spacing: -1px;
-    line-height: 60px;
-    padding: 5px 10px;
-    display: block;
-    text-shadow: 1px 1px #fff;
-   background: #f4f4f4;
-   
-   }
+
    li {
     list-style-type: none;
   }
@@ -234,6 +238,7 @@ field.more_about_you {
   height: 350px;
   background: #ddd;
   text-align: center;
+  
 }
 
 

@@ -1,4 +1,4 @@
-.project_application_header.navbar
+.project_application_header
   .container-fluid
     .navbar-inner
       -# %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
@@ -6,7 +6,7 @@
       -#   %span.icon-bar
       -#   %span.icon-bar
       .nav-collapse
-        %ul.nav.btn-group
+        %ul.btn-group
           %li.btn{active?(:information)}= link_to 'Info', wizard_path(:information)
           %li.btn{active?(:basics)}= link_to 'Basics', wizard_path(:basics)
           %li.btn{active?(:where)}= link_to 'Location', wizard_path(:where)
