@@ -1,6 +1,6 @@
 = content_for :banner do
   .row.home-banner
-    .span8
+    .span6
       %br/
       %br/
       %br/
@@ -10,10 +10,13 @@
       %h5 Everyone's platform for investing in great ideas
 
       = link_to get_funded_path do 
-        .button1.green.large.glow Fund Your Project
-      .button1.yellow.large= link_to 'Find Investments', projects_categories_path
-    .span4
-
+        .button1.green Fund Your Project
+      .button1.yellow= link_to 'Find Investments', projects_categories_path
+    .span6
+      %br/
+      %img{ :src => "assets/info.png", :alt => "Description of image" }
+      %br/
+      %br/ 
     .row.spacer.filterbar
       .span4
         %h1 Projects In Your Area

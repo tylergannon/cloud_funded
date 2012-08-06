@@ -4,7 +4,7 @@
 
 $ ->
   # $('#tabs').tabs()
-  $('#tabs ul.nav-tabs a').click (e) ->
+  $('#tabs ul.btn-group a').click (e) ->
     history.pushState({foo: 'bar'}, "page 2", $('#tabs').data('base-url') + $(this).attr('href').replace('#', '/'));
     $(this).tab('show')
   

@@ -2,14 +2,14 @@
   = render partial: 'dashboard'
   .row
     .details.span8.mercury_container{data: {'save-url' => mercury_update_project_path(@project)}}
-      #tab_container
+      #tab_container.btn-toolbar
         #tabs{data: {base_url: project_path(@project)}}
-          %ul.nav.nav-tabs
-            %li{active_tab?('info', true)}= link_to 'Info', '#info', data: {toggle: 'tab'}
-            %li{active_tab?('updates')}= link_to 'Updates', '#updates', data: {toggle: 'tab'}
-            %li{active_tab?('team')}= link_to 'Team', '#team', data: {toggle: 'tab'}
-            %li{active_tab?('comments')}= link_to 'Comments', '#comments', data: {toggle: 'tab'}
-            %li{active_tab?('pledges')}= link_to 'Pledges', '#pledges', data: {toggle: 'tab'}
+          %ul.btn-group
+            %li.btn.btn-info{active_tab?('info', true)}= link_to 'Info', '#info', data: {toggle: 'tab'}
+            %li.btn.btn-info{active_tab?('updates')}= link_to 'Updates', '#updates', data: {toggle: 'tab'}
+            %li.btn.btn-info{active_tab?('team')}= link_to 'Team', '#team', data: {toggle: 'tab'}
+            %li.btn.btn-info{active_tab?('comments')}= link_to 'Comments', '#comments', data: {toggle: 'tab'}
+            %li.btn.btn-info{active_tab?('pledges')}= link_to 'Pledges', '#pledges', data: {toggle: 'tab'}
           .tab-content
             #info.tab-pane{active_tab?('info', true)}
               .container
@@ -33,4 +33,3 @@
       = render @project.perks
 
 = render partial: 'shared/mercury_includes' if can? :edit, @project
-
