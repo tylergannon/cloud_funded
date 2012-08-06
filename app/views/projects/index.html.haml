@@ -14,9 +14,8 @@
       .button1.yellow= link_to 'Find Investments', projects_categories_path
     .span6
       %br/
-      = image_tag 'info.png', rel: 'popover', data: |
-        {placement: 'left', original_title: 'The JOBS Act', |
-        content: 'Enables companies that are not yet publicly traded, to seek investment capital from community members.'}
+      = link_to jobs_act_path, class: 'tippy', title: 'Click to learn how YOU are about to become an investor' do
+        = image_tag 'info.png'
       %br/
       %br/ 
     .row.spacer.filterbar
