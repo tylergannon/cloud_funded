@@ -6,7 +6,7 @@
     </h1>
   </div>
   <div class="row span8">
-    <%= form_for @project, builder: MoneyFormBuilder, html: {class: 'form-vertical'} do |f| -%>
+    <%= form_for @project, url: "/projects/#{@project.to_param}", builder: MoneyFormBuilder, html: {class: 'form-vertical'} do |f| -%>
       <div class="control-group">
         <%= f.label :name, "Name of Project", :class => 'control-label' %>
         <div class="controls">
@@ -43,58 +43,29 @@
               placement: 'right',
               original_title: 'Start Date',
               content: 'The date your campaign goes live.  Can\'t be changed after your campaign goes live',
-              trigger: 'hover | focus | manual'
+              trigger: 'focus'
             }
            %>
-           
-= f.control_group_money_field :financial_goal, :class => 'input-small'
-= f.control_group_number_field :days, :class => 'input-small number'
-= f.control_group_formatted_date_field :start_date, format: '%m/%d/%Y', :class => 'input-small'
-= f.control_group_formatted_date_field :end_date, format: '%m/%d/%Y', :class => 'input-small'
-           
         </div>
       </div>
-      
-      
+      <div class="control-group">
+        <%= f.label :visible, "Visible", :class => 'control-label' %>
+        <div class="controls">
+          <%= f.check_box :visible,
+            rel: 'popover', data: {
+              placement: 'right',
+              original_title: 'Visible',
+              content: 'Uncheck this box and your campaign will disappear from the listings.',
+              trigger: 'hover'
+            }
+           %>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="controls">
+          <%= f.submit 'Save Changes'%>
+        </div>
+      </div>
     <% end -%>
   </div>
 </div>
-
-<!-- .container.white.rounded.shadow.new
-  %h1 Editing project
-
-  .edit_project
-    = form_for @project, html: {multipart: true} do |f|
-      -if @project.errors.any?
-        #error_explanation
-          %h2= "#{pluralize(@project.errors.count, "error")} prohibited this project from being saved:"
-          %ul
-            - @project.errors.full_messages.each do |msg|
-              %li= msg
-
-      .field
-        = f.label :name, "What's it called?"
-        = f.text_field :name
-      .field
-        = f.label :category_id, "What kind of business / project is it?"
-        = f.collection_select :category_id, Projects::Category.all, :id, :name, prompt: true
-      .field
-        = f.label :short_description do
-          Brief description
-        = f.text_area :short_description, rows: 4, maxlength: 250
-        %span#char_count= 250
-        %span Characters Remaining
-      .field
-        = f.label :financial_goal
-        = f.text_field :financial_goal
-      .field
-        = f.label :image, '300x200 image for your project'
-        = f.file_field :image
-      .field
-        = f.label :completion_date
-        = f.date_select :completion_date, start_year: Time.now.year, end_year: Time.now.year + 2, default: (Time.now + 1.year)
-      .actions
-        .field
-          = f.submit 'Next'
-
- -->

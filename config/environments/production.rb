@@ -5,8 +5,8 @@ CloudFunded::Application.configure do
   ENV['DWOLLA_KEY'] = 'RO5aiMBFo0SDMG7XR9qFnJf9FyFsSbvm1jDDhOdLJ2nFZkj55m'
   ENV['DWOLLA_SECRET'] = 'dx8fNHnuqtCWAI856tnMw0KIFLYTmErKJI6TXdrBhKkdHDoAEj'
 
-  ENV['STRIPE_PUBLISHABLE_KEY'] = 'pk_AZarIwK6bx30eallRNrlinlZHSF8o'
-  Stripe.api_key                = 'jFHrofoJluj0DAhAa6Mi4RYTOr0bQF70'
+  ENV['STRIPE_PUBLISHABLE_KEY'] = 'pk_sczgsQhpweTUiQjWHXGs8tm3t9Okw'
+  Stripe.api_key                = 'geBn5MiEDqOieDZ6MD95P5EU0SV6cAK5'
 
   ENV['DISQUS_APPNAME'] = 'cloudfunded'
   ENV['DISQUS_DEVMODE'] = '0'

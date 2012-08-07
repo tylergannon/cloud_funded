@@ -11,9 +11,9 @@ class Project < ActiveRecord::Base
                   :how_it_helps, :how_it_helps_image, :image, :lat, :linkedin_business, 
                   :linkedin_profile, :long, :name, :owner, :perks_attributes, :pledges, 
                   :post_to_fb, :short_description, :tagline, :website_url, :yelp, 
-                  :your_target_market, :your_target_market_image, :youtube_url,
+                  :your_target_market, :your_target_market_image, :youtube_url, :slug,
                   :start_date, :end_date, :days, :start_date_string, :end_date_string,
-                  :street_number, :route, :city, :county, :state, :postal_code, :information_text
+                  :street_number, :route, :city, :county, :state, :postal_code, :information_text, :visible
   
   belongs_to :owner, class_name: 'Member'
   belongs_to :category, class_name: 'Projects::Category'
@@ -45,6 +45,7 @@ class Project < ActiveRecord::Base
   default_value_for :published, false
   default_value_for(:start_date) {Date.today}
   default_value_for(:end_date) {(Date.today + DEFAULT_FUNDRAISE_LENGTH)}
+  default_value_for(:visible, true)
   
   before_create do |project|
     project.perks.build price: 10

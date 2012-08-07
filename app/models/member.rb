@@ -29,7 +29,7 @@ class Member < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :facebook_id, :profile_pic, :profile,
-                  :first_name, :last_name, :fb_token, :dwolla_id, :dwolla_auth_token, :twitter_login_id
+                  :first_name, :last_name, :fb_token, :dwolla_id, :dwolla_auth_token, :twitter_login_id, :google_plus
 
   after_create do |member|
     Projects::Role.where(member_id: nil, email_address: member.email).update_all member_id: member.id

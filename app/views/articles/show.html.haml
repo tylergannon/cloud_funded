@@ -11,7 +11,7 @@
   .like
     .fb-like{'data-href' => blog_post_url(@article), 'data-send' => true, 'data-width' => '450', 'data-show-faces' => true}
   .clear
-  
+  .author Find #{@article.author.full_name} on #{link_to 'Google', "https://plus.google.com/#{@article.author.google_plus}?rel=author"}
   #comments
     = render(partial: 'comments/comment', collection: @article.comments) || render(partial: 'no_comments')
   - if member_signed_in?

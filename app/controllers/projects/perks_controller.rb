@@ -5,6 +5,12 @@ class Projects::PerksController < ApplicationController
   def index
     authorize! :edit, @project
     @perks = @project.perks
+    
+     respond_with @project, @perk do |format|
+      format.html {
+        render layout: 'edit_projects'
+      }
+    end
   end
   
   def edit

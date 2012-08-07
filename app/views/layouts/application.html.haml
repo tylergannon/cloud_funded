@@ -30,7 +30,7 @@
         .row
           #flash.span3.offset2
             = bootstrap_flash
-        = yield
+        = content_for?(:content) ? yield(:content) : yield
   
     %footer
       %p 

@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
     if params[:show] == "mine"
       @projects = current_member.projects
     else
-      @projects = Project.where(workflow_state: 'live')
+      @projects = Project.accessible_by(current_ability)
     end
     
     respond_to do |format|
@@ -97,6 +97,9 @@ class ProjectsController < ApplicationController
     end
     
     authorize! :edit, @project
+    respond_with @project do |format|
+      format.html {render layout: 'edit_projects'}
+    end
   end
 
   # POST /projects
@@ -134,23 +137,18 @@ class ProjectsController < ApplicationController
   # PUT /projects/1
   # PUT /projects/1.json
   def update
-    begin
-      @project = Project.find(params[:id])
-      authorize! :edit, @project
+    @project = Project.find(params[:id])
+    authorize! :edit, @project
 
-      respond_to do |format|
-        if @project.update_attributes(params[:project])
-          format.html { redirect_to @project, notice: 'Project was successfully updated.' }
-          format.json { render json: @project.as_json }
-        else
-          puts @project.errors.inspect
-          format.html { render action: "edit" }
-          format.json { render json: @project.errors, status: :unprocessable_entity }
-        end
+    respond_to do |format|
+      if @project.update_attributes(params[:project])
+        format.html { redirect_to edit_project_path(@project), notice: 'Project was successfully updated.' }
+        format.json { render json: @project.as_json }
+      else
+        puts @project.errors.inspect
+        format.html { render action: "edit" }
+        format.json { render json: @project.errors, status: :unprocessable_entity }
       end
-    rescue Exception => e
-      puts e
-      puts e.backtrace.join("\n")
     end
   end
 

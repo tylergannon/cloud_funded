@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   responders :flash, :http_cache
   respond_to :html
   protect_from_forgery
+  layout 'application'
   
   before_filter do |controller|
     if request.format == 'text/html'

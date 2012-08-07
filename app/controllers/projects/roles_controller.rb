@@ -6,13 +6,21 @@ class Projects::RolesController < ApplicationController
     authorize! :edit, @project
     @role = @project.roles.build
     @role.invited_by = current_member
-    respond_with @project, @role
+    respond_with @project, @role do |format|
+      format.html {
+        render layout: 'edit_projects'
+      }
+    end
   end
   
   def index
     authorize! :edit, @project
     @roles = @project.roles
-    
+    respond_with @project, @role do |format|
+      format.html {
+        render layout: 'edit_projects'
+      }
+    end
   end
   
   def create

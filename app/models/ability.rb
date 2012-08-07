@@ -26,7 +26,7 @@ class Ability
     
     #everyone can see projects
     can :read, Pledge
-    can :read, Project, live?: true
+    can :read, Project, workflow_state: 'live', visible: true
     can :read, Projects::Perk do |perk|
       perk.project.published?
     end

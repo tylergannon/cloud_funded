@@ -1,0 +1,30 @@
+<%= content_for :content do %>
+  <div class="row">
+    <div class="span6 offset1">
+      <h1>Campaign Administration</h1>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="span2 offset1 nav shadow">
+        <ul class="nav nav-pills nav-stacked">
+          <li>
+            <%= link_to 'Main Settings', edit_project_path(@project) %>
+          </li>
+          <li>
+            <%= link_to 'Perks', project_perks_path(@project) %>
+          </li>
+          <li>
+            <%= link_to 'Team Members', project_roles_path(@project) %>
+          </li>
+        </ul>
+      </div>
+      <div class="span9">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+  
+<% end %>
+
+<%= render :template => 'layouts/application' %>
