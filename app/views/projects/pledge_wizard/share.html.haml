@@ -1,11 +1,16 @@
-%h1 Congratulations!
+.container
+  .row
+    .span1 &nbsp;
+    = render partial: 'projects/project', object: @project
+    .span5
+      %h1 Congratulations!
 
-%h3 You've just helped fund #{@project.name}
+      %h3 You've just helped fund #{@project.name}
 
-.graybox
-  %h3 Funding method:
-  %h3 Amount:
-  %h3 Gift:
+      .graybox
+        %h3 Funding method: #{@pledge.payment_method.titleize}
+        %h3 Amount: $#{@pledge.amount}
+        %h3 Gift: #{@pledge.perk.name}
 
-%h1 Share with friends
-%h3 and help #{@project.name} succeed!
+      %h1 Share with friends
+      %h3 and help #{@project.name} succeed!
