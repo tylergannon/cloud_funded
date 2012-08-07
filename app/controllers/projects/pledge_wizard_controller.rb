@@ -68,17 +68,17 @@ class Projects::PledgeWizardController < ApplicationController
       @stripe_transaction.pledge = @pledge
       @stripe_transaction.save!
       if @pledge.valid?
-        @pledge.cc_payment_succeeded!
+        @pledge.pay_by_cc!
       end
       render_wizard(@pledge)
     rescue Stripe::CardError => e
       flash[:payment_error] = e.message
       # puts e.inspect
-      render :pay_by_cc
+      render :cc
     rescue Exception => e
       flash[:payment_error] = e.message
       # puts e.inspect
-      render :pay_by_cc
+      render :cc
     end
   end
   
