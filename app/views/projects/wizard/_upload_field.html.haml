@@ -3,6 +3,6 @@
   - if @project.send(field).present?
     = image_tag @project.send(field).url(:large), alt: 'Project Image', id: "#{field}_tag"
   - else
-    = image_tag 'projects/wizard/onebit_33.png', alt: 'Project Image', id: "#{field}_tag", class: 'hidden'
-  = image_tag 'projects/wizard/file_upload_placeholder_small.jpg', alt: "#{field.to_s.titleize} Placeholder", id: "#{field}_placeholder_tag", class: "click_to_upload#{@project.send(field).present? ? ' hidden' : ''}"
-  = image_tag 'projects/wizard/change_file_placeholder.jpg', alt: "Change #{field.to_s.titleize}", id: "change_#{field}_tag", class: "click_to_upload#{@project.send(field).present? ? '' : ' hidden'}"
+    = image_tag 'projects/wizard/onebit_33.png', alt: 'Project Image', id: "#{field}_tag", class: 'hide'
+  = image_tag 'projects/wizard/file_upload_placeholder_small.jpg', alt: "#{field.to_s.titleize} Placeholder", id: "#{field}_placeholder_tag", class: "click_to_upload#{@project.send(field).present? ? ' hide' : ''}"
+  = image_tag 'projects/wizard/change_file_placeholder.jpg', alt: "Change #{field.to_s.titleize}", id: "change_#{field}_tag", class: "click_to_upload#{@project.send(field).present? ? '' : ' hide'}"

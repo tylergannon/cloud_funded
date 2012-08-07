@@ -9,7 +9,7 @@ class Projects::WizardController < ApplicationController
     authorize! :edit, @project
     case step
     when :preview
-      @project.preview!
+      @project.preview! unless @project.previewing?
       unless @project.valid?
         @project.fail_validation!
         flash[:error] = ("We haven't collected enough information to show you a preview just yet!<br/>" + 
