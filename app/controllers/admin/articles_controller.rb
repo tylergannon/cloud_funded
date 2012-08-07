@@ -60,6 +60,9 @@ class Admin::ArticlesController < ApplicationController
       format.json {
         render text: ""
       }
+      format.html {
+        redirect_to admin_article_path(@article)
+      }
     end
   end
 

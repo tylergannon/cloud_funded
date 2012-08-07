@@ -8,10 +8,7 @@
         = "Published #{article.published_at.strftime("%b %d, %Y")} by #{article.author.full_name}"
       - else
         %b Not Yet Published
-        = form_for [:admin, article] do |f|
-          = hidden_field_tag "article[published]", true
-          = f.submit "Publish It!"
-        
+        .publish_id= link_to 'Publish It', publish_admin_article_path(article), method: :post, data: {confirm: 'Ready to publish?'}, class: 'btn btn-large'
       = link_to 'Show', admin_article_path(article)
       = link_to 'Edit', '/editor' + admin_article_path(article)
       = link_to 'Destroy', admin_article_path(article), :confirm => 'Are you sure?', :method => :delete
