@@ -53,7 +53,7 @@ class Projects::PledgeWizardController < ApplicationController
     end
   end
   
-  def submit_pay_by_cc
+  def submit_cc
     begin
       token = params[:stripe_token]
       raise "blahblah" if token.blank?
@@ -79,7 +79,6 @@ class Projects::PledgeWizardController < ApplicationController
       flash[:payment_error] = e.message
       # puts e.inspect
       render :pay_by_cc
-      
     end
   end
   

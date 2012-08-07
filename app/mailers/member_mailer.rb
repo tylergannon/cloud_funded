@@ -9,7 +9,7 @@ class MemberMailer < ActionMailer::Base
   
   def confirm_role(role)
     @role = role
-    mail(to: role.email_address, subject: "CloudFunded: Please conform your role on #{role.project.name}", from: "CloudFunded <confirmations-no-reply@cloudfunded.com>")
+    mail(to: role.email_address, subject: "CloudFunded: Please confirm your role on #{role.project.name}", from: "CloudFunded <confirmations-no-reply@cloudfunded.com>")
   end
   
   def new_project(project)
