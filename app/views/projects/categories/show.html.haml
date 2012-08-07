@@ -1,3 +1,3 @@
 .project_category
-  %h1= @category.name
+  %h1.display= @category.name
   = render partial: 'projects/project', collection: @category.projects

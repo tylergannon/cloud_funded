@@ -1,0 +1,91 @@
+<div class="row perk project_wizard" data-id="<%= perk.id %>" id="perk_<%= perk.id %>">
+  <div class="span12">
+    <div class="container">
+      <div class="row">
+        <div class="span12"><h2>Perk</h2></div>
+      </div>
+    </div>
+  </div>
+  <div class="span4">
+    <div class="file_uploads" data-form-field-name="perk[image]" data-action="<%= project_perk_path(@project.id, perk.id, format: :json) %>">
+      <%= file_field_tag :image, id: "perk_#{perk.id}_image" %>
+    </div>
+    <div class="field upload_field" id="upload_image" data-field="<%= "perk_#{perk.id}_image" %>">
+      <div class="upload_status">
+        Uploading... <br />
+        <div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>
+      </div>
+      <% if perk.image.present? %>
+        <%= image_tag perk.image.url(:large), alt: 'Project Image', id: "perk_#{perk.id}_image_tag" %>
+      <% else %>
+        <%= image_tag 'projects/wizard/onebit_33.png', alt: 'Project Image', id: "perk_#{perk.id}_image_tag", class: 'hide'%>  
+      <% end %>
+      <%= image_tag 'projects/wizard/perk_image_placeholder.jpg', alt: 'Image Placeholder', id: "perk_#{perk.id}_image_placeholder_tag", class: "click_to_upload#{perk.image.present? ? ' hide' : ''}" %>
+      <br/>
+      <%= image_tag 'projects/wizard/perk_upload_placeholder.jpg', alt: 'Change Image', id: "change_perk_#{perk.id}_image_tag", class: "click_to_upload#{perk.image.present? ? '' : ' hide'}" %>
+    </div>
+  </div>
+  <div class="span7">
+    <%= form.fields_for :perks, perk do |f| -%>
+      <fieldset>
+        <div class="control-group">
+          <label for="name" class="control-label">Perk Name</label>
+          <div class="controls">
+            <%= f.text_field :name, class: 'input-large',
+              rel: 'popover',
+              data: {
+                original_title: 'Name',
+                content: 'What is this perk called?  Make it sound interesting.',
+                placement: 'right',
+                trigger: 'focus'
+              }
+             %>
+          </div>
+        </div>
+        <div class="control-group">
+          <label for="price" class="control-label">Price</label>
+          <div class="controls">
+            <%= f.money_field :price, class: 'input-large' ,
+              rel: 'popover',
+              data: {
+                original_title: 'Price',
+                content: 'AKA minimum donation to choose this perk.',
+                placement: 'right',
+                trigger: 'focus'
+              },
+              style: 'width: 183px'
+             %>
+          </div>
+        </div>
+        <div class="control-group">
+          <label for="quantity" class="control-label">Quantity</label>
+          <div class="controls">
+            <%= f.number_field :quantity, class: 'input-large',
+              rel: 'popover',
+              data: {
+                original_title: 'Quantity',
+                content: 'How many of these will you be offering?',
+                placement: 'right',
+                trigger: 'focus'
+              }
+             %>
+          </div>
+        </div>
+        <div class="control-group">
+          <label for="description" class="control-label">Description</label>
+          <div class="controls">
+            <%= f.text_area :description, class: 'input-large', rows: 4,
+              rel: 'popover',
+              data: {
+                original_title: 'Description',
+                content: 'A few words describing the perk.',
+                placement: 'right',
+                trigger: 'focus'
+              }
+             %>
+          </div>
+        </div>
+      </fieldset>
+    <% end -%>
+  </div>
+</div>

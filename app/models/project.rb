@@ -35,10 +35,7 @@ class Project < ActiveRecord::Base
   end
   has_many :perks, class_name: 'Projects::Perk', dependent: :destroy
   
-  accepts_nested_attributes_for :perks
-  validates :start_date, presence: true
-  validates :end_date, presence: true
-  validates :slug, presence: true, uniqueness: true, format: {with: /^[a-zA-Z0-9\-]+$/, message: 'Must be letters, numbers or dashes'}
+  accepts_nested_attributes_for :perks              
   
   monetize :financial_goal_cents
   
@@ -77,7 +74,7 @@ class Project < ActiveRecord::Base
   validates :address, presence: true, :if => lambda {|project| !project.new?}
   # validates :lat, presence: true
   # validates :long, presence: true
-  validates :financial_goal, presence: true
+  validates :financial_goal, presence: true, :if => lambda {|project| !project.new?}
   
   validate do |project|
     unless project.new?
@@ -86,6 +83,16 @@ class Project < ActiveRecord::Base
       end
     end
   end
+  validates :start_date, presence: true
+  validates :end_date, presence: true
+  validates :slug, 
+              presence: true, 
+              uniqueness: true, 
+              format: {
+                with: /^[a-zA-Z0-9\-]+$/, 
+                message: 'Must be letters, numbers or dashes'
+              },
+              :if => lambda {|project| !project.new?}
   
 
   workflow do

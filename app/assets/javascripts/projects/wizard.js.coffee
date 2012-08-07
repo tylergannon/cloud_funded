@@ -13,27 +13,30 @@ $ ->
     resetHtml5Uploads()
     
   window.currentDaysCount = () ->
-    parseInt $('#days input').val()
+    parseInt $('#project_days').val()
   window.getStartDate = () ->
-    new Date($('#start_date input').val())
+    new Date($('#project_start_date').val())
   window.setStartDate = (date) ->
-    $('#start_date input').val('' + (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear())
+    $('#project_start_date').val('' + (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear())
   window.getEndDate = () ->
-    new Date($('#end_date input').val())
+    new Date($('#project_end_date').val())
   window.setEndDate = (date) ->
-    $('#end_date input').val('' + (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear())
+    $('#project_end_date').val('' + (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear())
   
-  $('#start_date input').change ->
+  $('#project_start_date').change ->
     startDate = getStartDate()
     startDate.setDate(startDate.getDate() + currentDaysCount())
     setEndDate(startDate)
 
-  $('#end_date input').change ->
+  $('#project_end_date').change ->
     startDate = getStartDate()
+    console.log(startDate)
     endDate = getEndDate()
-    $('#days input').val((endDate - startDate) / (1000*60*60*24))
+    console.log(endDate)
+    console.log(endDate - startDate)
+    $('#project_days').val Math.round((endDate - startDate) / (1000*60*60*24))
 
-  $('#days input').change ->
+  $('#project_days').change ->
     startDate = getStartDate()
     startDate.setDate(startDate.getDate() + currentDaysCount())
     setEndDate(startDate)
@@ -46,7 +49,7 @@ resetHtml5Uploads = () ->
       url: (number) ->
         $el.parent().data('action')
         # $('#project_image_form').attr('action')
-      fieldName: $('.file_uploads').data('form_field_name') ? 'project[' + field + ']'
+      fieldName: $('.file_uploads').data('form-field-name') ? 'project[' + field + ']'
       sendBoundary: window.FormData or $.browser.mozilla
       onStart: (event, total) ->
         $('.upload_status').show()
