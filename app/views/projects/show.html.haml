@@ -29,11 +29,9 @@
                 .pledge
                   = render pledge.investor
                   
-              
-
-
-= render partial: 'shared/mercury_includes' if can? :edit, @project && !!params[:mercury_frame] == true
     #perks.perks.span3
       = render @project.perks
-  
+
+= render partial: 'shared/mercury_includes' if can? :edit, @project && !!params[:mercury_frame] == true
+
 

@@ -4,13 +4,11 @@
     <div class="span3">
       <ul class="nav nav-tabs nav-pills nav-stacked">
         <li><a href="#my_linked_accounts">Linked Accounts</a></li>
-        
         <li><a href="#fund_raising_campaigns">My Campaigns</a></li>
         <% unless current_member.roles.empty? %>
           <li><a href="#my_companies">My Companies</a></li>
         <% end %>
         <li><a href="#pledges">My Pledges</a></li>
-        
       </ul>
     </div>
     <div class="span9">
@@ -22,7 +20,6 @@
           </div>
         </div>
       </div>
-      
       <div class="row">
         <div class="span8">
           <div id="fund_raising_campaigns">
@@ -31,7 +28,6 @@
           </div>
         </div>
       </div>
-
       <% unless current_member.roles.empty? %>
         <div class="row" id="my_companies">
           <div class="span9">
@@ -44,7 +40,7 @@
       <div class="row" id="pledges">
         <div class="span9">
           <h1>My Pledges</h1>
-          <table class="table table-bordered table-striped shadow span9">
+          <table class="table table-bordered table-striped shadow span9 transactions">
             <thead>
               <tr>
                 <th>Transaction Date</th>

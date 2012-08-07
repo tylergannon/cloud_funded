@@ -38,6 +38,7 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :perks
   validates :start_date, presence: true
   validates :end_date, presence: true
+  validates :slug, presence: true, uniqueness: true, format: {with: /^[a-zA-Z0-9\-]+$/, message: 'Must be letters, numbers or dashes'}
   
   monetize :financial_goal_cents
   

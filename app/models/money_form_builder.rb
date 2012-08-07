@@ -14,6 +14,10 @@ class MoneyFormBuilder < ActionView::Helpers::FormBuilder
     text_field(attribute, options)
   end
   
+  def date_field(*args)
+    formatted_date_field(*args)
+  end
+  
   def method_missing(meth, *args)
     meth = meth.to_s
     raise "I can't handle #{meth}" unless meth.match(/control_group_/)

@@ -40,6 +40,12 @@
           </div>
         </div>
         <div class="control-group">
+          <label for="quantity" class="control-label">Quantity</label>
+          <div class="controls">
+            <%= f.number_field :quantity, class: 'input-medium' %>
+          </div>
+        </div>
+        <div class="control-group">
           <label for="description" class="control-label">Description</label>
           <div class="controls">
             <%= f.text_area :description, class: 'input-large', rows: 4 %>

@@ -32,6 +32,7 @@
 //= require pledges
 //= require profiles
 //= require projects
+//= require projects/disqus
 //= require projects/perks
 //= require projects/roles
 //= require projects/wizard

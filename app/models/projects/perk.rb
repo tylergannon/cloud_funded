@@ -5,7 +5,7 @@ class Projects::Perk < ActiveRecord::Base
   
   monetize :price_cents
 
-  default_scope order(:sort_order)
+  default_scope order(:price_cents)
 
   S3_DEETS = {
     :styles => { large: "200x200", :thumb => "100x100" }
