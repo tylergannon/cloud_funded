@@ -7,7 +7,7 @@
     </div>
   </div>
   <div class="span4">
-    <div class="file_uploads" data-form_field_name="perk[image]" data-action="<%= project_perk_path(@project.id, @perk.id, format: :json) %>">
+    <div class="file_uploads" data-form-field-name="perk[image]" data-action="<%= project_perk_path(@project.id, @perk.id, format: :json) %>">
       <%= file_field_tag :image, id: "perk_#{@perk.id}_image" %>
     </div>
     <div class="field upload_field" id="upload_image" data-field="<%= "perk_#{@perk.id}_image" %>">
