@@ -17,8 +17,8 @@ class Project < ActiveRecord::Base
   
   belongs_to :owner, class_name: 'Member'
   belongs_to :category, class_name: 'Projects::Category'
-  has_many :attachments, as: :attachable  
-  has_many :roles, class_name: 'Projects::Role' do
+  has_many :attachments, as: :attachable, dependent: :destroy
+  has_many :roles, class_name: 'Projects::Role', dependent: :destroy do
     def confirmed
       where(workflow_state: 'confirmed')
     end
