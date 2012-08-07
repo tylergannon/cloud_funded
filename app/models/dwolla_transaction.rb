@@ -1,0 +1,3 @@
+class DwollaTransaction < Transaction
+  
+end

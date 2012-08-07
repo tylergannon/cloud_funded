@@ -7,7 +7,31 @@
       This is your profile.
       = link_to 'Make Changes', edit_profile_path(@member)
   .clear
+  
+  %h2 Companies Backed
+  .project_short_list
+    - @member.pledges.paid.map(&:project).each do |project|
+      .project
+        = link_to project do
+          = image_tag project.image.url(:thumb)
+          %h3 #{project.name}: #{project.tagline}
 
-  %h2 #{@member.full_name}'s Projects
-  .projects
-    = render @member.projects
+  - unless @member.roles.confirmed.empty?
+    %h2 Team Membership
+    .roles.project_short_list
+      - @member.roles.each do |role|
+        = link_to role.project do
+          .project
+          = image_tag role.project.image.url(:thumb)
+          %h3 #{role.project.name}: #{role.project.tagline}
+        = render role
+      
+  
+  %h2 Fund Raising
+  .project_short_list
+    - @member.projects.live.each do |project|
+      .project
+        = link_to project do
+          = image_tag project.image.url(:thumb)
+          %h3 #{project.name}: #{project.tagline}
+

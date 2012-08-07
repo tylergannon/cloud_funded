@@ -16,7 +16,7 @@ Spork.prefork do
   require 'timecop'
   
   # Capybara.register_driver :poltergeist do |app|
-  #   Capybara::Poltergeist::Driver.new app, debug: true, raise_errors: false
+  #   Capybara::Poltergeist::Driver.new app, debug: false, raise_errors: false
   # end
   # Capybara.javascript_driver = :poltergeist
 
@@ -75,6 +75,7 @@ Spork.prefork do
     config.include AdminMemberSignInHelper, type: :controller
     config.include RequestSpecs::SignInMemberHelper, type: :request
     config.include RequestSpecs::ProjectRegistrationHelpers, type: :request
+    config.include RequestSpecs::StubConfirmationDialog, type: :request
     config.include MemberSignInHelper, type: :controller
     config.include AttachmentStubHelper, type: :controller
     config.include AttachmentStubHelper, type: :model

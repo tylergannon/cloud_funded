@@ -1,0 +1,10 @@
+<div <%= attrs(perk_for_editor, as: :perk, class: 'row') %>>
+  <div class="span3">
+    <h1><%= perk_for_editor.name %></h1>
+    <div class="price"><%= perk_for_editor.price ? perk_for_editor.price.dollars.to_i : 'unset' %></div>
+    <div class="description"><%= perk_for_editor.description %></div>
+    <%= link_to 'Settings', edit_project_perk_path(@project, perk_for_editor), data: {remote: true} %>
+    <%= link_to 'Remove', project_perk_path(@project, perk_for_editor), data: {confirm: 'Really delete this perk?'}, method: :delete %>
+  </div>
+  <div class="image span3"><%= image_tag perk_for_editor.image.url(:large) %></div>
+</div>

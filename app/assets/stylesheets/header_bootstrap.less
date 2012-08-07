@@ -1,0 +1,139 @@
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Merriweather'), image-url('merriweather.ttf') format('truetype');
+}
+
+.header-link-border {
+  padding: 0px 10px 10px 10px;
+  border: none; }
+
+.header-link {
+  color: #fff;
+  text-shadow: -1px -1px #a88852;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none; }
+
+body > .container {
+margin: 0px auto;
+}
+
+.navbar.header {
+  .navbar-inner {
+    background: image-url('headertop.png') 0 0 repeat-x;
+    
+    > .container {
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .brand {
+    background: image-url("logo.png") 0 0 no-repeat;
+    width: 190px;
+    height: 50px;
+    margin: -6px 0px 0px 45px;
+    padding: 0;
+    cursor: pointer;
+    &:hover {
+      background: image-url("logo_over.png") 0 0 no-repeat; }
+  }
+  .nav {
+    padding-top: 14px;
+    > li {
+      > a {
+        .header-link;
+        .header-link-border;
+        color: #fff;
+        text-shadow: -1px 1px #0a3c67; 
+        
+        &:hover, &:active {
+          color: #053660;
+          text-shadow: 1px 1px #098ec6;
+          cursor: pointer; } }
+      
+    }
+  }
+}
+
+.spacer {
+  margin-top: 40px;
+}
+
+.signin {
+  .icon {
+    font-size: 24pt;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    top: 9px;
+  }
+}
+
+.home-banner {
+ // background: image-url('bannertop.png') 0 0 repeat-x;
+  background:  #1a5984;
+  margin: 0px auto;
+  margin-top: -24px;
+  
+  .span6 {
+    text-align: center;
+   
+  }
+  
+  h1 {
+    font-family:'AdelleRegular', sans-serif;
+    color: #fff;
+    margin-top: 40px; 
+    font-size: 50px;
+    line-height: 56px;
+    padding: 10px;
+    display: inline;
+  //  background: image-url('cross.png') 0 0 repeat #11365c;
+    zoom: 1;
+ //   filter: alpha(opacity=70);
+ //   opacity: 0.7;
+   }
+   .button1 {
+      .yellow {
+      float: left;
+      
+      }
+      font-size: 16px;
+   }
+   .large.button1 {
+    width: 100px;
+   }
+ 
+ 
+  h5 {
+    color: #5cc1e5;
+    font-family:'AdelleRegular', sans-serif;
+    font-size:20px;
+    letter-spacing: -1px;
+    letter-spacing: 0.5px;
+    line-height: 36px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    font-weight: normal;
+    text-shadow: 0 1px 0 rgba(38, 67, 91, 0.33);
+  }
+
+}
+
+.filterbar {
+  background: #0b385a;
+  width: 100%;
+  height: 50px;
+  clear: both;
+  margin: 0px auto;
+  border-top: 1px solid #165a8e;
+  h1 {
+    font-size: 16px;
+    background: none;
+    text-shadow: 1px -1px #072740;
+    font-family: helvetica-neue, helvetica, sans-serif;
+  }
+}

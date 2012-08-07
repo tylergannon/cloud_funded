@@ -1,16 +1,40 @@
 CloudFunded::Application.configure do
-  ENV['facebook_app_id'] = '336588343062874'
-  ENV['facebook_secret_key'] = '03ac974371620fae08891f673160117b'
+  
   ENV['AMAZON_S3_BUCKET'] = 'cloud_funded'
-  
-  ENV['SENDGRID_USERNAME'] = 'cloudfunded_staging'
-  ENV['SENDGRID_PASSWORD'] = 'B@rnD00ez!'
-  ENV['OPENGRAPH_NAMESPACE'] = 'cloudfunded'
-  
+  ENV['DISQUS_APPNAME'] = 'cloudfundedstaging'
+  ENV['DISQUS_DEVMODE'] = '0'
   ENV['DWOLLA_KEY'] = 'hNZPFYpFeDb2KN759OD98e+brYTW6xXnH7CXqz+Axv8nFcXJno'
   ENV['DWOLLA_SECRET'] = 'ldwMpY70KH0zf72CaqgTjsZDyP8JhhwsSfAlvl0CWIJcdmg+SJ'
+  ENV['facebook_app_id'] = '336588343062874'
+  ENV['facebook_secret_key'] = '03ac974371620fae08891f673160117b'
+  ENV['OPENGRAPH_NAMESPACE'] = 'cloudfunded'
+  ENV['SENDGRID_PASSWORD'] = 'B@rnD00ez!'
+  ENV['SENDGRID_USERNAME'] = 'cloudfunded_staging'
+  ENV['TWITTER_APP_ID'] = 'HNdNinpVKKXKzkOjet2g'
+  ENV['TWITTER_SECRET_KEY'] = 'NcIejMNhs8S3XvzvM6Xwj3PUhUQDbpsOqt1k4g50'
 
   Dwolla::Transaction.test_mode = true
+
+  config.action_mailer.default :charset => "utf-8"
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => 'cloudfunded.com'
+  }
+  ActionMailer::Base.delivery_method = :smtp
+
+  AppConfig.paperclip_storage = {
+    :storage => :s3,
+    :s3_protocol => '',
+    :bucket => ENV['AMAZON_S3_BUCKET'],
+    :s3_credentials => {
+      :access_key_id => 'AKIAIDEFW5P6AQLRXWGQ',
+      :secret_access_key => '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'
+    }
+  }
   
   # Settings specified here will take precedence over those in config/application.rb
 

@@ -1,0 +1,2 @@
+$('#projects_role_<%= @role.id %>').replaceWith('<%= escape_javascript render @role %>');
+bootbox.alert('<%= escape_javascript render(partial: 'confirmed') %>')

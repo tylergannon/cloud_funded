@@ -1,11 +1,30 @@
 class Projects::PledgeWizardController < ApplicationController
   include Wicked::Wizard
   
-  steps :pledge, :pay, :share
+  steps :amount, :payment_method, :dwolla, :cc, :share
 
   before_filter :authenticate_member!, :load_project
   
   def show
+    puts step.inspect + "\n*" * 10
+    case step
+    when :amount
+      @breadcrumbs = [['Amount + Perks', :amount]]
+    when :payment_method
+      @breadcrumbs = [['Amount + Perks', :amount], ['Payment Method', :payment_method]]
+    when :dwolla
+      @breadcrumbs = [['Amount + Perks', :amount], ['Payment Method', :payment_method], ['Pay with Dwolla', :dwolla]]
+      if current_member.linked_to_dwolla?
+        @funding_sources = Dwolla::User.me(current_member.dwolla_auth_token).funding_sources.select{|f|
+          f.verified
+        }.map{|f|
+          [f.name, f.id]
+        }
+        @funding_sources.unshift ['Dwolla Account', '']
+      end
+    when :cc
+      @breadcrumbs = [['Amount + Perks', :amount], ['Payment Method', :payment_method], ['Pay with Credit Card', :cc]]
+    end
     authorize! :edit, @pledge
     render_wizard
   end
@@ -22,12 +41,48 @@ class Projects::PledgeWizardController < ApplicationController
     end
   end
   
-  def submit_pledge
-    if @pledge.valid?
-      @pledge.pledge!
-    end
+  def submit_amount
     render_wizard(@pledge)
   end
+  
+  def submit_payment_method
+    unless @pledge.valid?
+      render_wizard(@pledge)
+    else
+      redirect_to wizard_path(@pledge.payment_method)
+    end
+  end
+  
+  def submit_pay_by_cc
+    begin
+      token = params[:stripe_token]
+      raise "blahblah" if token.blank?
+      @charge = Stripe::Charge.create(
+        :amount => @pledge.amount_cents, # amount in cents, again
+        :currency => "usd",
+        :card => token,
+        :description => "CloudFunded pledge to #{@project.name}"
+      )
+      @stripe_transaction = StripeTransaction.from_stripe_charge(@charge)
+      @stripe_transaction.member = current_member
+      @stripe_transaction.pledge = @pledge
+      @stripe_transaction.save!
+      if @pledge.valid?
+        @pledge.cc_payment_succeeded!
+      end
+      render_wizard(@pledge)
+    rescue Stripe::CardError => e
+      flash[:payment_error] = e.message
+      # puts e.inspect
+      render :pay_by_cc
+    rescue Exception => e
+      flash[:payment_error] = e.message
+      # puts e.inspect
+      render :pay_by_cc
+      
+    end
+  end
+  
   
   def load_project
     @project = params[:project_id] ? 
@@ -36,4 +91,25 @@ class Projects::PledgeWizardController < ApplicationController
     pledges = Pledge.where(project_id: @project.id, investor_id: current_member.id)
     @pledge = pledges.empty? ? pledges.create! : pledges.first
   end
+  
+  # def redirect_as_needed
+  #   unless params[:id]
+  #     if step != WORKFLOW_STATE_WIZARD_STEP[@pledge.workflow_state]
+  #       the_correct_step = WORKFLOW_STATE_WIZARD_STEP[@pledge.workflow_state]
+  #       if the_correct_step == :pledge
+  #         redirect_to new_project_pledge_path(@project)
+  #       else
+  #         redirect_to new_project_pledge_path(@project, the_correct_step)
+  #       end
+  #     end
+  #   end
+  # end
+  
+  WORKFLOW_STATE_WIZARD_STEP = {
+    'new' => :amount,
+    'not_pledged' => :amount,
+    'choose_payment_method' => :payment_method,
+    'pay_by_cc' => :pay_by_cc,
+    'payment_received' => :share
+  }
 end

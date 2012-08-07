@@ -1,0 +1,72 @@
+// Place all the styles related to the pledges controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "twitter/bootstrap/variables.less";
+@import "twitter/bootstrap/mixins.less";
+
+
+.new_pledge {
+    background: white;
+    padding: 20px;
+    
+    .perks {
+    
+    float: left;
+    }
+
+}
+
+.payment_error.hidden {
+  visibility: hidden;
+}
+#link_dwolla_modal {
+  width: 730px;
+  height: 400px;
+  .modal-body {
+    position: relative;
+    }
+}
+.pledge_wizard {
+  #link_dwolla_modal {
+    position: relative;
+    iframe {
+      height: 540px;
+    }
+    .icon {
+      color: black;
+      position: absolute;
+      bottom: 20px;
+      right: 22px;
+    }
+  }
+  .icon {
+    color: black;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+
+.pledge_wizard {
+  
+  .box {
+    .border-radius(6px);
+    .box-shadow( 0 1px 3px rgba(0,0,0,.25) );
+    .transition(all 1s);
+  }
+  
+  .dwolla_frame {
+    height: 500px;
+  }
+}
+
+.projects_perk {
+  .price, .selector {
+    float: right;
+    padding: 20px;
+    background: #f4f4f4;
+    height: 80px;
+  }
+  
+}

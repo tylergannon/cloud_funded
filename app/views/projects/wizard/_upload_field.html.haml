@@ -1,5 +1,5 @@
 .field.upload_field{id: "upload_#{field}", data: {field: field}}
-  .upload_status Uploading...
+  .upload_status Uploading...<br/><div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>
   - if @project.send(field).present?
     = image_tag @project.send(field).url(:large), alt: 'Project Image', id: "#{field}_tag"
   - else

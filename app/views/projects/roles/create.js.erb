@@ -1,0 +1,3 @@
+$('#new_role').modal('hide');
+$('#team').append('<%= escape_javascript render @role %>');
+bootbox.alert('<%= escape_javascript render(partial: 'created') %>')

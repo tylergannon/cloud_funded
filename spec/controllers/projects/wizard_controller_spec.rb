@@ -36,7 +36,7 @@ describe Projects::WizardController do
           @project.reload
         end
         it "should go to awaiting review" do
-          @project.should be_being_reviewed
+          @project.should be_live
         end
         it "should go to the next thing" do
           response.should redirect_to(project_wizard_path(@project, 'submitted'))
@@ -46,7 +46,7 @@ describe Projects::WizardController do
     
     describe "project loading" do
       before :each do
-        @project = FactoryGirl.create :project, owner: @member
+        @project = FactoryGirl.create :live_project, owner: @member
       end
       describe "when :project_id is present" do
         it "should load the project" do

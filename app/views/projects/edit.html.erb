@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="row span8">
+    <h1>
+      <i class="icon icon-cog"></i>
+      Settings for <%= @project.name %>
+    </h1>
+  </div>
+  <div class="row span8">
+    <%= form_for @project, builder: MoneyFormBuilder, html: {class: 'form-vertical'} do |f| -%>
+      <div class="control-group">
+        <%= f.label :name, "Name of Project", :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :name, :class => 'input-xlarge',
+            rel: 'popover', data: {
+              placement: 'right',
+              original_title: 'Project Name',
+              content: 'Should be short, catchy and memorable... like, the name of your company.',
+              trigger: 'focus'
+            }
+           %>
+          <p class="help-block">Your company name or the title of your project</p>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :slug, "Url Part", :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :slug, :class => 'input-xlarge',
+            rel: 'popover', data: {
+              placement: 'right',
+              original_title: 'Url Part',
+              content: 'Makes the url to your project e.g. cloudfunded.com/my-company.  Combination of letters, numbers and dashes.  
+              <br/>You\'ll want to leave it alone after starting to publicize.',
+              trigger: 'focus'
+            }
+           %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :start_date, "Start Date", :class => 'control-label' %>
+        <div class="controls">
+          <%= f.date_field :start_date, :class => 'input-large',
+            rel: 'popover', data: {
+              placement: 'right',
+              original_title: 'Start Date',
+              content: 'The date your campaign goes live.  Can\'t be changed after your campaign goes live',
+              trigger: 'hover | focus | manual'
+            }
+           %>
+           
+= f.control_group_money_field :financial_goal, :class => 'input-small'
+= f.control_group_number_field :days, :class => 'input-small number'
+= f.control_group_formatted_date_field :start_date, format: '%m/%d/%Y', :class => 'input-small'
+= f.control_group_formatted_date_field :end_date, format: '%m/%d/%Y', :class => 'input-small'
+           
+        </div>
+      </div>
+      
+      
+    <% end -%>
+  </div>
+</div>
+
+<!-- .container.white.rounded.shadow.new
+  %h1 Editing project
+
+  .edit_project
+    = form_for @project, html: {multipart: true} do |f|
+      -if @project.errors.any?
+        #error_explanation
+          %h2= "#{pluralize(@project.errors.count, "error")} prohibited this project from being saved:"
+          %ul
+            - @project.errors.full_messages.each do |msg|
+              %li= msg
+
+      .field
+        = f.label :name, "What's it called?"
+        = f.text_field :name
+      .field
+        = f.label :category_id, "What kind of business / project is it?"
+        = f.collection_select :category_id, Projects::Category.all, :id, :name, prompt: true
+      .field
+        = f.label :short_description do
+          Brief description
+        = f.text_area :short_description, rows: 4, maxlength: 250
+        %span#char_count= 250
+        %span Characters Remaining
+      .field
+        = f.label :financial_goal
+        = f.text_field :financial_goal
+      .field
+        = f.label :image, '300x200 image for your project'
+        = f.file_field :image
+      .field
+        = f.label :completion_date
+        = f.date_select :completion_date, start_year: Time.now.year, end_year: Time.now.year + 2, default: (Time.now + 1.year)
+      .actions
+        .field
+          = f.submit 'Next'
+
+ -->

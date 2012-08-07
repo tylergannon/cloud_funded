@@ -52,6 +52,17 @@ class Admin::ArticlesController < ApplicationController
     end
   end
 
+  def publish
+    @article = Article.find(params[:id])
+    authorize! :manage, @article
+    @article.publish!
+    respond_with @article do |format|
+      format.json {
+        render text: ""
+      }
+    end
+  end
+
   # PUT /articles/1
   # PUT /articles/1.xml
   def update
@@ -78,5 +89,4 @@ class Admin::ArticlesController < ApplicationController
       }
     end
   end
-
 end

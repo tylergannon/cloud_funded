@@ -3,22 +3,27 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
-  $('#tabs').tabs()
+  # $('#tabs').tabs()
+  $('#tabs ul.btn-group a').click (e) ->
+    history.pushState({foo: 'bar'}, "page 2", $('#tabs').data('base-url') + $(this).attr('href').replace('#', '/'));
+    $(this).tab('show')
   
-  $('ul#project_list').bxSlider
-    displaySlideQty: 3
-    moveSlideQty: 3
+  $('input.date').each ->
+    $this = $(this)
+    $this.wrap("<div class='input-prepend'>")
+    $this.before("<span class='add-on'><i class='icon icon-th'/></span>")
+  $('input.number').each ->
+    $this = $(this)
+    $this.wrap("<div class='input-prepend'>")
+    $this.before("<span class='add-on'><i class='icon icon-resize-vertical'/></span>")
+
+  $('input.money').money_field()
   
   $('.project').each (idx, el) ->
     $el = $(el)
     $el.click ->
       window.location.href = $el.data('project-path')
     
-  $('.progress').each (idx, el) ->
-    $el = $(el)
-    $el.progressbar
-      value: $el.data('percent-complete')
-      
   fbResponse = (response) ->
     if not response or response.error
       alert "Error occured"

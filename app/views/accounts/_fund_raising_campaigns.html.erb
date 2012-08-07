@@ -1,0 +1,7 @@
+<% if current_member.projects.empty? %>
+  <p>
+    <a href="<%= get_funded_path %>">Click to start raising funds!</a>
+  </p>
+<% else %>
+  <%= render partial: 'project', collection: current_member.projects%>
+<% end %>

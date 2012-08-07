@@ -7,6 +7,18 @@ class Projects::WizardController < ApplicationController
   
   def show
     authorize! :edit, @project
+    case step
+    when :preview
+      @project.preview!
+      unless @project.valid?
+        @project.fail_validation!
+        flash[:error] = ("We haven't collected enough information to show you a preview just yet!<br/>" + 
+        @project.errors.messages.map{|key, err| "#{key.to_s.titleize} #{err.join(', ')}"}.join("<br/>")).html_safe
+        redirect_to wizard_path(previous_step)
+        return
+      end
+    end
+    @project.valid?
     render_wizard
   end
   
@@ -15,6 +27,7 @@ class Projects::WizardController < ApplicationController
     if params[:project]
       @project.update_attributes params[:project]
     end
+    puts @project.errors.inspect unless @project.valid?
     if respond_to?("submit_#{params[:id]}")
       send "submit_#{params[:id]}"
     else
@@ -24,14 +37,20 @@ class Projects::WizardController < ApplicationController
   
   def submit_preview
     if @project.valid?
-      @project.submit!
+      unless @project.submitted?
+        @project.submit!
+        @project.accept!
+      end
     end
     render_wizard(@project)
   end
   
   def submit_fund_raise
-    @project.preview!
-    @project.fail_validation! unless ok = @project.valid?
+    @project.preview! unless @project.submitted?
+    @project.fail_validation! unless ok = @project.valid? || @project.submitted?
+    unless @project.valid?
+      puts @project.errors.inspect
+    end
 
     respond_with @project do |format|
       format.html {

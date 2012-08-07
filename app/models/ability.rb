@@ -18,6 +18,9 @@ class Ability
         can :manage, Pledge, project: {owner_id: member.id}
         can :destroy, Comment, member_id: member.id
         can :edit, Member, id: member.id        
+        can :manage, Article, project: {owner_id: member.id}
+        can [:read, :create, :edit, :destroy], Projects::Role, project: {owner_id: member.id}
+        can :manage, Projects::Role, member_id: member.id
       end
     end
     
@@ -27,14 +30,9 @@ class Ability
     can :read, Projects::Perk do |perk|
       perk.project.published?
     end
+    
     can :read, Member
-    can :manage, Article do |article|
-      article.project &&
-        article.project.owner.id == member.id
-    end
-    can :read, Article do |article|
-      article.published
-    end
+    can :read, Article, workflow_state: 'published'
     
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
   end

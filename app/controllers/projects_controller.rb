@@ -25,6 +25,25 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     respond_with @project
   end
+  
+  def mercury_update
+    @project = Project.find(params[:id])
+    authorize! :manage, @project
+    params[:content].each do |key, val|
+      if key == "project_information"
+        @project.update_attributes information_text: val['value']
+      else
+        match, attribute, klass, id = *key.to_s.match(/^([a-z]+)_([a-z]+)_(\d+)$/)
+        @project.articles.find(id.to_i).update_attributes attribute.to_sym => val['value']
+      end
+    end
+    
+    respond_with(@project) do |format|
+      format.json {
+        render text: ""
+      }
+    end
+  end
 
   # GET /projects/1
   # GET /projects/1.json
@@ -36,6 +55,14 @@ class ProjectsController < ApplicationController
       @my_pledge = Pledge.where(investor_id: current_member.id, project_id: @project.id).first
     end
     authorize! :read, @project
+
+    if member_signed_in? && current_member == @project.owner
+      @articles = @project.articles
+      @roles    = @project.roles 
+    else
+      @articles = @project.articles.published
+      @roles    = @project.roles.confirmed
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -85,7 +112,7 @@ class ProjectsController < ApplicationController
         #   @project.fb_post_id = CloudFunded::Facebook::Actions.create_project project_url(@project), current_member.fb_token          
         # end
         begin
-          ProjectsMailer.new_project(@project).deliver
+          MemberMailer.new_project(@project).deliver
         rescue Exception => e
           puts "Error sending email"
           puts e

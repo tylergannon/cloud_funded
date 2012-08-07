@@ -1,0 +1,59 @@
+--- !ruby/object:Stripe::Charge
+api_key: YM3s0MpK2QhAdVLomUTnOjMVblutovoZ
+values:
+  :id: ch_03oC2qDAUH6m2A
+  :amount: 100000
+  :amount_refunded: 0
+  :created: 1343268075
+  :currency: usd
+  :customer: 
+  :description: CloudFunded pledge to walmart
+  :disputed: false
+  :failure_message: 
+  :fee: 2930
+  :invoice: 
+  :livemode: false
+  :object: charge
+  :paid: true
+  :refunded: false
+  :card: !ruby/object:Stripe::StripeObject
+    api_key: YM3s0MpK2QhAdVLomUTnOjMVblutovoZ
+    values:
+      :address_city: 
+      :address_country: 
+      :address_line1: 
+      :address_line1_check: 
+      :address_line2: 
+      :address_state: 
+      :address_zip: 
+      :address_zip_check: 
+      :country: US
+      :cvc_check: pass
+      :exp_month: 12
+      :exp_year: 2012
+      :fingerprint: GYDmlM2chjqCo8cW
+      :last4: '4242'
+      :name: 
+      :object: card
+      :type: Visa
+    unsaved_values: !ruby/object:Set
+      hash: {}
+    transient_values: !ruby/object:Set
+      hash: {}
+  :fee_details:
+  - !ruby/object:Stripe::StripeObject
+    api_key: YM3s0MpK2QhAdVLomUTnOjMVblutovoZ
+    values:
+      :type: stripe_fee
+      :application: 
+      :description: Stripe processing fees
+      :currency: usd
+      :amount: 2930
+    unsaved_values: !ruby/object:Set
+      hash: {}
+    transient_values: !ruby/object:Set
+      hash: {}
+unsaved_values: !ruby/object:Set
+  hash: {}
+transient_values: !ruby/object:Set
+  hash: {}

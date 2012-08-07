@@ -5,6 +5,7 @@ describe Project do
   it {should belong_to(:owner)}
   it {should have_many(:pledges)}
   it {should belong_to(:category)}
+  it {should have_many(:roles)}
   # it {should validate_presence_of(:category)}
   it "should have post_to_fb == true" do
     subject.post_to_fb.should be_true
@@ -14,6 +15,7 @@ describe Project do
   it {should have_many(:perks)}
   it {should validate_presence_of(:start_date)}
   it {should validate_presence_of(:end_date)}
+  it {should have_many(:attachments)}
   
   describe "when the project goes to the previewing state" do
     before :each do
@@ -69,12 +71,23 @@ describe Project do
     end
   end
   
+  describe "#pledges.paid" do
+    before :each do
+      FactoryGirl.create :pledge, project: subject
+      @pledge = FactoryGirl.create :pledge_paid_by_cc, project: subject
+      subject.reload
+    end
+    it "should have one completed pledge" do
+      subject.pledges.paid.should == [@pledge]
+    end
+  end
+  
   describe "#financial_goal_string" do
     before :each do
       subject.financial_goal_string = "$100,000"
     end
     it "should set the integer value by stripping non-numeric characters" do
-      subject.financial_goal.should == 100000
+      subject.financial_goal.should == Money.us_dollar(100000 * 100)
     end
     it "should return the value with delimiter" do
       subject.financial_goal_string.should == '100,000'

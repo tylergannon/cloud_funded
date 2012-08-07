@@ -1,0 +1,66 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/charges
+    body:
+      encoding: US-ASCII
+      string: amount=100000&currency=usd&card=tok_03oAdsIepzByXP&description=CloudFunded%20pledge%20to%20walmart
+    headers:
+      Accept:
+      - ! '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.7.0
+      Authorization:
+      - Bearer YM3s0MpK2QhAdVLomUTnOjMVblutovoZ
+      X-Stripe-Client-User-Agent:
+      - ! '{"bindings_version":"1.7.0","lang":"ruby","lang_version":"1.9.3 p125 (2012-02-16)","platform":"x86_64-darwin11.3.0","publisher":"stripe","uname":"Darwin
+        Alaya.local 11.4.0 Darwin Kernel Version 11.4.0: Mon Apr  9 19:32:15 PDT 2012;
+        root:xnu-1699.26.8~1/RELEASE_X86_64 x86_64"}'
+      Content-Length:
+      - '98'
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 26 Jul 2012 02:01:15 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '988'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+    body:
+      encoding: US-ASCII
+      string: ! "{\n  \"amount\": 100000,\n  \"amount_refunded\": 0,\n  \"created\":
+        1343268075,\n  \"currency\": \"usd\",\n  \"customer\": null,\n  \"description\":
+        \"CloudFunded pledge to walmart\",\n  \"disputed\": false,\n  \"failure_message\":
+        null,\n  \"fee\": 2930,\n  \"id\": \"ch_03oC2qDAUH6m2A\",\n  \"invoice\":
+        null,\n  \"livemode\": false,\n  \"object\": \"charge\",\n  \"paid\": true,\n
+        \ \"refunded\": false,\n  \"card\": {\n    \"address_city\": null,\n    \"address_country\":
+        null,\n    \"address_line1\": null,\n    \"address_line1_check\": null,\n
+        \   \"address_line2\": null,\n    \"address_state\": null,\n    \"address_zip\":
+        null,\n    \"address_zip_check\": null,\n    \"country\": \"US\",\n    \"cvc_check\":
+        \"pass\",\n    \"exp_month\": 12,\n    \"exp_year\": 2012,\n    \"fingerprint\":
+        \"GYDmlM2chjqCo8cW\",\n    \"last4\": \"4242\",\n    \"name\": null,\n    \"object\":
+        \"card\",\n    \"type\": \"Visa\"\n  },\n  \"fee_details\": [\n    {\n      \"type\":
+        \"stripe_fee\",\n      \"application\": null,\n      \"description\": \"Stripe
+        processing fees\",\n      \"currency\": \"usd\",\n      \"amount\": 2930\n
+        \   }\n  ]\n}\n"
+    http_version: 
+  recorded_at: Thu, 26 Jul 2012 02:01:17 GMT
+recorded_with: VCR 2.2.2

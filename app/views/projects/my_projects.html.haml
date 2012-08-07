@@ -7,5 +7,6 @@
           = image_tag project.image.url
       %td.details
         %h1= link_to project.name, project
-        .status= "Status: #{project.published ? 'Published' : 'Application Incomplete'}"
-        .links= link_to 'Edit Project', (project.published? ? edit_project_path(project) : project_wizard_path(project)) 
+        .status= "Status: #{project.workflow_state.titleize}"
+        .links= link_to 'Edit Project', (project.live? ? edit_project_path(project) : project_wizard_path(project)) 
+        .links= link_to 'Publish Updates, etc', '/editor/projects' + project_path(project)

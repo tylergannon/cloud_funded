@@ -11,6 +11,4 @@
     Description / Abstract (one line)
     .description#page_description.mercury-region{editable}!= @page.description
 
-  = content_for :head do
-    = javascript_include_tag 'mercury'
-    = javascript_include_tag 'mercury_overrides'
+= render partial: 'shared/mercury_includes' if can? :edit, @page

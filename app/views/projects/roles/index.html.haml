@@ -1,0 +1,8 @@
+%h1 Team Members
+
+#team.tab-pane.shadow
+  = link_to "Add A Team Member", new_project_role_path(@project, format: :js), data: {remote: true}
+  %br/
+  %br/
+  %br/
+  = render @roles

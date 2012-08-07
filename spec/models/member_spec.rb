@@ -1,6 +1,57 @@
 require 'spec_helper'
 
 describe Member do
+  subject {FactoryGirl.build :member}
+  it {should have_many(:transactions)}
+  it {should have_many(:roles)}
+  it {should belong_to(:twitter_login)}
+  
+  describe "#linked_to_dwolla" do
+    describe "when there is a dwolla auth token" do
+      it "should be false" do
+        subject.dwolla_auth_token = nil
+        subject.should_not be_linked_to_dwolla
+      end
+    end
+    describe "when there is no dwolla auth token" do
+      it "should be true" do
+        subject.dwolla_auth_token = "34235wdfasdfasd"
+        subject.should be_linked_to_dwolla
+      end
+    end
+    
+  end
+  
+  describe "full_name" do
+    before :each do
+      subject.first_name = 'Tyler'
+      subject.last_name = 'Gannon'
+    end
+    it "should be the concatenation of first and last" do
+      subject.full_name.should == 'Tyler Gannon'
+    end
+    it "should be updated when the first name is changed" do
+      subject.first_name = 'Mister'
+      subject.full_name.should == 'Mister Gannon'
+    end
+    it "should be updated when the last name is changed" do
+      subject.last_name = 'Twister'
+      subject.full_name.should == 'Tyler Twister'
+    end
+  end
+  
+  
+  describe "finds existing team member invitations" do
+    before(:each) do
+      @role = FactoryGirl.create :projects_role
+      @member = FactoryGirl.create :member, email: @role.email_address
+      @role.reload
+    end
+    it "should set the role's member to the newly created member" do
+      @role.member.should == @member
+    end
+  end
+  
   describe "#pledge_for" do
     before :each do
       @project = FactoryGirl.create :project
@@ -13,7 +64,7 @@ describe Member do
           subject
         }.to change(Pledge, :count).by(1)
       end
-      it {should be_not_pledged}
+      it {should be_unpaid}
     end
     describe "when I have already pledged to the project" do
       subject {@member.pledge_for(@project)}
@@ -66,12 +117,12 @@ describe Member do
     describe "when there are transactions" do
       before :each do
         @member = FactoryGirl.create :member
-        FactoryGirl.create :transaction, member: @member, amount: 123.45
-        FactoryGirl.create :transaction, member: @member, amount: -112.45
-        FactoryGirl.create :transaction, member: @member, amount: 1.45
+        FactoryGirl.create :transaction, member: @member, amount: 12345
+        FactoryGirl.create :transaction, member: @member, amount: -11245
+        FactoryGirl.create :transaction, member: @member, amount: 145
       end
       it "should be the sum of the transactions" do
-        @member.account_balance.should == (123.45 + -112.45 + 1.45)
+        @member.account_balance.should == (12345 + -11245 + 145)
       end
     end
   end

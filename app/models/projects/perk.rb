@@ -1,20 +1,17 @@
 class Projects::Perk < ActiveRecord::Base
-  attr_accessible :delivery_terms, :description, :name, :price, :quantity, :image
+  attr_accessible :delivery_terms, :description, :name, :price, :quantity, :image, :sort_order
   belongs_to :project
   has_many :pledges
   
+  monetize :price_cents
+
+  default_scope order(:price_cents)
+
   S3_DEETS = {
-    :styles => { large: "200x200", :thumb => "100x100" },
-    :storage => :s3,
-    :s3_protocol => '',
-    :bucket => ENV['AMAZON_S3_BUCKET'],
-    :s3_credentials => {
-      :access_key_id => 'AKIAIDEFW5P6AQLRXWGQ',
-      :secret_access_key => '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'
-    }  
+    :styles => { large: "200x200", :thumb => "100x100" }
   }
   
-  has_attached_file :image, S3_DEETS
+  has_attached_file :image, S3_DEETS.merge(AppConfig.paperclip_storage)
   
   def as_json
     {

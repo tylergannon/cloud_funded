@@ -1,0 +1,2 @@
+$('#article_<%= @article.id %> .published').html('Published <%= @article.published_at.strftime("%b %d, %Y") %>');
+bootbox.alert('<%= escape_javascript render(partial: 'published') %>')

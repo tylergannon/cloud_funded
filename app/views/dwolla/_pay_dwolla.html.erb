@@ -1,0 +1,46 @@
+<%= form_for @pledge, url: account_funds_path, method: :post, remote: true, html: {:class => 'form-vertical well'} do |f| -%>
+  <h3>You're about to back <%= @pledge.project.name%> with <%= @pledge.amount.dollars.to_i %> dollars!</h3>
+  <div class="control-group">
+    <label for="pin" class="control-label">Pin</label>
+    <div class="controls">
+      <input type="password" name="pin" value="" id="pin" rel="popover" 
+      data-original-title="Dwolla Pin" 
+      data-trigger="focus"
+      data-content="Enter the four-digit security pin you chose when you signed up for Dwolla.  This will not be stored." >
+    </div>
+  </div>
+  <div class="control-group">
+    <label for="funds_source" class="control-label">Source Account</label>
+    <div class="controls">
+      <input type="hidden" name="pledge_id" value="<%= @pledge.id %>" />
+      <input type="hidden" name="amount" value="<%= @pledge.amount.dollars.to_i %>" />
+      <select name="funds_source" id="funds_source" rel="popover" 
+          data-original-title="Funding Source" 
+          data-trigger="focus"
+          data-content="Choose between your Dwolla balance (if you have moved funds into Dwolla), or a linked bank account." >
+        <% if !@funding_sources.blank? %>
+          <% for fs in @funding_sources %>
+          <option value="<%= fs[1] %>"><%= fs[0] %></option>
+          <% end %>
+        <% end %>
+      </select>
+    </div>
+  </div>
+  <%= submit_tag "Pay", :id => "submit-payment", :name => "submit", :class => "btn btn-large", :disable_with => "Processing...",
+      rel: "popover", data: {'original-title' => 'Send Money',
+        'content' => "Click to transfer funds and back #{@pledge.project.name}"
+      }
+   %>
+<% end -%>
+
+<div class="modal hide" id="processing">
+  <div class="modal-header">
+    <h3>Contacting Mission Control...</h3>
+  </div>
+  <div class="modal-body">
+    One moment while your good deed is put through...
+    <div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>
+  </div>
+  <div class="modal-footer">
+  </div>
+</div>

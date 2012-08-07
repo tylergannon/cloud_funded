@@ -11,7 +11,7 @@ describe Article do
   
   it "should reset the published at time when published." do
     subject.should_receive(:published_at=)
-    subject.update_attributes(published: true)
+    subject.publish!
   end
   
   describe "permissions" do
@@ -21,7 +21,7 @@ describe Article do
       end
       subject {Ability.new(@member)}
       it {should_not be_able_to(:read, FactoryGirl.build(:article, published: false))}
-      it {should be_able_to(:read, FactoryGirl.build(:article, published: true))}
+      it {should be_able_to(:read, FactoryGirl.build(:published_article))}
 
       it {should_not be_able_to(:read, FactoryGirl.build(:article, published: false))}
       it {should_not be_able_to(:create, FactoryGirl.build(:article))}
@@ -40,7 +40,7 @@ describe Article do
           before :each do
             @project = FactoryGirl.create :project
           end
-          it {should be_able_to(:read, @project.articles.build(published: true))}
+          it {should be_able_to(:read, FactoryGirl.build( :published_article, project: @project))}
           it {should_not be_able_to(:read, @project.articles.build(published: false))}
           it {should_not be_able_to(:edit, @project.articles.build)}
           it {should_not be_able_to(:create, @project.articles.build)}

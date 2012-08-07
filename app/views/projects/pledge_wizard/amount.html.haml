@@ -1,0 +1,35 @@
+.new_pledge.container
+  = render partial: 'breadcrumbs'
+
+  %h1 Ready to fund #{@project.name}?
+  %h2 Awesome.  You're a job creator!
+
+  .row
+    .span
+    
+      = form_for @pledge, url: wizard_path, builder: MoneyFormBuilder, method: :put do |f|
+        -if @pledge.errors.any?
+          #error_explanation
+            %h2= "#{pluralize(@pledge.errors.count, "error")} prohibited this pledge from being saved:"
+            %ul
+              - @pledge.errors.full_messages.each do |msg|
+                %li= msg
+        = f.control_group_money_field :amount
+        = f.submit 'Contribute!'
+        %br\
+        %h3 Choose a gift:
+        .perks
+          = render @project.perks
+        
+     
+     
+        .field.span2
+          = f.label :post_to_fb
+          = f.check_box :post_to_fb
+        .field.span2
+          = f.label :public_viewable
+          = f.check_box :public_viewable
+        .field.span2
+          = f.label :public_amount
+          = f.check_box :public_amount
+

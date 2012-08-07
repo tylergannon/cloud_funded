@@ -1,0 +1,28 @@
+<div class="modal hide" id="edit_role">
+  <%= form_for @role, as: :role, url: project_role_path(@project, @role), remote: true do |f| -%>
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">×</button>
+      <h3>Edit Team Membership</h3>
+    </div>
+    <div class="modal-body">
+      <div class="control-group">
+        <%= f.label :name, "Role / Title", :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :name, :class => 'input-xlarge' %>
+          <p class="help-block">This person's Job Title</p>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :tagline, "Tagline", :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :tagline, :class => 'input-xlarge' %>
+          <p class="help-block">One-liner about this person's role</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+      <%= f.submit "Save", :disable_with => 'Saving...', :class => "btn btn-primary" %>
+    </div>
+  <% end -%>
+</div>

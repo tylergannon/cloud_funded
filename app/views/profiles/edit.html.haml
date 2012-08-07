@@ -2,6 +2,9 @@
 
 = form_for @member, as: :profile, url: profile_path(@member) do |f|
   .field
+    = f.label :email
+    = f.text_field :email
+  .field
     = f.label :first_name
     = f.text_field :first_name
   .field

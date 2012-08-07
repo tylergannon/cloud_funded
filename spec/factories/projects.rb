@@ -4,22 +4,21 @@ include ActionDispatch::TestProcess
 FactoryGirl.define do
   extend ActionDispatch::TestProcess
   sequence :name do |i|
-    "nicebax#{i}#{rand}"
+    "Magical Mystery Tour#{i}"
   end
     
   factory :project do
     name
-    description "MyText"
-    financial_goal 9.99
+    description "."
+    financial_goal_cents 1000000
     address "1931 Coolio Ave, Oakland, Ca"
-    tagline 'A Nice Project That Does Stuff'
+    tagline "It's coming to take you away."
     short_description "Pretty Cool"
     lat 123.45
     long 12.12
-    website_url 'http://www.google.com/'
+    website_url 'http://www.thebeatles.com/'
     association :owner, factory: :member
-    association :category, factory: :projects_category
-
+    category {Projects::Category.first || FactoryGirl.create(:projects_category)}
   end
   
   factory :live_project, parent: :project do
@@ -35,4 +34,19 @@ FactoryGirl.define do
     image {fixture_file_upload('spec/support/onebit_33.png')}
     workflow_state 'live'
   end
+  
+  factory :full_project, parent: :live_project do
+    image {fixture_file_upload('spec/support/mystery_tour.jpeg')}
+    workflow_state 'live'
+    after(:create) do |project|
+      Projects::Perk.where(name: nil).destroy_all
+      project.perks.map(&:destroy)
+      project.perks.clear
+      project.perks << FactoryGirl.create( :baby_elephant_perk, project: project)
+      project.perks << FactoryGirl.create( :unicorn_perk, project: project)
+      project.perks << FactoryGirl.create( :manticore_perk, project: project)
+    end
+  end
+  
 end
+

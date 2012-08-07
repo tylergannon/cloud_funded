@@ -23,7 +23,7 @@ module CloudFunded
 
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += %W(#{config.root}/lib)
-
+    
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
@@ -58,13 +58,13 @@ module CloudFunded
 
     # Enable the asset pipeline
     config.assets.enabled = true
-
+    config.assets.precompile += %w(jquery-ui-1.8.22.custom.min.js jquery-ui-1.8.22.custom.css mercury_manifest.js mercury_includes.js mercury_includes.css) 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
     
     ENV['RECAPTCHA_PUBLIC_KEY']='6LdpitESAAAAAItUxR6G6d9j4zdjrRhCkqrIIie0'
     ENV['RECAPTCHA_PRIVATE_KEY'] = '6LdpitESAAAAAHo1roAY5TfqUQ0Rwk-pdWoTksGs'
     
-    config.assets.initialize_on_precompile = false    
+    config.assets.initialize_on_precompile = true    
   end
 end

@@ -1,0 +1,4 @@
+%h2 Great!  We just need your email address to seal the deal.
+= form_for @member, url: member_omniauth_callback_path(:twitter), method: :get do |f|
+  = f.email_field :email
+  = f.submit 'Sign Up!'

@@ -1,0 +1,2 @@
+class StripeTransaction < Transaction
+end

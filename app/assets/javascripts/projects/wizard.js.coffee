@@ -1,55 +1,17 @@
 $ ->
-  $('#days input').spinner()
-  $('.click_to_upload').live 'click', (e) ->
+  $(document).on 'click', '.click_to_upload:visible', (e) ->
     $el = $(e.target)
+    console.log $el.attr('class')
     field = $el.parent().data('field')
+    console.log("fuck off" + field)
     $('#' + field).click()
     e.preventDefault()
+
+  resetHtml5Uploads()
     
-  $('.file_uploads input[type=file]').each (index, el) ->
-    $el = $ el
-    field = $el.attr('id')
-    $('#' + field).html5_upload
-      url: (number) ->
-        $el.parent().data('action')
-        # $('#project_image_form').attr('action')
-      fieldName: $('.file_uploads').data('field') ? 'project[' + field + ']'
-      sendBoundary: window.FormData or $.browser.mozilla
-      onStart: (event, total) ->
-        $('.upload_status').show()
-        return true
-        # confirm "You are trying to upload " + total + " files. Are you sure?"
-
-      # onProgress: (event, progress, name, number, total) ->
-      #   $('.upload_status').html('%' + progress.toString())
-      #   console.log progress, number
-      # 
-      # setName: (text) ->
-      #   $("#progress_report_name").text text
-      # 
-      # setStatus: (text) ->
-      #   $("#progress_report_status").text text
-
-      # setProgress: (val) ->
-      #   $('.upload_status').html('%' + val.toString())
-      #   # $("#progress_report_bar").css "width", Math.ceil(val * 100) + "%"
-
-      onFinishOne: (event, response, name, number, total) ->
-        console.log("The field still is " + field)
-        image_url = JSON.parse(response)[field].url_large
-        the_image = $('#' + field + '_tag')
-        the_image.attr('src', image_url)
-        the_image.show()
-        $('#' + field + '_placeholder_tag').hide()
-        $('#change_' + field + '_tag').show()
-        
-        # $('div.project_image').html('<img src=\"' + image_url + '\" alt=\"Project Image\" id=\"project_image_tag\"><\/img>')
-        $('.upload_status').hide()
-        console.log image_url
-
-      onError: (event, name, error) ->
-        alert "error while uploading file " + name
-  $('.date input').datepicker()
+  $(document).on 'js_loaded', 'body', (e) ->
+    resetHtml5Uploads()
+    
   window.currentDaysCount = () ->
     parseInt $('#days input').val()
   window.getStartDate = () ->
@@ -75,3 +37,32 @@ $ ->
     startDate = getStartDate()
     startDate.setDate(startDate.getDate() + currentDaysCount())
     setEndDate(startDate)
+
+resetHtml5Uploads = () ->  
+  $('.file_uploads input[type=file]').each (index, el) ->
+    $el = $ el
+    field = $el.attr('id')
+    $('#' + field).html5_upload
+      url: (number) ->
+        $el.parent().data('action')
+        # $('#project_image_form').attr('action')
+      fieldName: $('.file_uploads').data('form_field_name') ? 'project[' + field + ']'
+      sendBoundary: window.FormData or $.browser.mozilla
+      onStart: (event, total) ->
+        $('.upload_status').show()
+        return true
+
+      onFinishOne: (event, response, name, number, total) ->
+        console.log("The field still is " + field)
+        image_url = JSON.parse(response)[field].url_large
+        the_image = $('#' + field + '_tag')
+        the_image.attr('src', image_url)
+        the_image.show()
+        $('#' + field + '_placeholder_tag').hide()
+        $('#change_' + field + '_tag').show()
+        
+        # $('div.project_image').html('<img src=\"' + image_url + '\" alt=\"Project Image\" id=\"project_image_tag\"><\/img>')
+        $('.upload_status').hide()
+        console.log image_url
+      onError: (event, name, error) ->
+        alert "error while uploading file " + name

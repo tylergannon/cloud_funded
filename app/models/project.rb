@@ -13,17 +13,34 @@ class Project < ActiveRecord::Base
                   :post_to_fb, :short_description, :tagline, :website_url, :yelp, 
                   :your_target_market, :your_target_market_image, :youtube_url,
                   :start_date, :end_date, :days, :start_date_string, :end_date_string,
-                  :street_number, :route, :city, :county, :state, :postal_code
+                  :street_number, :route, :city, :county, :state, :postal_code, :information_text
   
   belongs_to :owner, class_name: 'Member'
   belongs_to :category, class_name: 'Projects::Category'
-  has_many :pledges, dependent: :destroy
-  has_many :articles, dependent: :destroy
+  has_many :attachments, as: :attachable  
+  has_many :roles, class_name: 'Projects::Role' do
+    def confirmed
+      where(workflow_state: 'confirmed')
+    end
+  end
+  has_many :pledges, dependent: :destroy do
+    def paid
+      where(workflow_state: 'paid')
+    end
+  end
+  has_many :articles, dependent: :destroy do
+    def published
+      where(workflow_state: 'published')
+    end
+  end
   has_many :perks, class_name: 'Projects::Perk', dependent: :destroy
   
   accepts_nested_attributes_for :perks
   validates :start_date, presence: true
   validates :end_date, presence: true
+  validates :slug, presence: true, uniqueness: true, format: {with: /^[a-zA-Z0-9\-]+$/, message: 'Must be letters, numbers or dashes'}
+  
+  monetize :financial_goal_cents
   
   DEFAULT_FUNDRAISE_LENGTH = 100
   
@@ -33,39 +50,43 @@ class Project < ActiveRecord::Base
   default_value_for(:end_date) {(Date.today + DEFAULT_FUNDRAISE_LENGTH)}
   
   before_create do |project|
-    (3 - project.perks.count).times {project.perks.build}
+    project.perks.build price: 10
+    project.perks.build price: 100
+    project.perks.build price: 1000
   end
   
   def published?; published; end
   
   S3_DEETS = {
-    :styles => { large: "560x310", :medium => "300x190", :thumb => "100x100" },
-    :storage => :s3,
-    :s3_protocol => '',
-    :bucket => ENV['AMAZON_S3_BUCKET'],
-    :s3_credentials => {
-      :access_key_id => 'AKIAIDEFW5P6AQLRXWGQ',
-      :secret_access_key => '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'
-    }  
+    :styles => { large: "560x310", :medium => "300x190", :thumb => "100x100" },  
   }
   
-  has_attached_file :image, S3_DEETS
-  has_attached_file :about_your_product_image, S3_DEETS
-  has_attached_file :how_it_helps_image, S3_DEETS
-  has_attached_file :your_target_market_image, S3_DEETS
-  has_attached_file :history_image, S3_DEETS
+  has_attached_file :image, S3_DEETS.merge(AppConfig.paperclip_storage)
+  has_attached_file :about_your_product_image, S3_DEETS.merge(AppConfig.paperclip_storage)
+  has_attached_file :how_it_helps_image, S3_DEETS.merge(AppConfig.paperclip_storage)
+  has_attached_file :your_target_market_image, S3_DEETS.merge(AppConfig.paperclip_storage)
+  has_attached_file :history_image, S3_DEETS.merge(AppConfig.paperclip_storage)
   
   validates :category, presence: true, :if => lambda {|project| !project.new?}
-  validates_attachment_presence :image, :if => lambda {|project| !project.new?}
+  validates_attachment :image, presence: true, :if => lambda {|project| !project.new?}
   validates :tagline, presence: true, :if => lambda {|project| !project.new?}
   validates :short_description, length: {maximum: 500}, :if => lambda {|project| !project.new?}
-  validates :financial_goal, numericality: {less_than_or_equal_to: 1000000}, :if => lambda {|project| !project.new?}
   validates :name, uniqueness: true, :if => lambda {|project| !project.new?}
   validates :owner, presence: true
   # validates :website_url, presence: true
   validates :address, presence: true, :if => lambda {|project| !project.new?}
   # validates :lat, presence: true
   # validates :long, presence: true
+  validates :financial_goal, presence: true
+  
+  validate do |project|
+    unless project.new?
+      if project.financial_goal_cents > 1000000 * 100
+        project.errors.add :financial_goal, "Should be less than 1 million."
+      end
+    end
+  end
+  
 
   workflow do
     state :new do
@@ -86,17 +107,21 @@ class Project < ActiveRecord::Base
     state :rejected
   end
   
+  def submitted?
+    live? || rejected? || being_reviewed?
+  end
+  
   def submit
-    ProjectsMailer.new_project(self).deliver
+    MemberMailer.new_project(self).deliver
     # MemberMailer.new_member(member).deliver
   end
 
   def youtube_url=(url)
     super(url.gsub(/watch\?v=/, 'embed/'))
   end
-  
+    
   def amount_pledged
-    pledges.map(&:amount).sum
+    pledges.paid.empty? ? Money.us_dollar(0) : pledges.paid.map(&:amount).sum
   end
   
   def amount_remaining
@@ -104,18 +129,22 @@ class Project < ActiveRecord::Base
   end
   
   def percent_complete
-    amount_pledged * 100 / financial_goal
+    unless amount_pledged && financial_goal && financial_goal > 0
+      0
+    else
+      ((amount_pledged / financial_goal) * 100).to_i
+    end
   end
   
   def financial_goal_string=(something)
     if something.kind_of?(String)
-      something = something.gsub(/\D/, '')
+      something = something.gsub(/\D/, '').to_i
     end
     self.financial_goal = something
   end
   
   def financial_goal_string
-    number_with_delimiter(financial_goal)
+    financial_goal.format(symbol: false, thousands_separator: ',', no_cents: true) if financial_goal
   end
   
   def days

@@ -1,0 +1,136 @@
+// Place all the styles related to the members/transactions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "twitter/bootstrap/variables.less";
+@import "twitter/bootstrap/mixins.less";
+
+.testheading
+{
+
+  font-family: 'Proxima Nova', 'Helvetica Neue', HelveticaNeue, Helvetica, Arial, 'Lucida Grande', sans-serif;
+}
+
+#formwrapper {
+  width:100%;
+  height:400px;
+  clear:both;
+  a{
+    img
+    {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      top: 160px;
+    }
+  }
+  .field {
+    position:relative;
+    height: 450px;
+    width: 49%; 
+    float:left;
+    padding-bottom:20px;
+    display: table-cell;
+    vertical-align: middle
+  }
+  div:first-child
+  {
+    margin-right:20px;
+  }
+  form{
+
+    input[type="text"], input[type="email"], input[type="password"], input[type="date"], input[type="search"], textarea {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0.3em 0.4em;
+    background: white;
+    border: 1px solid #D2D2D2;
+    color: #393C3D;
+    -moz-border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
+    border-radius: 0.3em;
+    -o-box-shadow: inset -1px 1px 1px 0 rgba(0,0,0,0.1);
+    -moz-box-shadow: inset -1px 1px 1px 0 rgba(0,0,0,0.1);
+    -webkit-box-shadow: inset -1px 1px 1px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: inset -1px 1px 1px 0 rgba(0, 0, 0, 0.1);
+    font-size: 1em;
+    width:100%;
+    }
+
+    input[type="checkbox"]{
+      width:40px;
+      height:40px;
+      margin-top: 25px;
+    }
+    label
+    {
+        text-align:left !Important;
+        width: auto !important;
+      line-height:60px !important;
+
+    }
+  }
+}  
+
+.transaction_history {
+  table, th, td {
+    border-style: ridge;
+    border-width: 1px;
+    border-color: gray;
+  }
+  
+  th {
+    background-color: #00565d;
+    color: white;
+  }
+  
+  table {
+    border-radius: 2px;
+    border-collapse: collapse;
+    
+    tr {
+      &:nth-child(odd) {
+        background-color: #ABABAB;
+      }
+      &:nth-child(even) {
+        background-color: #D1D1D1;
+      }
+      td {
+        text-indent: 10px;
+        min-width: 120px;
+        align: left;
+        &.amount {
+          padding-right: 5px;
+          text-align: right;
+        }
+      }
+    }
+  }
+}
+
+.new_member {
+  .field > label, .field_with_errors > label {
+    float: left;
+    width: 240px;
+    clear: both;
+    padding-top: 15px;
+  }
+  input {
+    min-width: 300px;
+  }
+}
+
+ form .edit_pledge {
+  .field > label, .field_with_errors > label {
+  padding-top: 15px;
+  }
+
+}
+
+.payment_method {
+  .border-radius(4px);
+  background: #f4f4f4;
+  padding: 30px;
+  margin: 20px 20px 20px 0px;
+}

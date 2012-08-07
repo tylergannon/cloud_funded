@@ -1,0 +1,40 @@
+<div class="pledge_wizard">
+  <%= render partial: 'breadcrumbs' %>
+  <div class="container">
+    <div class="row">
+      <div class="span5 offset2">
+        <div class="box">
+          <%= form_for @pledge, url: wizard_path, html: {id: 'stripe_payment_form'} do |f| -%>
+            <div class="control-group">
+              <label for="cc_number" class="control-label">Credit Card Number</label>
+              <div class="controls cc_num">
+                <input type="text" id="cc_number"  class="input-large" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label for="cc_cvc" class="control-label">CVC</label>
+              <div class="controls cc_cvc">
+                <input type="text" id="cc_cvc" class="input-large" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label for="cc_month" class="control-label">Exp MM/YYYY</label>
+              <div class="controls exp">
+                <input type="text" id="cc_month" class="input-small" autocomplete="off" />
+                <input type="text" id="cc_year" class="input-small" autocomplete="off" />
+              </div>
+            </div>
+            <input type="submit" data-confirm="Charge your Dwolla Account $<%= @pledge.amount.dollars %>?"  class="submit btn btn-large btn-primary" value="Pay"  />
+          <% end -%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= content_for :javascripts do -%>
+  <%= javascript_include_tag 'https://js.stripe.com/v1/' %>
+  <%= javascript_tag do %>
+    var stripePublishableKey = '<%= AppConfig.stripe_public_key %>';
+  <% end %>
+<% end -%>      

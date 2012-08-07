@@ -6,3 +6,13 @@
   .dwolla_id
     Dwolla Id:
     %b= current_member.dwolla_id
+
+%h1 Pledges:
+- current_member.pledges.each do |pledge|
+  - project = pledge.project
+  .pledge
+    .project_link= link_to project.name, project
+    .pledge
+      Delete:
+      = link_to 'destroy', project_pledge_path(project, pledge), method: :delete
+      

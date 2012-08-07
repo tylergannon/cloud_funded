@@ -1,0 +1,15 @@
+<% unless @breadcrumbs.blank? %>
+  <div class="breadcrumb">
+    <% for crumb in @breadcrumbs.first @breadcrumbs.size-1 %>
+      <li>
+        <a href="<%= wizard_path(crumb[1]) %>"><%= crumb[0] %></a>
+        <span class="divider">
+          <i class="icon-arrow-right"></i>
+        </span>
+      </li>
+    <% end %>
+    <li class="active">
+      <%= @breadcrumbs.last[0] %>
+    </li>
+  </div>
+<% end %>

@@ -24,7 +24,7 @@ describe ProjectsController do
   before :each do 
     sign_in_as_member
     stub_attachments_for(Project)
-    @example_project = FactoryGirl.create(:project, owner: @member, published: true)
+    @example_project = FactoryGirl.create(:live_project, owner: @member)
     image = @example_project.image
     # Project.any_instance.stub(:image).and_return(image)
   end
@@ -56,7 +56,7 @@ describe ProjectsController do
 
   describe "GET index" do
     it "assigns all projects as @projects" do
-      project = FactoryGirl.create(:project, {owner: @member, published: true})
+      project = FactoryGirl.create(:live_project, {owner: @member})
       get :index, {}
       assigns(:projects).should eq([@example_project, project])
     end
@@ -81,9 +81,30 @@ describe ProjectsController do
       get :show, {:id => project.to_param}
       assigns(:project).should eq(project)
     end
+    describe "setting of the team members variable" do
+      before :each do
+        @unconfirmed = FactoryGirl.create :projects_role, project: @example_project
+        @confirmed   = FactoryGirl.create :projects_role, project: @example_project
+        @confirmed.confirm!
+      end
+      describe "when I can manage the project" do
+        it "should load all of them" do
+          get :show, id: @example_project.to_param
+          assigns(:roles).should =~ [@confirmed, @unconfirmed]
+        end
+      end
+      describe "when I can't manage the project" do
+        it "should only load the confirmed roles" do
+          @member = FactoryGirl.create :member
+          sign_in_as_member
+          get :show, id: @example_project.to_param
+          assigns(:roles).should =~ [@confirmed]
+        end
+      end
+    end
     describe "Seeing My Pledge" do
       before :each do
-        @project_i_am_viewing = FactoryGirl.create :project
+        @project_i_am_viewing = FactoryGirl.create :live_project
       end
       describe "when I have not pledged support" do
         it "should have a nil value for @my_pledge" do

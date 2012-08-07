@@ -1,0 +1,16 @@
+<div class="pledge_wizard">
+  <%= render partial: 'breadcrumbs' %>
+
+  <h1>Please select your payment method</h1>
+  <%= form_for @pledge, url: wizard_path do |f| -%>
+    <div class="payment_method">
+      Payment with Dwolla (Recommended)
+      <%= radio_button_tag 'pledge[payment_method]', 'dwolla', true, id: 'payment_method_dwolla' %>
+    </div>
+    <div class="payment_method">
+      Payment with Credit Card (Slightly higher fee for <%= @pledge.project.name %>)
+      <%= radio_button_tag 'pledge[payment_method]', 'cc', false, id: 'payment_method_cc' %>
+    </div>
+    <%= f.submit "Choose Payment Method" %>
+  <% end -%>
+</div>

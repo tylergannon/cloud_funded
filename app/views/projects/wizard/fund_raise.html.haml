@@ -1,44 +1,41 @@
 = render partial: 'application_header'
-.project_wizard.fund_raise
-  %h1 Perks go here.
-  = form_for @project, url: wizard_path do |f|
-    
-    .field
-      %span= f.label :financial_goal_string, 'Financial Goal'
-      %span= f.text_field :financial_goal_string
-    .field.date#start_date
-      %span= f.label :start_date
-      %span= f.text_field :start_date, :value=>f.object.start_date.strftime('%m/%d/%Y')
-    .field.date#end_date
-      %span= f.label :end_date
-      %span= f.text_field :end_date, :value=>f.object.end_date.strftime('%m/%d/%Y')
-    .field#days
-      %span= f.label :days
-      %span= f.text_field :days
+.project_wizard.fund_raise.container-fluid
+  .row
+    .span6
+      %h1 Perks go here.
+  = form_for @project, url: wizard_path, builder: MoneyFormBuilder, html: {:class => 'form-horizontal'} do |f|
+    .row
+      .span4.well
+        = f.control_group_money_field :financial_goal, :class => 'input-small'
+        = f.control_group_number_field :days, :class => 'input-small number'
+        = f.control_group_formatted_date_field :start_date, format: '%m/%d/%Y', :class => 'input-small'
+        = f.control_group_formatted_date_field :end_date, format: '%m/%d/%Y', :class => 'input-small'
     .perks
       - @project.perks.each_with_index do |perk, idx|
-        .file_uploads{data: {field: 'perk[image]', action: project_perk_path(@project, perk, format: :json)}}
-          = file_field_tag :image, id: "perk_#{perk.id}_image"
-        %div.perk[perk]
-          %h2 Perk #{idx + 1}
-          = f.fields_for :perks, perk do |pf|
-            .field.name
-              = pf.label :name
-              = pf.text_field :name
-            .field.price
-              = pf.label :price
-              = pf.text_field :price
-            .field.description
-              = pf.label :description
-              = pf.text_area :description
+        .row[perk]
+          .span2.offset1
+            .file_uploads{data: {field: 'perk[image]', action: project_perk_path(@project, perk, format: :json)}}
+              = file_field_tag :image, id: "perk_#{perk.id}_image"
+            %h2 Perk #{idx + 1}
             .field.upload_field{id: 'upload_image', data: {field: "perk_#{perk.id}_image"}}
-              .upload_status Uploading...
+              .upload_status Uploading...<br/><div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>
               - if perk.image.present?
                 = image_tag perk.image.url(:large), alt: 'Project Image', id: "perk_#{perk.id}_image_tag"
               - else
-                = image_tag 'projects/wizard/onebit_33.png', alt: 'Project Image', id: "perk_#{perk.id}_image_tag", class: 'hidden'
-              = image_tag 'projects/wizard/perk_image_placeholder.jpg', alt: 'Image Placeholder', id: "perk_#{perk.id}_image_placeholder_tag", class: "click_to_upload#{perk.image.present? ? ' hidden' : ''}"
-              = image_tag 'projects/wizard/perk_upload_placeholder.jpg', alt: 'Change Image', id: "change_perk_#{perk.id}_image_tag", class: "click_to_upload#{perk.image.present? ? '' : ' hidden'}"
-          
-      
-    = f.submit 'Preview and Submit'
+                = image_tag 'projects/wizard/onebit_33.png', alt: 'Project Image', id: "perk_#{perk.id}_image_tag", class: 'hide'
+              = image_tag 'projects/wizard/perk_image_placeholder.jpg', alt: 'Image Placeholder', id: "perk_#{perk.id}_image_placeholder_tag", class: "click_to_upload#{perk.image.present? ? ' hide' : ''}"
+              = image_tag 'projects/wizard/perk_upload_placeholder.jpg', alt: 'Change Image', id: "change_perk_#{perk.id}_image_tag", class: "click_to_upload#{perk.image.present? ? '' : ' hide'}"
+          = f.fields_for :perks, perk do |pf|
+            .span4
+              .control-group
+                = pf.label :name, :class => 'control-label'
+                = pf.text_field :name, :class => 'input-large'
+              .control-group
+                = pf.label :price, :class => 'control-label'
+                = pf.text_field :price, :class => 'money input-medium'
+              .control-group
+                = pf.label :description, :class => 'control-label'
+                = pf.text_area :description, :class => 'input-medium', rows: 3
+    .row
+      .span3.offset3
+        = f.submit 'Preview and Submit'

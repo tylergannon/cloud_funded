@@ -2,17 +2,19 @@ require 'spec_helper'
 
 feature "connecting dwolla account" do
   background do
+    Capybara.reset_sessions!
     sign_in_member
   end
   
   scenario "when I already have a dwolla account", js: true do
     visit account_path
-    page.evaluate_script('window.confirm = function() { return true; }')
-
+    answer_yes_to_confirmations
+    click_link 'Unlink Your Account'
     if (page.has_link?('Unlink Your Account'))
-      click_link 'Unlink Your Account'
+      
     end
   
+    # sleep 9000
     page.should have_link 'Link Dwolla Account'
     click_link 'Link Dwolla Account'
     # wait_until(1) do
