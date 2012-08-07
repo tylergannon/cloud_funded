@@ -11,12 +11,13 @@
 
       = link_to get_funded_path do 
         .button1.green Fund Your Project
-      .button1.yellow= link_to 'Find Investments', projects_categories_path
+      .button1.yellow= link_to 'Create Jobs', projects_categories_path
     .span6
       %br/
-      = image_tag 'info.png', rel: 'popover', data: |
-        {placement: 'left', original_title: 'The JOBS Act', |
-        content: 'Enables companies that are not yet publicly traded, to seek investment capital from community members.'}
+      %a{:href => "http://www.google.com" }
+        = image_tag 'info.png', rel: 'popover', data: |
+          {placement: 'left', original_title: 'The JOBS Act', |
+          content: 'Enables companies that are not yet publicly traded, to seek investment capital from community members.'}
       %br/
       %br/ 
     .row.spacer.filterbar
