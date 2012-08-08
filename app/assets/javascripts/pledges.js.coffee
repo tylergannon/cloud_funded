@@ -77,7 +77,6 @@ pledgeAmountKeyUpHandler = ->
       $this.removeClass('available')
 
 stripePaymentFormSubmitHandler =  (event) ->
-  alert('fuck you')
   $(".submit").attr "disabled", "disabled"
   Stripe.setPublishableKey stripePublishableKey
   Stripe.createToken
