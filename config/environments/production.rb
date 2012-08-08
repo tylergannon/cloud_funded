@@ -11,6 +11,9 @@ CloudFunded::Application.configure do
   ENV['DISQUS_APPNAME'] = 'cloudfunded'
   ENV['DISQUS_DEVMODE'] = '0'
 
+  ENV['TWITTER_APP_ID'] = 'weNSx0jPyZnh9KfwUh8kyQ'
+  ENV['TWITTER_SECRET_KEY'] = '2SUPSQuH3gaNAvQjHbHlAdOvhDFqnbp4HurYTUF0dLI'
+
   ENV['SENDGRID_USERNAME'] = 'cloudfunded_production'
   ENV['SENDGRID_PASSWORD'] = 'rockst1zzle'
   ENV['OPENGRAPH_NAMESPACE'] = 'cloudfunded'
