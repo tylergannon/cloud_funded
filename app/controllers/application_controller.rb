@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
   layout 'application'
   
   before_filter do |controller|
+    if request.host == 'cloudfunded.com'
+      redirect_to request.url.gsub(/cloudfunded.com/, 'www.cloudfunded.com')
+    end
+    
     if request.format == 'text/html'
       unless controller.kind_of?(Members::OmniauthCallbacksController) || 
              controller.kind_of?(Members::RegistrationsController) ||
