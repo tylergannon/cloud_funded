@@ -1,6 +1,8 @@
 class Members::RegistrationsController < Devise::RegistrationsController
   after_filter CloudFunded::Twitter::SetTwitterIdFilter, only: :create
   
+  
+  
   def create
     if session[:omniauth] == nil #OmniAuth
       if verify_recaptcha

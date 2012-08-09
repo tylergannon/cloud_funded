@@ -7,7 +7,11 @@ class AccountsController < ApplicationController
   end
 
   def show
-    respond_with @member
+    respond_with @member do |format|
+      format.html {
+        render layout: 'my_account'
+      }
+    end
   end
   
   def search

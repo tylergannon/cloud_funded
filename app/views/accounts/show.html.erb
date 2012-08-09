@@ -1,88 +1,50 @@
-<div class="container">
-  <h1 class="display">My Account</h1>
-  <div class="row">
-    <div class="span3">
-      <ul class="nav nav-tabs nav-pills nav-stacked">
-        <li><a href="#my_linked_accounts">Linked Accounts</a></li>
-        <li><a href="#fund_raising_campaigns">Funds Being Raised</a></li>
-        <% unless current_member.roles.empty? %>
-          <li><a href="#my_companies">My Companies</a></li>
-        <% end %>
-        <li><a href="#pledges">My Pledges</a></li>
-        <li><%= link_to 'Edit My Profile', edit_profile_path(current_member) %></li>
-        <li><%= link_to 'Sign Out', destroy_member_session_path, method: :delete %></a></li>
-      </ul>
-    </div>
-    <div class="span9">
-      <div class="row">
-        <div class="span8">
-          <div id="my_linked_accounts">
-            <h1>Linked Accounts</h1>
-            <%= render partial: 'dwolla_account' %>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="span8">
-          <div id="fund_raising_campaigns">
-            <h1>Funds Being Raised</h1>
-            <%= render partial: 'fund_raising_campaigns' %>
-          </div>
-        </div>
-      </div>
-      <% unless current_member.roles.empty? %>
-        <div class="row" id="my_companies">
-          <div class="span9">
-            <h1>My Companies</h1>
-            <%= render partial: 'role', collection: current_member.roles %>
-          </div>
-        </div>
-      <% end %>
-
-      <div class="row" id="pledges">
-        <div class="span9">
-          <h1>My Pledges</h1>
-          <table class="table table-bordered table-striped shadow span9 transactions">
-            <thead>
-              <tr>
-                <th>Transaction Date</th>
-                <th>Amount</th>
-                <th>Source</th>
-                <th>Project</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <% for transaction in @member.transactions %>
-              <tr>
-                <td><%= transaction.created_at.strftime('%Y-%m-%d %H:%m') %></td>
-                <td><%= number_to_currency(transaction.amount.dollars) %></td>
-                <td><%= transaction.type %></td>
-                <td><%= link_to transaction.pledge.project.name, transaction.pledge.project if transaction.pledge %></td>
-                <td><%= transaction.paid ? "Paid" : "Incomplete" %></td>
-              </tr>
-            <% end %>
-          </table>
-        </div>
-      </div>
+<div class="row">
+  <div class="span8">
+    <div id="my_linked_accounts">
+      <h1>Linked Accounts</h1>
+      <%= render partial: 'dwolla_account' %>
     </div>
   </div>
 </div>
-
-
-<!--     <div class="span9">
-      <div class="container">
-        <div class="row">
-          <div class="span9">
-          </div>
-        </div>
-        <div class="row">
-          <div class="span9">
-            <h1>My Fund Raising Campaigns</h1>
-          </div>
-        </div>
-      </div>
+<div class="row">
+  <div class="span8">
+    <div id="fund_raising_campaigns">
+      <h1>Funds Being Raised</h1>
+      <%= render partial: 'fund_raising_campaigns' %>
     </div>
+  </div>
+</div>
+<% unless current_member.roles.empty? %>
+  <div class="row" id="my_companies">
     <div class="span9">
-      <div class="container">
-      </div>
-    </div> -->
+      <h1>My Companies</h1>
+      <%= render partial: 'role', collection: current_member.roles %>
+    </div>
+  </div>
+<% end %>
+
+<div class="row" id="pledges">
+  <div class="span9">
+    <h1>My Pledges</h1>
+    <table class="table table-bordered table-striped shadow span9 transactions">
+      <thead>
+        <tr>
+          <th>Transaction Date</th>
+          <th>Amount</th>
+          <th>Source</th>
+          <th>Project</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <% for transaction in @member.transactions %>
+        <tr>
+          <td><%= transaction.created_at.strftime('%Y-%m-%d %H:%m') %></td>
+          <td><%= number_to_currency(transaction.amount.dollars) %></td>
+          <td><%= transaction.type %></td>
+          <td><%= link_to transaction.pledge.project.name, transaction.pledge.project if transaction.pledge %></td>
+          <td><%= transaction.paid ? "Paid" : "Incomplete" %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

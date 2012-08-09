@@ -19,6 +19,12 @@ class ProfilesController < ApplicationController
   def edit
     @member = current_member
     authorize! :edit, @member
+    
+    respond_with @member do |format|
+      format.html {
+        render layout: 'my_account'
+      }
+    end
   end
   
   def update
