@@ -28,6 +28,8 @@ $ ->
     startDate.setDate(startDate.getDate() + currentDaysCount())
     setEndDate(startDate)
 
+  console.log('awesome')
+
   $('#project_end_date').change ->
     startDate = getStartDate()
     console.log(startDate)

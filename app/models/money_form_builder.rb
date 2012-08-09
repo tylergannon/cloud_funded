@@ -19,11 +19,25 @@ class MoneyFormBuilder < ActionView::Helpers::FormBuilder
   end
   
   def method_missing(meth, *args)
+    options = args.last.kind_of?(Hash) ? args.last : {}
+    label_text = options.delete(:label)
+    label_args = [args[0]]
+    label_args << label_text if label_text
+    label_args << {class: 'control-label'}
+    
+    if popover = options.delete(:popover)
+      options[:rel] = 'popover'
+      options[:data] ||= {
+        original_title: popover[:title] || args[0].to_s.titleize,
+        content: popover[:content]}
+      options[:data].merge! popover.slice(:placement, :trigger)
+    end
+    
     meth = meth.to_s
     raise "I can't handle #{meth}" unless meth.match(/control_group_/)
     helper = meth.gsub(/control_group_/, '')
     "<div class='control-group'>
-      #{label(args[0], :class => 'control-label')}
+      #{label(*label_args)}
       <div class='controls'>
         #{send helper, *args}
       </div>

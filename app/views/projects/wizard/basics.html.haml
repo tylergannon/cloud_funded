@@ -8,14 +8,7 @@
           = f.text_field :name, placeholder: "Your Company Name", :class => 'span6'
         .field
           = f.text_field :tagline, placeholder: 'Tagline / Catch Phrase', :class => 'span6'
-        .field.upload_field{id: 'upload_image', data: {field: :image}}
-          .upload_status Uploading...<br/><div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>
-          - if @project.image.present?
-            = image_tag @project.image.url(:large), alt: 'Project Image', id: 'image_tag'
-          - else
-            = image_tag 'projects/wizard/onebit_33.png', alt: 'Project Image', id: 'image_tag', class: 'hide'
-          = image_tag 'projects/wizard/file_upload_placeholder.jpg', alt: 'Image Placeholder', id: 'image_placeholder_tag', class: "click_to_upload#{@project.image.present? ? ' hide' : ''}"
-          = image_tag 'projects/wizard/change_file_placeholder.jpg', alt: 'Change Image', id: 'change_image_tag', class: "click_to_upload#{@project.image.present? ? '' : ' hide'}"
+        = render partial: 'projects/project_image_upload'
         .field
           = f.collection_select :category_id, Projects::Category.all, :id, :name, {prompt: "What kind of company is it?"}, {:class => 'span6'}
         .field
@@ -25,5 +18,3 @@
           = f.money_field :financial_goal
         .field
           = f.submit 'Save and Continue'
-      .file_uploads{data: {action: project_path(@project, format: :json)}}
-        = file_field_tag :image

@@ -1,22 +1,8 @@
 = render partial: 'application_header'
 .project_wizard.edit_project
-  = form_for @project, url: wizard_path do |f|
+  = form_for @project, builder: MoneyFormBuilder, url: wizard_path do |f|
     %h1 Cool, Where is it located?
     .field
-      = f.label :address, 'Address, City or Zip'
-      = f.text_field :address
-      = button_tag 'Check Address', id: 'check_address'
-      = f.hidden_field :lat
-      = f.hidden_field :long
-      = f.hidden_field :street_number
-      = f.hidden_field :route
-      = f.hidden_field :city
-      = f.hidden_field :county
-      = f.hidden_field :state
-      = f.hidden_field :postal_code
-      #answer_wrapper
-      #map_canvas.span8
+      = render partial: 'projects/location_form', locals: {f: f}
       = f.submit 'Save and Continue'
 
-= content_for :head do
-  = javascript_include_tag 'https://maps.googleapis.com/maps/api/js?sensor=false'

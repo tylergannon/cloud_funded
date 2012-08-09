@@ -2,7 +2,8 @@ $ ->
   $("[rel=popover]").popover()
   $(".tooltip").tooltip()
   $("a[rel=tooltip]").tooltip()
-  $('input.date').datepicker()
+  $('input.date').datepicker
+    autoclose: true
   
 # $ ->
 #   $.rails.confirm = (message) ->
