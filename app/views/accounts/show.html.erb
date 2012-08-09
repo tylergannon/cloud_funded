@@ -9,6 +9,7 @@
           <li><a href="#my_companies">My Companies</a></li>
         <% end %>
         <li><a href="#pledges">My Pledges</a></li>
+        <li><%= link_to 'Edit My Profile', edit_profile_path(current_member) %></li>
         <li><%= link_to 'Sign Out', destroy_member_session_path, method: :delete %></a></li>
       </ul>
     </div>
