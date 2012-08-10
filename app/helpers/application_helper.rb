@@ -2,6 +2,10 @@ module ApplicationHelper
   def facebook_app_id
     ENV['facebook_app_id']
   end
+  
+  def og_tag(name, content)
+    %(<meta property="#{name}" content="#{content}"/>).html_safe
+  end
 
   def toast_flash
     response = ''
