@@ -2,7 +2,7 @@
   = content_for :open_graph do
     %link{rel: 'image_src', href: "http:#{@project.image.url(:original, true)}"}
     %meta{property: 'fb:app_id', content: facebook_app_id}
-    %meta{property: 'og:type', content: "#{AppConfig.opengraph_namespace}:project"}
+    %meta{property: 'og:type', content: "#{AppConfig.opengraph_namespace}:campaign"}
     %meta{property: 'og:title', content: @project.name}
     %meta{property: 'og:image', content: "http:#{@project.image.url(:original, true)}"}
     %meta{property: 'og:description', content: @project.description}
