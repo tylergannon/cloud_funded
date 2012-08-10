@@ -66,5 +66,11 @@ module CloudFunded
     ENV['RECAPTCHA_PRIVATE_KEY'] = '6LdpitESAAAAAHo1roAY5TfqUQ0Rwk-pdWoTksGs'
     
     config.assets.initialize_on_precompile = true    
+
+    config.middleware.insert_before(Rack::Lock, Rack::Rewrite) do
+      r301 %r{.*}, 'http://cloudfunded.com$&', :if => Proc.new {|rack_env|
+        rack_env['SERVER_NAME'] == 'www.cloudfunded.com'
+      }
+    end
   end
 end

@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_member!, except: [:index, :show]
   respond_to :html, :json
+  layout 'application'
   
   # GET /projects
   # GET /projects.json
@@ -15,6 +16,8 @@ class ProjectsController < ApplicationController
       format.html {
         if params[:show] == "mine"
           render action: :my_projects
+        else
+          render layout: 'projects'
         end
       }
       format.json { render json: @projects }
@@ -65,7 +68,7 @@ class ProjectsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html {render layout: 'projects'}
+      format.html
       format.json { render json: @project }
     end
   end
