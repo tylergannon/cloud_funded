@@ -33,5 +33,4 @@
       = render @project.perks
 
 = render partial: 'shared/mercury_includes' if can? :edit, @project && !!params[:mercury_frame] == true
-
-
+= render partial: 'open_graph_data'

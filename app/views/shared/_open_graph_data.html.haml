@@ -1,5 +1,5 @@
-- if @project && @project.published?
-  = render partial: 'projects/open_graph_data'
+- if content_for?(:open_graph)
+  = yield :open_graph
 - else
   %link{rel: 'image_src', href: '/assets/logo.png'}
   %meta{property: 'fb:app_id', content: facebook_app_id}

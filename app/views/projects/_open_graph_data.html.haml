@@ -1,11 +1,12 @@
 - unless @project.new_record?
-  %link{rel: 'image_src', href: @project.image.url(:original, false)}
-  %meta{property: 'fb:app_id', content: facebook_app_id}
-  %meta{property: 'og:type', content: "#{AppConfig.opengraph_namespace}:project"}
-  %meta{property: 'og:title', content: @project.name}
-  %meta{property: 'og:image', content: @project.image.url(:original, false)}
-  %meta{property: 'og:description', content: @project.description}
-  %meta#project_url{property: 'og:url', content: project_url(@project)}
-  %meta{property: "#{AppConfig.opengraph_namespace}:financial_goal", content: number_to_currency(@project.financial_goal)}
-  %meta{property: "#{AppConfig.opengraph_namespace}:amount_raised", content: number_to_currency(@project.amount_pledged)}
-  %meta{property: "#{AppConfig.opengraph_namespace}:amount_remaining", content: number_to_currency(@project.amount_remaining)}
+  = content_for :open_graph do
+    %link{rel: 'image_src', href: @project.image.url(:original, true)}
+    %meta{property: 'fb:app_id', content: facebook_app_id}
+    %meta{property: 'og:type', content: "#{AppConfig.opengraph_namespace}:project"}
+    %meta{property: 'og:title', content: @project.name}
+    %meta{property: 'og:image', content: @project.image.url(:original, true)}
+    %meta{property: 'og:description', content: @project.description}
+    %meta#project_url{property: 'og:url', content: project_url(@project)}
+    %meta{property: "#{AppConfig.opengraph_namespace}:financial_goal", content: number_to_currency(@project.financial_goal)}
+    %meta{property: "#{AppConfig.opengraph_namespace}:amount_raised", content: number_to_currency(@project.amount_pledged)}
+    %meta{property: "#{AppConfig.opengraph_namespace}:amount_remaining", content: number_to_currency(@project.amount_remaining)}

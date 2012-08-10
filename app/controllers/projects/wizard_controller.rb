@@ -12,7 +12,7 @@ class Projects::WizardController < ApplicationController
       @project.preview! unless @project.previewing?
       unless @project.valid?
         @project.fail_validation!
-        flash[:error] = ("We haven't collected enough information to show you a preview just yet!<br/>" + 
+        flash[:alert] = ("We haven't collected enough information to show you a preview just yet!<br/>" + 
         @project.errors.messages.map{|key, err| "#{key.to_s.titleize} #{err.join(', ')}"}.join("<br/>")).html_safe
         redirect_to wizard_path(previous_step)
         return

@@ -7,11 +7,11 @@ class Members::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def dwolla
     @next_location = session[:last_request] || root_path
 
-    unless params[:error].blank?
-      if params[:error] == "access_denied" && params[:error_description] == "The user denied the request."
-        flash[:error] = "Why you no like Dwolla?"
+    unless params[:alert].blank?
+      if params[:alert] == "access_denied" && params[:error_description] == "The user denied the request."
+        flash[:alert] = "Why you no like Dwolla?"
       else
-        flash[:error] = "There was a problem signing in to your Dwolla account.  We have been notified and are working on a solution."
+        flash[:alert] = "There was a problem signing in to your Dwolla account.  We have been notified and are working on a solution."
         request.env['omniauth.auth'].clear
       end
     else
@@ -96,6 +96,8 @@ class Members::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       fb_token: facebook_info.credentials.token}
     
     @member.save
+    
+    flash[:notice] = 'Welcome back!'
 
     sign_in_and_redirect @member, :event => :authentication
     

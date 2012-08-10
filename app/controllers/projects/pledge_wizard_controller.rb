@@ -1,5 +1,6 @@
 class Projects::PledgeWizardController < ApplicationController
   include Wicked::Wizard
+  layout 'pledge_wizard'
   
   steps :amount, :payment_method, :dwolla, :cc, :share
 
@@ -25,6 +26,7 @@ class Projects::PledgeWizardController < ApplicationController
     when :cc
       @breadcrumbs = [['Amount + Perks', :amount], ['Payment Method', :payment_method], ['Pay with Credit Card', :cc]]
     end
+    
     authorize! :edit, @pledge
     render_wizard
   end

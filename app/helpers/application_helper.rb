@@ -2,6 +2,17 @@ module ApplicationHelper
   def facebook_app_id
     ENV['facebook_app_id']
   end
+
+  def toast_flash
+    response = ''
+    if flash[:notice]
+      response += %(<div class="toast notice">#{flash[:notice]}</div>)
+    end
+    if flash[:alert]
+      response += %(<div class="toast alert">#{flash[:alert]}</div>)
+    end
+    response.html_safe
+  end
   
   def element_id(model)
     model.class.underscore + "_#{model.id}" 

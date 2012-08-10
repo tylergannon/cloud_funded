@@ -32,7 +32,7 @@ class AccountsController < ApplicationController
   end
   
   def dwolla_auth_failure
-    flash[:error] = "Why you no like Dwolla?"
+    flash[:alert] = "Why you no like Dwolla?"
   end
   
   def edit

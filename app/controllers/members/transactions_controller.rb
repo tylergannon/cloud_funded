@@ -36,19 +36,19 @@ class Members::TransactionsController < ApplicationController
       end
     rescue Dwolla::RequestException => e
       if e.message == "Invalid account PIN"
-        flash[:error] = 'Check your data -- Try a better PIN number.'
+        flash[:alert] = 'Check your data -- Try a better PIN number.'
       elsif e.message == "Insufficient funds."
-        flash[:error] = "Insufficient funds."
+        flash[:alert] = "Insufficient funds."
       elsif e.message.match(/Amount must be at least/)
-        flash[:error] = "Amount must be at least $0.01"
+        flash[:alert] = "Amount must be at least $0.01"
       elsif e.message.match(/Invalid access token/)
-        flash[:error] = "Hmmm, we were unable to access your account.  Did you deauthorize the app?  You'll need to re-enable it."
+        flash[:alert] = "Hmmm, we were unable to access your account.  Did you deauthorize the app?  You'll need to re-enable it."
         @member.update_attributes dwolla_auth_token: nil
       else
         raise e
       end
     rescue Dwolla::Response::AccessDeniedError => e
-      flash[:error] = "Hmmm, we were unable to access your account.  Did you deauthorize the app?  You'll need to re-enable it."
+      flash[:alert] = "Hmmm, we were unable to access your account.  Did you deauthorize the app?  You'll need to re-enable it."
       @member.transactions -= [@transaction]
       @member.update_attributes dwolla_auth_token: nil
     rescue Exception => e
@@ -62,7 +62,7 @@ class Members::TransactionsController < ApplicationController
           flash[:notice] = 'Congratulations, you\'re rich!'
           redirect_to account_path
         else
-          flash[:error] ||= "There was an error!  Damn." + @transaction.errors.inspect
+          flash[:alert] ||= "There was an error!  Damn." + @transaction.errors.inspect
           render action: 'new'
         end
       }
@@ -71,7 +71,7 @@ class Members::TransactionsController < ApplicationController
           flash[:notice] = 'Payment was successful.'
           render action: 'create', status: 200
         else
-          flash[:error] ||= "There was an error!  Damn." + @transaction.errors.inspect
+          flash[:alert] ||= "There was an error!  Damn." + @transaction.errors.inspect
           render action: 'create', status: 403
         end
       }

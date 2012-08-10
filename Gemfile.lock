@@ -308,6 +308,9 @@ GEM
     thor (0.15.4)
     tilt (1.3.3)
     timecop (0.4.4)
+    toastr-rails (1.0.2)
+      railties (>= 3.1.0)
+      toastr-rails
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
@@ -372,6 +375,7 @@ DEPENDENCIES
   stripe
   syntax
   timecop
+  toastr-rails
   twitter-bootstrap-rails!
   uglifier (>= 1.0.3)
   underscore-rails

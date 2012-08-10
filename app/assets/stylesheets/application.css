@@ -12,6 +12,8 @@
  *= require jquery_ui_overrides
  *= require bootstrap_and_overrides
  *= require bootstrap/datepicker
+ *= require toastr
+ *= require toastr-responsive
  *= require header_bootstrap
  *= require tables
  *= require accounts

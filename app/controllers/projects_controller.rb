@@ -65,7 +65,7 @@ class ProjectsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html {render layout: 'projects'}
       format.json { render json: @project }
     end
   end

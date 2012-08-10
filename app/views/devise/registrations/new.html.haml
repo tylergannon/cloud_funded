@@ -9,7 +9,6 @@
     = image_tag 'Button_FBConnect.png'
 
   = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-    = devise_error_messages!
     .field
       = f.label :first_name
       %br/

@@ -14,7 +14,7 @@
     %link(href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72")
     %link(href="images/apple-touch-icon.png" rel="apple-touch-icon-precomposed")
     %link(href="/favicon.ico" rel="shortcut icon")
-    = render partial: 'layouts/open_graph_data'
+    = render partial: 'shared/open_graph_data'
     = stylesheet_link_tag    "application", :media => "all"
     = csrf_meta_tags
     = javascript_include_tag "application"
@@ -23,14 +23,13 @@
   %body
     = render partial: 'layouts/facebook_sdk' unless Rails.env.test?
     = render partial: 'shared/header_nav'
-
     = yield :banner
-    .container
-      .content
-        .row
-          #flash.span3.offset2
-            = bootstrap_flash
-        = content_for?(:content) ? yield(:content) : yield
+    .row
+      .hide
+        = toast_flash
+      -# #flash.span3.offset2
+      -#   = bootstrap_flash
+    = content_for?(:content) ? yield(:content) : yield
   
     %footer
       %p 

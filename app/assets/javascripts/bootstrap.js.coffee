@@ -5,6 +5,15 @@ $ ->
   $('input.date').datepicker
     autoclose: true
   
+  if $('.toast.alert').length
+    toastr.warning $('.toast.alert').html()
+  if $('.toast.notice').length
+    toastr.success $('.toast.notice').html()
+    
+  toastr.options.timeOut = 8000
+  toastr.options.extendedTimeOut = 20000
+  
+  
 # $ ->
 #   $.rails.confirm = (message) ->
 #     $("#confirm_dialog > .modal-body").html("<p><i class='icon-warning-sign'></i> " + message + '</p>')
