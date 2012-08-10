@@ -109,7 +109,7 @@ CloudFunded::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   
   
-  config.action_mailer.default_url_options = { :host => 'www.cloudfunded.com' }
+  config.action_mailer.default_url_options = { :host => 'cloudfunded.com' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
 end
