@@ -4,6 +4,10 @@ class Project < ActiveRecord::Base
   include Workflow
   
   friendly_id :name, use: :slugged
+
+  def should_generate_new_friendly_id?
+    new_record? || name_changed?
+  end
   
   attr_accessible :about_your_product, :about_your_product_image, :address, :category_id, 
                   :completion_date, :description, :facebook, :fb_post_id, :financial_goal, 
