@@ -1,7 +1,7 @@
 
 $ ->
   $('.like').on 'click', (e) ->
-    e.prefentDefault()
+    e.preventDefault()
     $this = $ this
     unless $this.data('disabled')?
       $.ajax 
