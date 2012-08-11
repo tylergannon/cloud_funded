@@ -115,6 +115,14 @@ class Project < ActiveRecord::Base
     state :rejected
   end
   
+  def accept
+    begin
+      OpenGraph::Launch.create member: self.owner, graph_object: self
+    rescue Exception => e
+      logger.error("Error creating launch action at FB: #{e.message}\n#{e.backtrace}")
+    end
+  end
+  
   def submitted?
     live? || rejected? || being_reviewed?
   end

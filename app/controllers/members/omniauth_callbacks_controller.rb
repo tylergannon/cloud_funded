@@ -95,7 +95,7 @@ class Members::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       last_name: facebook_info.info.last_name,
       fb_token: facebook_info.credentials.token}
     
-    @member.save
+    @member.save!
     
     flash[:notice] = 'Welcome back!'
 
