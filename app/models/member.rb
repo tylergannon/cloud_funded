@@ -19,6 +19,8 @@ class Member < ActiveRecord::Base
     end
   end
   
+  has_many :open_graph_actions, class_name: 'OpenGraph::Action', dependent: :destroy
+  
   belongs_to :twitter_login, class_name: 'Members::TwitterLogin', foreign_key: 'twitter_login_id'
   
   # Include default devise modules. Others available are:
@@ -33,6 +35,10 @@ class Member < ActiveRecord::Base
 
   after_create do |member|
     Projects::Role.where(member_id: nil, email_address: member.email).update_all member_id: member.id
+  end
+  
+  def like?(object)
+    !!!open_graph_actions.where(graph_object_type: object.class.name, graph_object_id: object.id).empty?
   end
   
   def linked_to_dwolla?

@@ -1,4 +1,9 @@
 CloudFunded::Application.routes.draw do
+
+  namespace :open_graph do 
+    resources :actions 
+  end
+
   # Static Pages
   match '/how-it-works' => 'static_pages#how_it_works', as: :how_it_works
   match '/about' => 'pages#show', id: 'about'
