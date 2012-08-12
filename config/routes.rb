@@ -1,7 +1,11 @@
 CloudFunded::Application.routes.draw do
 
   namespace :open_graph do 
-    resources :actions 
+    resources :actions do
+      collection do
+        post :follow
+      end
+    end
   end
 
   # Static Pages
