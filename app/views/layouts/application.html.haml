@@ -29,8 +29,7 @@
         = toast_flash
       -# #flash.span3.offset2
       -#   = bootstrap_flash
-    = content_for?(:content) ? yield(:content) : yield
-  
+    .container-fluid= content_for?(:content) ? yield(:content) : yield
     %footer
       %p 
         &copy; Cloudfunded 2012 &nbsp; &nbsp; &nbsp;

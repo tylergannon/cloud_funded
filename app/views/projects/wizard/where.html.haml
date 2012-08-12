@@ -1,8 +1,6 @@
 = render partial: 'application_header'
-.project_wizard.edit_project
-  = form_for @project, builder: MoneyFormBuilder, url: wizard_path do |f|
+.project_wizard.edit_project.offset2
+  = form_for @project, builder: MoneyFormBuilder, class: 'form form-inline', url: wizard_path do |f|
     %h1 Cool, Where is it located?
-    .field
-      = render partial: 'projects/location_form', locals: {f: f}
-      = f.submit 'Save and Continue'
-
+    = render partial: 'projects/location_form', locals: {f: f}
+    .control-group= f.submit 'Save and Continue'

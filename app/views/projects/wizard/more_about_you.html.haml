@@ -1,26 +1,26 @@
 = render partial: 'application_header'
-.project_wizard.more_about_you
+.project_wizard.more_about_you.span6.offset2
   %h1 More About Your Company
   = form_for @project, url: wizard_path do |f|
     .field.about_your_product
       %h2 Tell Us About Your Company
       %p What does your company do?  What is your product or service?  How will funding help, and what will you do with the money?
-      = f.text_area :about_your_product
+      = f.text_area :about_your_product, rows: 6
       = render partial: 'upload_field', locals: {field: :about_your_product_image}
     .field
       %h2 How Does It Help?
       %p In what ways does your product or service change or enhance lives or communities or places?  Who is affected by it?
-      = f.text_area :how_it_helps
+      = f.text_area :how_it_helps, rows: 6
       = render partial: 'upload_field', locals: {field: :how_it_helps_image}
     .field
       %h2 Your Target Market
       %p Who will purchase your product or service?  How will you speak to them?  What makes you think they will buy it?
-      = f.text_area :your_target_market
+      = f.text_area :your_target_market, rows: 6
       = render partial: 'upload_field', locals: {field: :your_target_market_image}
     .field
       %h2 History
       %p Tell us a story about how this came to be.  Who are you?  What other sources of investment do you have?  Who are you collaborating with, and what other resources are you utilizing?
-      = f.text_area :history
+      = f.text_area :history, rows: 6
       = render partial: 'upload_field', locals: {field: :history_image}
     .field
       = f.submit 'Save and Continue', class: 'nobg'
