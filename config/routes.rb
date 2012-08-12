@@ -3,7 +3,7 @@ CloudFunded::Application.routes.draw do
   namespace :open_graph do 
     resources :actions do
       collection do
-        post :follow
+        get :follow
       end
     end
   end
