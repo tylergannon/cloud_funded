@@ -1,5 +1,7 @@
 CloudFunded::Application.routes.draw do
 
+  namespace :members do  namespace :updates do resources :updates end end
+
   namespace :open_graph do 
     resources :actions do
       collection do

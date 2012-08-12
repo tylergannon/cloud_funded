@@ -2,6 +2,13 @@ class Member < ActiveRecord::Base
   extend FriendlyId
   friendly_id :full_name, use: :slugged
   
+  has_and_belongs_to_many :followed_projects, class_name: 'Project' do
+    def <<(project)
+      super(project)
+      Members::Updates::FollowUpdate.create member: project.owner, project: project, follower: proxy_association.owner
+    end
+  end
+  
   has_many :projects, foreign_key: :owner_id, dependent: :destroy do
     def live
       where(workflow_state: 'live')
