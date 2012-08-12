@@ -37,7 +37,7 @@ $ ->
           $this.children().html('Shared!')
           $this.addClass('disabled')
         error: (jqXHR, textStatus, errorThrown) ->
-          bootbox.alert(errorThrown)
+          bootbox.alert("There was an error posting to Facebook.  We have logged it and will look into it!")
 
 createOpenGraphAction = (type, object_type, object_id, action_id, callbacks) ->
   $.ajax

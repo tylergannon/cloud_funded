@@ -1,2 +1,3 @@
-= link_to '#', class: 'launch btn btn-large btn-danger', data: {access_token: current_member.fb_token, object_url: project_url(project), object_type: project.class.name, object_id: project.id} do
-  .h3 Launch It!
+= link_to '#', class: "launch btn btn-large btn-primary #{'disabled' unless @launch.nil?}", data: {access_token: current_member.fb_token, object_url: project_url(project), object_type: project.class.name, object_id: project.id} do
+  .h3= @launch.nil? ? 'Launch It!' : 'Launched!'
+
