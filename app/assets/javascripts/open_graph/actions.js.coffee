@@ -13,11 +13,9 @@ $ ->
         dataType: 'json'
         success: (data, textStatus, jqXHR) ->
           $this.data('disabled', true)
-          createOpenGraphAction 'OpenGraph::Like', $this.data('object-type'), $this.data('object-id'), data.id
           $img = $this.find('img')
           $img.attr 'src', $img.attr('src').replace('.png', '-disabled.png')
-          console.log('Got it!!!')
-          console.log(data.id)
+          createOpenGraphAction 'OpenGraph::Like', $this.data('object-type'), $this.data('object-id'), data.id
 
   $('.launch').on 'click', (e) ->
     e.preventDefault()
@@ -29,7 +27,17 @@ $ ->
           $this.addClass('disabled')
         error: (jqXHR, textStatus, errorThrown) ->
           bootbox.alert(errorThrown)
-          
+
+  $('.share_pledge').on 'click', (e) ->
+    e.preventDefault()
+    $this = $ this
+    unless $this.hasClass('disabled')
+      createOpenGraphAction 'OpenGraph::Pledge', $this.data('object-type'), $this.data('object-id'), '',
+        success: (data, textStatus, jqXHR) ->
+          $this.children().html('Shared!')
+          $this.addClass('disabled')
+        error: (jqXHR, textStatus, errorThrown) ->
+          bootbox.alert(errorThrown)
 
 createOpenGraphAction = (type, object_type, object_id, action_id, callbacks) ->
   $.ajax

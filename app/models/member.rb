@@ -41,6 +41,10 @@ class Member < ActiveRecord::Base
     !!!open_graph_actions.where(graph_object_type: object.class.name, graph_object_id: object.id).empty?
   end
   
+  def funded?(project)
+    pledges.map(&:project).include?(project)
+  end
+  
   def linked_to_dwolla?
     !dwolla_auth_token.blank?
   end

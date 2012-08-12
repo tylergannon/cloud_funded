@@ -18,6 +18,7 @@ FactoryGirl.define do
     long 12.12
     website_url 'http://www.thebeatles.com/'
     association :owner, factory: :member
+    visible true
     category {Projects::Category.first || FactoryGirl.create(:projects_category)}
   end
   

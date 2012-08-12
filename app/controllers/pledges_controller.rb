@@ -10,11 +10,15 @@ class PledgesController < ApplicationController
   end
 
   def show
-    authorize! :read, @pledge
-    respond_with @project, @pledge do |format|
-      format.html {
-        render action: 'show_my_pledge' unless params[:id]
-      }
+    unless @pledge
+      redirect_to new_project_pledge_path(@project)
+    else
+      authorize! :read, @pledge
+      respond_with @project, @pledge do |format|
+        format.html {
+          render action: 'show_my_pledge' unless params[:id]
+        }
+      end
     end
   end
 

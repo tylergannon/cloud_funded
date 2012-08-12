@@ -1,4 +1,10 @@
 class OpenGraph::Action < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
+  default_url_options[:host] = CloudFunded::Application.config.action_mailer.default_url_options[:host]
+  include HTTParty
+  format :json
+  base_uri 'https://graph.facebook.com'
+
   attr_accessible :action_id, :member_id, :type, :graph_object, :graph_object_id, :graph_object_type, :member
   belongs_to :member
   belongs_to :graph_object, polymorphic: true

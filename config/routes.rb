@@ -127,6 +127,7 @@ CloudFunded::Application.routes.draw do
 
   match '/:project_id/pledge(/:id)' => 'projects/pledge_wizard#show', as: :new_project_pledge, via: 'get'
   match '/:project_id/pledge(/:id)' => 'projects/pledge_wizard#update', via: 'put'
+  match '/:project_id/my_pledge(.:format)' => 'pledges#show', via: 'get', as: :project_my_pledge
 
   match '/projects/:project_id/perks/:id(.:format)' => 'projects/perks#update', via: :post
 

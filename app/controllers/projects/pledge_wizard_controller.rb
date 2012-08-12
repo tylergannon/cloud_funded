@@ -5,30 +5,38 @@ class Projects::PledgeWizardController < ApplicationController
   steps :amount, :payment_method, :dwolla, :cc, :share
 
   before_filter :authenticate_member!, :load_project
-  
+
+  def finish_wizard_path
+    project_my_pledge_path(@project)
+  end
+      
   def show
-    puts step.inspect + "\n*" * 10
-    case step
-    when :amount
-      @breadcrumbs = [['Amount + Perks', :amount]]
-    when :payment_method
-      @breadcrumbs = [['Amount + Perks', :amount], ['Payment Method', :payment_method]]
-    when :dwolla
-      @breadcrumbs = [['Amount + Perks', :amount], ['Payment Method', :payment_method], ['Pay with Dwolla', :dwolla]]
-      if current_member.linked_to_dwolla?
-        @funding_sources = Dwolla::User.me(current_member.dwolla_auth_token).funding_sources.select{|f|
-          f.verified
-        }.map{|f|
-          [f.name, f.id]
-        }
-        @funding_sources.unshift ['Dwolla Account', '']
+    if current_member.funded?(@project)
+      redirect_to project_my_pledge_path(@project)
+    else
+      puts step.inspect + "\n*" * 10
+      case step
+      when :amount
+        @breadcrumbs = [['Amount + Perks', :amount]]
+      when :payment_method
+        @breadcrumbs = [['Amount + Perks', :amount], ['Payment Method', :payment_method]]
+      when :dwolla
+        @breadcrumbs = [['Amount + Perks', :amount], ['Payment Method', :payment_method], ['Pay with Dwolla', :dwolla]]
+        if current_member.linked_to_dwolla?
+          @funding_sources = Dwolla::User.me(current_member.dwolla_auth_token).funding_sources.select{|f|
+            f.verified
+          }.map{|f|
+            [f.name, f.id]
+          }
+          @funding_sources.unshift ['Dwolla Account', '']
+        end
+      when :cc
+        @breadcrumbs = [['Amount + Perks', :amount], ['Payment Method', :payment_method], ['Pay with Credit Card', :cc]]
       end
-    when :cc
-      @breadcrumbs = [['Amount + Perks', :amount], ['Payment Method', :payment_method], ['Pay with Credit Card', :cc]]
-    end
     
-    authorize! :edit, @pledge
-    render_wizard
+      authorize! :edit, @pledge
+      render_wizard
+    end
   end
   
   def update
@@ -74,16 +82,15 @@ class Projects::PledgeWizardController < ApplicationController
       end
       render_wizard(@pledge)
     rescue Stripe::CardError => e
-      flash[:payment_error] = e.message
+      flash[:alert] = e.message
       # puts e.inspect
       render :cc
     rescue Exception => e
-      flash[:payment_error] = e.message
+      flash[:alert] = e.message
       # puts e.inspect
       render :cc
     end
   end
-  
   
   def load_project
     @project = params[:project_id] ? 

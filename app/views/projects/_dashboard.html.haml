@@ -34,6 +34,9 @@
         .metric
           %span.large= (@project.end_date - Date.today).to_i
           %span.small Days Left
-    
-        = link_to new_project_pledge_path(@project), id: 'new_pledge' do
-          .yellow.button1.large Fund this!
+        - if member_signed_in? && current_member.funded?(@project)
+          = link_to project_my_pledge_path(@project) do
+            .yellow.button1.large My Pledge
+        - else
+          = link_to new_project_pledge_path(@project), id: 'new_pledge' do
+            .yellow.button1.large Fund this!

@@ -1,4 +1,38 @@
-# require 'spec_helper'
+require 'spec_helper'
+
+describe PledgesController do
+  render_views
+  before :each do
+    sign_in_as_member
+    @project = FactoryGirl.create :live_project
+  end
+  describe "get #show" do
+    describe "when I am viewing it as a singleton" do
+      describe "and I have not made a pledge" do
+        it "should redirect to the new pledge page" do
+          get :show, project_id: @project.to_param
+          response.should redirect_to(new_project_pledge_path(@project))
+        end
+      end
+      describe "and I have made a pledge" do
+        before :each do
+          @pledge = FactoryGirl.create :pledge_paid_by_cc, project: @project, investor: @member
+          get :show, project_id: @project.to_param
+        end
+        
+        it "should render the show template" do
+          response.should render_template('show')
+        end
+        
+        it "should load the correct pledge" do
+          assigns(:pledge).should == @pledge
+        end
+      end
+    end
+  end
+end
+
+
 # 
 # describe PledgesController do
 #   render_views

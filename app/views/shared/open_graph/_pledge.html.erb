@@ -1,0 +1,6 @@
+
+<%= link_to '#', class: 'share_pledge btn btn-large btn-primary', data: {access_token: current_member.fb_token, object_url: project_url(project), object_type: project.class.name, object_id: project.id} do %>
+  
+  <h3>Share on FB!</h3>
+<% end %>
+
