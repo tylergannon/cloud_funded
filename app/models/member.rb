@@ -45,7 +45,7 @@ class Member < ActiveRecord::Base
   end
   
   def like?(object)
-    !!!open_graph_actions.where(graph_object_type: object.class.name, graph_object_id: object.id).empty?
+    @like ||= !OpenGraph::Like.where(member_id: self.id, graph_object_type: object.class.name, graph_object_id: object.id).empty?
   end
   
   def funded?(project)
