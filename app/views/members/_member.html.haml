@@ -1,4 +1,4 @@
 .member
   = link_to profile_path(member) do
-    = image_tag member.profile_pic
+    = image_tag member.profile_pic unless member.profile_pic.blank?
     .name= member.full_name
