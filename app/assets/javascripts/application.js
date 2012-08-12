@@ -25,6 +25,7 @@
 //= require bootstrap/typeahead
 //= require bootstrap
 //= require toastr
+//= require open_graph/actions
 //= require 3rd_party/jQuery-ZenCoding
 //= require 3rd_party/jquery.html5_upload.js
 //= require accounts

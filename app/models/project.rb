@@ -4,6 +4,10 @@ class Project < ActiveRecord::Base
   include Workflow
   
   friendly_id :name, use: :slugged
+
+  def should_generate_new_friendly_id?
+    new_record? || name_changed?
+  end
   
   attr_accessible :about_your_product, :about_your_product_image, :address, :category_id, 
                   :completion_date, :description, :facebook, :fb_post_id, :financial_goal, 
@@ -113,6 +117,14 @@ class Project < ActiveRecord::Base
     
     state :live
     state :rejected
+  end
+  
+  def accept
+    begin
+      OpenGraph::Launch.create member: self.owner, graph_object: self
+    rescue Exception => e
+      logger.error("Error creating launch action at FB: #{e.message}\n#{e.backtrace}")
+    end
   end
   
   def submitted?

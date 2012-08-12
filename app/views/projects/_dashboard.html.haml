@@ -3,13 +3,11 @@
   %h2.tagline= @project.tagline
   .span7 
     .titleinfo
-      
     .dashboard_image_wrapper
       = image_tag @project.image.url(:large), width: 'auto', height: 'auto'
     .social
       .social-links.align-center
-        .link.facebook
-          .fb-like{data: {href: project_url(@project), send: "true", width: 375, show_faces: "false"}}
+        = render partial: 'shared/open_graph/like', locals: {project: @project}
         .link.pin-it
           %a.pin-it-button{"count-layout" => "none", :href => "http://pinterest.com/pin/create/button/?url=#{project_url(@project)}?_s=4477&amp;media=#{@project.image.url(:large)}&amp;description=#{@project.name} - #{@project.tagline}", :target => "_blank"}
             %img{:border => "0", :src => "//assets.pinterest.com/images/PinExt.png", :title => "Pin It"}/

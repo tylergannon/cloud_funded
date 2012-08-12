@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_member!, except: [:index, :show]
+  load_and_authorize_resource :only => [:sharing, :mercury_update]
   respond_to :html, :json
   layout 'application'
   
@@ -24,11 +25,11 @@ class ProjectsController < ApplicationController
     end
   end
   
-  def share
-    @project = Project.find(params[:id])
-    respond_with @project
+  def sharing
+    @launch = OpenGraph::Launch.for_project(@project)
+    respond_with( @project ){|format| format.html {render layout: 'edit_projects'}}
   end
-  
+
   def mercury_update
     @project = Project.find(params[:id])
     authorize! :manage, @project

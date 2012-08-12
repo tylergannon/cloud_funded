@@ -31,12 +31,4 @@
       -#   = bootstrap_flash
     .container-fluid= content_for?(:content) ? yield(:content) : yield
     %footer
-      %p 
-        &copy; Cloudfunded 2012 &nbsp; &nbsp; &nbsp;
-        %a(href="https://www.facebook.com/CloudFunded")Like us on Facebook
-        &nbsp; &nbsp; &nbsp; 
-        %a(href="http://twitter.com/cloudfunded")Follow us on Twitter
-        &nbsp; &nbsp; &nbsp;
-
-      
-      
+      = render partial: 'shared/footer'

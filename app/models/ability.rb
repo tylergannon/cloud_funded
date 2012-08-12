@@ -5,22 +5,26 @@ class Ability
     if member
       if member.admin
         can :manage, :all
-      else
-        can :read, Project, owner_id: member.id
+        can :see, :facebook_actions
+      end
       
-        can :create, Project
-        can :manage, Projects::Perk, project: {owner_id: member.id}
-        can :create, Feedback
-        can :edit, Project, owner_id: member.id
-        can :create, Pledge
-        can :edit, Pledge, investor_id: member.id
-        can :manage, Pledge, investor_id: member.id
-        can :manage, Pledge, project: {owner_id: member.id}
-        can :destroy, Comment, member_id: member.id
-        can :edit, Member, id: member.id        
-        can :manage, Article, project: {owner_id: member.id}
-        can [:read, :create, :edit, :destroy], Projects::Role, project: {owner_id: member.id}
-        can :manage, Projects::Role, member_id: member.id
+      can :read, Project, owner_id: member.id
+      can :manage, OpenGraph::Action, member_id: member.id
+      can :create, Project
+      can :manage, Projects::Perk, project: {owner_id: member.id}
+      can :create, Feedback
+      can :edit, Project, owner_id: member.id
+      can :create, Pledge
+      can :edit, Pledge, investor_id: member.id
+      can :manage, Pledge, investor_id: member.id
+      can :manage, Pledge, project: {owner_id: member.id}
+      can :destroy, Comment, member_id: member.id
+      can :edit, Member, id: member.id        
+      can :manage, Article, project: {owner_id: member.id}
+      can [:read, :create, :edit, :destroy], Projects::Role, project: {owner_id: member.id}
+      can :manage, Projects::Role, member_id: member.id
+      if member.first_name == 'Facebook'
+        can :see, :facebook_actions
       end
     end
     

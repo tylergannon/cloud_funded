@@ -1,6 +1,5 @@
-// Place all the styles related to the projects controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "twitter/bootstrap/variables.less";
+@import "twitter/bootstrap/mixins.less";
 
 
 @fb-like-width: 300px;
@@ -165,6 +164,7 @@
 }
 
 
+@accordion-border: 1px solid @grayLight;
 
 .edit_project {
   form {
@@ -177,6 +177,24 @@
       margin-bottom: 15px;
       border: 2px dotted gray;
       border-radius: 5px;
+    }
+  }
+  #accordion {
+    background: @grayLighter;
+    border: @accordion-border;
+    .border-radius(3px);
+    .accordion-heading {
+      i {
+        width: 30px;
+      }
+      a:link {
+        text-decoration: none;
+      }
+      border-bottom: @accordion-border;
+      border-top: @accordion-border;
+    }
+    .accordion-inner {
+      margin: 25px;
     }
   }
 }

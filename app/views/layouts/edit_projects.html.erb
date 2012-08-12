@@ -12,7 +12,7 @@
   </div>
   <div class="container">
     <div class="row">
-      <div class="span2 offset1 nav shadow">
+      <div class="span2 nav shadow">
         <ul class="nav nav-pills nav-stacked">
           <li>
             <%= link_to 'Main Settings', edit_project_path(@project) %>
@@ -23,6 +23,10 @@
           <li>
             <%= link_to 'Team Members', project_roles_path(@project) %>
           </li>
+          <% if @project.live? %>
+            <li><%= link_to 'Sharing', sharing_project_path(@project) %></li>
+          <% end %>
+          
         </ul>
       </div>
       <div class="span9">
