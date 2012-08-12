@@ -79,7 +79,7 @@ class Project < ActiveRecord::Base
   
   validate do |project|
     unless project.new?
-      if project.financial_goal_cents > 1000000 * 100
+      if project.financial_goal_cents && (project.financial_goal_cents > 1000000 * 100)
         project.errors.add :financial_goal, "Should be less than 1 million."
       end
     end
