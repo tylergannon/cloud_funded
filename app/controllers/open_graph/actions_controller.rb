@@ -1,6 +1,6 @@
 class OpenGraph::ActionsController < ApplicationController
   respond_to :json
-  before_filter :authenticate_member!
+  before_filter :authenticate_member!, except: [:follow]
   
   def follow
     File.open('follow.yml', 'w') {|f|
