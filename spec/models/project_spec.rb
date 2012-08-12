@@ -39,6 +39,20 @@ describe Project do
         subject.update_attributes workflow_state: :live
       }.to raise_error
     end
+    
+    describe "when going live" do
+      before :each do
+        @project = FactoryGirl.create :live_project, workflow_state: 'being_reviewed'
+      end
+      it "should create a launch action" do
+        
+        OpenGraph::Launch.should_receive(:create).with( {
+          member: @project.owner,
+          graph_object: @project}).and_return true
+        @project.accept!
+        
+      end
+    end
   end
   
   describe "#start_date" do

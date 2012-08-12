@@ -1,0 +1,81 @@
+<%= f.control_group_text_field :name, 
+    label: 'Name of Project', popover: 
+    { placement: 'right', title: 'Project Name',
+      content: 'Should be short, catchy and memorable... like, the name of your company.',
+      trigger: 'focus'} %>
+
+<div class="control-group">
+  <%= f.label :financial_goal, "Financial Goal", :class => 'control-label' %>
+  <div class="controls">
+    <%= f.money_field :financial_goal, :class => 'input-large',
+      rel: 'popover', data: {
+        placement: 'right',
+        original_title: 'Financial Goal',
+        content: 'The amount of money you need for your business venture.',
+        trigger: 'focus'
+      }
+     %>
+  </div>
+</div>
+<%= f.control_group_text_field :tagline, popover: {
+  content: 'Short and catchy.  In how few words can you get people to remember who you are and why they care?', trigger: :focus
+}%>
+<div class="control-group">
+  <%= f.label :slug, "Url Part", :class => 'control-label' %>
+  <div class="controls">
+    <div class="input-prepend"><span class="add-on">http://cloudfunded.com/</span><%= f.text_field :slug, :class => 'input-small',
+        rel: 'popover', data: {
+          placement: 'right',
+          original_title: 'Url Part',
+          content: 'Makes the url to your project e.g. cloudfunded.com/my-company.  Combination of letters, numbers and dashes.  
+          <br/>You\'ll want to leave it alone after starting to publicize.',
+          trigger: 'focus'
+        }
+       %>
+    </div>
+  </div>
+</div>
+<%= f.control_group_collection_select :category_id, Projects::Category.all, :id, :name, {prompt: "What kind of company is it?"}, {label: "Category"}
+
+
+ %>
+<div class="control-group">
+  <%= f.label :start_date, "Start Date", :class => 'control-label' %>
+  <div class="controls">
+    <%= f.date_field :start_date, :class => 'input-large',
+      rel: 'popover', data: {
+        placement: 'right',
+        original_title: 'Start Date',
+        content: 'The date your campaign goes live.  Can\'t be changed after your campaign goes live',
+        trigger: 'focus'
+      }
+     %>
+  </div>
+</div>
+<div class="control-group">
+  <%= f.label :end_date, "End Date", :class => 'control-label' %>
+  <div class="controls">
+    <%= f.date_field :end_date, :class => 'input-large',
+      rel: 'popover', data: {
+        placement: 'right',
+        original_title: 'End Date',
+        content: 'The date your campaign will end.  Can\'t be changed after your campaign goes live',
+        trigger: 'focus'
+      }
+     %>
+  </div>
+</div>
+<%= f.control_group_number_field :days, :class => 'input-small number', disabled: true%>
+<div class="control-group">
+  <%= f.label :visible, "Visible", :class => 'control-label' %>
+  <div class="controls">
+    <%= f.check_box :visible,
+      rel: 'popover', data: {
+        placement: 'right',
+        original_title: 'Visible',
+        content: 'Uncheck this box and your campaign will disappear from the listings.',
+        trigger: 'hover'
+      }
+     %>
+  </div>
+</div>

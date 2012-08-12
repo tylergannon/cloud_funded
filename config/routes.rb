@@ -60,7 +60,10 @@ CloudFunded::Application.routes.draw do
   
 
   resources :projects, path_names: {edit: :settings, :new => :fund_yours} do
-    member {put :mercury_update}
+    member do 
+      put :mercury_update
+      get :sharing
+    end
     resource :facebook_action
     resources :attachments, controller: 'admin/attachments'
     resource :my_pledge, controller: :pledges
