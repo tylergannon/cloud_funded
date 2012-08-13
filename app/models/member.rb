@@ -2,6 +2,13 @@ class Member < ActiveRecord::Base
   extend FriendlyId
   friendly_id :full_name, use: :slugged
   
+  has_and_belongs_to_many :followed_projects, class_name: 'Project' do
+    def <<(project)
+      super(project)
+      Members::Updates::FollowUpdate.create member: project.owner, project: project, follower: proxy_association.owner
+    end
+  end
+  
   has_many :projects, foreign_key: :owner_id, dependent: :destroy do
     def live
       where(workflow_state: 'live')
@@ -19,6 +26,8 @@ class Member < ActiveRecord::Base
     end
   end
   
+  has_many :open_graph_actions, class_name: 'OpenGraph::Action', dependent: :destroy
+  
   belongs_to :twitter_login, class_name: 'Members::TwitterLogin', foreign_key: 'twitter_login_id'
   
   # Include default devise modules. Others available are:
@@ -33,6 +42,14 @@ class Member < ActiveRecord::Base
 
   after_create do |member|
     Projects::Role.where(member_id: nil, email_address: member.email).update_all member_id: member.id
+  end
+  
+  def like?(object)
+    @like ||= !OpenGraph::Like.where(member_id: self.id, graph_object_type: object.class.name, graph_object_id: object.id).empty?
+  end
+  
+  def funded?(project)
+    pledges.map(&:project).include?(project)
   end
   
   def linked_to_dwolla?

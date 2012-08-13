@@ -1,4 +1,5 @@
 = render partial: 'application_header'
+<<<<<<< HEAD
 .project_wizard.container-fluid
   .row
     .span8
@@ -18,3 +19,23 @@
           = f.money_field :financial_goal
         .field
           = f.submit 'Save and Continue'
+=======
+.project_wizard.row
+  .span6.offset2
+    %h1 Company Basics
+    = form_for @project, builder: MoneyFormBuilder, url: wizard_path do |f|
+      .field
+        = f.text_field :name, placeholder: "Your Company Name", :class => 'span6'
+      .field
+        = f.text_field :tagline, placeholder: 'Tagline / Catch Phrase', :class => 'span6'
+      = render partial: 'projects/project_image_upload'
+      .field
+        = f.collection_select :category_id, Projects::Category.all, :id, :name, {prompt: "What kind of company is it?"}, {:class => 'span6'}
+      .field
+        = f.text_area :short_description, placeholder: 'A brief description of your company', :class => 'span6', rows: 6
+      .field.financial_goal
+        = f.label :financial_goal
+        = f.money_field :financial_goal
+      .field
+        = f.submit 'Save and Continue'
+>>>>>>> 2eaaa7dd77a45b0da3d675b6201916d12be37e6d

@@ -5,6 +5,7 @@ describe Member do
   it {should have_many(:transactions)}
   it {should have_many(:roles)}
   it {should belong_to(:twitter_login)}
+  it {should have_many(:open_graph_actions)}
   
   describe "#linked_to_dwolla" do
     describe "when there is a dwolla auth token" do
@@ -19,7 +20,21 @@ describe Member do
         subject.should be_linked_to_dwolla
       end
     end
-    
+  end
+  
+  describe "#like?" do
+    subject {FactoryGirl.create :member}
+    before :each do
+      @graph_object = FactoryGirl.create :project
+      @action = FactoryGirl.create :open_graph_action, graph_object: @graph_object, member: subject
+      subject.reload
+    end
+    it "should like the object" do
+      subject.like?(@graph_object).should be_true
+    end
+    it "should not like some other project" do
+      subject.like?(FactoryGirl.create :project).should be_false
+    end
   end
   
   describe "full_name" do

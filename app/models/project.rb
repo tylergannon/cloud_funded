@@ -4,35 +4,48 @@ class Project < ActiveRecord::Base
   include Workflow
   
   friendly_id :name, use: :slugged
+
+  def should_generate_new_friendly_id?
+    new_record? || name_changed?
+  end
   
-  attr_accessible :about_your_product, :about_your_product_image, :address, :category_id, 
-                  :completion_date, :description, :facebook, :fb_post_id, :financial_goal, 
-                  :financial_goal_string, :google_places, :google_plus, :history, :history_image, 
-                  :how_it_helps, :how_it_helps_image, :image, :lat, :linkedin_business, 
-                  :linkedin_profile, :long, :name, :owner, :perks_attributes, :pledges, 
-                  :post_to_fb, :short_description, :tagline, :website_url, :yelp, 
-                  :your_target_market, :your_target_market_image, :youtube_url, :slug,
-                  :start_date, :end_date, :days, :start_date_string, :end_date_string,
-                  :street_number, :route, :city, :county, :state, :postal_code, :information_text, :visible
+  attr_accessible :about_your_product, :about_your_product_image, :address, :category_id, :city, 
+                  :completion_date, :county, :days, :description, :end_date, :end_date_string, :facebook, 
+                  :fb_post_id, :financial_goal, :financial_goal_string, :google_places, :google_plus, 
+                  :history, :history_image, :how_it_helps, :how_it_helps_image, :image, :information_text, 
+                  :lat, :linkedin_business, :linkedin_profile, :long, :name, :owner, :perks_attributes, 
+                  :pledges, :post_to_fb, :postal_code, :route, :short_description, :slug, :start_date, 
+                  :start_date_string, :state, :street_number, :tagline, :visible, :website_url, :yelp, 
+                  :your_target_market, :your_target_market_image, :youtube_url
   
   belongs_to :owner, class_name: 'Member'
   belongs_to :category, class_name: 'Projects::Category'
   has_many :attachments, as: :attachable, dependent: :destroy
+  has_and_belongs_to_many :followers, class_name: 'Member' do
+    def <<(member)
+      super(member)
+      Members::Updates::FollowUpdate.create member: proxy_association.owner.owner, project: proxy_association.owner, follower: member
+    end
+  end
+  
   has_many :roles, class_name: 'Projects::Role', dependent: :destroy do
     def confirmed
       where(workflow_state: 'confirmed')
     end
   end
+  
   has_many :pledges, dependent: :destroy do
     def paid
       where(workflow_state: 'paid')
     end
   end
+  
   has_many :articles, dependent: :destroy do
     def published
       where(workflow_state: 'published')
     end
   end
+  
   has_many :perks, class_name: 'Projects::Perk', dependent: :destroy
   
   accepts_nested_attributes_for :perks              
@@ -79,7 +92,7 @@ class Project < ActiveRecord::Base
   
   validate do |project|
     unless project.new?
-      if project.financial_goal_cents > 1000000 * 100
+      if project.financial_goal_cents && (project.financial_goal_cents > 1000000 * 100)
         project.errors.add :financial_goal, "Should be less than 1 million."
       end
     end
@@ -113,6 +126,14 @@ class Project < ActiveRecord::Base
     
     state :live
     state :rejected
+  end
+  
+  def accept
+    begin
+      OpenGraph::Launch.create member: self.owner, graph_object: self
+    rescue Exception => e
+      logger.error("Error creating launch action at FB: #{e.message}\n#{e.backtrace}")
+    end
   end
   
   def submitted?

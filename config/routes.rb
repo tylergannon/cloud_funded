@@ -1,4 +1,15 @@
 CloudFunded::Application.routes.draw do
+
+  namespace :members do  namespace :updates do resources :updates end end
+
+  namespace :open_graph do 
+    resources :actions do
+      collection do
+        get :follow
+      end
+    end
+  end
+
   # Static Pages
   match '/how-it-works' => 'static_pages#how_it_works', as: :how_it_works
   match '/about' => 'pages#show', id: 'about'
@@ -55,7 +66,10 @@ CloudFunded::Application.routes.draw do
   
 
   resources :projects, path_names: {edit: :settings, :new => :fund_yours} do
-    member {put :mercury_update}
+    member do 
+      put :mercury_update
+      get :sharing
+    end
     resource :facebook_action
     resources :attachments, controller: 'admin/attachments'
     resource :my_pledge, controller: :pledges
@@ -119,6 +133,7 @@ CloudFunded::Application.routes.draw do
 
   match '/:project_id/pledge(/:id)' => 'projects/pledge_wizard#show', as: :new_project_pledge, via: 'get'
   match '/:project_id/pledge(/:id)' => 'projects/pledge_wizard#update', via: 'put'
+  match '/:project_id/my_pledge(.:format)' => 'pledges#show', via: 'get', as: :project_my_pledge
 
   match '/projects/:project_id/perks/:id(.:format)' => 'projects/perks#update', via: :post
 

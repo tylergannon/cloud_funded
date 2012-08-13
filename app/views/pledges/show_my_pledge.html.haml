@@ -1,19 +1,17 @@
-%h3 You pledged #{number_to_currency(@pledge.amount)} to this project.
-.lame
-  Pledge posted to FB:
-  = @pledge.post_to_fb ? 'Yes' : 'No'
-.lame
-  List me as a supporter to this project:
-  = @pledge.public_viewable ? 'Yes' : 'No'
-.lame
-  Show my contribution amount:
-  = @pledge.public_amount ? 'Yes' : 'No'
+.container
+  .row
+    .span1 &nbsp;
+    = render partial: 'projects/project', object: @project
+    .span5
+      %h1 Thanks!
 
-    
-%h4 Share it with your friends!
+      %h3 For funding #{@project.name}
 
-= link_to 'Change Your Pledge', edit_project_my_pledge_path(@project)
-\|
-= link_to 'Remove Your Pledge', project_pledge_path(@project, @pledge), method: :delete, data: {confirm: 'Are you sure?'}
-%h4= link_to 'Back to Project', project_path(@project)
+      .graybox
+        %h3 Amount: $#{@pledge.amount}
+        %h3 Payment method: #{@pledge.payment_method == 'cc' ? 'Credit Card' : 'Dwolla'}
+        %h3 Gift: #{@pledge.perk.name}
 
+      %h1 Share with friends
+      %h3 and help #{@project.name} succeed!
+      = render partial: 'shared/open_graph/pledge', locals: {project: @project}
