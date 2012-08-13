@@ -49,5 +49,9 @@ createOpenGraphAction = (type, object_type, object_id, action_id, callbacks) ->
         graph_object_type: object_type
         graph_object_id: object_id
         action_id: action_id
-    success: callbacks.success || ->
-    error: callbacks.error || ->
+    success: (data, textStatus, jqXHR) ->
+      if callbacks? && callbacks.success?
+        callbacks.success(data, textStatus, jqXHR)
+    error: (data, textStatus, jqXHR) ->
+      if callbacks? && callbacks.error?
+        callbacks.error(data, textStatus, jqXHR)
