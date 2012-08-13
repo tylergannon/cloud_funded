@@ -1,7 +1,12 @@
 <%= content_for :content do %>
   <div class="row">
-    <div class="span6 offset1">
-      <h1>Campaign Administration</h1>
+    <div class="span1">
+      <%= link_to project_path(@project) do %>
+        <%= image_tag @project.image.url(:thumb)%>
+      <% end %>
+    </div>
+    <div class="span6 offset0">
+      <h1><%= link_to @project.name, project_path(@project) %> / Administration</h1>
     </div>
   </div>
   <div class="row">
@@ -22,6 +27,9 @@
           </li>
           <li>
             <%= link_to 'Team Members', project_roles_path(@project) %>
+          </li>
+          <li>
+            <%= link_to 'Project Administrators', project_admins_path(@project) %>
           </li>
           <% if @project.live? %>
             <li><%= link_to 'Sharing', sharing_project_path(@project) %></li>

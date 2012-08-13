@@ -1,4 +1,7 @@
 .project_page
+  - if can? :edit, @project
+    = link_to edit_project_path(@project), class: 'edit_project_banner' do
+      = image_tag 'projects/edit_my_project.png'
   = render partial: 'dashboard'
   .row
     .details.span8.mercury_container{data: {'save-url' => mercury_update_project_path(@project)}}

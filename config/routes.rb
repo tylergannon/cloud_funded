@@ -1,7 +1,5 @@
 CloudFunded::Application.routes.draw do
 
-  namespace :members do  namespace :updates do resources :updates end end
-
   namespace :open_graph do 
     resources :actions do
       collection do
@@ -70,6 +68,7 @@ CloudFunded::Application.routes.draw do
       put :mercury_update
       get :sharing
     end
+    resources :admins, controller: 'projects/admins'
     resource :facebook_action
     resources :attachments, controller: 'admin/attachments'
     resource :my_pledge, controller: :pledges

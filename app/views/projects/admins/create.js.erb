@@ -1,0 +1,3 @@
+$('#new_admin').modal('hide');
+$('#admins').append('<%= escape_javascript render partial: 'admin', object: @admin %>');
+bootbox.alert('<%= escape_javascript render(partial: 'created') %>')

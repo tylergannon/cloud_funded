@@ -16,8 +16,8 @@ class AccountsController < ApplicationController
   
   def search
     raise "I don't do nil" if params[:q].blank?
-    puts ["email like ? OR full_name like ?", "%#{params[:q]}%", "%#{params[:q]}%"].inspect
-    @members = Member.where("email like ? OR full_name like ?", "%#{params[:q]}%", "%#{params[:q]}%").
+    logger.debug ["email like ? OR full_name like ?", "%#{params[:q]}%", "%#{params[:q]}%"].inspect
+    @members = Member.where("normalized_email like ? OR normalized_full_name like ?", "%#{params[:q].downcase}%", "%#{params[:q].downcase}%").
                       select('full_name, profile_pic, id, slug').limit(10)
     respond_with @members
   end

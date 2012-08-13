@@ -1,0 +1,8 @@
+%h1 Project Administrators
+
+#admins.tab-pane.shadow
+  = link_to "Add An Admin", new_project_admin_path(@project, format: :js), data: {remote: true}
+  %br/
+  %br/
+  %br/
+  = render collection: @admins, partial: 'admin'

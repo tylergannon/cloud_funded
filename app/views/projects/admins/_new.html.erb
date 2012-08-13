@@ -1,0 +1,21 @@
+<div class="modal hide" id="new_admin">
+  <%= form_tag( project_admins_path(@project, format: :js), {remote: true}) do |f| -%>
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">×</button>
+      <h3>Add a Team Member</h3>
+    </div>
+    <div class="modal-body">
+      <div class="control-group" id="email_address_controls">
+        <%= hidden_field_tag :member_id %>
+        <div class="controls">
+          <%= text_field_tag :email_address, '', :class => 'input-xlarge', data: {provide: :typeahead} %>
+          <p class="help-block">Name or Email of the new project admin.</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+      <%= submit_tag "Save", :disable_with => 'Saving...', :class => "btn btn-primary disabled" %>
+    </div>
+  <% end -%>
+</div>

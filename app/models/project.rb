@@ -28,6 +28,8 @@ class Project < ActiveRecord::Base
     end
   end
   
+  has_and_belongs_to_many :admins, class_name: 'Member', join_table: 'projects_admins'
+  
   has_many :roles, class_name: 'Projects::Role', dependent: :destroy do
     def confirmed
       where(workflow_state: 'confirmed')

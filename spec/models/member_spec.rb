@@ -6,6 +6,38 @@ describe Member do
   it {should have_many(:roles)}
   it {should belong_to(:twitter_login)}
   it {should have_many(:open_graph_actions)}
+  it {should have_and_belong_to_many(:administered_projects)}
+  
+  describe "#normalized_email" do
+    it "should be the lowercase version of the email address" do
+      subject.email = "NiceBar@CCOOLio.com"
+      subject.normalized_email.should == "nicebar@ccoolio.com"
+    end
+  end
+  
+  describe "#abilities" do
+    subject {Ability.new(@member)}
+    before :each do
+      @member = FactoryGirl.create :member
+      @project = FactoryGirl.create :project
+    end
+    describe "when I am not an admin" do
+      it {should_not be_able_to(:edit, @project)}
+    end
+    describe "when I have been added as an admin" do
+      before :each do
+        @project.admins << @member
+      end
+      it {should be_able_to(:edit, @project)}
+    end
+  end
+  
+  describe "#normalized_full_name" do
+    it "should be the lowercase version of the full name" do
+      subject.full_name = "Tyler Gannon" 
+      subject.normalized_full_name.should == "tyler gannon"
+    end
+  end
   
   describe "#linked_to_dwolla" do
     describe "when there is a dwolla auth token" do

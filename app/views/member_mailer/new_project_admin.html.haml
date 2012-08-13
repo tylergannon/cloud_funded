@@ -1,0 +1,12 @@
+%h2 Hi #{@member.first_name}!
+%p
+  We're just writing to let you know that you have been added as an administrator on CloudFunded, for the #{@project.name} Fund Raising Campaign.  This means that you can publish updates, list team members, and view other details pertaining to the campaign.
+%p
+  Sign in to #{link_to 'CloudFunded', root_url} and go to my #{link_to 'the settings page', edit_project_url(@project)} to take part.
+%p  
+  Thanks and see you there!
+
+%p
+  Cheers,<br/>
+  The CloudFunded Staff
+  

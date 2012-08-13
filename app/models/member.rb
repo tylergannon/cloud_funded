@@ -8,6 +8,8 @@ class Member < ActiveRecord::Base
       Members::Updates::FollowUpdate.create member: project.owner, project: project, follower: proxy_association.owner
     end
   end
+
+  has_and_belongs_to_many :administered_projects, class_name: 'Project', join_table: 'projects_admins'
   
   has_many :projects, foreign_key: :owner_id, dependent: :destroy do
     def live
@@ -72,6 +74,16 @@ class Member < ActiveRecord::Base
   
   def project_application
     @project_application ||= projects.where("workflow_state <> 'live'").first || projects.create!
+  end
+  
+  def email=(email)
+    super(email)
+    self.normalized_email = email.downcase
+  end
+  
+  def full_name=(full_name)
+    super(full_name)
+    self.normalized_full_name = full_name.downcase
   end
   
   def pledge_for(project)

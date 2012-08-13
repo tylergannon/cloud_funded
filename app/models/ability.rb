@@ -14,6 +14,7 @@ class Ability
       can :manage, Projects::Perk, project: {owner_id: member.id}
       can :create, Feedback
       can :edit, Project, owner_id: member.id
+      can :edit, Project, id: member.administered_project_ids
       can :create, Pledge
       can :edit, Pledge, investor_id: member.id
       can :manage, Pledge, investor_id: member.id

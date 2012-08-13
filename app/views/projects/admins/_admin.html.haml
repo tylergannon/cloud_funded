@@ -1,0 +1,11 @@
+.admin.row[admin]
+  .span1
+    = link_to profile_path(admin) do
+      = image_tag admin.profile_pic
+  .span4
+    = link_to project_admin_path(@project.id, admin.id), class: 'tippy', rel: 'tooltip', title: 'Remove This Admin', method: :delete, data: {confirm: 'You really want to remove this administrator?', remote: true} do
+      %i.icon.icon-remove
+    .person
+      = link_to profile_path(admin) do
+        %span.name= admin.full_name
+  %hr/
