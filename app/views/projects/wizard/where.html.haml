@@ -1,5 +1,5 @@
 = render partial: 'application_header'
-.project_wizard.edit_project
+.project_wizard.edit_project.container-fluid
   = form_for @project, builder: MoneyFormBuilder, url: wizard_path do |f|
     %h1 Cool, Where is it located?
     .field
