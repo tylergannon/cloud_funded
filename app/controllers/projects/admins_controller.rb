@@ -1,6 +1,7 @@
 class Projects::AdminsController < ApplicationController
   before_filter :authenticate_member!, :load_project
   respond_to :js, :html
+  # layout 'edit_projects'
   
   def index
     @admins = @project.admins

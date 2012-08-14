@@ -29,6 +29,7 @@
         = toast_flash
       -# #flash.span3.offset2
       -#   = bootstrap_flash
-    .container-fluid= content_for?(:content) ? yield(:content) : yield
+    .container= content_for?(:content) ? yield(:content) : yield
     %footer
       .box.shadow.well= render partial: 'shared/footer'
+

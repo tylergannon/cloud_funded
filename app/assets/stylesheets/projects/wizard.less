@@ -1,12 +1,17 @@
-.project_wizard {
+@import "twitter/bootstrap/variables.less";
+@import "twitter/bootstrap/mixins.less";
+@import "colors.less";
 
-  
+.project_wizard {
   h1 {
     padding: 10px 0px;
-  
   }
   
- 
+  .projects_perk {
+    background: #f4f4f4;
+    border-radius: 6px;
+    margin: 10px;
+  }
   
   input {
     font-size: 16px;
@@ -96,35 +101,18 @@
     line-height: 19px;
     color: #333;
     text-decoration: none;
-
-    
-    }
-  
-   .btn {
-   
-   padding: 10px 20px;
-    
   }
-  
-
-    
-
-	
-
+   .btn {
+   padding: 10px 20px;
+  }
 }
-
 
 .information p{
-	background: white;
+	background: @grayLighter;
 	padding: 30px;
-
 }
 
-
 .project_wizard form, .information div{
-
-
-
 }
 
 textarea {
@@ -156,13 +144,6 @@ background: transparent;
         font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif;
 
 
-
-}
-
-.projects_perk {
-background: #f4f4f4;
-    border-radius: 6px;
-    margin: 10px;
 
 }
 

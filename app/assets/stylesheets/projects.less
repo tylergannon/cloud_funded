@@ -1,7 +1,6 @@
 @import "twitter/bootstrap/variables.less";
 @import "twitter/bootstrap/mixins.less";
 
-
 @fb-like-width: 300px;
 
 .project_page {
@@ -13,6 +12,7 @@
   .details {
     background:  #1a5984;
     padding: 20px;
+    .border-radius(5px);
     min-height: 300px;
     .project_perks {
     }
@@ -39,10 +39,7 @@
     }
   }
   
-
   .dashboard {
-
-    
     li {
       list-style-type: none;
     }
@@ -76,20 +73,11 @@
       font-weight: 300;
       border-bottom: 1px solid #ddd;
     }
-    
- 
-    
-    
     .right-pane {
      background: #ececec;
   //   width: 100%; 
      padding: 20px;
-     border-radius: 6px;
-     khtml-border-radius: 6px;
-     moz-border-radius: 6px;
-     ms-border-radius: 6px;
-     o-border-radius: 6px;
-     webkit-border-radius: 6px;
+     .border-radius(6px);
 	
      .fund_raising {
       .progress {
@@ -249,8 +237,6 @@ field.more_about_you {
   webkit-border-radius: 6px;
   background: #ececec;
 }
-
-
 
 .dashboard_image_wrapper {
   width: 100%;

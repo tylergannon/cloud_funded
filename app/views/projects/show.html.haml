@@ -4,7 +4,7 @@
       = image_tag 'projects/edit_my_project.png'
   = render partial: 'dashboard'
   .row
-    .details.span8.mercury_container{data: {'save-url' => mercury_update_project_path(@project)}}
+    .details.span7.mercury_container{data: {'save-url' => mercury_update_project_path(@project)}}
       #tab_container.btn-toolbar
         #tabs{data: {base_url: project_path(@project)}}
           %ul.btn-group
@@ -31,7 +31,6 @@
               - @project.pledges.paid.each do |pledge|
                 .pledge
                   = render pledge.investor
-                  
     #perks.perks.span3
       = render @project.perks
 
