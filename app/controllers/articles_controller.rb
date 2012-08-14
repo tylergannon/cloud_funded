@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   # GET /articles.xml
   def index
     @title = "Official CloudFunded Blog"
-    @articles = Article.where workflow_state: 'published'
+    @articles = Article.where(workflow_state: 'published', project_id: nil)
     respond_with(@articles) do |format|
     end
   end
