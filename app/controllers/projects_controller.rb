@@ -60,7 +60,7 @@ class ProjectsController < ApplicationController
     end
     authorize! :read, @project
 
-    if member_signed_in? && current_member == @project.owner
+    if can? :edit, @project
       @articles = @project.articles
       @roles    = @project.roles 
     else

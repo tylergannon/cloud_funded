@@ -17,6 +17,7 @@
  *= require header_bootstrap
  *= require tables
  *= require accounts
+ *= require projects/admins
  *= require admin/articles
  *= require admin/feedbacks
  *= require admin/pages

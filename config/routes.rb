@@ -62,6 +62,13 @@ CloudFunded::Application.routes.draw do
     resources :categories
   end
   
+  #  index
+  #  new
+  #  edit
+  #  create
+  #  show:    /projects/google
+  #  update:  post a form to make a change to a resource
+  #  delete
 
   resources :projects, path_names: {edit: :settings, :new => :fund_yours} do
     member do 
