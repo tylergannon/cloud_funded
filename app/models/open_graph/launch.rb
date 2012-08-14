@@ -16,6 +16,6 @@ class OpenGraph::Launch < OpenGraph::Action
   private
   before_validation do |launch_action|
     logger.debug "Going to do it!"
-    launch_action.action_id = self.launch(launch_action.graph_object)
+    launch_action.action_id = self.launch(launch_action.graph_object) unless launch_action.action_id
   end
 end

@@ -6,10 +6,10 @@ class OpenGraph::Pledge < OpenGraph::Action
   def pledge!
     self.class.action(:pledge, project_url(graph_object), member.fb_token, member.facebook_id)
   end
-  
+
   private
   before_validation do |pledge_action|
     logger.debug "Going to do it!"
-    pledge_action.action_id = self.pledge!
+    pledge_action.action_id = self.pledge! unless pledge_action.action_id
   end
 end

@@ -21,23 +21,28 @@ $ ->
     e.preventDefault()
     $this = $ this
     unless $this.hasClass('disabled')
-      createOpenGraphAction 'OpenGraph::Launch', $this.data('object-type'), $this.data('object-id'), '',
-        success: (data, textStatus, jqXHR) ->
-          $this.children().html('Launched!')
-          $this.addClass('disabled')
-        error: (jqXHR, textStatus, errorThrown) ->
-          bootbox.alert(errorThrown)
+      FB.api '/me/cloudfundeddev:launch', 'post', { campaign : $this.data('object-url') }, (response) ->
+        alert(response.id)
+        createOpenGraphAction 'OpenGraph::Launch', $this.data('object-type'), $this.data('object-id'), response.id,
+          success: (data, textStatus, jqXHR) ->
+            $this.children().html('Launched!')
+            $this.addClass('disabled')
+          error: (jqXHR, textStatus, errorThrown) ->
+            bootbox.alert(errorThrown)
+
 
   $('.share_pledge').on 'click', (e) ->
     e.preventDefault()
     $this = $ this
     unless $this.hasClass('disabled')
-      createOpenGraphAction 'OpenGraph::Pledge', $this.data('object-type'), $this.data('object-id'), '',
-        success: (data, textStatus, jqXHR) ->
-          $this.children().html('Shared!')
-          $this.addClass('disabled')
-        error: (jqXHR, textStatus, errorThrown) ->
-          bootbox.alert("There was an error posting to Facebook.  We have logged it and will look into it!")
+      FB.api '/me/cloudfundeddev:pledge', 'post', { campaign : $this.data('object-url') }, (response) ->
+        alert(response.id)
+        createOpenGraphAction 'OpenGraph::Pledge', $this.data('object-type'), $this.data('object-id'), response.id,
+          success: (data, textStatus, jqXHR) ->
+            $this.children().html('Shared!')
+            $this.addClass('disabled')
+          error: (jqXHR, textStatus, errorThrown) ->
+            bootbox.alert("There was an error posting to Facebook.  We have logged it and will look into it!")
 
 createOpenGraphAction = (type, object_type, object_id, action_id, callbacks) ->
   $.ajax
