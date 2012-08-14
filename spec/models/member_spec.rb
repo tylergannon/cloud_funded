@@ -32,6 +32,38 @@ describe Member do
     end
   end
   
+  describe "#funded?" do
+    before :each do
+      @member  = FactoryGirl.create :member
+      @project = FactoryGirl.create :project
+    end
+    describe "when I have pledged to a project" do
+      describe "when the pledge is paid" do
+        before :each do
+          FactoryGirl.create :pledge_paid_by_cc, project: @project, investor: @member
+          @member.reload
+        end
+        it "should be true" do
+          @member.funded?(@project).should be_true
+        end
+      end
+      describe "when the pledge is not paid" do
+        before(:each) do
+          FactoryGirl.create :pledge, project: @project, investor: @member
+          @member.reload
+        end
+        it "should be false" do
+          @member.funded?(@project).should be_false
+        end
+      end
+    end
+    describe "when I have not pledged to a project" do
+      it "should be false" do
+        @member.funded?(@project).should be_false
+      end
+    end
+  end
+  
   describe "#normalized_full_name" do
     it "should be the lowercase version of the full name" do
       subject.full_name = "Tyler Gannon" 

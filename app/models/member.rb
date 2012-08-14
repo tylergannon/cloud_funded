@@ -24,7 +24,7 @@ class Member < ActiveRecord::Base
   has_many :transactions, dependent: :destroy
   has_many :pledges, inverse_of: :investor, foreign_key: 'investor_id' do
     def paid
-      where(workflow_state: 'payment_received')
+      where(workflow_state: 'paid')
     end
   end
   
@@ -51,7 +51,7 @@ class Member < ActiveRecord::Base
   end
   
   def funded?(project)
-    pledges.map(&:project).include?(project)
+    pledges.paid.map(&:project).include?(project)
   end
   
   def linked_to_dwolla?

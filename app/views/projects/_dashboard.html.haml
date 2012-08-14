@@ -32,7 +32,7 @@
             %span.large= @project.percent_complete.to_s + '%'
             %span.small Funded
           .metric
-            %span.large= @project.pledges.count
+            %span.large= @project.pledges.paid.count
             %span.small Backers
           .metric
             %span.large= (@project.end_date - Date.today).to_i
