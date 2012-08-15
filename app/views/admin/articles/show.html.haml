@@ -8,7 +8,7 @@
   Description / Abstract (one line)
   .description#article_description.mercury-region{data: {mercury: :markdown}}!= @article.description
 
-- if @article.published
+- if @article.published?
   %h3= link_to 'Article is Published.', @article
 - else
   %h3 Article has not been published.  You need to publish it before it will appear on the live site.

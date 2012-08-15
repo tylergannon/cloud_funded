@@ -25,14 +25,13 @@
     = yield :head
   %body
     = render partial: 'layouts/facebook_sdk' unless Rails.env.test?
-    = render partial: 'shared/header_nav'
-    = yield :banner
-    .row
-      .hide
-        = toast_flash
-      -# #flash.span3.offset2
-      -#   = bootstrap_flash
-    .container= content_for?(:content) ? yield(:content) : yield
+    %header= render partial: 'shared/header_nav'
+    #banner= yield :banner
+    .container#container
+      .row
+        .hide
+          = toast_flash
+      = content_for?(:content) ? yield(:content) : yield
     %footer
       .box.shadow.well= render partial: 'shared/footer'
 
