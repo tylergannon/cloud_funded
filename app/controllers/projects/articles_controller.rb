@@ -30,7 +30,7 @@ class Projects::ArticlesController < ApplicationController
   def publish
     @article = @project.articles.find(params[:id])
     authorize! :edit, @article
-    @article.publish!
+    @article.publish! unless @article.published?
     respond_with @project, @article do |format|
       format.json {
         render text: ""

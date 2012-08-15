@@ -15,11 +15,9 @@
             %li.btn.btn-info{active_tab?('pledges')}= link_to 'Pledges', '#pledges', data: {toggle: 'tab'}
           .tab-content
             #info.tab-pane{active_tab?('info', true)}
-              .container
-                .span6#project_information.mercury-region{data: {mercury: :full}}!= @project.information_text
+              #project_information.mercury-region{data: {mercury: :full}}!= @project.information_text
+              
             #updates.tab-pane{active_tab?('updates')}
-              - if !!params[:mercury_frame] == true
-                = link_to "New Article", project_updates_path(@project, format: :js), data: {remote: true}, method: :post
               = render partial: 'projects/articles/update', collection: @articles
             #team.tab-pane{active_tab?('team')}
               - if !!params[:mercury_frame] == true
