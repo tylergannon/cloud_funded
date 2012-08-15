@@ -18,8 +18,6 @@
               .container
                 .span6#project_information.mercury-region{data: {mercury: :full}}!= @project.information_text
             #updates.tab-pane{active_tab?('updates')}
-              - if !!params[:mercury_frame] == true
-                = link_to "New Article", project_updates_path(@project, format: :js), data: {remote: true}, method: :post
               = render partial: 'projects/articles/update', collection: @articles
             #team.tab-pane{active_tab?('team')}
               - if !!params[:mercury_frame] == true
