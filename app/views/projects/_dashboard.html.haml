@@ -1,10 +1,11 @@
-.dashboard.container
+.dashboard
   .row
-    .span6
+    .span12.nomargin
       %h1.name= @project.name
-      %h2.tagline= @project.tagline
+      .ribbon
+        %h2.tagline.shadow= @project.tagline
   .row
-    .span7 
+    .span8.white.shadow.nomargin 
       .titleinfo
       .dashboard_image_wrapper
         = image_tag @project.image.url(:large), width: 'auto', height: 'auto'
@@ -15,8 +16,9 @@
           .link= linkedin_tag(@project)
           .link= twitter_button(@project)
           .clear
-    .span4
+    .span4.pixel20.nomargin
       .right-pane
+        %h3.centered SUPPORT
         .fund_raising
           %h3.amount-raised= number_to_currency(@project.amount_pledged, precision: 0)
           .subtitle RAISED OF #{number_to_currency(@project.financial_goal, precision: 0)} GOAL
@@ -36,4 +38,5 @@
               .yellow.button1.large My Pledge
           - else
             = link_to new_project_pledge_path(@project), id: 'new_pledge' do
-              .yellow.button1.large Fund this!
+              .clear
+              .btn.btn-large.btn-warning.cta Donate
