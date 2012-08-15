@@ -4,6 +4,20 @@
 @fb-like-width: 300px;
 
 .project_page {
+  .ribbon {
+  margin-bottom: -7px;
+  margin-right: 20px;
+  
+  }
+  h1.name {
+    color: #666;
+    font-size: 60px;
+    line-height:66px;
+    letter-spacing: -1px;
+    margin-top: 30px;
+    margin-bottom: 0px;
+    text-shadow: -1px -1px #fff;
+    }
 
 
   .edit_project_banner {
@@ -13,23 +27,19 @@
   }
   .details {
     margin: 0px;
-    background:  #1a5984;
- //   padding: 20px;
- //   .border-radius(5px);
+    padding: 0px;
     min-height: 300px;
-    .project_perks {
-    }
     .tab-pane {
       background: white;
       padding: 10px;
     }
     .btn {
-      padding: 10px;
+      padding: 8px 30px;
       a {
         color: #fff;
+        
         font-weight: bold;
-        padding: 20px;
-        font-size: 16px;
+        font-size: 14px;
       }
     }
     .update {
@@ -43,14 +53,11 @@
   }
   
   .dashboard {
-    li {
+     li {
       list-style-type: none;
     }
     
-    h1, h2 {
-        text-indent: 30px;
-    }
-
+ 
     .social {
       top: 0;
       .link {
@@ -65,36 +72,24 @@
       }
     }
     
-    h1 {
-      font-size: 40px;
-      line-height: 45px;
-      letter-spacing: -1px;
-      color: #333;
-      margin-top: 30px;
-      margin-bottom: 0px;
-    }
-    h2 {
-      margin: 20px 0px;
-      font-size: 18px;
-      line-height: 26px;
-      font-weight: 300;
-      border-bottom: 1px solid #ddd;
-    }
+
+
+
     .right-pane {
-//     background: #ececec;
-//     margin: 10px;
-     
-//    padding: 20px;
-  //   .border-radius(6px);
-	
-     .fund_raising {
-      .progress {
-          margin: 20px auto;
-        }
+      padding: 20px;
+      height: 325px;
+       
+      .cta {
+        padding-left: 80px;
+        padding-right: 80px;
       }
+      .fund_raising {
+        .progress {
+          margin: 20px auto;
+          }
+        }
       .metrics {
         height: 100px;
-     
         text-align: center;
         
         .metric {
@@ -137,14 +132,13 @@
   padding: 10px;
   h2 {
     font-size: 20px;
-   letter-spacing: -1px;
-   color: #333;
-   margin-top: 20px;
+    letter-spacing: -1px;
+    color: #333;
+    margin-top: 20px;
   }
   .description {
     font-size: 12px;
     line-height: 16px;
-
     text-overflow: ellipsis;
     }
   h2:hover {
@@ -159,9 +153,7 @@
   .website_link {
     padding-bottom: 6px;
   }
-
 }
-
 
 @accordion-border: 1px solid @grayLight;
 
@@ -247,13 +239,19 @@ field.more_about_you {
 }
 
 .dashboard_image_wrapper {
-    background: #fff;
-//  width: 100%;
-//  padding: 20px;
-  height: 350px;
+  text-align: center;
+    padding-top: 20px;
 
   text-align: center;
   
 }
 
 
+.perks {
+  .projects_perk {
+    border-top: 1px solid #f4f4f4;
+    border-bottom: 1px solid #ccc;
+  
+  }
+
+}

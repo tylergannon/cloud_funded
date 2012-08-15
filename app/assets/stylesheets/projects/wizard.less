@@ -1,22 +1,36 @@
 @import "twitter/bootstrap/variables.less";
 @import "twitter/bootstrap/mixins.less";
 @import "colors.less";
+.project_application_header {
+  h1.display {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: .15em;
+    margin: 10px 0 20px 0;
+   font-size: 24px;
+  }
+}
 
 .project_wizard {
-  h1 {
-    padding: 10px 0px;
-  }
+  background: #fff;
+  padding: 20px;
   
+  h1 {
+    padding: 40px 0px;
+    font-weight: 300;
+    font-size: 36px;
+    letter-spacing: 0px;
+    color: #b682a1;
+  }
   .projects_perk {
     background: #f4f4f4;
     border-radius: 6px;
     margin: 10px;
   }
-  
   input {
     font-size: 16px;
   }
-  
   .click_to_upload {
     z-index: 50;
     &:hover {
@@ -24,7 +38,6 @@
       border-color: #757575;
     }
   }
-  
   .edit_project {
     .field {
       margin-left: 0;
@@ -35,11 +48,6 @@
       ms-border-radius: 6px;
       o-border-radius: 6px;
       webkit-border-radius: 6px;
-      }
-    input[type=submit], select, option {
-     // height: 42px;
-     // font-size: 18px;
-     // line-height: 10px;
     }
     #project_name {
     //  font-size: 24pt;
@@ -53,22 +61,14 @@
       label {
     //    font-size: 22px;
       }
-      input, span {
-    //    height: 35px;
-    //    font-size: 22px;
-      }
+      
       span {
     //    line-height: 32px;
       }
     }
   }
   &.fund_raise {
-    label {
-    //  font-size: 16px;
-      color: #666;
-      font-weight: bold;
-    }
-  }
+   }
 }
 
 

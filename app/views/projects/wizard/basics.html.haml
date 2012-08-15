@@ -1,7 +1,7 @@
 = render partial: 'application_header'
-.project_wizard.row
-  .span6.offset2
-    %h1 Company Basics
+.project_wizard
+  %h1 Company Basics
+  .span8
     = form_for @project, builder: MoneyFormBuilder, url: wizard_path do |f|
       .field
         = f.text_field :name, placeholder: "Your Company Name", :class => 'span6'
