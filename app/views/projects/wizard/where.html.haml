@@ -1,5 +1,5 @@
 = render partial: 'application_header'
-.project_wizard.edit_project.offset2
+.project_wizard.edit_project
   = form_for @project, builder: MoneyFormBuilder, class: 'form form-inline', url: wizard_path do |f|
     %h1 Cool, Where is it located?
     = render partial: 'projects/location_form', locals: {f: f}

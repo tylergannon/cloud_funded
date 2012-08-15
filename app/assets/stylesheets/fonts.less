@@ -11,12 +11,38 @@
 
 body {
   margin: 0px auto;
-
+  font-family: 'Open Sans', sans-serif;  
   background: image-url('deboss.png') 0 0 repeat;
 }
 
-p {
-font-family: 'Open Sans', sans-serif;
+
+h3.centered {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: .15em;
+  margin: 10px 0 20px 0;
+  font-size: 18px;
+}
+
+.ribbon{
+  background: image-url('greyribbon.png') 0 0 no-repeat;
+  height: 45px;
+  color: #fff;
+  margin-left: -26px;
+  h2 {
+    margin-left: 30px;
+    background: #4b5a5d;
+    height: 26px;
+    padding: 6px 0px;
+    font-size: 30px;
+    color: #c3c3c3;
+    text-shadow: 1px 1px #394445;
+    font-size: 20px;
+    line-height: 26px;
+    font-weight: 300;
+    text-indent: 30px;
+  }
 
 }
 
@@ -27,39 +53,30 @@ font-family: 'Open Sans', sans-serif;
 
 /* Misc ---------------------- */
 .highlight { background: #ffff99; }
-aside p { font-size: 13px; line-height: 1.35; font-style: italic; }
+  aside p { font-size: 13px; line-height: 1.35; font-style: italic; }
 
 h1.display {
-//  font-family:'AdelleRegular';
-font-size: 60px;
-color: #666;
-text-shadow: -1px -1px #fff;
-letter-spacing: -1px;
-padding: 40px 0px 20px 0px;
-margin: 10px 0px 10px 0px;
-border-bottom: 1px solid #d4d4d4;
-
+  opacity:0.8;
+  filter:alpha(opacity=80); /* For IE8 and earlier */
+  color: #666;
+  text-shadow: -1px -1px #fff;
+  padding: 40px 0px 20px 0px;
+  margin: 10px 0px 10px 0px;
+  border-bottom: 1px solid #d4d4d4;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: .15em;
+  margin: 10px 0 20px 0;
+  font-size: 24px;
 }
-
 
 p {
-
-font-size: 14px;
-font-weight: normal;
-line-height: 20px;
-
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 20px;
 }
 
-
-//h2 { font-size: 37px; }
-
-//h3 { font-size: 27px; }
-
-//h4 { font-size: 23px; }
-
-//h5 { font-size: 17px; }
-
-//h6 { font-size: 14px; }
 
 hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0; }
 
@@ -67,9 +84,6 @@ hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px
 
 
 /* HEADER ---------------------- */
-
-
-
 
 
 i {
@@ -96,27 +110,20 @@ color: black;
     margin-right: 20px;
     text-align: right;
   }
-
-
-
 }
 
 
 
 
-.shadow
-{
-
-box-shadow: 0 0 15px rgba(0, 0, 0, 0.13);
--moz-box-shadow: 0 0 15px rgba(0,0,0,0.13);
--webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.13);
+.shadow {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.13);
+  -moz-box-shadow: 0 0 15px rgba(0,0,0,0.13);
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.13);
 }
-.white
-{
+.white {
   background-color: white;
 }
-.rounded
-{
+.rounded {
   border-radius: 6px;
   khtml-border-radius: 6px;
   moz-border-radius: 6px;
@@ -135,14 +142,7 @@ input[type="button"], input[type="submit"], input[type="reset"]
 }
 
 input[type="button"], input[type="submit"]:not(.btn), input[type="reset"], .cta {
-  white-space: pre;
-  display: inline-block;
-  color: #333 !important;
-  font-family:"helvetica neue",arial,helvetica,freesans,"liberation sans", sans-serif;
-  font-size: 25px;
-  line-height: 1em;
   font-weight: bold;
-  -webkit-font-smoothing: antialiased;
   text-decoration: none;
   text-align: center;
   text-shadow: 0 1px -1px yellow;
@@ -151,10 +151,7 @@ input[type="button"], input[type="submit"]:not(.btn), input[type="reset"], .cta 
   overflow: visible;
 //  min-width: 300px;
   padding: 18px 50px;
-  border: 4px solid #3078aa;
-  border-radius: 6px;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
+
   box-shadow: 0 1px 2px rgba(0, 0, 0, .25);
   -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.69);
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.69);
@@ -310,22 +307,21 @@ margin: 20px 20px 20px 0px;
 }
 
 footer {
-//margin: 0px auto;
-padding: 20px;
-//  background:  #1a5984;
-//  position: relative;
-//  bottom: 0;
-clear: both;
-
+  margin: 0px auto;
+  padding: 20px;
+  background:  #1a5984;
+  position: relative;
+  bottom: 0;
+  clear: both;
 }
 
 
 .article .body {
-width: 700px;
-min-height: 200px;
-border-style: none;
-border-width: 1px;
-border-color: transparent;
-border-radius: 8px;
-padding: 15px;
+  width: 700px;
+  min-height: 200px;
+  border-style: none;
+  border-width: 1px;
+  border-color: transparent;
+  border-radius: 8px;
+  padding: 15px;
 }
