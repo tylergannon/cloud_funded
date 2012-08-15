@@ -1,6 +1,6 @@
 .link.facebook
   - if can? :see, :facebook_actions
-    - unless current_member.like?(project)
+    - unless current_member.like?(project)` `
       = link_to '#', class: 'like', data: {access_token: current_member.fb_token, object_url: project_url(project), object_type: project.class.name, object_id: project.id} do
         = image_tag 'open_graph/like.png'
     - else

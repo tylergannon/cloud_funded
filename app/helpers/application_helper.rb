@@ -6,6 +6,34 @@ module ApplicationHelper
   def og_tag(name, content)
     %(<meta property="#{name}" content="#{content}"/>).html_safe
   end
+  
+  PINTEREST_URL_BASE = %(http://pinterest.com/pin/create/button/?)
+  def pinterest_url(project)
+    PINTEREST_URL_BASE +
+      {
+        url: project_url(project),
+        media: project.image.url(:original),
+        description: project.tagline
+      }.map{|key, val| "#{key}=#{u val}" }.join("&")
+  end
+  
+  def pinterest_tag(project)
+    link_to(pinterest_url(@project), class: 'pin-it-button', 'count-layout' => 'horizontal', target: '_blank') {
+      image_tag '//assets.pinterest.com/images/PinExt.png', title: 'Pin It', border: 0      
+    }.html_safe
+  end
+  
+  def linkedin_tag(project)
+    content_tag(:script, '', type: 'IN/Share', data: {url: project_url(project), counter: 'right'}).html_safe
+  end
+  
+  def like_button(project)
+    content_tag(:div, '', class: 'fb-like', data: {href: project_url(project), send: "false", width: 375, show_faces: "false"}).html_safe
+  end
+  
+  def twitter_button(project)
+    link_to('Tweet', 'https://twitter.com/share', class: 'twitter-share-button', data: {url: project_url(project), via: 'cloudfunded', hashtags: 'CrowdFunding'}).html_safe
+  end
 
   def toast_flash
     response = ''
