@@ -7,6 +7,10 @@ $ ->
   $('#tabs ul.btn-group a').click (e) ->
     history.pushState({foo: 'bar'}, "page 2", $('#tabs').data('base-url') + $(this).attr('href').replace('#', '/'));
     $(this).tab('show')
+    
+  $('#submit_project_form').click (e) ->
+    e.preventDefault()
+    $('#project_form').submit()
   
   $('input.date').each ->
     $this = $(this)

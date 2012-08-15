@@ -8,12 +8,16 @@ class Projects::ArticlesController < ApplicationController
   end
   
   def create
-    authorize! :manage, @project
+    authorize! :edit, @project
     @article = Article.new
     @article.project = @project
     @article.author = current_member
     @article.save
-    respond_with @project, @article
+    respond_with @project, @article do |format|
+      format.html {
+        redirect_to '/editor' + project_path(@project) + '/updates'
+      }
+    end
   end
   
   def show
@@ -25,7 +29,7 @@ class Projects::ArticlesController < ApplicationController
   
   def publish
     @article = @project.articles.find(params[:id])
-    authorize! :manage, @article
+    authorize! :edit, @article
     @article.publish!
     respond_with @project, @article do |format|
       format.json {

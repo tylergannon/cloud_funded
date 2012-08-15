@@ -1,7 +1,9 @@
 <div class="container edit_project">
   <div class="row span8">
-    <%= form_for @project, url: "/projects/#{@project.to_param}", builder: MoneyFormBuilder, html: {class: 'form-horizontal'} do |f| -%>
-    
+    <%= form_for @project, url: "/projects/#{@project.to_param}", builder: MoneyFormBuilder, html: {id: 'project_form', class: 'form-horizontal'} do |f| -%>
+    <%= content_for :subnav do %>
+      <%= link_to 'Save Changes', '#', class: 'btn btn-large btn-primary', id: 'submit_project_form' %>
+    <% end %>
     
       <div id="accordion">
         <div class="accordion-heading">

@@ -1,5 +1,5 @@
 .update[update]
-  %h3.mercury-region{data: {mercury: :full}}[update, :title]= update.title
+  %h3.mercury-region{data: {mercury: :full}}[update, :title]!= update.title
   .metadata
     .author Author: #{update.author.full_name}
     .published

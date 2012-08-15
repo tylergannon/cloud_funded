@@ -9,10 +9,18 @@
 
       .graybox
         %h3 Amount: $#{@pledge.amount}
-        %h3 Payment method: #{@pledge.payment_method == 'cc' ? 'Credit Card' : 'Dwolla'}
-        %h3 Gift: #{@pledge.perk.name}
+        %h3 Paid via #{@pledge.payment_method == 'cc' ? 'Credit Card' : 'Dwolla'}
+        %h3 And you will receive:
+        = render @pledge.perk
 
       %h1 Share with friends
       %h3 and help #{@project.name} succeed!
       = render partial: 'shared/open_graph/pledge', locals: {project: @project}
+      .social
+        .social-links.align-center
+          .link= like_button(@project)
+          .link.pin-it= pinterest_tag(@project)
+          .link= linkedin_tag(@project)
+          .link= twitter_button(@project)
+          .clear
       

@@ -23,6 +23,15 @@
             <%= link_to 'Main Settings', edit_project_path(@project) %>
           </li>
           <li>
+            <%= link_to 'Edit Campaign Home', '/editor' + project_path(@project) %>
+          </li>
+          <li>
+            <%= link_to 'Edit Updates', '/editor' + project_path(@project) + '/updates' %>
+          </li>
+          <li>
+            <%= link_to 'Publish An Update', project_updates_path(@project), method: :post %>
+          </li>
+          <li>
             <%= link_to 'Perks', project_perks_path(@project) %>
           </li>
           <li>
@@ -34,7 +43,7 @@
           <% if @project.live? %>
             <li><%= link_to 'Sharing', sharing_project_path(@project) %></li>
           <% end %>
-          
+          <%= yield(:subnav) %>
         </ul>
       </div>
       <div class="span9">
