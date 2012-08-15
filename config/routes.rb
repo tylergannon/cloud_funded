@@ -10,6 +10,7 @@ CloudFunded::Application.routes.draw do
 
   # Static Pages
   match '/how-it-works' => 'static_pages#how_it_works', as: :how_it_works
+  match '/apply-for-funding' => 'static_pages#apply_for_funding', as: :apply_for_funding
   match '/about' => 'pages#show', id: 'about'
 
   namespace :projects do resources :roles end

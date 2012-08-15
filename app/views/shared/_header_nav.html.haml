@@ -29,6 +29,8 @@
                 %ul.dropdown-menu
                   %li= link_to 'Our Company', '/about'
                   %li= link_to 'How It Works', how_it_works_path
+                  %li= link_to 'Apply for Funding?', apply_for_funding_path
+
               - unless member_signed_in?
                 %li= link_to 'Sign In', new_member_session_path
                 %li
