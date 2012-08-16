@@ -4,5 +4,6 @@
     - if @pledge && !@pledge.paid?
       .span1= radio_button_tag 'pledge[perk_id]', perk.id, (perk.id == @pledge.perk_id)
     .span2.pull-right.money= number_to_currency(perk.price) unless @pledge && @pledge.paid?
-  .image= image_tag perk.image.url(:large)
+  - if perk.image
+    .image= image_tag perk.image.url(:large)
   .description= perk.description

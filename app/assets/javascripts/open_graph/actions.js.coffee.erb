@@ -1,4 +1,3 @@
-
 $ ->
   $('.like').on 'click', (e) ->
     e.preventDefault()
@@ -21,7 +20,7 @@ $ ->
     e.preventDefault()
     $this = $ this
     unless $this.hasClass('disabled')
-      FB.api '/me/cloudfundeddev:launch', 'post', { campaign : $this.data('object-url') }, (response) ->
+      FB.api '/me/<%= ENV['OPENGRAPH_NAMESPACE'] %>:launch', 'post', { campaign : $this.data('object-url') }, (response) ->
         alert(response.id)
         createOpenGraphAction 'OpenGraph::Launch', $this.data('object-type'), $this.data('object-id'), response.id,
           success: (data, textStatus, jqXHR) ->
@@ -29,7 +28,6 @@ $ ->
             $this.addClass('disabled')
           error: (jqXHR, textStatus, errorThrown) ->
             bootbox.alert(errorThrown)
-
 
   $('.share_pledge').on 'click', (e) ->
     e.preventDefault()
