@@ -16,7 +16,7 @@ cf.last_name = 'Admin'
 cf.skip_confirmation!
 cf.save!
 
-if Projects::Category.empty?
+if Projects::Category.all.empty?
   FactoryGirl.create :projects_category
 end
 
