@@ -1,0 +1,36 @@
+development: &development
+  adapter: postgresql
+  encoding: unicode
+  database: cloud_funded_development
+  pool: 5
+  username: cloud_funded
+  password: onthebooks
+  host: localhost
+
+test: &test
+  adapter: postgresql
+  encoding: unicode
+  database: cloud_funded_test
+  pool: 5
+  username: cloud_funded
+  password: onthebooks
+  host: localhost
+
+staging:
+  adapter: postgresql
+  encoding: unicode
+  database: cloud_funded_staging
+  pool: 5
+  username: cloud_funded
+  password: onthebooks
+  host: localhost
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: cloud_funded_production
+  pool: 5
+  username: cloud_funded
+  password: onthebooks
+  host: localhost
+

@@ -8,7 +8,7 @@ CloudFunded::Application.configure do
   ENV['SENDGRID_PASSWORD'] = 'B@rnD00ez!'
   
   if `hostname`.strip == 'li491-83'
-    AppConfig.paperclip_storage = {
+    CloudFunded::Application.config.paperclip_storage = {
       :storage => :s3,
       :s3_protocol => '',
       :bucket => ENV['AMAZON_S3_BUCKET'],
@@ -23,21 +23,21 @@ CloudFunded::Application.configure do
     ENV['DISQUS_DEVMODE'] = '0'
     ENV['DWOLLA_KEY'] = 'FH8ROFZyhOd5Xp9mU3YpV5nVQQhPZ16PfWBV/FUH4eNZHKbHZR'
     ENV['DWOLLA_SECRET'] = 'FWtuQE6DY2NakB20AnjdJdvt0Jo8QapDUj2c2BsODJgA4+Yndq'
-    ENV['facebook_app_id'] = '395940067129740'
-    ENV['facebook_secret_key'] = '4a93f54a78f136b5f551ef0fbe15bcd4'
+    ENV['FACEBOOK_APP_ID'] = '395940067129740'
+    ENV['FACEBOOK_SECRET_KEY'] = '4a93f54a78f136b5f551ef0fbe15bcd4'
     ENV['TWITTER_APP_ID'] = 'H963ARu7ljcSdlWNoVg'
     ENV['TWITTER_SECRET_KEY'] = 'QlxzpfXdAbeyfhSWx2Rng1B7ixDv4ViiX6xdKobG8'
     
   else
-    AppConfig.paperclip_storage = {}
+    CloudFunded::Application.config.paperclip_storage = {}
     
     config.action_mailer.default_url_options = { :host => 'local.cloudfunded.com:3000' }
     ENV['DISQUS_APPNAME'] = 'cloudfundedtest'
     ENV['DISQUS_DEVMODE'] = '1'
     ENV['DWOLLA_KEY'] = 'onyiTxhgtndNywPHqTJ2GJ98srT1F88h1EAnsKmYLMkKaqJqsa'
     ENV['DWOLLA_SECRET'] = 'qyXerrvhvxj6fvsngIvMkS8du9E0Y4LX7ObDsgIRMKr0WOzBdZ'
-    ENV['facebook_app_id'] = '125298410939354'
-    ENV['facebook_secret_key'] = '39a8462763d22977e474c3bd01d63f10'
+    ENV['FACEBOOK_APP_ID'] = '125298410939354'
+    ENV['FACEBOOK_SECRET_KEY'] = '39a8462763d22977e474c3bd01d63f10'
     ENV['TWITTER_APP_ID'] = 'OaRejg8MEUfGeGINxOtYw'
     ENV['TWITTER_SECRET_KEY'] = 'OlLxkwkvkcUus66GZrAHUhzGhBWY4BFsk8mlt5jc'
   end

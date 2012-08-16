@@ -1,6 +1,6 @@
 CloudFunded::Application.configure do
-  ENV['facebook_app_id'] = '336588343062874'
-  ENV['facebook_secret_key'] = '03ac974371620fae08891f673160117b'
+  ENV['FACEBOOK_APP_ID'] = '336588343062874'
+  ENV['FACEBOOK_SECRET_KEY'] = '03ac974371620fae08891f673160117b'
   ENV['AMAZON_S3_BUCKET'] = 'cloud_funded'
   ENV['DWOLLA_KEY'] = 'RO5aiMBFo0SDMG7XR9qFnJf9FyFsSbvm1jDDhOdLJ2nFZkj55m'
   ENV['DWOLLA_SECRET'] = 'dx8fNHnuqtCWAI856tnMw0KIFLYTmErKJI6TXdrBhKkdHDoAEj'
@@ -28,10 +28,8 @@ CloudFunded::Application.configure do
     :domain         => 'cloudfunded.com'
   }
   ActionMailer::Base.delivery_method = :smtp
-
-
-
-  AppConfig.paperclip_storage = {
+  
+  CloudFunded::Application.config.paperclip_storage = {
     :storage => :s3,
     :s3_protocol => '',
     :bucket => ENV['AMAZON_S3_BUCKET'],

@@ -217,7 +217,7 @@ Devise.setup do |config|
   # end
 
   require "omniauth-facebook"
-  config.omniauth :facebook, ENV['facebook_app_id'], ENV['facebook_secret_key'],
+  config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_SECRET_KEY'],
                   scope: 'email,publish_actions'
 
   require 'omniauth-dwolla'

@@ -13,7 +13,7 @@ CloudFunded::Application.configure do
   ENV['STRIPE_PUBLISHABLE_KEY'] = 'pk_KqKlnpz4ru7CvMGKPHAT1BNRnSFzC'
   Stripe.api_key                = 'YM3s0MpK2QhAdVLomUTnOjMVblutovoZ'
 
-  AppConfig.paperclip_storage = {}
+  CloudFunded::Application.config.paperclip_storage = {}
   # Configure static asset server for tests with Cache-Control for performance
   config.serve_static_assets = true
   config.static_cache_control = "public, max-age=3600"

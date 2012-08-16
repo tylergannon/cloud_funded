@@ -35,7 +35,7 @@ $ ->
     e.preventDefault()
     $this = $ this
     unless $this.hasClass('disabled')
-      FB.api '/me/cloudfundeddev:pledge', 'post', { campaign : $this.data('object-url') }, (response) ->
+      FB.api '/me/<%= ENV['OPENGRAPH_NAMESPACE'] %>:pledge', 'post', { campaign : $this.data('object-url') }, (response) ->
         alert(response.id)
         createOpenGraphAction 'OpenGraph::Pledge', $this.data('object-type'), $this.data('object-id'), response.id,
           success: (data, textStatus, jqXHR) ->
