@@ -7,12 +7,12 @@
     .span8.details.blue1.mercury_container{data: {'save-url' => mercury_update_project_path(@project)}}
       #tab_container.btn-toolbar
         #tabs{data: {base_url: project_path(@project)}}
-          %ul.btn-group
-            %li.btn.btn-info{active_tab?('info', true)}= link_to 'Info', '#info', data: {toggle: 'tab'}
-            %li.btn.btn-info{active_tab?('updates')}= link_to 'Updates', '#updates', data: {toggle: 'tab'}
-            %li.btn.btn-info{active_tab?('team')}= link_to 'Team', '#team', data: {toggle: 'tab'}
-            %li.btn.btn-info{active_tab?('comments')}= link_to 'Comments', '#comments', data: {toggle: 'tab'}
-            %li.btn.btn-info{active_tab?('pledges')}= link_to 'Pledges', '#pledges', data: {toggle: 'tab'}
+          .btn-group#tab-titles
+            %a.btn.btn-info{active_tab?('info', true)}(href='#info' data-toggle='tab') Info
+            %a.btn.btn-info{active_tab?('updates')}(href='#updates' data-toggle='tab') Updates
+            %a.btn.btn-info{active_tab?('team')}(href='#team' data-toggle='tab') Team
+            %a.btn.btn-info{active_tab?('comments')}(href='#comments' data-toggle='tab') Comments
+            %a.btn.btn-info{active_tab?('pledges')}(href='#pledges' data-toggle='tab') Pledges
           .tab-content
             #info.tab-pane{active_tab?('info', true)}
               #project_information.mercury-region{data: {mercury: :full}}!= @project.information_text
