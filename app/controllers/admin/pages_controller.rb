@@ -8,7 +8,11 @@ class Admin::PagesController < ApplicationController
   
   def index
     @pages = Page.all
-    respond_with(@pages)
+    respond_with(@pages) do |format|
+      format.html {
+        render layout: 'admin'
+      }
+    end
   end
 
   # GET /pages/1

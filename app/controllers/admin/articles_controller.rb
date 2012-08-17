@@ -3,7 +3,11 @@ class Admin::ArticlesController < ApplicationController
   
   def index
     @articles = Article.all
-    respond_with(@articles)
+    respond_with(@articles) do |format|
+      format.html {
+        render layout: 'admin'
+      }
+    end
   end
 
   # GET /articles/1

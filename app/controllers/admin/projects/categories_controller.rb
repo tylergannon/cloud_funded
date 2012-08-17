@@ -4,7 +4,11 @@ class Admin::Projects::CategoriesController < ApplicationController
   # GET /projects_categories.xml
   def index
     @projects_categories = Projects::Category.all
-    respond_with(@projects_categories)
+    respond_with(@projects_categories) do |format|
+      format.html {
+        render layout: 'admin'
+      }
+    end
   end
 
   # GET /projects_categories/1

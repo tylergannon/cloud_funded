@@ -1,0 +1,28 @@
+<%= content_for :content do %>
+  <div class="row">
+    <div class="span12">
+      <h1>Yeah You're an admin, yea yea yea!</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span12">
+      <br />
+      <br />
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="span2 nav shadow">
+        <ul class="nav nav-pills nav-stacked">
+          <%= render partial: 'shared/admin_controls' %>
+          <%= yield(:subnav) %>
+        </ul>
+      </div>
+      <div class="span9">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= render :template => 'layouts/application' %>

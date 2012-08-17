@@ -4,6 +4,11 @@ class Admin::TransactionsController < ApplicationController
   def index
     @transactions = Transaction.all
     @pledges = Pledge.where(workflow_state: 'paid')
+    respond_with @transactions do |format|
+      format.html {
+        render layout: 'admin'
+      }
+    end
   end
   
   def authorize_admin

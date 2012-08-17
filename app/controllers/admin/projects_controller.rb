@@ -2,7 +2,11 @@ class Admin::ProjectsController < ApplicationController
   before_filter :authenticate_admin!
   def index
     @projects = Project.all
-    respond_with @projects
+    respond_with @projects do |format|
+      format.html {
+        render layout: 'admin'
+      }
+    end
   end
   
   def update

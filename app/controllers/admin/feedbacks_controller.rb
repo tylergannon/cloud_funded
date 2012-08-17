@@ -3,7 +3,11 @@ class Admin::FeedbacksController < ApplicationController
   # GET /feedbacks.xml
   def index
     @feedbacks = Feedback.all
-    respond_with(@feedbacks)
+    respond_with(@feedbacks) do |format|
+      format.html {
+        render layout: 'admin'
+      }
+    end
   end
 
   # GET /feedbacks/1

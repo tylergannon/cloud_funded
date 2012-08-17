@@ -4,7 +4,11 @@ class Admin::MembersController < ApplicationController
   
   def index
     @members = Member.all
-    respond_with(@members)
+    respond_with(@members) do |format|
+      format.html {
+        render layout: 'admin'
+      }
+    end
   end
 
   def new
