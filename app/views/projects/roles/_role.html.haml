@@ -1,6 +1,6 @@
 .role.row[role]
   .span1
-    - if role.member
+    - if role.member && role.member.profile_pic
       = link_to profile_path(role.member) do
         = image_tag role.member.profile_pic
   .span4
