@@ -28,6 +28,7 @@ CloudFunded::Application.routes.draw do
   namespace :admin do
     resources :members, path_names: {edit: :chang3_that_sh1t}
     resources :feedbacks
+    resources :transactions
     
     resources :pages do
       member { put :mercury_update }

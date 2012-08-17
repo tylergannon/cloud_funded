@@ -1,0 +1,55 @@
+<div class="row" id="pledges">
+  <div class="span9">
+    <h1>Pledges</h1>
+    <table class="table table-bordered table-striped shadow span9 transactions">
+      <thead>
+        <tr>
+          <th>Member</th>
+          <th>Transaction Date</th>
+          <th>Amount</th>
+          <th>Source</th>
+          <th>Project</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <% for pledge in @pledges %>
+        <tr>
+          <td><%= render partial: 'members/member', object: pledge.investor %></td>
+          <td><%= pledge.created_at.strftime('%Y-%m-%d %H:%m') %></td>
+          <td><%= number_to_currency(pledge.amount.dollars) %></td>
+          <td><%= pledge.payment_method %></td>
+          <td><%= link_to pledge.project.name, pledge.project %></td>
+          <td><%= pledge.workflow_state %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<div class="row" id="pledges">
+  <div class="span9">
+    <h1>Transactions</h1>
+    <table class="table table-bordered table-striped shadow span9 transactions">
+      <thead>
+        <tr>
+          <th>Member</th>
+          <th>Transaction Date</th>
+          <th>Amount</th>
+          <th>Source</th>
+          <th>Project</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <% for transaction in @transactions %>
+        <tr>
+          <td><%= render partial: 'members/member', object: transaction.member %></td>
+          <td><%= transaction.created_at.strftime('%Y-%m-%d %H:%m') %></td>
+          <td><%= number_to_currency(transaction.amount.dollars) %></td>
+          <td><%= transaction.type %></td>
+          <td><%= link_to transaction.pledge.project.name, transaction.pledge.project if transaction.pledge %></td>
+          <td><%= transaction.paid ? "Paid" : "Incomplete" %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

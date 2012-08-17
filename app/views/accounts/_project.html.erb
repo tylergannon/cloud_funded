@@ -17,19 +17,13 @@
 <% end %>
 <div class="span3">
   <div class="link">
-    <%= link_to "View Project", project_path(project) %>
-  </div>
-  <div class="link">
-    <%= link_to "Publish Info and Updates", "/editor/projects#{project_path(project)}" %>
+    <%= link_to "Project Pledges", project_pledges_path(project) %>
   </div>
   <div class="link">
     <%= link_to "Perks", project_perks_path(project) %>
   </div>
   <div class="link">
     <%= link_to "Team", project_roles_path(project) %>
-  </div>
-  <div class="link">
-    <%= link_to "Updates", project_updates_path(project) %>
   </div>
 </div>
 <hr />

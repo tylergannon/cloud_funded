@@ -5,6 +5,7 @@ class Ability
     if member
       if member.admin
         can :manage, :all
+        can :rule, :the_world
         can :see, :facebook_actions
       end
       
