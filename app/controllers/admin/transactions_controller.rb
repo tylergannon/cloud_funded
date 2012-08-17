@@ -3,7 +3,7 @@ class Admin::TransactionsController < ApplicationController
   
   def index
     @transactions = Transaction.all
-    @pledges = Pledge.all
+    @pledges = Pledge.where(workflow_state: 'paid')
   end
   
   def authorize_admin
