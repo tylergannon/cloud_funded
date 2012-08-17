@@ -1,7 +1,8 @@
 .profile
   = link_to @member.profile do
-    = image_tag @member.profile_pic
-  %h1= @member.full_name
+    - if @member.profile_pic
+      = image_tag @member.profile_pic
+    %h1= @member.full_name
   - if can?(:edit, @member)
     .your_profile 
       This is your profile.
