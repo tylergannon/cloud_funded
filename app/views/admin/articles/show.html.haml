@@ -1,12 +1,12 @@
 %p#notice= notice
 
 .article#article_container.mercury_container{data: {'save-url' => mercury_update_admin_article_path(@article)}}
-  %h1#article_title.mercury-region{editable}= @article.title
+  %h1#article_title{mercury_full}= @article.title
   .article_header= "Published #{published_at(@article)} by #{@article.author.full_name}"
-  .body#article_body.mercury-region{editable}!= @article.body
+  .body#article_body{mercury_full}!= @article.body
 
   Description / Abstract (one line)
-  .description#article_description.mercury-region{data: {mercury: :markdown}}!= @article.description
+  .description#article_description{mercury_markdown}!= @article.description
 
 - if @article.published?
   %h3= link_to 'Article is Published.', @article

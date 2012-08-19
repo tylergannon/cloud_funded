@@ -9,7 +9,7 @@ $ ->
     $(this).tab('show')
     $(this).siblings().removeClass('active')
     $(this).addClass('active')
-    
+      
   $('#submit_project_form').click (e) ->
     e.preventDefault()
     $('#project_form').submit()

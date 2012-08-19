@@ -1,13 +1,16 @@
 .update[update]
-  %h3.mercury-region{data: {mercury: :full}}[update, :title]!= update.title
+  %h3{mercury_full}[update, :title]!= update.title
   .metadata
     .author Author: #{update.author.full_name}
     .published
       - if update.published?
         Published #{update.published_at.strftime("%b %d, %Y")}
       - else
-        = link_to "Publish Now", publish_project_update_path(@project, update, format: :js), data: {remote: true, confirm: 'Ready to publish?'}, :class => 'publish', method: :post
-  .body.mercury-region{data: {mercury: :full}}[update, :body]!= update.body
+        - if can? :edit, update
+          = link_to "Publish Now", publish_project_update_path(@project, update, format: :js), data: {remote: true, confirm: 'Ready to publish?'}, :class => 'publish', method: :post
+          = link_to "Delete this update", project_update_path(@project, update, format: :js), data: {remote: true, confirm: 'Really delete it?'}, :class => 'delete', method: :delete
+  .body{mercury_full}[update, :body]!= update.body
+      
 
   = content_for :head do
     = javascript_include_tag 'mercury'

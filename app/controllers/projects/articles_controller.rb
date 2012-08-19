@@ -38,6 +38,13 @@ class Projects::ArticlesController < ApplicationController
     end
   end
   
+  def destroy
+    @article = @project.articles.find(params[:id])
+    authorize! :destroy, @article
+    @article.destroy
+    respond_with @project, @article
+  end
+  
   def load_project
     @project = Project.find params[:project_id]
   end

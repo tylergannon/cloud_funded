@@ -2,7 +2,7 @@
 
 - @articles.each do |article|
   .article#article_container{'data-save-url' => mercury_update_admin_article_path(article)}
-    %h1#article_title.mercury-region{'data-type' => 'editable'}= article.title
+    %h1#article_title{mercury_full}= article.title
     .article_header
       - if article.published?
         = "Published #{article.published_at.strftime("%b %d, %Y")} by #{article.author.full_name}"
@@ -12,7 +12,7 @@
       = link_to 'Show', admin_article_path(article)
       = link_to 'Edit', '/editor' + admin_article_path(article)
       = link_to 'Destroy', admin_article_path(article), :confirm => 'Are you sure?', :method => :delete
-    .body#article_body.mercury-region{'data-type' => 'editable'}!= article.body
+    .body#article_body{mercury_full}!= article.body
 
 %br
 

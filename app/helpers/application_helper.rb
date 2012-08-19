@@ -3,6 +3,28 @@ module ApplicationHelper
     ENV['FACEBOOK_APP_ID']
   end
   
+  def mercury_editor_open?
+    @mercury_editor_open ||= !!params[:mercury_frame] == true
+  end
+  
+  def mercury_full
+    if mercury_editor_open?
+      {class: 'mercury-region', data: {mercury: :full}}
+    else
+      {}
+    end
+  end
+  
+  def mercury_markdown
+    if mercury_editor_open?
+      {class: 'mercury-region', data: {mercury: :markdown}}
+    else
+      {}
+    end
+  end
+  
+  
+  
   def og_tag(name, content)
     %(<meta property="#{name}" content="#{content}"/>).html_safe
   end

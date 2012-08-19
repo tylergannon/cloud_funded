@@ -1,0 +1,2 @@
+$('#article_<%= @article.id %>').remove();
+bootbox.alert('<%= escape_javascript render(partial: 'destroyed') %>')

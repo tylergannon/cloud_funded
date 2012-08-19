@@ -15,12 +15,14 @@
             %a.btn.btn-info{active_tab?('pledges')}(href='#pledges' data-toggle='tab') Pledges
           .tab-content
             #info.tab-pane{active_tab?('info', true)}
-              #project_information.mercury-region{data: {mercury: :full}}!= @project.information_text
+              #project_information{mercury_full}!= @project.information_text
               
             #updates.tab-pane{active_tab?('updates')}
+              - if mercury_editor_open?
+                = link_to "New Update", project_updates_path(@project), method: :post
               = render partial: 'projects/articles/update', collection: @articles
             #team.tab-pane{active_tab?('team')}
-              - if !!params[:mercury_frame] == true
+              - if mercury_editor_open?
                 = link_to "Add A Team Member", new_project_role_path(@project, format: :js), data: {remote: true}
               = render @roles
             #comments.tab-pane{active_tab?('comments')}
@@ -33,5 +35,5 @@
       %h3.centered Donation Perks
       = render @project.perks
 
-= render partial: 'shared/mercury_includes' if can? :edit, @project && !!params[:mercury_frame] == true
+= render partial: 'shared/mercury_includes' if can? :edit, @project && mercury_editor_open?
 = render partial: 'open_graph_data'

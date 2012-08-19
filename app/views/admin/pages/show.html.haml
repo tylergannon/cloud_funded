@@ -5,10 +5,10 @@
   = link_to('Go To Page List', admin_pages_path)
 
   .page#page_container.mercury_container{data: {'save-url' => mercury_update_admin_page_path(@page)}}
-    %h1#page_title.mercury-region{editable}= @page.title
-    .body#page_body.mercury-region{editable}!= @page.body
+    %h1#page_title{mercury_full}= @page.title
+    .body#page_body{mercury_full}!= @page.body
     %hr/
     Description / Abstract (one line)
-    .description#page_description.mercury-region{editable}!= @page.description
+    .description#page_description{mercury_full}!= @page.description
 
 = render partial: 'shared/mercury_includes' if can? :edit, @page
