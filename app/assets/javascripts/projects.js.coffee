@@ -7,6 +7,8 @@ $ ->
   $('#tab-titles a').click (e) ->
     history.pushState({foo: 'bar'}, "page 2", $('#tabs').data('base-url') + $(this).attr('href').replace('#', '/'));
     $(this).tab('show')
+    $(this).siblings().removeClass('active')
+    $(this).addClass('active')
     
   $('#submit_project_form').click (e) ->
     e.preventDefault()

@@ -1,4 +1,5 @@
 (function($){
+  
   $.fn.money_field = function(options) {
     var defaults = {
       width: null
@@ -6,6 +7,7 @@
     var options = $.extend(defaults, options);
     
     return this.each(function() {
+      console.log('ASDFASDFASDFASDFASDFASDFASDFASDFASDFASDF');
       obj = $(this);
       if(options.width)
         obj.css('width', options.width + 'px');
