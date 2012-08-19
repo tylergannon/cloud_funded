@@ -1,12 +1,12 @@
 <%= content_for :content do %>
     <h1 class="display">My Account</h1>
-    <div class="row">
+    <div class="row myaccount">
       <div class="span3">
-        <ul class="nav nav-tabs nav-pills nav-stacked">
-          <li><%= link_to 'Fund Raising', account_path %></li>
-          <li><%= link_to 'Personal Profile', edit_profile_path(current_member) %></li>
-          <li><%= link_to 'Change Password', edit_member_registration_path %></a></li>
-          <li><%= link_to 'Sign Out', destroy_member_session_path, method: :delete %></a></li>
+        <ul class="nav nav-pills nav-stacked btn-group">
+          <li class="btn"><%= link_to 'Fund Raising', account_path %></li>
+          <li class="btn"><%= link_to 'Personal Profile', edit_profile_path(current_member) %></li>
+          <li class="btn"><%= link_to 'Change Password', edit_member_registration_path %></a></li>
+          <li class="btn"><%= link_to 'Sign Out', destroy_member_session_path, method: :delete %></a></li>
         </ul>
       </div>
       <div class="span8 myaccount">
