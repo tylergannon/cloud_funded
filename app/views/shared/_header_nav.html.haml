@@ -33,9 +33,9 @@
 
               - unless member_signed_in?
                 %li= link_to 'Sign In', new_member_session_path
-                %li
+                %li.fblogin
                   = link_to member_omniauth_authorize_path(:facebook) do
-                    = image_tag 'Button_FBConnect5.png', height: '20px'
+                    = image_tag 'signin_facebook.png'
               - else
                 %li= link_to 'My Account', account_path
                 - if current_member.admin

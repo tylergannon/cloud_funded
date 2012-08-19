@@ -10,10 +10,10 @@
   border: none; }
 
 .header-link {
-  color: #fff;
-  text-shadow: -1px -1px #a88852;
-  font-size: 14px;
-  font-weight: bold;
+//  color: #fff;
+//  text-shadow: -1px -1px #a88852;
+//  font-size: 14px;
+  font-weight: 600;
   text-decoration: none; }
 
 body > .container {
@@ -34,29 +34,53 @@ body > .container {
 
   .brand {
     background: image-url("logo.png") 0 0 no-repeat;
-    width: 190px;
-    height: 50px;
-    margin: -6px 0px 0px 45px;
+    width: 230px;
+    height: 55px;
+    overflow: hidden;
+    margin: 3px 0px 18px 30px;
     padding: 0;
     cursor: pointer;
     &:hover {
-      background: image-url("logo_over.png") 0 0 no-repeat; }
+      background: image-url("logo.png") 0 -54px no-repeat; }
   }
   .nav {
-    padding-top: 14px;
+    padding-top: 24px;
+    
     > li {
+         
+        
       > a {
+        
         .header-link;
         .header-link-border;
-        color: #fff;
-        text-shadow: -1px 1px #0a3c67; 
+         font-size: 16px;
+         letter-spacing: 0px;
+          color: #f4f4f4;
+          text-shadow: -1px -1px #0a3c67;
+         
+        
+         line-height: 30px;
+       
         
         &:hover, &:active {
-          color: #053660;
-          text-shadow: 1px 1px #098ec6;
+           color: #053660;
+         text-shadow: 1px 1px #098ec6;
           cursor: pointer; } }
       
     }
+     li.fblogin {
+        img:hover {
+        opacity: .8;
+        height: auto;
+        width: auto;
+        margin-top: 0px;
+        
+        }   
+        
+        }
+    
+    
+    
   }
 }
 
@@ -75,10 +99,9 @@ body > .container {
 }
 
 .home-banner {
- // background: image-url('bannertop.png') 0 0 repeat-x;
   background:  #1a5984;
   margin: 0px auto;
-  margin-top: -24px;
+  margin-top: 0px;
   
   .span6 {
     text-align: center;
