@@ -2,6 +2,8 @@
 
 = link_to "New Member", new_admin_member_path
 
+.pagination= paginate @members
+
 - @members.each do |member|
   .member
     %span.admin

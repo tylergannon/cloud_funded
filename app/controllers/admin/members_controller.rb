@@ -3,7 +3,7 @@ class Admin::MembersController < ApplicationController
   before_filter :authorize_admin
   
   def index
-    @members = Member.all
+    @members = Member.order(:full_name).page params[:page]
     respond_with(@members) do |format|
       format.html {
         render layout: 'admin'

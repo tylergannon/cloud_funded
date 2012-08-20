@@ -76,12 +76,11 @@ class Members::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
     facebook_info =  request.env['omniauth.auth']
     facebook_id = facebook_info.uid
-    @member = Member.where(facebook_id: facebook_id).first
+    @member = Member.where(email: facebook_info.info.email).first
 
     unless @member
       @member = Member.new \
         email: facebook_info.info.email, 
-        facebook_id: facebook_id, 
         password: 'yt*k*$GY$-ULKf3qy$O',
         password_confirmation: 'yt*k*$GY$-ULKf3qy$O'
       @member.skip_confirmation!
@@ -90,6 +89,7 @@ class Members::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     @member.attributes = {
       profile_pic: facebook_info.info.image,
+      facebook_id: facebook_id, 
       profile: facebook_info.info.urls.Facebook,
       first_name: facebook_info.info.first_name,
       last_name: facebook_info.info.last_name,
