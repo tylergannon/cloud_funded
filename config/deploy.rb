@@ -8,7 +8,7 @@ set :bundle_without,      [:development, :test, :deployment]
 set :keep_releases, 5
 set :repository,  "git@github.com:tylergannon/cloud_funded.git"
 set :rvm_ruby_gem_set_name, 'passenger'
-set :rvm_ruby_string, '1.9.3'
+set :rvm_ruby_string, 'ruby-1.9.3-p125'
 set :rvm_type, :user  # Don't use system-wide RVM
 set :scm, :git
 
