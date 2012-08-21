@@ -106,7 +106,8 @@ CloudFunded::Application.routes.draw do
   devise_for :members, controllers: {
     omniauth_callbacks: 'members/omniauth_callbacks',
     registrations: 'members/registrations',
-    sessions: 'members/sessions'
+    sessions: 'members/sessions',
+    confirmations: 'members/confirmations'
   }
   
   match '/blog' => 'articles#index', as: :blog
