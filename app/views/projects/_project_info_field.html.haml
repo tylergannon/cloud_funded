@@ -1,0 +1,5 @@
+- if !@project.send(field).blank? || mercury_editor_open?
+  %h1= title
+  - if @project.send("#{field}_image").present?
+    = image_tag @project.send("#{field}_image").url(:large)
+  %div{mercury_full}(id=field)!= @project.send field

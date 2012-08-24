@@ -16,7 +16,11 @@
           .tab-content
             #info.tab-pane{active_tab?('info', true)}
               #project_information{mercury_full}!= @project.information_text
-              
+              = render partial: 'project_info_field', locals: {field: 'about_your_product', title: 'About Our Company'}
+              = render partial: 'project_info_field', locals: {field: 'how_it_helps',       title: 'Our Contribution To The Community'}
+              = render partial: 'project_info_field', locals: {field: 'your_target_market', title: 'Our Target Market'}
+              = render partial: 'project_info_field', locals: {field: 'history',            title: 'Background'}
+
             #updates.tab-pane{active_tab?('updates')}
               - if mercury_editor_open?
                 = link_to "New Update", project_updates_path(@project), method: :post

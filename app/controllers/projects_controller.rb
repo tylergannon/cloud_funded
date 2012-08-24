@@ -36,7 +36,10 @@ class ProjectsController < ApplicationController
     params[:content].each do |key, val|
       if key == "project_information"
         @project.update_attributes information_text: val['value']
+      elsif key == "about_your_product"
+        @project.update_attributes about_your_product: val['value']
       else
+        puts "*" * 20 + key + "*" * 20
         match, attribute, klass, id = *key.to_s.match(/^([a-z]+)_([a-z]+)_(\d+)$/)
         @project.articles.find(id.to_i).update_attributes attribute.to_sym => val['value']
       end
