@@ -1,11 +1,44 @@
 require 'spec_helper'
 
 describe Projects::WizardController do
+  describe "post #update" do
+    before :each do
+      sign_in_as_member
+      get :show
+    end
+    describe "new project mailer behavior" do
+      before :each do
+        ActionMailer::Base.deliveries.clear
+      end
+      describe "when beginning project creation" do
+        describe "when the project name has been set" do
+          it "should send a mail" do
+            put :update, id: 'basics', project: {name: 'Losebag'}
+            ActionMailer::Base.deliveries.should_not be_empty
+          end
+        end
+        describe "when the project name has not been set" do
+          it "should not send a mail" do
+            put :update, id: 'basics'
+            ActionMailer::Base.deliveries.should be_empty
+          end
+        end
+        describe "when an email has already been set" do
+          it "should not send a mail" do
+            put :update, id: 'basics', project: {name: 'Losebag'}
+            ActionMailer::Base.deliveries.should_not be_empty
+            ActionMailer::Base.deliveries.clear
+            put :update, id: 'basics', project: {name: 'Losebag'}
+            ActionMailer::Base.deliveries.should be_empty
+          end
+        end
+      end
+    end
+  end
   describe "get #show" do
     before :each do
       sign_in_as_member
     end
-    
     describe "going to preview" do
       before :each do
         @project = FactoryGirl.create :project, owner: @member

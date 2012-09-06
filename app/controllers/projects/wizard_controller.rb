@@ -27,6 +27,14 @@ class Projects::WizardController < ApplicationController
     if params[:project]
       @project.update_attributes params[:project]
     end
+    
+    if step == :basics
+      if !@project.name.blank? && @project.new_project_sent_at.nil?
+        ProjectMailer.new_project(@project).deliver!
+        @project.update_attributes new_project_sent_at: DateTime.now
+      end
+    end
+    
     puts @project.errors.inspect unless @project.valid?
     if respond_to?("submit_#{params[:id]}")
       send "submit_#{params[:id]}"

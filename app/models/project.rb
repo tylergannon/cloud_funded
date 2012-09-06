@@ -16,7 +16,7 @@ class Project < ActiveRecord::Base
                   :lat, :linkedin_business, :linkedin_profile, :long, :name, :owner, :perks_attributes, 
                   :pledges, :post_to_fb, :postal_code, :route, :short_description, :slug, :start_date, 
                   :start_date_string, :state, :street_number, :tagline, :visible, :website_url, :yelp, 
-                  :your_target_market, :your_target_market_image, :youtube_url
+                  :your_target_market, :your_target_market_image, :youtube_url, :new_project_sent_at
   
   belongs_to :owner, class_name: 'Member'
   belongs_to :category, class_name: 'Projects::Category'
@@ -143,7 +143,7 @@ class Project < ActiveRecord::Base
   end
   
   def submit
-    MemberMailer.new_project(self).deliver
+    ProjectMailer.submitted_project(self).deliver
     # MemberMailer.new_member(member).deliver
   end
 

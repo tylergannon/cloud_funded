@@ -39,6 +39,10 @@ CloudFunded::Application.configure do
     }
   }
 
+  config.to_prepare { Members::SessionsController.force_ssl }
+  config.to_prepare { Members::RegistrationsController.force_ssl }
+  config.to_prepare { Devise::PasswordsController.force_ssl }
+  config.to_prepare { Devise::PasswordsController.force_ssl }
 
   # Settings specified here will take precedence over those in config/application.rb
 
