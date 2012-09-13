@@ -16,9 +16,13 @@
           .tab-content
             #info.tab-pane{active_tab?('info', true)}
               #information_text{mercury_full}!= @project.information_text
+              %br/
               = render partial: 'project_info_field', locals: {field: 'about_your_product', title: 'About Our Company'}
+              %br/
               = render partial: 'project_info_field', locals: {field: 'how_it_helps',       title: 'Our Contribution To The Community'}
+              %br/
               = render partial: 'project_info_field', locals: {field: 'your_target_market', title: 'Our Target Market'}
+              %br/
               = render partial: 'project_info_field', locals: {field: 'history',            title: 'Background'}
 
             #updates.tab-pane{active_tab?('updates')}
