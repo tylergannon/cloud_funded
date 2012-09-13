@@ -1,26 +1,28 @@
 = content_for :banner do
+ 
   .row.home-banner
-    .span6
-      %br/
-      %br/
-      %br/
-      %h1 Crowdfunding for
-      %br/
-      %h1 Main Street
-      %h5 Everyone's platform for investing in great ideas
+    .home-background
+      .span6.slideshow_info
+        %br/
+        %br/
+        %br/
+        %h1 Crowdfunding for
+        %br/
+        %h1 Main Street
+        %h5 Everyone’s platform for making great ideas happen through grassroots fundraising. 
 
-      = link_to get_funded_path do 
-        .button1.green Fund Your Project
-      .button1.yellow= link_to 'Fund Our Project', "http://cloudfunded.com/cloudfunded"
-    .span6
-      %br/
-      = link_to project_path('cloudfunded') do
-        = image_tag 'info.png', rel: 'popover', data: |
-          {placement: 'left', original_title: 'The JOBS Act', |
-          content: 'Enables companies that are not yet publicly traded, to seek investment capital from community members.'}
-      %br/
-      %br/ 
-  .row.spacer.filterbar
+        = link_to get_funded_path do 
+          .button1.green Fund Your Project
+        .button1.yellow= link_to 'Fund Our Project', "http://cloudfunded.com/cloudfunded"
+      .span6
+        %br/
+        = link_to project_path('cloudfunded') do
+          /= image_tag 'info.png', rel: 'popover', data: |
+          /  {placement: 'left', original_title: 'The JOBS Act', |
+          /  content: 'Enables companies that are not yet publicly traded, to seek investment capital from community members.'}
+        %br/
+        %br/ 
+    .row.spacer.filterbar
     .span4
   .row
       
