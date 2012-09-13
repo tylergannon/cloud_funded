@@ -20,8 +20,8 @@
             <div class="control-group">
               <label for="cc_month" class="control-label">Exp MM/YYYY</label>
               <div class="controls exp">
-                <input type="text" id="cc_month" class="input-small" autocomplete="off" />
-                <input type="text" id="cc_year" class="input-small" autocomplete="off" />
+                <input type="text" id="cc_month" class="input-small" placeholder='mm' autocomplete="off" />
+                <input type="text" id="cc_year" class="input-small" placeholder='yyyy' autocomplete="off" />
               </div>
             </div>
             <input type="submit" data-confirm="Charge your credit card $<%= @pledge.amount.dollars %>?"  class="submit btn btn-large btn-primary" value="Pay"  />
