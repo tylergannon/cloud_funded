@@ -34,16 +34,15 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     authorize! :manage, @project
     params[:content].each do |key, val|
-      if key == "project_information"
-        @project.update_attributes information_text: val['value']
-      elsif key == "about_your_product"
-        @project.update_attributes about_your_product: val['value']
-      else
+      if key.match /article/
         puts "*" * 20 + key + "*" * 20
         match, attribute, klass, id = *key.to_s.match(/^([a-z]+)_([a-z]+)_(\d+)$/)
         @project.articles.find(id.to_i).update_attributes attribute.to_sym => val['value']
+      else
+        @project.attributes = {key => val['value']}
       end
     end
+    @project.save
     
     respond_with(@project) do |format|
       format.json {
