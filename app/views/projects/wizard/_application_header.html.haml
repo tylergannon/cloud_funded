@@ -1,17 +1,17 @@
 .project_application_header
   .container
     %h1.display Get Funded
-    .navbar-inner
-      -# %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
-      -#   %span.icon-bar
-      -#   %span.icon-bar
-      -#   %span.icon-bar
-      .nav-collapse
-        %ul.btn-group
-          %li.btn{active?(:information)}= link_to 'Info', wizard_path(:information)
-          %li.btn{active?(:basics)}= link_to 'Basics', wizard_path(:basics)
-          %li.btn{active?(:where)}= link_to 'Location', wizard_path(:where)
-          %li.btn{active?(:more_about_you)}= link_to 'Your Company', wizard_path(:more_about_you)
-          %li.btn{active?(:fund_raise)}= link_to 'Fund Raise', wizard_path(:fund_raise)
-          %li.btn.disabled{active?(:preview)}= link_to 'Preview', wizard_path(:preview)
-          %li.btn{active?(:submit)}= link_to 'Apply', wizard_path(:submit)
+    
+    -# %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
+    -#   %span.icon-bar
+    -#   %span.icon-bar
+    -#   %span.icon-bar
+    
+    %ul.btn-group
+      %li.btn{active?(:information)}= link_to 'Info', wizard_path(:information)
+      %li.btn{active?(:basics)}= link_to 'Basics', wizard_path(:basics)
+      %li.btn{active?(:where)}= link_to 'Location', wizard_path(:where)
+      %li.btn{active?(:more_about_you)}= link_to 'Your Company', wizard_path(:more_about_you)
+      %li.btn{active?(:fund_raise)}= link_to 'Fund Raise', wizard_path(:fund_raise)
+      %li.btn.disabled{active?(:preview)}= link_to 'Preview', wizard_path(:preview)
+      %li.btn{active?(:submit)}= link_to 'Apply', wizard_path(:submit)

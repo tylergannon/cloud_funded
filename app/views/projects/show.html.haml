@@ -34,6 +34,7 @@
     #perks.perks.span4.nomargin.pixel10
       %h3.centered Donation Perks
       = render @project.perks
+     
 
 = render partial: 'shared/mercury_includes' if can? :edit, @project && mercury_editor_open?
 = render partial: 'open_graph_data'
