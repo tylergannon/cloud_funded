@@ -2,25 +2,28 @@
   .row
     .span1 &nbsp;
     = render partial: 'projects/project', object: @project
-    .span5
+    .span5.showmypledge
       %h1 Thanks!
 
       %h3 For funding #{@project.name}
 
-      .graybox
-        %h3 Amount: $#{@pledge.amount}
-        %h3 Paid via #{@pledge.payment_method == 'cc' ? 'Credit Card' : 'Dwolla'}
-        %h3 And you will receive:
-        = render @pledge.perk
+      .mypledge
+        %h4 Amount: $#{@pledge.amount}
+        %h4 Paid via #{@pledge.payment_method == 'cc' ? 'Credit Card' : 'Dwolla'}
+       
 
       %h1 Share with friends
       %h3 and help #{@project.name} succeed!
       = render partial: 'shared/open_graph/pledge', locals: {project: @project}
       .social
-        .social-links.align-center
-          .link= like_button(@project)
+        .social-links
           .link.pin-it= pinterest_tag(@project)
           .link= linkedin_tag(@project)
           .link= twitter_button(@project)
+          .link= like_button(@project)
           .clear
-      
+        .clear
+       
+    
+      %h3 Your reward:
+      = render @pledge.perk
