@@ -10,10 +10,6 @@
     .fb-like{'data-href' => page_url(@page), 'data-send' => true, 'data-width' => '450', 'data-show-faces' => true}
   .clear
   
-
-= content_for :head do
-  %link{:rel => "stylesheet", :href => "fonts.googleapis.com/css?family=Open+Sans:400,300"}
-  
 = content_for :open_graph do
   %meta{property: 'og:type', content: 'article'}
   %meta{property: 'og:title', content: @page.title}
