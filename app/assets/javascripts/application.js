@@ -34,6 +34,7 @@
 //= require accounts
 //= require articles
 //= require header
+//= require pages
 //= require pledges
 //= require profiles
 //= require projects

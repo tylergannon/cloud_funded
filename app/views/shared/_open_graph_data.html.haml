@@ -1,10 +1,11 @@
 %meta#og_namespace{property: 'og_namespace', content: ENV['OPENGRAPH_NAMESPACE']}
+%meta{property: 'fb:app_id', content: facebook_app_id}
+
 - if content_for?(:open_graph)
   = yield :open_graph
 - else
-  %link{rel: 'image_src', href: '/assets/logo.png'}
-  %meta{property: 'fb:app_id', content: facebook_app_id}
+  %link{rel: 'image_src', href: '/assets/info.png'}
   %meta{property: 'og:type', content: 'website'}
   %meta{property: 'og:title', content: 'CloudFunded'}
-  %meta{property: 'og:image', content: '/assets/logo.png'}
+  %meta{property: 'og:image', content: '/assets/info.png'}
   %meta{property: 'og:description', content: 'Cloud Funded... Fund You Too.'}

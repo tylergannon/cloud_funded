@@ -3,7 +3,9 @@
   .page_body!= @page.body
   .clear
   .share
-    %a{name: 'fb_share'}
+    %p
+      %a(onclick='postToFeed(); return false;' href='#') Post to Facebook
+    %p#msg
   .like
     .fb-like{'data-href' => page_url(@page), 'data-send' => true, 'data-width' => '450', 'data-show-faces' => true}
   .clear
@@ -11,15 +13,10 @@
 
 = content_for :head do
   %link{:rel => "stylesheet", :href => "fonts.googleapis.com/css?family=Open+Sans:400,300"}
-  %meta{property: 'fb:app_id', content: facebook_app_id}
+  
+= content_for :open_graph do
   %meta{property: 'og:type', content: 'article'}
   %meta{property: 'og:title', content: @page.title}
-  - @page.attachments.each do |attachment|
-    %meta{property: 'og:image', content: attachment.image.url(:original, false)}
-  %meta{property: 'og:description', content: @page.description}
+  %meta{property: 'og:image', content: '/assets/info.png'}
+  %link{rel: 'image_src', href: '/assets/info.png'}
   %meta{property: 'og:url', content: page_url(@page)}
-  
-  
-
-
-
