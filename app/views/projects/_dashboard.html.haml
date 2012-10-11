@@ -8,7 +8,10 @@
     .span8.white.shadow.nomargin 
       .titleinfo
       .dashboard_image_wrapper
-        = image_tag @project.image.url(:large), width: 'auto', height: 'auto'
+        - if @project.youtube_url.present?
+          %iframe{width: 560, height: 315, frameborder: 0, allowfullscreen: true, src: @project.youtube_url}
+        - else
+          = image_tag @project.image.url(:large), width: 'auto', height: 'auto'
       .social
         .social-links.align-center
           .link= like_button(@project)
