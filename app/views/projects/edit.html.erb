@@ -27,11 +27,20 @@
             </h1>
           </a>
         </div>
-        <div id="media" class="collapse out" data-parent="#accordion">
+        <div id="media" class="collapse in" data-parent="#accordion">
           <div class="accordion-inner">
             <div class="control-group">
+              <%= f.label :youtube_url, "Youtube Video", :class => 'control-label' %>
+              <div class="controls">
+                <%= f.text_field :youtube_url, class: 'input-large', rel: 'popover', data: {placement: 'right', trigger: 'focus', content: 'The URL of your YouTube Video (optional but highly recommended).', original_title: 'YouTube Video URL'}  %>
+                              
+              </div>
+            </div>
+            <div class="control-group">
+              <h3>Main Project Photo</h3>
               <%= render partial: 'project_image_upload'%>
             </div>
+            
           </div>
         </div>
         <div class="accordion-heading">
