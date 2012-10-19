@@ -64,14 +64,18 @@ class ProjectsController < ApplicationController
 
     if can? :edit, @project
       @articles = @project.articles
-      @roles    = @project.roles 
+      @roles    = @project.roles
     else
       @articles = @project.articles.published
       @roles    = @project.roles.confirmed
     end
 
     respond_to do |format|
-      format.html
+      format.html {
+        if params[:display] == 'widget'
+          render action: 'widget', layout: 'layouts/widget'
+        end
+      }
       format.json { render json: @project }
     end
   end

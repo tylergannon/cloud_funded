@@ -130,6 +130,8 @@ CloudFunded::Application.routes.draw do
     get '/my_account/change_password' => 'members/registrations#edit',  as: :change_password
   end
   
+  match '/:id/widget' => 'projects#show', as: :project_widget, via: 'get', defaults: {display: "widget"}
+  
   # match '/projects/:project_id/my_pledge/edit' => 'pledges#edit', as: :edit_my_pledge
   # match '/projects/:project_id/my_pledge' => 'pledges#show', as: :my_pledge
   match '/:id/comments' => 'projects#show', as: :project, defaults: {show: 'comments'}, via: 'get'

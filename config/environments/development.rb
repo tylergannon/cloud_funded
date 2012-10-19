@@ -1,5 +1,5 @@
 CloudFunded::Application.configure do
-  
+  config.assets.logger = nil
   Dwolla::Transaction.test_mode = true
   
   ENV['DWOLLA_SEND'] = 'https://www.dwolla.com/oauth/rest/testapi/send'
