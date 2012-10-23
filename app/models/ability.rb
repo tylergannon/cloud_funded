@@ -1,7 +1,8 @@
-class Ability
+class Ability < ActiveRecord::Base
   include CanCan::Ability
 
   def initialize(member)
+    
     if member
       if member.admin
         can :manage, :all

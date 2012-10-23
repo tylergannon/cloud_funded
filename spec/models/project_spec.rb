@@ -1,5 +1,11 @@
 require 'spec_helper'
 
+class MyThingTest
+  def setup
+    #  do stuff
+  end
+end
+
 describe Project do
   subject {FactoryGirl.build :project}
   it {should belong_to(:owner)}
