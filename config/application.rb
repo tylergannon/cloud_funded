@@ -58,7 +58,7 @@ module CloudFunded
 
     # Enable the asset pipeline
     config.assets.enabled = true
-    config.assets.precompile += %w(jquery-ui-1.8.22.custom.min.js jquery-ui-1.8.22.custom.css mercury_manifest.js mercury_includes.js mercury_includes.css) 
+    config.assets.precompile += %w(jquery-ui-1.8.22.custom.min.js jquery-ui-1.8.22.custom.css mercury_manifest.js mercury_includes.js mercury_includes.css widget.css) 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
     
