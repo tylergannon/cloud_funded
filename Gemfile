@@ -46,16 +46,16 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'spork', '1.0.0rc3'
   gem 'timecop'
-  gem "capybara-webkit"
-  gem 'database_cleaner'
-  gem 'poltergeist', git: 'https://github.com/jonleighton/poltergeist.git'
-  gem 'syntax'
-  gem 'growl'
 end
 
 group :test do
+  gem "capybara-webkit"
+  gem 'database_cleaner'
+  gem 'poltergeist', git: 'https://github.com/jonleighton/poltergeist.git'
   gem 'vcr'
   gem 'webmock'
+  gem 'syntax'
+  gem 'growl'
 end
 
 group :deployment do
