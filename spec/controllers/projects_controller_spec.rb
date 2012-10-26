@@ -81,6 +81,18 @@ describe ProjectsController do
       get :show, {:id => project.to_param}
       assigns(:project).should eq(project)
     end
+    
+    describe "when requesting the widget" do
+      before :each do
+        project = FactoryGirl.create(:project, {owner: @member})
+        get :show, {id: project.to_param, display: 'widget'}
+      end
+      
+      it "should render the widget template" do
+        response.should render_template('widget')
+      end
+    end
+    
     describe "setting of the team members variable" do
       before :each do
         @unconfirmed = FactoryGirl.create :projects_role, project: @example_project
